@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Create-Base-Clocks-and-PLL-Output-Clocks-Automatically
+# key: qps-SDC-Cookbook-Create-Base-Clocks-and-PLL-Output-Clocks-Automatically
+# --
+// Create Base Clocks and PLL Output Clocks Automatically
+derive_pll_clocks -create_base_clocks

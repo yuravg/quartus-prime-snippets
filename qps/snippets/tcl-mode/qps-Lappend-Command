@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Lappend-Command
+# key: qps-Commands-Lappend-Command
+# --
+// Lappend Command
+lappend __listVar __arg;

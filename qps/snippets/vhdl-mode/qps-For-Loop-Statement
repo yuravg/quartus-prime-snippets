@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-For-Loop-Statement
+# key: qps-Sequential-Statements-For-Loop-Statement
+# --
+// For Loop Statement
+<optional_label>:
+	for <loop_id> in <range> loop
+		-- Sequential Statement(s)
+	end loop;

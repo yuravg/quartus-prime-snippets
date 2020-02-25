@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: qps-Create-New-Revision
+# key: qps-Commands-Create-New-Revision
+# --
+// Create New Revision
+# Create a new revision and set to active
+# Require package ::quartus::project
+create_revision -set_current __revision_name;

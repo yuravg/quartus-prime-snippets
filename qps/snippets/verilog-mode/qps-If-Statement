@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qps-If-Statement
+# key: qps-Sequential-Statements-If-Statement
+# --
+// If Statement
+if(<expression>)
+begin
+	// Statements
+end
+
+if(<expression>)
+begin
+	// Statements
+end
+else
+begin
+	// Statements
+end

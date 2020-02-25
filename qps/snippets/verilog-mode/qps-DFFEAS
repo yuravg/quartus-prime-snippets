@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: qps-DFFEAS
+# key: qps-Registers-and-Latches-DFFEAS
+# --
+// DFFEAS
+	DFFEAS <instance_name> (
+				.d(<data_in>),
+				.clk(<clock_signal>),
+				.clrn(<active_low_clear>),
+				.prn(<active_low_preset>),
+				.ena(<clock_enable>),
+				.asdata(<asynch_data_in>),
+				.aload(<asynch_load_signal>),
+				.sclr(<synchronous_clear>),
+				.sload(<synchronous_load>),
+				.q(<data_out>)
+				);

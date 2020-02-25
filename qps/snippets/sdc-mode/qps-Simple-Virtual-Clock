@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Simple-Virtual-Clock
+# key: qps-Clocks-Simple-Virtual-Clock
+# --
+// Simple Virtual Clock
+create_clock -name __name -period __period

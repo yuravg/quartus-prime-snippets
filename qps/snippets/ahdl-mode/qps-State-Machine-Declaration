@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-State-Machine-Declaration
+# key: qps-Architecture-State-Machine-Declaration
+# --
+// State Machine Declaration
+__machine_name	: MACHINE
+	OF BITS (__state_bit, __state_bit)
+	WITH STATES (
+		__state_name = __state_value,
+		__state_name = __state_value,
+		__state_name = __state_value);

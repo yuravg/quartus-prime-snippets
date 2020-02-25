@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-Selected-Signal-Assignment
+# key: qps-Concurrent-Statements-Selected-Signal-Assignment
+# --
+// Selected Signal Assignment
+<optional_label>: with <expression> select
+	<target> <= <value> when <choices>,
+				<value> when <choices>,
+				<value> when <choices>,
+				...
+				<value> when others;

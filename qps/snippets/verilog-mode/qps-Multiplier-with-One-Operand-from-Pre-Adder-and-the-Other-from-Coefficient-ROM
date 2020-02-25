@@ -1,0 +1,114 @@
+# -*- mode: snippet -*-
+# name: qps-Multiplier-with-One-Operand-from-Pre-Adder-and-the-Other-from-Coefficient-ROM
+# key: qps-DSP-Features-for-28-nm-Device-Multiplier-with-One-Operand-from-Pre-Adder-and-the-Other-from-Coefficient-ROM
+# --
+// Multiplier with One Operand from Pre-Adder and the Other from Coefficient ROM
+// Quartus Prime Verilog Template
+// Multiplier with one operand from pre-adder and the other from coefficient ROM
+// For use with the 28-nm device families
+
+module preadder_coef(a1, b1, c1_sel, a2, b2, c2_sel,clock, ena1, ena0, reset, s);
+//This template can be used with 18x18, sum-of-2 18x18, 27x27, sum-of-2 27x27 modes on Stratix-V
+//     Preadder supports 18/26-bit preadder (17/25-bit operands)
+//This template can be used with 18x19(signed), sum-of-2 18x19(signed), 27x27 modes on Arria-V and Cyclone-V
+//     Preadder supports 19(signed)/27-bit preadder (18(signed)/26-bit operands)
+parameter ab_width = 17;
+parameter coef_width = 18;
+//up to 8 coefficients (3-bit address)
+parameter sel_width = 3;
+input [ab_width-1:0] a1;
+input [ab_width-1:0] b1;
+input [ab_width-1:0] a2;
+input [ab_width-1:0] b2;
+input [sel_width-1:0] c1_sel;
+input [sel_width-1:0] c2_sel;
+//DSP supports up to 3 clock/ena pairs and 2 async reset signals
+//When preadder is used, all registered data inputs on each multiplier must use the same {clock, ena}
+//All registered inputs must use the same reset
+input clock;
+input ena1;
+input ena0;
+input reset;
+output [ab_width+coef_width+1:0] s;
+
+reg signed [ab_width-1:0] a1_reg, b1_reg, a2_reg, b2_reg;
+wire signed [ab_width:0] ab1, ab2;
+reg	[sel_width-1:0] c1_sel_reg, c2_sel_reg;
+
+//coefficient storage (ROM inferencing template)
+//Two 18x18 in one DSP block must use coefficient storage simultaneously
+reg signed [coef_width-1:0] c1, c2;
+reg signed [coef_width-1:0] c1_coef[2**sel_width-1:0];
+reg signed [coef_width-1:0] c2_coef[2**sel_width-1:0];
+
+initial
+begin
+	c1_coef[0] = 18'd0123;
+	c1_coef[1] = -18'd0123;
+	c1_coef[2] = 18'd4567;
+	c1_coef[3] = -18'd4567;
+	c1_coef[4] = 18'd8000;
+	c1_coef[5] = -18'd9000;
+	c1_coef[6] = 18'd0;
+	c1_coef[7] = 18'd0;
+	c2_coef[0] = 18'd9876;
+	c2_coef[1] = -18'd9876;
+	c2_coef[2] = 18'd5432;
+	c2_coef[3] = -18'd5432;
+	c2_coef[4] = 18'd1000;
+	c2_coef[5] = -18'd1000;
+	c2_coef[6] = 18'd1;
+	c2_coef[7] = 18'd0;
+end
+
+always @ (c1_sel_reg)
+begin
+	c1 = c1_coef[c1_sel_reg];
+end
+always @ (c2_sel_reg)
+begin
+	c2 = c2_coef[c2_sel_reg];
+end
+
+//Preadder
+//Preadder supports static add/sub
+//Two 18x18 in one DSP block must use preadder simultaneously
+//Two 18x18 in one DSP block must have the same add/sub
+assign ab1 = a1_reg - b1_reg;
+assign ab2 = a2_reg - b2_reg;
+
+//input register
+always @(posedge clock or posedge reset)
+begin
+	if (reset == 1'b1)
+	begin
+		a1_reg <= 0;
+		a2_reg <= 0;
+		b1_reg <= 0;
+		b2_reg <= 0;
+		c1_sel_reg <= 0;
+		c2_sel_reg <= 0;
+	end
+	else
+	begin
+		if (ena0 == 1'b1)
+		begin
+			a1_reg <= a1;
+			b1_reg <= b1;
+			c1_sel_reg <= c1_sel;
+		end
+		if (ena1 == 1'b1)
+		begin
+			a2_reg <= a2;
+			b2_reg <= b2;
+			c2_sel_reg <= c2_sel;
+		end
+	end
+end
+
+//Pick an applicable basic mode template
+sum_of_2 dsp0 (ab1, c1, ab2, c2, s);
+defparam dsp0.a_width = ab_width+1;
+defparam dsp0.b_width = coef_width;
+
+endmodule

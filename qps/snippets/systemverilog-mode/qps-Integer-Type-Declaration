@@ -1,0 +1,42 @@
+# -*- mode: snippet -*-
+# name: qps-Integer-Type-Declaration
+# key: qps-Type-Declarations-Integer-Type-Declaration
+# --
+// Integer Type Declaration
+// Built-in integer vector types.  By default, these types
+// are signed.  You can explicitly declare them as unsigned or
+// signed by adding the appropriate keyword after the type.
+// These types have implicit bounds of [Size - 1 : 0].  2-state
+// types support the bit values of {0,1}. 4-state types support
+// {0,1,X,Z}.  If you assign a value of X or Z to a 2-state
+// type, the value will be treated as 0.
+
+Type            Size         States
+
+integer         32             4
+int             32             2
+shortint        16             2
+longint         64             2
+byte             8             2
+
+// Examples
+int an_int = -37;
+int unsigned an_unsigned_int = 37;
+byte packet;
+
+// Built-in integer atom types.  You can use them to declare
+// signed or unsigned vectors of arbitrary size.  By default,
+// these types are unsigned unless you explicitly declare them
+// as signed.
+
+Type            Size        States
+
+reg              1             4
+logic            1             4
+bit              1             2
+
+// Examples
+
+logic signed [31:0] an_integer_variable;
+bit signed [31:0] an_int_variable;
+bit [31:0] an_unsigned_int_variable;

@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: qps-Direct-Entity-Instantiation
+# key: qps-Instances-Direct-Entity-Instantiation
+# --
+// Direct Entity Instantiation
+-- To instantiate an entity directly, the entity must be written in VHDL.
+-- You must also add the file containing the entity declaration to your
+-- Quartus Prime project.
+<instance_name>: entity <library>.<entity_name>
+	generic map
+	(
+		<name> => <value>,
+		...
+	)
+	port map
+	(
+		<formal_input> => <expression>,
+		<formal_output> => <signal>,
+		<formal_inout> => <signal>,
+		...
+	);

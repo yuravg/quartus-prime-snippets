@@ -1,0 +1,27 @@
+# -*- mode: snippet -*-
+# name: qps-Configuration-Specification
+# key: qps-Type-and-Subtype-Declarations-Configuration-Specification
+# --
+// Configuration Specification
+-- A configuration specification is a way of configuring a component instance.
+-- The configuration specification can select the entity (and architecture)
+-- corresponding to a component instantiation.  It can also specify a
+-- configuration declaration used to configure the component instance.
+
+-- Specify the entity being instantiated
+for <instance_name> : <component_name> use entity <library_name>.<entity_name>;
+
+-- Specify the entity and architecture being instantiated
+for <instance_name> : <component_name> use entity <library_name>.<entity_name>(<architecture_name>);
+
+-- Specify a configuration to configure this instance of the component
+for <instance_name> : <component_name> use configuration <library_name>.<configuration_name>;
+
+
+-- Examples
+
+for inst : my_component use entity work.my_entity;
+
+for inst : my_component use entity work.my_entity(my_arch);
+
+for inst : my_component use configuration work.my_configuration;

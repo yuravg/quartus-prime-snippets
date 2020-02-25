@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-JKFF
+# key: qps-Registers-and-Latches-JKFF
+# --
+// JKFF
+	JKFF <instance_name> (
+				.j(<synchronous_set>),
+				.k(<synchronous_reset>),
+				.clk(<clock_signal>),
+				.clrn(<active_low_clear>),
+				.prn(<active_low_preset>),
+				.q(<data_out>)
+				);

@@ -1,0 +1,55 @@
+# -*- mode: snippet -*-
+# name: qps-Pipelined-Binary-Adder-Tree
+# key: qps-Adders-Pipelined-Binary-Adder-Tree
+# --
+// Pipelined Binary Adder Tree
+-- Quartus Prime VHDL Template
+-- Pipelined Binary Adder Tree
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity pipelined_binary_adder_tree is
+
+	generic
+	(
+		DATA_WIDTH : natural := 8
+	);
+
+	port
+	(
+		a	   : in unsigned ((DATA_WIDTH-1) downto 0);
+		b	   : in unsigned ((DATA_WIDTH-1) downto 0);
+		c	   : in unsigned ((DATA_WIDTH-1) downto 0);
+		d	   : in unsigned ((DATA_WIDTH-1) downto 0);
+		e	   : in unsigned ((DATA_WIDTH-1) downto 0);
+		clk	   : in std_logic;
+		result : out unsigned ((DATA_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of pipelined_binary_adder_tree is
+
+	-- Declare registers to hold intermediate sums
+	signal sum1, sum2, sum3 : unsigned ((DATA_WIDTH-1) downto 0);
+
+begin
+
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+
+			-- Generate and store intermediate values in the pipeline
+			sum1 <= a + b;
+			sum2 <= c + d;
+			sum3 <= sum1 + sum2;
+
+			-- Generate and store the last value, the result
+			result <= sum3 + e;
+
+		end if;
+	end process;
+
+end rtl;

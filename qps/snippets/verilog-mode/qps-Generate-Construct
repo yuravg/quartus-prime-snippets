@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-Generate-Construct
+# key: qps-Generates-Generate-Construct
+# --
+// Generate Construct
+// Generate costructs allow you to conditionally replicate HDL code in
+// your design.  Everything in a generate construct must be legal Verilog
+// HDL, even if the code itself isn't active.
+
+generate
+	// Generate Items
+endgenerate

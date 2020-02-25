@@ -1,0 +1,112 @@
+# -*- mode: snippet -*-
+# name: qps-Chainout-Adder-Accumulator-Feature
+# key: qps-DSP-Features-for-28-nm-Device-Chainout-Adder-Accumulator-Feature
+# --
+// Chainout Adder/Accumulator Feature
+// Quartus Prime Verilog Template
+// Chainout adder/accumulator feature
+// For use with the 28-nm device families
+
+module chainout_accum(a1, b1, a2, b2, a3, b3, a4, b4, a5, b5,
+		accum, load_value, clock, ena, reset, s);
+//This template can be used with 18x18, sum-of-2 18x18, 36+18x18, 27x27, 36x18 modes on Stratix-V
+//This template can be used with 18x19(signed), 36+18x19(signed), 27x27 modes on Arria-V and Cyclone-V
+parameter a_width = 18;
+parameter b_width = 18;
+//When this template applies to single 18x18, max chain_width is 44, othewise 64
+parameter chain_width = 44;
+//preload_value can have only one bit 1
+parameter [chain_width-1:0] preload_value = 'h400;
+//Double accumulator feature is not available on Stratix-V
+parameter enable_double_accum = "false";
+input	[a_width-1:0] a1;
+input	[b_width-1:0] b1;
+input	[a_width-1:0] a2;
+input	[b_width-1:0] b2;
+input	[a_width-1:0] a3;
+input	[b_width-1:0] b3;
+input	[a_width-1:0] a4;
+input	[b_width-1:0] b4;
+input	[a_width-1:0] a5;
+input	[b_width-1:0] b5;
+input	accum;
+input	load_value;
+//DSP supports up to 3 clock/ena pairs and 2 async reset signals
+//All output registers must have the same {clock, ena, reset}
+input	clock;
+input	ena;
+input	reset;
+output 	[chain_width-1:0] s;
+
+wire signed	[a_width-1:0] a1;
+wire signed	[b_width-1:0] b1;
+wire signed	[a_width-1:0] a2;
+wire signed	[b_width-1:0] b2;
+wire signed	[a_width-1:0] a3;
+wire signed	[b_width-1:0] b3;
+wire signed	[a_width-1:0] a4;
+wire signed	[b_width-1:0] b4;
+wire signed	[a_width-1:0] a5;
+wire signed	[b_width-1:0] b5;
+wire signed [a_width+b_width-1:0] p1, p2, p3, p4, p5, p6;
+reg signed [chain_width-1:0] s1, s2, s3, s4, s5, s, s_double;
+
+//Pick an applicable basic mode template
+single_mult mult1 (a1, b1, p1);
+defparam mult1.a_width = a_width;
+defparam mult1.b_width = b_width;
+
+single_mult mult2 (a2, b2, p2);
+defparam mult2.a_width = a_width;
+defparam mult2.b_width = b_width;
+
+single_mult mult3 (a3, b3, p3);
+defparam mult3.a_width = a_width;
+defparam mult3.b_width = b_width;
+
+single_mult mult4 (a4, b4, p4);
+defparam mult1.a_width = a_width;
+defparam mult1.b_width = b_width;
+
+single_mult mult5 (a5, b5, p5);
+defparam mult5.a_width = a_width;
+defparam mult5.b_width = b_width;
+
+//When this template applies to single 18x18, the number of multipliers has to be even
+//Create a 0x0 if the number of multipliers is odd
+wire signed zero_bit;
+soft sbz (1'b0, zero_bit);
+single_mult mult6 ({a_width{zero_bit}}, {b_width{zero_bit}}, p6);
+defparam mult6.a_width = a_width;
+defparam mult6.b_width = b_width;
+
+//accumulator path
+wire signed [chain_width-1:0] acc_sel;
+assign acc_sel = accum ? ((enable_double_accum == "true") ? s_double : s) : (load_value ? preload_value : 0);
+
+
+always @(posedge clock or posedge reset)
+if (reset) begin
+	s1 <= 0;
+	s2 <= 0;
+	s3 <= 0;
+	s4 <= 0;
+	s5 <= 0;
+	s <= 0;
+	s_double <= 0;
+end else begin
+	if (ena) begin
+		//chainout adder support static add or sub
+		//basic mode result (p) must be the second operand
+		s1 <= p1;
+		s2 <= s1 + p2;
+		s3 <= s2 + p3;
+		s4 <= s3 - p4;
+		s5 <= s4 + p5;
+		//chainout accumulator only support addition when use with chainout adder
+		s <= acc_sel + (s5 + p6);	//loopback path (acc_sel) must be the first operand
+		s_double <= s;
+	end
+end
+
+endmodule

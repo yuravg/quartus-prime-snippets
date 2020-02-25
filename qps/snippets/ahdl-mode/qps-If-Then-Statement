@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qps-If-Then-Statement
+# key: qps-Architecture-If-Then-Statement
+# --
+// If Then Statement
+IF __expression THEN
+	__statement;
+	__statement;
+ELSIF __expression THEN
+	__statement;
+	__statement;
+ELSE
+	__statement;
+	__statement;
+END IF;

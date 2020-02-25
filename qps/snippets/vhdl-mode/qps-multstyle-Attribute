@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: qps-multstyle-Attribute
+# key: qps-Synthesis-Attributes-multstyle-Attribute
+# --
+// multstyle Attribute
+-- Controls the implementation of multiplication operators in your HDL
+-- source.  Using this attribute, you can control whether the Quartus Prime
+-- software should preferentially implement a multiplication operation in
+-- general logic or dedicated hardware, if available in the target device.
+
+-- Legal values = "dsp" or "logic"
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute multstyle : string;
+
+attribute multstyle of <object> : <object_class> is <string_value>;
+
+-- Examples (in increasing order of priority)
+
+-- Control the implementation of all multiplications in an entity
+attribute multstyle of foo : entity is "dsp";
+
+-- Control the implementation of all multiplications whose result is
+-- directly assigned to a signal
+signal result : integer;
+
+attribute multstyle of result : signal is "logic";
+
+result <= a * b; -- implement this multiply in logic

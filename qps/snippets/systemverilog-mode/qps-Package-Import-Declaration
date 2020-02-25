@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Package-Import-Declaration
+# key: qps-Type-Declarations-Package-Import-Declaration
+# --
+// Package Import Declaration
+// Import declaration(s) from a package into the current scope.  You can
+// import a specific object or all objects.
+import <package_identifier>::<object_name>;
+import <package_identifier>::*;

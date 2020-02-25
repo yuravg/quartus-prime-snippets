@@ -1,0 +1,134 @@
+# -*- mode: snippet -*-
+# name: qps-M27x27-with-Dynamic-Negate
+# key: qps-DSP-Features-for-20-nm-Device-M27x27-with-Dynamic-Negate
+# --
+// M27x27 with Dynamic Negate
+// Quartus Prime Verilog Template
+// m27x27 multiplier with full registers (input, pipeline and output) + dynamic negate
+// Formula: final_output = (a1*b1) +/- (a2*b2)
+// 	Note: Arria 10 ES devices do not support dynamic negate and subtraction for chainout/accumulation.
+// For use with 20-nm device families
+// For more information on the 20nm DSP features, please refer to http://www.altera.com/literature/hb/arria-10/a10_dsp.pdf
+
+module m27x27_full_regs_dynNegate (
+	a1, b1, a2, b2,
+	clock1, clock2, clock3, ena1, ena2, ena3, reset1, reset2,
+	negate,
+	final_output
+);
+
+	// This template will only work where one of the two multiplier operands(signed A and signed B) data width falls within >19 and <=27.
+	parameter A_WIDTH = 27;
+	parameter B_WIDTH = 27;
+	// This example uses n=2 multiplers, hence the final output width is A_WIDTH + B_WIDTH + (n-1)
+	parameter FINAL_OUTPUT_WIDTH = A_WIDTH + B_WIDTH + 1;
+
+	// Data input ports
+	input signed [A_WIDTH-1:0] a1, a2;
+	input signed [B_WIDTH-1:0] b1, b2;
+
+	// Register clock and control signals
+	// DSP supports up to 3 clock/ena pairs, and 2 async reset signals
+	input clock1, clock2, clock3, ena1, ena2, ena3, reset1, reset2;
+
+	// Dynamic NEGATE control signals
+	input negate;
+
+	// Output signal
+	// Max output width for chaining is 64
+	output signed [FINAL_OUTPUT_WIDTH-1:0] final_output;
+
+	// Multiplier Result
+	wire signed [A_WIDTH+B_WIDTH-1:0] m1, m2;
+
+	// Data Input Register
+	reg signed [A_WIDTH-1:0] a1_reg, a2_reg;
+	reg signed [B_WIDTH-1:0] b1_reg, b2_reg;
+
+	// Data Input Pipeline Register
+	reg signed [A_WIDTH-1:0] a1_pipeline_reg, a2_pipeline_reg;
+	reg signed [B_WIDTH-1:0] b1_pipeline_reg, b2_pipeline_reg;
+
+	// Negate Input Register
+	reg negate_reg;
+
+	// Negate Pipeline Register
+	reg negate_pipeline_reg;
+
+	// Output Register
+	reg signed [A_WIDTH+B_WIDTH-1:0] m1_output_reg;
+	reg signed [FINAL_OUTPUT_WIDTH-1:0] final_output_reg;
+
+	// Input registers (for DATA and DYNAMIC CONTROL SIGNAL).
+	// All input registers must use the same reset signal,
+	// Each DATA input register may have different pair of clock and ena signal.
+	// The DYNAMIC CONTROL SIGNAL input registers(e.g. negate) can have different clock/ena signal pair than that of the DATA input register.
+// But all DYNAMIC CONTROL SIGNAL input registers must share the same clock and ena signal.
+	always @(posedge clock1 or posedge reset1)
+	if (reset1) begin
+		// Input registers (for DATA)
+		a1_reg <= 0;
+		b1_reg <= 0;
+		a2_reg <= 0;
+		b2_reg <= 0;
+		// Input registers (for DYNAMIC CONTROL SIGNAL)
+		negate_reg <= 0;
+	end else begin
+		if (ena1) begin
+			a1_reg <= a1;
+			b1_reg <= b1;
+			a2_reg <= a2;
+			b2_reg <= b2;
+			negate_reg <= negate;
+		end
+	end
+
+	// Input pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All pipeline registers must use the same {clock, ena, reset}
+	// The Pipeline register must use the same reset as the output register
+	// The DYNAMIC CONTROL SIGNAL input pipeline register can be bypass differently
+	always @(posedge clock2 or posedge reset2)
+	if (reset2) begin
+		a1_pipeline_reg <= 0;
+		b1_pipeline_reg <= 0;
+		a2_pipeline_reg <= 0;
+		b2_pipeline_reg <= 0;
+		negate_pipeline_reg <= 0;
+	end else begin
+		if (ena2) begin
+			a1_pipeline_reg <= a1_reg;
+			b1_pipeline_reg <= b1_reg;
+			a2_pipeline_reg <= a2_reg;
+			b2_pipeline_reg <= b2_reg;
+			negate_pipeline_reg <= negate_reg;
+		end
+	end
+
+	// Output register
+	// Output register must share the same reset with input pipeline register
+	always @(posedge clock3 or posedge reset2)
+	if (reset2) begin
+		m1_output_reg <= 0;
+		final_output_reg <= 0;
+	end else begin
+		if (ena3) begin
+			m1_output_reg <= m1;
+
+			// Dynamic negate
+			if (negate_pipeline_reg) begin
+				final_output_reg <= m1_output_reg - m2;
+			end else begin
+				final_output_reg <= m1_output_reg + m2;
+			end
+		end
+	end
+
+	// Multiplier
+	assign m1 = (a1_pipeline_reg * b1_pipeline_reg);
+	assign m2 = (a2_pipeline_reg * b2_pipeline_reg);
+
+	// Final output
+	assign final_output = final_output_reg;
+
+
+endmodule

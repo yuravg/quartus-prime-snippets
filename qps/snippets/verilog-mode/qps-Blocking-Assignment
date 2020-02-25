@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Blocking-Assignment
+# key: qps-Sequential-Statements-Blocking-Assignment
+# --
+// Blocking Assignment
+// Use blocking assignments when assigning to loop variables, temporary
+// variables, or variables that model combinational logic.
+
+<variable_lvalue> = <expression>;

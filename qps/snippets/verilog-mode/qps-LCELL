@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-LCELL
+# key: qps-Buffers-LCELL
+# --
+// LCELL
+	LCELL <instance_name> (.in(<data_in>), .out(<data_out>));

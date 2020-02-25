@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-While-Loop-Statement
+# key: qps-Sequential-Statements-While-Loop-Statement
+# --
+// While Loop Statement
+<optional_label>:
+	while <condition> loop
+		-- Sequential Statement(s)
+	end loop;

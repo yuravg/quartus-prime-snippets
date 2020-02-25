@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qps-Basic-Positive-Edge-Register-with-Power-Up-=-VCC
+# key: qps-Registers-Basic-Positive-Edge-Register-with-Power-Up-=-VCC
+# --
+// Basic Positive Edge Register with Power-Up = VCC
+-- Set the initial value to 1
+signal <register_variable> : std_logic := '1';
+
+-- After initialization, update the register output on the clock's
+-- rising edge
+process (<clock_signal>)
+begin
+	if (rising_edge(<clock_signal>)) then
+		<register_variable> <= <data>;
+	end if;
+end process;

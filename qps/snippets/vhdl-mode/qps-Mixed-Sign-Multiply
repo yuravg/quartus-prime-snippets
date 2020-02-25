@@ -1,0 +1,41 @@
+# -*- mode: snippet -*-
+# name: qps-Mixed-Sign-Multiply
+# key: qps-DSP-Features-for-28-nm-Device-Mixed-Sign-Multiply
+# --
+// Mixed Sign Multiply
+-- Quartus Prime VHDL Template
+-- Mixed sign multiply
+-- For use with the 28-nm device families
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity mixed_sign is
+	generic
+	(
+		A_WIDTH : natural := 18;
+		B_WIDTH : natural := 18
+	);
+
+	port
+	(
+		a	   : in signed	((A_WIDTH-1) downto 0);
+		b	   : in unsigned	((B_WIDTH-1) downto 0);
+		p : out signed ((A_WIDTH+B_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of mixed_sign is
+
+signal p_extend : signed ((A_WIDTH+B_WIDTH) downto 0);
+
+begin
+
+-- Note that mixed-sign multiplier also has a_width+b_width bits result
+-- Guaranteed no overflow
+	p_extend <= a * signed( resize(b, B_WIDTH+1) );
+	p <= resize(p_extend, A_WIDTH+B_WIDTH);
+
+end rtl;

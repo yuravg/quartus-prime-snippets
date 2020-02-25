@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-LATCH
+# key: qps-Registers-and-Latches-LATCH
+# --
+// LATCH
+	LATCH <instance_name> (
+				.d(<data_in>),
+				.ena(<clock_enable>),
+				.q(<data_out>)
+				);

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: qps-SRFFE
+# key: qps-Registers-and-Latches-SRFFE
+# --
+// SRFFE
+	SRFFE <instance_name> (
+				.s(<synchronous_set>),
+				.r(<synchronous_reset>),
+				.clk(<clock_signal>),
+				.clrn(<active_low_clear>),
+				.prn(<active_low_preset>),
+				.ena(<clock_enable>),
+				.q(<data_out>)
+				);

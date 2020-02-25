@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: qps-Multicycle-Paths
+# key: qps-Exceptions-Multicycle-Paths
+# --
+// Multicycle Paths
+# Use -start instead of -end to apply the multicycleFactor to the source clock
+set_multicycle_path -setup -end -from [__collectionCommand __listOfWildcards] -to [__collectionCommand __listOfWildcards] __multicycleFactor
+set_multicycle_path -hold -end -from [__collectionCommand __listOfWildcards] -to [__collectionCommand __listOfWildcards] __holdMulticycleFactor

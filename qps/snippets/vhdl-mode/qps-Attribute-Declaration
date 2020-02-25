@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-Attribute-Declaration
+# key: qps-Type-and-Subtype-Declarations-Attribute-Declaration
+# --
+// Attribute Declaration
+-- Attributes allow you to associate additional properties with another
+-- object in your design.  Quartus Prime Integrated Synthesis supports
+-- attributes as a way for you to control the synthesis of your design.
+-- In general, you should import attributes from the altera_syn_attributes
+-- package in the altera library with the use clause:
+--	   use altera.syn_altera_attributes.all;
+
+attribute <name> : <type>;

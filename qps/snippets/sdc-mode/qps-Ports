@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Ports
+# key: qps-Collections-Ports
+# --
+// Ports
+set __name [get_ports __listOfWildcards]

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-DFFE
+# key: qps-Registers-and-Latches-DFFE
+# --
+// DFFE
+	DFFE <instance_name> (
+				.d(<data_in>),
+				.clk(<clock_signal>),
+				.clrn(<active_low_clear>),
+				.prn(<active_low_preset>),
+				.ena(<clock_enable>),
+				.q(<data_out>)
+				);

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Options-Statement
+# key: qps-Architecture-Options-Statement
+# --
+// Options Statement
+OPTIONS BIT0 = __option_value;

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Registers
+# key: qps-Collections-Registers
+# --
+// Registers
+set __name [get_registers __listOfWildcards]

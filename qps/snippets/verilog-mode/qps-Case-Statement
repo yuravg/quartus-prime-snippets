@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-Case-Statement
+# key: qps-Sequential-Statements-Case-Statement
+# --
+// Case Statement
+// x and z values are NOT treated as don't-care's
+case(<expr>)
+<case_item_exprs>: <sequential statement>
+<case_item_exprs>: <sequential statement>
+<case_item_exprs>: <sequential statement>
+default: <statement>
+endcase

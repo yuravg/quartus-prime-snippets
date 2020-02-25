@@ -1,0 +1,37 @@
+# -*- mode: snippet -*-
+# name: qps-Sum-of-Four-Multipliers
+# key: qps-DSP-Features-for-28-nm-Device-Sum-of-Four-Multipliers
+# --
+// Sum of Four Multipliers
+// Quartus Prime Verilog Template
+// Sum of four multipliers
+// For use with the 28-nm device families
+
+module sum_of_4(a1, b1, a2, b2, a3, b3, a4, b4, p);
+//This template is applicable to sum-of-4 18x18 mode on Stratix-V
+parameter a_width = 18;
+parameter b_width = 18;
+input	[a_width-1:0] a1;
+input	[b_width-1:0] b1;
+input	[a_width-1:0] a2;
+input	[b_width-1:0] b2;
+input	[a_width-1:0] a3;
+input	[b_width-1:0] b3;
+input	[a_width-1:0] a4;
+input	[b_width-1:0] b4;
+output	[a_width+b_width+1:0] p;
+
+wire signed	[a_width-1:0] a1;
+wire signed	[b_width-1:0] b1;
+wire signed	[a_width-1:0] a2;
+wire signed	[b_width-1:0] b2;
+wire signed	[a_width-1:0] a3;
+wire signed	[b_width-1:0] b3;
+wire signed	[a_width-1:0] a4;
+wire signed	[b_width-1:0] b4;
+wire signed	[a_width+b_width+1:0] p;
+
+//Static add/sub is supported
+assign p = a1 * b1 + a2 * b2 - a3 * b3 + a4 * b4;
+
+endmodule

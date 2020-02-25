@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-dont_merge-Attribute
+# key: qps-Synthesis-Attributes-dont_merge-Attribute
+# --
+// dont_merge Attribute
+// Prevents Quartus Prime from merging a register with a duplicate
+// register
+
+(* dont_merge *) <variable_declaration>;
+(* dont_merge *) module <module_name>(...);

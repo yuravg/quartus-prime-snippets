@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-Basic-Latch
+# key: qps-Latches-Basic-Latch
+# --
+// Basic Latch
+// Update the variable only when updates are enabled
+always @ (*)
+begin
+	if (<enable>)
+	begin
+		<latch_variable> <= <data>;
+	end
+end

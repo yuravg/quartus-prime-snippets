@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-TFF
+# key: qps-Registers-and-Latches-TFF
+# --
+// TFF
+	TFF <instance_name> (
+				.t(<toggle_signal>),
+				.clk(<clock_signal>),
+				.clrn(<active_low_clear>),
+				.prn(<active_low_preset>),
+				.q(<data_out>)
+				);

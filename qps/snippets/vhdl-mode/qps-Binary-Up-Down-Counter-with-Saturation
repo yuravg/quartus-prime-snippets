@@ -1,0 +1,73 @@
+# -*- mode: snippet -*-
+# name: qps-Binary-Up-Down-Counter-with-Saturation
+# key: qps-Counters-Binary-Up-Down-Counter-with-Saturation
+# --
+// Binary Up/Down Counter with Saturation
+-- Quartus Prime VHDL Template
+-- Binary Up/Down Counter with Saturation
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity binary_up_down_counter_with_saturation is
+
+	generic
+	(
+		MIN_COUNT : natural := 0;
+		MAX_COUNT : natural := 255
+	);
+
+	port
+	(
+		clk		   : in std_logic;
+		reset	   : in std_logic;
+		enable	   : in std_logic;
+		updown	   : in std_logic;
+		q		   : out integer range MIN_COUNT to MAX_COUNT
+	);
+
+end entity;
+
+architecture rtl of binary_up_down_counter_with_saturation is
+	signal direction : integer;
+	signal limit : integer range MIN_COUNT to MAX_COUNT;
+begin
+
+	process (updown)
+	begin
+		-- Set counter increment/decrement, and corresponding limit
+		if (updown = '1') then
+			direction <= 1;
+			limit <= MAX_COUNT;
+		else
+			direction <= -1;
+			limit <= MIN_COUNT;
+		end if;
+	end process;
+
+
+	process (clk)
+		variable cnt : integer range MIN_COUNT to MAX_COUNT;
+	begin
+
+		-- Synchronously update the counter
+		if (rising_edge(clk)) then
+
+			if (reset = '1') then
+				-- Reset the counter to 0
+				cnt := 0;
+
+			elsif (enable = '1' and cnt /= limit) then
+				-- Increment/decrement the counter,
+				-- if the limit is not exceeded
+				cnt := cnt + direction;
+
+			end if;
+		end if;
+
+		-- Output the current count
+		q <= cnt;
+	end process;
+
+end rtl;

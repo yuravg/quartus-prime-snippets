@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-Basic-Positive-Edge-Register-with-Power-Up-=-VCC
+# key: qps-Registers-Basic-Positive-Edge-Register-with-Power-Up-=-VCC
+# --
+// Basic Positive Edge Register with Power-Up = VCC
+// Set the initial value to 1
+reg <register_variable> = 1'b1;
+
+// After initialization, update the register output on the clock's rising edge
+always @ (posedge <clock_signal>)
+begin
+	<register_variable> <= <data>;
+end

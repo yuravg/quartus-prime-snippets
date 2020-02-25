@@ -1,0 +1,85 @@
+# -*- mode: snippet -*-
+# name: qps-Configurable-Component-Ports
+# key: qps-Configuration-Specifications-Configurable-Component-Ports
+# --
+// Configurable Component Ports
+-- Quartus Prime VHDL Templates
+-- Configurable port names for a binary counter
+
+library ieee;
+use ieee.std_logic_1164.all;
+entity configurable_counter_ports2 is
+	port
+	(
+		i1 : in std_logic;
+		i2 : in std_logic;
+		i3 : in std_logic;
+		o  : out integer
+	);
+end configurable_counter_ports2;
+
+architecture rtl of configurable_counter_ports2 is
+	component c     -- A very generic component!
+	port (
+		i1,i2,i3 : in std_logic;    -- These port names won't match the ports
+		o        : out integer      -- of the instantiated entity.
+	);
+	end component;
+
+	-- Bind the generic component to a specific entity (a counter)
+	for inst1 : c use entity work.binary_counter(rtl)
+	port map (
+		clk => i1,      -- Show how the counter's port names correspond
+		reset => i2,    -- to the component's port names
+		enable => i3,
+		q => o
+	);
+begin
+	inst1 : c
+	port map (
+		i1 => i1,
+		i2 => i2,
+		i3 => i3,
+		o  => o
+	);
+end rtl;
+
+
+
+-- The binary counter:
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity binary_counter is
+	generic
+	(
+		MIN_COUNT : natural := 0;
+		MAX_COUNT : natural := integer'high
+	);
+	port
+	(
+		clk		  : in std_logic;
+		reset	      : in std_logic;
+		enable	  : in std_logic;
+		q		  : out integer range MIN_COUNT to MAX_COUNT
+	);
+end entity;
+
+architecture rtl of binary_counter is
+begin
+	process (clk)
+		variable  cnt : integer range MIN_COUNT to MAX_COUNT;
+	begin
+		if (rising_edge(clk)) then
+			if reset = '1' then
+				cnt := 0;
+			elsif enable = '1' then
+				cnt := cnt + 1;
+			end if;
+		end if;
+
+		q <= cnt;
+	end process;
+end rtl;

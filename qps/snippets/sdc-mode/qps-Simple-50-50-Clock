@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Simple-50-50-Clock
+# key: qps-Clocks-Simple-50-50-Clock
+# --
+// Simple 50/50 Clock
+create_clock -name __name -period __period [get_ports __port]

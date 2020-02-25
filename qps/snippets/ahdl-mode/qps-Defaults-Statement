@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: qps-Defaults-Statement
+# key: qps-Architecture-Defaults-Statement
+# --
+// Defaults Statement
+DEFAULTS
+	__node_name = __constant_value;
+END DEFAULTS;

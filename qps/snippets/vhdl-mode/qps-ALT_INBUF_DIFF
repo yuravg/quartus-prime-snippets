@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: qps-ALT_INBUF_DIFF
+# key: qps-Buffers-ALT_INBUF_DIFF
+# --
+// ALT_INBUF_DIFF
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating ALT_INBUF_DIFF
+	<instance_name> : ALT_INBUF_DIFF
+	generic map (
+			IO_STANDARD => "LVDS",
+			LOCATION => "IOBANK_1A",
+			ENABLE_BUS_HOLD => "off",
+			WEAK_PULL_UP_RESISTOR => "off"
+			)
+	port map (
+			i => <data_in_pos>,		 -- <data_in_pos> must be an input pin
+			ibar => <data_in_neg>,	 -- <data_in_neg> must be an input pin
+			o => <data_out>
+			);

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Lsort-Command
+# key: qps-Commands-Lsort-Command
+# --
+// Lsort Command
+lsort __switches __list;

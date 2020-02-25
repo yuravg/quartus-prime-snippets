@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qps-Expression-Size
+# key: qps-Array-Querying-Expression-Size
+# --
+// Expression Size
+// Return the number of bits in a data type or expression
+$bits(<expression_or_data_type)

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Open-Drain-Buffer
+# key: qps-Tri-State-Open-Drain-Buffer
+# --
+// Open-Drain Buffer
+-- Altera devices contain tri-state buffers in the I/O.  Thus, an open-drain
+-- buffer must feed a top-level I/O in the final design.  Otherwise, the
+-- Quartus Prime software will convert the open-drain buffer into logic.
+<target> <= '0' when (<output_enable> = '1') else 'Z';

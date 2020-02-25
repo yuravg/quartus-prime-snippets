@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-In-Line-Reference-(named-port-association)
+# key: qps-Architecture-In-Line-Reference-(named-port-association)
+# --
+// In-Line Reference (named port association)
+(__node_name, __node_name) = __function_name
+	(.__port_name = __node_name, .__port_name = __node_name)
+	RETURNS (.__port_name, .__port_name);
+__node_name = __primitive_name
+	(.__port_name = __node_name, .__port_name = __node_name);

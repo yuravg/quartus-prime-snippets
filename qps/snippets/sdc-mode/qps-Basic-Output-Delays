@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qps-Basic-Output-Delays
+# key: qps-I-O-Delays-Basic-Output-Delays
+# --
+// Basic Output Delays
+set_output_delay -clock __clock -max __maxValue [get_ports __listOfWildcards]
+set_output_delay -clock __clock -min __minValue [get_ports __listOfWildcards]

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Generate-If
+# key: qps-Generates-Generate-If
+# --
+// Generate If
+<generate_label>:
+	if <condition> generate
+		-- Concurrent Statement(s)
+	end generate;

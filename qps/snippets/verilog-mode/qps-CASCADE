@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qps-CASCADE
+# key: qps-Buffers-CASCADE
+# --
+// CASCADE
+	// <data_out> cannot feed an output pin, a register, or an XOR gate
+	CASCADE <instance_name> (.in(<data_in>), .out(<data_out>));

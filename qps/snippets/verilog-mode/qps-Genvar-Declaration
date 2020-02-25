@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-Genvar-Declaration
+# key: qps-Declarations-Genvar-Declaration
+# --
+// Genvar Declaration
+// A genvar is a signed integer object that functions as a loop variable
+// in generate-for loops.  As a result, it may only be assigned a value
+// inside the initial and step conditions of a generate-for.  It must be
+// assigned a constant expression value and should only be referenced
+// inside the scope of the generate-for.
+
+genvar <genvar_id>;
+genvar <genvar_id1>, <genvar_id2>, ... <genvar_idN>;

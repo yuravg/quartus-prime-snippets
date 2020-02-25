@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: qps-ALT_OUTBUF_DIFF
+# key: qps-Buffers-ALT_OUTBUF_DIFF
+# --
+// ALT_OUTBUF_DIFF
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating ALT_OUTBUF_DIFF
+	<instance_name> : ALT_OUTBUF_DIFF
+	generic map (
+			IO_STANDARD => "LVDS",
+			LOCATION => "IOBANK_2A",
+			CURRENT_STRENGTH => "minimum current",
+			ENABLE_BUS_HOLD => "off",
+			WEAK_PULL_UP_RESISTOR => "off"
+			)
+	-- <data_out_pos> and <data_out_neg> must be declared as output pins
+	port map ( i => <data_in>, o => <data_out_pos>, obar => <data_out_neg>);

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-Do--While-Loop
+# key: qps-Loops-Do--While-Loop
+# --
+// Do...While Loop
+do
+begin
+	// Statements
+end
+while(<expression>);

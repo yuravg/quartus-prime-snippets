@@ -1,0 +1,43 @@
+# -*- mode: snippet -*-
+# name: qps-Full-Featured-Positive-Edge-Register-with-All-Secondary-Signals
+# key: qps-Registers-Full-Featured-Positive-Edge-Register-with-All-Secondary-Signals
+# --
+// Full-Featured Positive Edge Register with All Secondary Signals
+// In Altera devices, register signals have a set priority.
+// The HDL design should reflect this priority.
+always @ (negedge <reset> or posedge <asynch_load> or posedge <clock_signal>)
+begin
+	// The asynchronous reset signal has highest priority
+	if (!<reset>)
+	begin
+		<register_variable> <= 1'b0;
+	end
+	// Asynchronous load has next priority
+	else if (<asynch_load>)
+	begin
+		<register_variable> <= <other_data>;
+	end
+	else
+	begin
+		// At a clock edge, if asynchronous signals have not taken priority,
+		// respond to the appropriate synchronous signal.
+		// Check for synchronous reset, then synchronous load.
+		// If none of these takes precedence, update the register output
+		// to be the register input.
+		if (<clock_enable>)
+		begin
+			if (!<synch_reset>)
+			begin
+				<register_variable> <= 1'b0;
+			end
+			else if (<synch_load>)
+			begin
+				<register_variable> <= <other_data>;
+			end
+			else
+			begin
+				<register_variable> <= <data>;
+			end
+		end
+	end
+end

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-If-Generate-Statement
+# key: qps-Architecture-If-Generate-Statement
+# --
+// If Generate Statement
+IF __expression GENERATE
+	__statement;
+	__statement;
+ELSE GENERATE
+	__statement;
+	__statement;
+END GENERATE;

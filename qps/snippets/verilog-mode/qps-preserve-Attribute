@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-preserve-Attribute
+# key: qps-Synthesis-Attributes-preserve-Attribute
+# --
+// preserve Attribute
+// Prevents Quartus Prime from optimizing away a register.	 Apply
+// the attribute to the variable declaration for an object that infers
+// a register.
+
+(* preserve *) <variable_declaration>;
+(* preserve *) module <module_name>(...);

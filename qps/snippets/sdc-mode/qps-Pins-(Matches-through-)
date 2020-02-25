@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Pins-(Matches-through-)
+# key: qps-Collections-Pins-(Matches-through-)
+# --
+// Pins (Matches through |)
+set __name [get_pins -compat __listOfWildcards]

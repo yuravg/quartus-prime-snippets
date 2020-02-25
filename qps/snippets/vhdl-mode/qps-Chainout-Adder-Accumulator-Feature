@@ -1,0 +1,212 @@
+# -*- mode: snippet -*-
+# name: qps-Chainout-Adder-Accumulator-Feature
+# key: qps-DSP-Features-for-28-nm-Device-Chainout-Adder-Accumulator-Feature
+# --
+// Chainout Adder/Accumulator Feature
+-- Quartus Prime VHDL Template
+-- Chainout adder/accumulator feature
+-- For use with the 28-nm device families
+
+-- This template can be used with 18x18, sum-of-2 18x18, 36+18x18, 27x27, 36x18 modes on Stratix-V
+-- This template can be used with 18x19(signed), 36+18x19(signed), 27x27 modes on Arria-V and Cyclone-V
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity chainout_accum is
+	generic
+	(
+		A_WIDTH 		: natural := 18;
+		B_WIDTH 		: natural := 18;
+		-- When this template applies to single 18x18, max chain_width is 44, othewise 64
+		CHAIN_WIDTH : natural := 44;
+		-- preload_value can have only one bit 1
+		PRELOAD_VALUE : std_logic_vector := X"400";
+		-- Double accumulator feature is not available on Stratix-V
+		enable_double_accum : boolean := FALSE
+	);
+
+	port
+	(
+		a1	   : in signed	((A_WIDTH-1) downto 0);
+		b1	   : in signed	((B_WIDTH-1) downto 0);
+		a2	   : in signed	((A_WIDTH-1) downto 0);
+		b2	   : in signed	((B_WIDTH-1) downto 0);
+		a3	   : in signed	((A_WIDTH-1) downto 0);
+		b3	   : in signed	((B_WIDTH-1) downto 0);
+		a4	   : in signed	((A_WIDTH-1) downto 0);
+		b4	   : in signed	((B_WIDTH-1) downto 0);
+		a5	   : in signed	((A_WIDTH-1) downto 0);
+		b5	   : in signed	((B_WIDTH-1) downto 0);
+		accum : in std_logic;
+		load_value : in std_logic;
+		-- DSP supports up to 3 clock/ena pairs and 2 async reset signals
+		-- All output registers must have the same {clock, ena, reset}
+		clock : in std_logic;
+		ena	: in std_logic;
+		reset	: in std_logic;
+		s		: out signed ((CHAIN_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of chainout_accum is
+signal zero_bit					: signed	(0 downto 0);
+signal zero_bit_a				: signed	((A_WIDTH-1) downto 0);
+signal zero_bit_b				: signed	((B_WIDTH-1) downto 0);
+signal p1, p2, p3, p4, p5, p6			: signed	((A_WIDTH+B_WIDTH-1) downto 0);
+signal s1, s2, s3, s4, s5 ,s_reg		: signed	((CHAIN_WIDTH-1) downto 0);
+signal acc_sel, s_double				: signed	((CHAIN_WIDTH-1) downto 0);
+signal selected_value, select_feedback 		: signed	((CHAIN_WIDTH-1) downto 0);
+
+component single_mult
+	generic
+	(
+		A_WIDTH : natural := 18;
+		B_WIDTH : natural := 18
+	);
+
+	port
+	(
+		a	   : in signed	((A_WIDTH-1) downto 0);
+		b	   : in signed	((B_WIDTH-1) downto 0);
+		p 		: out signed ((A_WIDTH+B_WIDTH-1) downto 0)
+	);
+
+end component;
+
+begin
+-- Assign zero bit
+zero_bit <= B"0";
+
+-- accumulator path
+with accum select
+	acc_sel <= 	select_feedback when '1',
+					selected_value when others;
+
+with enable_double_accum select
+	select_feedback <= 	s_double when TRUE,
+								s_reg when others;
+
+with load_value select
+	selected_value <= resize(signed(preload_value), CHAIN_WIDTH) when '1',
+							resize(zero_bit, CHAIN_WIDTH) when others;
+s	<= s_reg;
+
+process(clock, reset)
+begin
+	if (reset = '1') then
+
+		s1 <= (others => '0');
+		s2 <= (others => '0');
+		s3 <= (others => '0');
+		s4 <= (others => '0');
+		s5 <= (others => '0');
+		s_reg <= (others => '0');
+		s_double <= (others => '0');
+
+	elsif rising_edge(clock) then
+
+		if (ena = '1') then
+			-- chainout adder support static add or sub
+			-- basic mode result (p) must be the second operand
+			s1 <= resize(p1, CHAIN_WIDTH);
+			s2 <= s1 + resize(p2, CHAIN_WIDTH);
+			s3 <= s2 + resize(p3, CHAIN_WIDTH);
+			s4 <= s3 - resize(p4, CHAIN_WIDTH);
+			s5 <= s4 + resize(p5, CHAIN_WIDTH);
+			-- chainout accumulator only support addition when use with chainout adder
+			s_reg <= acc_sel + (s5 + resize(p6, CHAIN_WIDTH));	-- loopback path (acc_sel) must be the first operand
+			s_double <= s_reg;
+		end if;
+
+	end if;
+
+end process;
+
+mult1 : single_mult
+	generic map
+	(
+		A_WIDTH => A_WIDTH,
+		B_WIDTH => B_WIDTH
+	)
+	port MAP
+	(
+		a	=> a1,
+		b	=> b1,
+		p 	=> p1
+	);
+
+mult2 : single_mult
+	generic map
+	(
+		A_WIDTH => A_WIDTH,
+		B_WIDTH => B_WIDTH
+	)
+	port MAP
+	(
+		a	=> a2,
+		b	=> b2,
+		p 	=> p2
+	);
+
+mult3 : single_mult
+	generic map
+	(
+		A_WIDTH => A_WIDTH,
+		B_WIDTH => B_WIDTH
+	)
+	port MAP
+	(
+		a	=> a3,
+		b	=> b3,
+		p 	=> p3
+	);
+
+mult4 : single_mult
+	generic map
+	(
+		A_WIDTH => A_WIDTH,
+		B_WIDTH => B_WIDTH
+	)
+	port MAP
+	(
+		a	=> a4,
+		b	=> b4,
+		p 	=> p4
+	);
+
+mult5 : single_mult
+	generic map
+	(
+		A_WIDTH => A_WIDTH,
+		B_WIDTH => B_WIDTH
+	)
+	port MAP
+	(
+		a	=> a5,
+		b	=> b5,
+		p 	=> p5
+	);
+
+-- When this template applies to single 18x18, the number of multipliers has to be even
+-- Create a 0x0 if the number of multipliers is odd
+
+zero_bit_a <= resize(zero_bit, A_WIDTH);
+zero_bit_b <= resize(zero_bit, B_WIDTH);
+
+mult6 : single_mult
+	generic map
+	(
+		A_WIDTH => A_WIDTH,
+		B_WIDTH => B_WIDTH
+	)
+	port MAP
+	(
+		a	=> zero_bit_a,
+		b	=> zero_bit_b,
+		p 	=> p6
+	);
+
+end rtl;

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Procedure-Call
+# key: qps-Sequential-Statements-Procedure-Call
+# --
+// Procedure Call
+<optional_label>: <procedure_name> (<arguments>);

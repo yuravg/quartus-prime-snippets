@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-full_case-Attribute
+# key: qps-Synthesis-Attributes-full_case-Attribute
+# --
+// full_case Attribute
+// Indicates that Quartus Prime should consider a case statement
+// to be full, even if the case items do not cover all possible
+// values of the case expression.
+
+(* full_case *) case(...)

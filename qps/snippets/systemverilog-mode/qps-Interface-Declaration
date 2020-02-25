@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: qps-Interface-Declaration
+# key: qps-Interfaces-Interface-Declaration
+# --
+// Interface Declaration
+interface <interface_name>(<port_list>);
+
+	// Variable Declaration(s)
+	// Modport Declaration(s)
+	// Function/Task Declaration(s)
+	// Always Construct(s)
+	// Generate(s)
+
+	// An interface cannot instantiate a module but it may
+	// instantiate an interface
+
+endinterface

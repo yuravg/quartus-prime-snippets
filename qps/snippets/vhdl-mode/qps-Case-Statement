@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qps-Case-Statement
+# key: qps-Sequential-Statements-Case-Statement
+# --
+// Case Statement
+-- All choice expressions in a VHDL case statement must be constant
+-- and unique.	Also, the case statement must be complete, or it must
+-- include an others clause.
+case <expression> is
+	when <constant_expression> =>
+		-- Sequential Statement(s)
+	when <constant_expression> =>
+		-- Sequential Statement(s)
+	when others =>
+		-- Sequential Statement(s)
+end case;

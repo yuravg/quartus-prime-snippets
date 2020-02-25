@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: qps-Array-Type-Declaration
+# key: qps-Type-Declarations-Array-Type-Declaration
+# --
+// Array Type Declaration
+// Multiple packed, unpacked or mixed type array dimensions can be declared
+// including in module ports
+module arrays(output logic [7:0] out[0:1], input byte in[0:7]);
+
+// multiple packed dimensions
+reg [7:0][7:0] a;
+
+// multiple packed and unpacked dimensions
+reg [7:0][7:0] b[1:0][1:0];
+
+assign a[0] = in[0];
+assign out [1] = b[1][0] [7] ;
+
+endmodule // arrays

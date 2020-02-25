@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Keeper-(Register--Ports)
+# key: qps-Collections-Keeper-(Register--Ports)
+# --
+// Keeper (Register + Ports)
+set __name [get_keepers __listOfWildcards]

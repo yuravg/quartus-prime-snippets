@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-ALT_OUTBUF
+# key: qps-Buffers-ALT_OUTBUF
+# --
+// ALT_OUTBUF
+	ALT_OUTBUF <instance_name> (.i(<data_in>), .o(<data_out>)); //<data_out> must be declared as an output pin
+
+	defparam <instance_name>.io_standard = "2.5 V";
+	defparam <instance_name>.slow_slew_rate = "on";
+	defparam <instance_name>.enable_bus_hold = "on";
+	defparam <instance_name>.weak_pull_up_resistor = "off";
+	defparam <instance_name>.termination = "series 50 ohms";

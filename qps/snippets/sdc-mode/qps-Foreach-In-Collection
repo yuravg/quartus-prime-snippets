@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Foreach-In-Collection
+# key: qps-Collections-Foreach-In-Collection
+# --
+// Foreach In Collection
+set __collection [__collectionCommand]
+foreach_in_collection __object $__collection {
+    __statement
+}

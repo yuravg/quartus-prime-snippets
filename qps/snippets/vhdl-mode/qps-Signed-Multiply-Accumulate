@@ -1,0 +1,71 @@
+# -*- mode: snippet -*-
+# name: qps-Signed-Multiply-Accumulate
+# key: qps-Multiply-Accumulators-Signed-Multiply-Accumulate
+# --
+// Signed Multiply-Accumulate
+-- Quartus Prime VHDL Template
+-- Signed Multiply-Accumulate
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity signed_multiply_accumulate is
+
+	generic
+	(
+		DATA_WIDTH : natural := 8
+	);
+
+	port
+	(
+		a		   : in signed((DATA_WIDTH-1) downto 0);
+		b		   : in signed ((DATA_WIDTH-1) downto 0);
+		clk		   : in std_logic;
+		sload	   : in std_logic;
+		accum_out    : out signed ((2*DATA_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of signed_multiply_accumulate is
+
+	-- Declare registers for intermediate values
+	signal a_reg : signed ((DATA_WIDTH-1) downto 0);
+	signal b_reg : signed ((DATA_WIDTH-1) downto 0);
+	signal sload_reg : std_logic;
+	signal mult_reg : signed ((2*DATA_WIDTH-1) downto 0);
+	signal adder_out : signed ((2*DATA_WIDTH-1) downto 0);
+	signal old_result : signed ((2*DATA_WIDTH-1) downto 0);
+
+begin
+
+	mult_reg <= a_reg * b_reg;
+
+	process (adder_out, sload_reg)
+	begin
+		if (sload_reg = '1') then
+			-- Clear the accumulated data
+			old_result <= (others => '0');
+		else
+			old_result <= adder_out;
+		end if;
+	end process;
+
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+			a_reg <= a;
+			b_reg <= b;
+			sload_reg <= sload;
+
+			-- Store accumulation result in a register
+			adder_out <= old_result + mult_reg;
+
+		end if;
+	end process;
+
+	-- Output accumulation result
+	accum_out <= adder_out;
+
+end rtl;

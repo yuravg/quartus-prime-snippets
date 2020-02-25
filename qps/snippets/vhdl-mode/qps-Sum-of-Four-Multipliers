@@ -1,0 +1,54 @@
+# -*- mode: snippet -*-
+# name: qps-Sum-of-Four-Multipliers
+# key: qps-DSP-Features-for-28-nm-Device-Sum-of-Four-Multipliers
+# --
+// Sum of Four Multipliers
+-- Quartus Prime VHDL Template
+-- Sum of four multipliers
+-- For use with the 28-nm device families
+
+-- This template is applicable to sum-of-4 18x18 mode on Stratix-V
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity sum_of_4 is
+	generic
+	(
+		A_WIDTH : natural := 18;
+		B_WIDTH : natural := 18
+	);
+
+	port
+	(
+		a1	   : in signed	((A_WIDTH-1) downto 0);
+		b1	   : in signed	((B_WIDTH-1) downto 0);
+		a2	   : in signed	((A_WIDTH-1) downto 0);
+		b2	   : in signed	((B_WIDTH-1) downto 0);
+		a3	   : in signed	((A_WIDTH-1) downto 0);
+		b3	   : in signed	((B_WIDTH-1) downto 0);
+		a4	   : in signed	((A_WIDTH-1) downto 0);
+		b4	   : in signed	((B_WIDTH-1) downto 0);
+		p : out signed ((A_WIDTH+B_WIDTH+1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of sum_of_4 is
+
+signal p1, p2, p3, p4 : signed ((A_WIDTH+B_WIDTH-1) downto 0);
+
+begin
+
+	p1 <= (a1 * b1);
+	p2 <= (a2 * b2);
+	p3 <= (a3 * b3);
+	p4 <= (a4 * b4);
+
+	-- Static add/sub is supported
+	-- resize all p1, p2, p3, p4 to be the same size as p
+	p <= resize(p1, A_WIDTH+B_WIDTH+2) + resize(p2, A_WIDTH+B_WIDTH+2) -
+		resize(p3, A_WIDTH+B_WIDTH+2) + resize(p4, A_WIDTH+B_WIDTH+2);
+
+end rtl;

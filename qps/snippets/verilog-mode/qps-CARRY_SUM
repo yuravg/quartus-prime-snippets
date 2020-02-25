@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-CARRY_SUM
+# key: qps-Buffers-CARRY_SUM
+# --
+// CARRY_SUM
+	CARRY_SUM <instance_name> (
+					.sin(<sum_in>),
+					.cin(<carry_in>),  //<carry_in> cannot be fed by an input pin
+					.sout(<sum_out>),
+					.cout(<carry_out>) //<carry_out> cannot feed an output pin
+					);

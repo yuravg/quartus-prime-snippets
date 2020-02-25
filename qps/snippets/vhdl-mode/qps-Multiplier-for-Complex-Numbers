@@ -1,0 +1,48 @@
+# -*- mode: snippet -*-
+# name: qps-Multiplier-for-Complex-Numbers
+# key: qps-Multipliers-Multiplier-for-Complex-Numbers
+# --
+// Multiplier for Complex Numbers
+-- Quartus Prime VHDL Template
+-- Multiplier for complex numbers
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity multiplier_for_complex_numbers is
+
+	generic
+	(
+		WIDTH : natural := 18
+	);
+
+	port
+	(
+		clk, ena	                    : in std_logic;
+
+		-- dataa and datab each have a real and imaginary part
+		dataa_real, dataa_img	: in signed ((WIDTH-1) downto 0);
+		datab_real, datab_img	: in signed ((WIDTH-1) downto 0);
+
+		dataout_real, dataout_img	: out signed ((2*WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of multiplier_for_complex_numbers is
+begin
+
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+			if (ena = '1') then
+
+				-- Calculate both the real and imaginary parts of the product
+				dataout_real <= dataa_real * datab_real - dataa_img * datab_img;
+				dataout_img <= dataa_real * datab_img + datab_real * dataa_img;
+
+			end if;
+		end if;
+	end process;
+end rtl;

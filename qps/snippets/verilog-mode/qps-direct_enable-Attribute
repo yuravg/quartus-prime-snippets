@@ -1,0 +1,27 @@
+# -*- mode: snippet -*-
+# name: qps-direct_enable-Attribute
+# key: qps-Synthesis-Attributes-direct_enable-Attribute
+# --
+// direct_enable Attribute
+// Identifies the logic cone that should be used as the clock enable
+// for a register.  Sometimes a register has a complex clock enable
+// condition, which may or may not contain the critical path in your
+// design.  With this attribute, you can force Quartus Prime to route
+// the critical portion directly to the clock enable port of a register
+// and implement the remaining clock enable condition using regular
+// logic.
+
+(* direct_enable *) <variable_or_net_declaration>;
+
+// Example
+(* direct_enable *) variable e1;
+reg e2;
+reg q, data;
+
+always@(posedge clk)
+begin
+	if(e1 | e2)
+	begin
+		q <= data;
+	end
+end

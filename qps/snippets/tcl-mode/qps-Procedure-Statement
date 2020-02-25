@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-Procedure-Statement
+# key: qps-Commands-Procedure-Statement
+# --
+// Procedure Statement
+proc __name __params {
+	__statement;
+	__statement;
+	return __value;
+}

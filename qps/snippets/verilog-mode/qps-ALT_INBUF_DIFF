@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-ALT_INBUF_DIFF
+# key: qps-Buffers-ALT_INBUF_DIFF
+# --
+// ALT_INBUF_DIFF
+	// <data_in_pos> and <data_in_neg> must be declared as input pins
+	ALT_INBUF_DIFF <instance_name> (.i(<data_in_pos>), .ibar(<data_in_neg>), .o(<data_out>));
+
+	defparam <instance_name>.io_standard = "LVDS";
+	defparam <instance_name>.location = "IOBANK_1";
+	defparam <instance_name>.weak_pull_up_resistor = "off";
+	defparam <instance_name>.enable_bus_hold = "off";

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: qps-Assert-Statement
+# key: qps-Architecture-Assert-Statement
+# --
+// Assert Statement
+ASSERT __expression
+	REPORT		__report_string __report_parameter, __report_parameter
+	SEVERITY	__severity_level;

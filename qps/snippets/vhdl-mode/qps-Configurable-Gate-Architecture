@@ -1,0 +1,42 @@
+# -*- mode: snippet -*-
+# name: qps-Configurable-Gate-Architecture
+# key: qps-Configuration-Declarations-Configurable-Gate-Architecture
+# --
+// Configurable Gate Architecture
+-- Quartus Prime VHDL Template
+-- Configurable gate architecture
+
+library ieee;
+use ieee.std_logic_1164.all;
+entity configurable_gate is
+	port
+	(
+		i1 : in std_logic;
+		i2 : in std_logic;
+		o1 : out std_logic
+	);
+end configurable_gate;
+
+
+-- Three possible architectures
+architecture and_gate of configurable_gate is
+begin
+	o1 <= i1 AND i2;
+end and_gate;
+
+architecture or_gate of configurable_gate is
+begin
+	o1 <= i1 OR i2;
+end or_gate;
+
+architecture xor_gate of configurable_gate is
+begin
+	o1 <= i1 XOR i2;
+end xor_gate;
+
+
+-- A block configuration is used to choose between the architectures.
+configuration cfg of configurable_gate is  -- Configuration Declaration
+	for or_gate                              	     -- Block Configuration
+	end for;
+end cfg;

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Upvar-Command
+# key: qps-Commands-Upvar-Command
+# --
+// Upvar Command
+upvar __level __varName __localVar;

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-Remove-Instance-Assignment
+# key: qps-Commands-Remove-Instance-Assignment
+# --
+// Remove Instance Assignment
+# Source is source of the assignment
+# Destination is destination of the assignment
+# Name is the keyword for the assignment
+# Value to be assigned (string, number, or ON/OFF)
+set_instance_assignment -name __name -from __source -to __destination   -remove __value;

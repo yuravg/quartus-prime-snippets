@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Generate-For
+# key: qps-Generates-Generate-For
+# --
+// Generate For
+<generate_label>:
+	for <loop_id> in <range> generate
+		-- Concurrent Statement(s)
+	end generate;

@@ -1,0 +1,77 @@
+# -*- mode: snippet -*-
+# name: qps-Configurable-Component-Gates
+# key: qps-Configuration-Specifications-Configurable-Component-Gates
+# --
+// Configurable Component Gates
+-- Quartus Prime VHDL Template
+-- Configurable component gates
+
+entity configurable_component_gates2 is
+	port
+	(
+		i1, i2 : in bit;
+		o1, o2 : out bit
+	);
+end configurable_component_gates2;
+
+architecture rtl of configurable_component_gates2 is
+	component cgate is
+	port
+	(
+		i1, i2 : in bit;
+		o      : out bit
+	);
+	end component;
+
+	-- Bind component instances to entity/architecture pairs.
+	-- In this case, both instances are bound to the same entity, but
+	-- different architectures.
+	for inst1 : cgate use entity work.configurable_gate(and_gate);
+	for inst2 : cgate use entity work.configurable_gate(xor_gate);
+
+begin
+
+	inst1 : cgate
+	port map
+	(
+		i1 => i1,
+		i2 => i2,
+		o  => o1
+	);
+
+	inst2 : cgate
+	port map
+	(
+		i1 => i1,
+		i2 => i2,
+		o  => o2
+	);
+
+end rtl;
+
+
+
+entity configurable_gate is
+	port
+	(
+		i1, i2 : in bit;
+		o      : out bit
+	);
+end configurable_gate;
+
+
+-- Three possible architectures
+architecture and_gate of configurable_gate is
+begin
+	o <= i1 and i2;
+end and_gate;
+
+architecture or_gate of configurable_gate is
+begin
+	o <= i1 or i2;
+end or_gate;
+
+architecture xor_gate of configurable_gate is
+begin
+	o <= i1 xor i2;
+end xor_gate;

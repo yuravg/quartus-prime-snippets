@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qps-TFFE
+# key: qps-Registers-and-Latches-TFFE
+# --
+// TFFE
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating TFFE
+	<instance_name> : TFFE
+	port map (
+			t => <toggle>,
+			clk => <clock_signal>,
+			ena => <clock_enable>,
+			clrn => <active_low_clear>,
+			prn => <active_low_preset>,
+			q => <data_out>
+			);

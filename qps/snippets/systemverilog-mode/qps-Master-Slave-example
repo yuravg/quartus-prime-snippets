@@ -1,0 +1,44 @@
+# -*- mode: snippet -*-
+# name: qps-Master-Slave-example
+# key: qps-Interfaces-Master-Slave-example
+# --
+// Master Slave example
+// Full example with a top module instantiating and interface and a master and slave submodules
+// The master and slave submodules use different modports of the same interface
+
+interface my_interface(input clk);
+parameter DATA_WIDTH = 1;
+reg [DATA_WIDTH-1:0] data;
+reg 			read;
+
+modport master(output read, input data, input clk);
+modport slave(input read, output data, input clk);
+endinterface
+
+// The slave accepts generic interface. The instantiating module will pass the .slave modport
+module slave_sub #(parameter DATA_WIDTH = 1)
+(interface i, input [DATA_WIDTH-1:0] data);
+
+always@(posedge i.clk)
+	begin
+		if(i.read) i.data <= data;
+	end
+endmodule
+
+// The master accepts my_interface.master. The instantiating module can just pass the interface
+module master_sub #(parameter DATA_WIDTH = 1)
+(my_interface.master i, input sel, output [DATA_WIDTH-1:0] data);
+
+always@(posedge i.clk)
+	begin
+		i.read <= sel;
+	end
+assign data = i.data;
+endmodule
+
+module master_slave(input clk, input sel, output [3:0] data_o, input [3:0] data_i);
+my_interface #(4) i(.clk(clk));
+
+master_sub #(4) master_inst(i, sel, data_o);
+slave_sub  #(4) slave_inst(i.slave, data_i);
+endmodule // master_slave

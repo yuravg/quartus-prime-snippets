@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: qps-Sum-of-Two-Multipliers
+# key: qps-DSP-Features-for-28-nm-Device-Sum-of-Two-Multipliers
+# --
+// Sum of Two Multipliers
+// Quartus Prime Verilog Template
+// Sum of two multipliers
+// For use with the 28-nm device families
+
+module sum_of_2(a1, b1, a2, b2, p);
+//This template is applicable to sum-of-2 18x18, 27x27, 36x18 modes on Stratix-V
+//This template is applicable to sum-of-2 18x19(signed) mode on Arria-V and Cyclone-V
+parameter a_width = 18;
+parameter b_width = 18;
+input	[a_width-1:0] a1;
+input	[b_width-1:0] b1;
+input	[a_width-1:0] a2;
+input	[b_width-1:0] b2;
+output	[a_width+b_width:0] p;
+
+wire signed	[a_width-1:0] a1;
+wire signed	[b_width-1:0] b1;
+wire signed	[a_width-1:0] a2;
+wire signed	[b_width-1:0] b2;
+wire signed	[a_width+b_width:0] p;
+
+//Static add/sub is supported
+assign p = a1 * b1 + a2 * b2;
+
+endmodule

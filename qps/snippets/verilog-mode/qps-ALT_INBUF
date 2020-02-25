@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-ALT_INBUF
+# key: qps-Buffers-ALT_INBUF
+# --
+// ALT_INBUF
+	//<data_in> must be declared as an input pin
+	ALT_INBUF <instance_name> (.i(<data_in>), .o(<data_out>));
+
+	defparam <instance_name>.io_standard = "2.5 V";
+	defparam <instance_name>.location = "IOBANK_2";
+	defparam <instance_name>.enable_bus_hold = "on";
+	defparam <instance_name>.weak_pull_up_resistor = "off";
+	defparam <instance_name>.termination = "parallel 50 ohms with calibration";

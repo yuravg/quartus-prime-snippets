@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# name: qps-Component-Declaration
+# key: qps-Type-and-Subtype-Declarations-Component-Declaration
+# --
+// Component Declaration
+-- A component declaration declares the interface of an entity or
+-- a design unit written in another language.  VHDL requires that
+-- you declare a component if you do not intend to instantiate
+-- an entity directly.	The component need not declare all the
+-- generics and ports in the entity.  It may omit generics/ports
+-- with default values.
+
+component <component_name>
+
+	generic
+	(
+		<name> : <type>;
+		<name> : <type> := <default_value>
+	);
+
+	port
+	(
+		-- Input ports
+		<name>	: in  <type>;
+		<name>	: in  <type> := <default_value>;
+
+		-- Inout ports
+		<name>	: inout <type>;
+
+		-- Output ports
+		<name>	: out <type>;
+		<name>	: out <type> := <default_value>
+	);
+
+end component;

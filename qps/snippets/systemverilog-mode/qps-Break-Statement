@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Break-Statement
+# key: qps-Jump-Statements-Break-Statement
+# --
+// Break Statement
+break;

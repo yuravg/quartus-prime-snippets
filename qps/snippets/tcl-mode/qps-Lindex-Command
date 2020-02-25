@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Lindex-Command
+# key: qps-Commands-Lindex-Command
+# --
+// Lindex Command
+lindex __list __i;

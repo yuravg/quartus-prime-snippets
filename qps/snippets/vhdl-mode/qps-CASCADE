@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-CASCADE
+# key: qps-Buffers-CASCADE
+# --
+// CASCADE
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating CASCADE
+	<instance_name> : CASCADE
+	-- <data_out> cannot feed an output pin, a register, or an XOR gate
+	port map(a_in => <data_in>, a_out => <data_out>);

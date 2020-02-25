@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qps-Unary-Operators
+# key: qps-Expressions-Unary-Operators
+# --
+// Unary Operators
++            // Unary plus
+-            // Unary minus
+!            // Logical NOT
+~            // Bitwise NOT
+&            // Reductive AND
+~&           // Reductive NAND
+|            // Reductive OR
+~|           // Reductive NOR
+^            // Reductive XOR
+^~           // Reductive XNOR
+~^           // Reductive XNOR

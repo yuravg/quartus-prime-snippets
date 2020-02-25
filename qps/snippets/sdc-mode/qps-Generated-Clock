@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: qps-Generated-Clock
+# key: qps-Clocks-Generated-Clock
+# --
+// Generated Clock
+create_generated_clock -name __name -divide_by|-multiply_by __factor -source __source __targets
+or
+create_generated_clock -name __name -edges { __firstRise __nextFall __nextRise } -edge_shift { __firstRiseShift __nextFallShift __nextRiseShift } -source __source __targets

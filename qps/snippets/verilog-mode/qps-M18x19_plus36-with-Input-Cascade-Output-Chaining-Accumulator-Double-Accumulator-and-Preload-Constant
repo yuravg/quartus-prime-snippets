@@ -1,0 +1,178 @@
+# -*- mode: snippet -*-
+# name: qps-M18x19_plus36-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant
+# key: qps-DSP-Features-for-20-nm-Device-M18x19_plus36-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant
+# --
+// M18x19_plus36 with Input Cascade, Output Chaining, Accumulator, Double Accumulator and Preload Constant
+// Quartus Prime Verilog Template
+// Two 18x19_plus36 with full registers (input, pipeline and output) + chainout adder + accumulate + double accumulate + preload constant
+// Formula: final_output[t] = acc_sel + (a1*b1)+c1 + (a2*b1)+c2
+//          where acc_sel = final_output[t-2] or preload_value or 0 depending on dynamic control inputs "accum" and "loadconst"
+// 	Note: Input cascade chain is not supported in 18x19_plus36 mode.
+// For use with 20-nm device families
+// For more information on the 20nm DSP features, please refer to http://www.altera.com/literature/hb/arria-10/a10_dsp.pdf
+
+module m18x19plus36_full_regs_chainoutadder_acc_doubleacc_preloadConst (
+	a1, a2, b1, b2, c1, c2,
+	clock1, clock2, clock3, ena1, ena2, ena3, reset1, reset2,
+	accum, loadconst,
+	final_output
+);
+
+	// This template will only work for (AxB)+C where the AxB data width range from 2x2 to 18x19, and the add add/sub data input (C) data width range from 2 to 36
+	parameter A_WIDTH = 18;
+	parameter B_WIDTH = 19;
+	parameter C_WIDTH = 36;
+	// The formula for the output width of one (AxB)+C should be either (A_WIDTH+B_WIDTH+1) or (C_WIDTH+1), whichever is larger.
+	parameter SUM_OUTPUT_WIDTH = (A_WIDTH+B_WIDTH+1);
+	// PRELOAD_VALUE can be 2 power of N, which N should less than 64
+	// PRELOAD_VALUE should contain only one bit 1
+	parameter PRELOAD_VALUE = 'h400;
+	// Maximum chain width is 64
+	parameter CHAIN_WIDTH = 64;
+
+	// Double accumulation enable control parameter
+	parameter enable_double_accum = "TRUE";
+
+	// Data input ports
+	input signed [A_WIDTH-1:0] a1, a2;
+	input signed [B_WIDTH-1:0] b1, b2;
+	input signed [C_WIDTH-1:0] c1, c2;
+
+	// Register clock and control signals
+	// DSP supports up to 3 clock/ena pairs, and 2 async reset signals
+	input clock1, clock2, clock3, ena1, ena2, ena3, reset1, reset2;
+
+	// Dynamic ACCUMULATE and LOADCONST control signals
+	input accum, loadconst;
+
+	// Output signal
+	// Max output width for chaining is 64
+	output signed [CHAIN_WIDTH-1:0] final_output;
+
+	// Multiplier Result
+	wire signed [SUM_OUTPUT_WIDTH-1:0] m1, m2;
+
+	// Data Input Register
+	reg signed [A_WIDTH-1:0] a1_reg, a2_reg;
+	reg signed [B_WIDTH-1:0] b1_reg, b2_reg;
+	reg signed [C_WIDTH-1:0] c1_reg, c2_reg;
+
+	// Data Input Pipeline Register
+	reg signed [A_WIDTH-1:0] a1_pipeline_reg, a2_pipeline_reg;
+	reg signed [B_WIDTH-1:0] b1_pipeline_reg, b2_pipeline_reg;
+	reg signed [C_WIDTH-1:0] c1_pipeline_reg, c2_pipeline_reg;
+
+	// LOADCONST Input Register
+	reg loadconst_reg;
+
+	// LOADCONST Pipeline Register
+	reg loadconst_pipeline_reg;
+
+	// ACCUMULATE Input Register
+	reg accum_reg;
+
+	// ACCUMULATE Pipeline Register
+	reg accum_pipeline_reg;
+
+	// Summation Result and Output Register
+	reg signed [SUM_OUTPUT_WIDTH-1:0] s1_output_reg;
+	wire signed [SUM_OUTPUT_WIDTH-1:0] s2;
+
+	// Accumulate, double acc
+	wire signed [CHAIN_WIDTH-1:0] selected_value, select_feedback;
+	wire signed [CHAIN_WIDTH-1:0] acc_sel;
+	reg signed [CHAIN_WIDTH-1:0] s_reg, s_double;
+
+	// accumulator path
+	assign acc_sel = accum_pipeline_reg ? select_feedback : selected_value;
+	assign select_feedback = (enable_double_accum == "TRUE")? s_double: s_reg;
+	assign selected_value = loadconst_pipeline_reg? PRELOAD_VALUE : 0;
+
+	// Input registers (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All input must use the same reset signal,
+	// Each DATA input register may have different pair of clock and ena signal.
+	// The DYNAMIC CONTROL SIGNAL input registers(e.g. loadconst and accumulate) can have different clock/ena signal pair than that of the DATA input register.
+// But all DYNAMIC CONTROL SIGNAL input registers must share the same clock and ena signal.
+	always @(posedge clock1 or posedge reset1)
+	if (reset1) begin
+		// Input registers (for DATA)
+		a1_reg <= 0;
+		b1_reg <= 0;
+		c1_reg <= 0;
+		a2_reg <= 0;
+		b2_reg <= 0;
+		c2_reg <= 0;
+		// Input registers (for DYNAMIC CONTROL SIGNAL)
+		loadconst_reg <= 0;
+		accum_reg <= 0;
+	end else begin
+		if (ena1) begin
+			a1_reg <= a1;
+			b1_reg <= b1;
+			c1_reg <= c1;
+			a2_reg <= a2;
+			b2_reg <= b2;
+			c2_reg <= c2;
+			loadconst_reg <= loadconst;
+			accum_reg <= accum;
+		end
+	end
+
+	// Input pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All pipeline registers must use the same {clock, ena, reset}
+	// Pipeline register must use the same reset as the output register
+// The DYNAMIC CONTROL SIGNAL input pipeline register can be bypass differently
+	always @(posedge clock2 or posedge reset2)
+	if (reset2) begin
+		a1_pipeline_reg <= 0;
+		b1_pipeline_reg <= 0;
+		c1_pipeline_reg <= 0;
+		a2_pipeline_reg <= 0;
+		b2_pipeline_reg <= 0;
+		c2_pipeline_reg <= 0;
+		loadconst_pipeline_reg <= 0;
+		accum_pipeline_reg <= 0;
+	end else begin
+		if (ena2) begin
+			a1_pipeline_reg <= a1_reg;
+			b1_pipeline_reg <= b1_reg;
+			c1_pipeline_reg <= c1_reg;
+			a2_pipeline_reg <= a2_reg;
+			b2_pipeline_reg <= b2_reg;
+			c2_pipeline_reg <= c2_reg;
+			loadconst_pipeline_reg <= loadconst_reg;
+			accum_pipeline_reg <= accum_reg;
+		end
+	end
+
+	// Output register
+	// Output register must share the same reset with input pipeline register
+	always @(posedge clock3 or posedge reset2)
+	if (reset2) begin
+		s1_output_reg <= 0;
+		s_reg <= 0;
+		s_double <= 0;
+	end else begin
+		if (ena3) begin
+			// First 18x19_plus36. Support static add/sub.
+			// Addend must be the first operand
+			s1_output_reg <= c1_pipeline_reg + m1;
+			// Accumulate and chainout adder
+			s_reg <= acc_sel + (s1_output_reg + s2);
+			// Double Accumulate
+			s_double <= s_reg;
+		end
+	end
+
+	// Multiplier
+	assign m1 = (a1_pipeline_reg * b1_pipeline_reg);
+	assign m2 = (a2_pipeline_reg * b2_pipeline_reg);
+
+	// Second 18x19_plus36. Support static add/sub
+	// Addend must be the first operand
+	assign s2 = c2_pipeline_reg + m2;
+
+	// Final output
+	assign final_output = s_reg;
+
+endmodule

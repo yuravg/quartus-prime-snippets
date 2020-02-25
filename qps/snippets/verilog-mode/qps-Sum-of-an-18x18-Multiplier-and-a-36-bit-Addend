@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: qps-Sum-of-an-18x18-Multiplier-and-a-36-bit-Addend
+# key: qps-DSP-Features-for-28-nm-Device-Sum-of-an-18x18-Multiplier-and-a-36-bit-Addend
+# --
+// Sum of an 18x18 Multiplier and a 36-bit Addend
+// Quartus Prime Verilog Template
+// Sum of an 18x18 multiplier and a 36-bit addend
+// For use with the 28-nm device families
+
+module plus36_18x18(addend, a, b, p);
+//This template is applicable to 36+18x18 mode on Stratix-V
+//This template is applicable to 36+18x19(signed) mode on Arria-V and Cyclone-V
+//Note that the addend shouldn't be from another multiplier
+parameter a_width = 18;
+parameter b_width = 18;
+input	[a_width+b_width-1:0] addend;
+input	[a_width-1:0] a;
+input	[b_width-1:0] b;
+output 	[a_width+b_width:0] p;
+
+wire signed	[a_width+b_width-1:0] addend;
+wire signed	[a_width-1:0] a;
+wire signed	[b_width-1:0] b;
+wire signed	[a_width+b_width:0] p;
+
+//addend must be the first operand
+//Static add/sub is supported
+assign p = addend - a * b;
+
+endmodule

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-Create-New-Project
+# key: qps-Commands-Create-New-Project
+# --
+// Create New Project
+# Create a new project and open it
+# Require package ::quartus::project
+if {![project_exists __project_name]} {
+	project_new __project_name;
+}

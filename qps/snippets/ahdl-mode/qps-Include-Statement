@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Include-Statement
+# key: qps-Architecture-Include-Statement
+# --
+// Include Statement
+INCLUDE "__include_filename.inc";

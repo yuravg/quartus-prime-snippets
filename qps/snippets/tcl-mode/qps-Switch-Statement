@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: qps-Switch-Statement
+# key: qps-Commands-Switch-Statement
+# --
+// Switch Statement
+switch __flags __value {
+	__case1 {
+		__statement;
+		__statement;
+	}
+
+	__case2 {
+		__statement;
+		__statement;
+	}
+
+	default {
+		__statement;
+		__statement;
+	}
+}

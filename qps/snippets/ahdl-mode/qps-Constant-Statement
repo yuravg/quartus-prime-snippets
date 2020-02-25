@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Constant-Statement
+# key: qps-Architecture-Constant-Statement
+# --
+// Constant Statement
+CONSTANT __constant_name = __constant_value;

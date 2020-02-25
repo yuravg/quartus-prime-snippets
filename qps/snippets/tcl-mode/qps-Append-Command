@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Append-Command
+# key: qps-Commands-Append-Command
+# --
+// Append Command
+append __var __arg;

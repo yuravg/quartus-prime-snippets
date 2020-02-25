@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qps-Null-Statement
+# key: qps-Sequential-Statements-Null-Statement
+# --
+// Null Statement
+-- A null statement does nothing.
+<optional_label>: null;

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Remove-Global-Assignment
+# key: qps-Commands-Remove-Global-Assignment
+# --
+// Remove Global Assignment
+# Name is the keyword for the assignment
+# Value to be assigned (string, number, or ON/OFF)
+# Require package ::quartus::project
+set_global_assignment -name __name -remove __value;

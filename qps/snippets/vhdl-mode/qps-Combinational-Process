@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-Combinational-Process
+# key: qps-Concurrent-Statements-Combinational-Process
+# --
+// Combinational Process
+<optional_label>:
+	process(<sensitivity_list>) is
+		-- Declaration(s)
+	begin
+		-- Sequential Statement(s)
+	end process;

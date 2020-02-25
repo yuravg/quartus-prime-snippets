@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Format-Command
+# key: qps-Commands-Format-Command
+# --
+// Format Command
+format __spec __value1 __value2;

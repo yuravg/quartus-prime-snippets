@@ -1,0 +1,59 @@
+# -*- mode: snippet -*-
+# name: qps-Sum-of-Four-Multipliers-in-Scan-Chain-Mode
+# key: qps-Sums-of-Multipliers-Sum-of-Four-Multipliers-in-Scan-Chain-Mode
+# --
+// Sum of Four Multipliers in Scan Chain Mode
+-- Quartus Prime VHDL Template
+-- Sum of four multipliers in scan chain mode
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity sum_of_four_multipliers_scan_chain is
+
+	generic
+	(
+		WIDTH : natural := 18
+	);
+
+	port
+	(
+		clk, ena		        : in std_logic;
+		dataa			: in signed ((WIDTH-1) downto 0);
+		c0, c1, c2, c3		: in signed ((WIDTH-1) downto 0);
+		dataout			: out signed ((2*WIDTH+1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of sum_of_four_multipliers_scan_chain is
+	-- Four scan chain registers
+	signal a0, a1, a2, a3 : signed ((WIDTH-1) downto 0);
+
+	-- At least one product (of the four we're adding together)
+	-- must be as wide as the sum
+	signal resized_a3_times_c3 : signed ((2*WIDTH+1) downto 0);
+	signal resized_a1_times_c1 : signed ((2*WIDTH+1) downto 0);
+begin
+
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+			if (ena = '1') then
+
+				-- The scan chain (which mimics a shift register)
+				a0 <= dataa;
+				a1 <= a0;
+				a2 <= a1;
+				a3 <= a2;
+
+				-- Resize product a3*c3 so we won't lose carry bits
+				resized_a3_times_c3 <= RESIZE(a3 * c3, 2*WIDTH+2);
+				resized_a1_times_c1 <= RESIZE(a1 * c1, 2*WIDTH+2);
+
+				-- The order of the operands is important for correct inference
+				dataout <= (resized_a3_times_c3 + a2 * c2) + (resized_a1_times_c1 + a0 * c0);
+			end if;
+		end if;
+	end process;
+end rtl;

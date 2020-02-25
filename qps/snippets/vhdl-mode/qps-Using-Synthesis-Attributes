@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-Using-Synthesis-Attributes
+# key: qps-Synthesis-Attributes-Using-Synthesis-Attributes
+# --
+// Using Synthesis Attributes
+-- Before using an attribute, you must first declare it or import
+-- its declaration from a package.  All Altera-supported attributes are
+-- declared in the altera_syn_attributes package in the altera library.  You
+-- can import these declarations with the following use clause:
+use altera.altera_syn_attributes.all;
+
+-- For more detailed information on any attribute, refer to the
+-- Quartus Prime Handbook or Help.

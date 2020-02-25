@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-LCELL
+# key: qps-Buffers-LCELL
+# --
+// LCELL
+-- Add the library and use clauses before the design unit declaration
+library altera_mf;
+use altera_mf.altera_mf_components.all;
+-- Instantiating LCELL
+	<instance_name> : LCELL
+	port map (a_in => <data_in>, a_out => <data_out>);

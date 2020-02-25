@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-chip_pin-Attribute
+# key: qps-Synthesis-Attributes-chip_pin-Attribute
+# --
+// chip_pin Attribute
+// Assigns pin location to ports on a module.
+
+(* chip_pin = "<comma-separated list of locations>" *) <io_declaration>;
+
+// Example
+(* chip_pin = "B3, A3, A4" *) input [2:0] i;

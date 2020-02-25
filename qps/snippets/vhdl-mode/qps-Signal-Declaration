@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# name: qps-Signal-Declaration
+# key: qps-Type-and-Subtype-Declarations-Signal-Declaration
+# --
+// Signal Declaration
+-- Signal with no default value.  Your design should assign an explicit
+-- value to such a signal using an assignment statement.  You assign
+-- to a signal with the "<=" operator.
+
+signal <name> : <type>;
+
+-- Signal with a default value.	 If you do not assign a value to the
+-- signal with an assignment, Quartus Prime Integrated Synthesis will
+-- initialize it with the default value.  Integrated Synthesis also
+-- derives power-up conditions for memories and registers from the
+-- default value.
+
+signal <name> : <type> := <default_value>;
+
+-- Commonly declared signals
+
+signal <name> : std_logic;
+signal <name> : std_logic_vector(<msb_index> downto <lsb_index>);
+signal <name> : integer;
+signal <name> : integer range <low> to <high>;

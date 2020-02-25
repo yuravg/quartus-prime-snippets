@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: qps-For-Loop
+# key: qps-Loops-For-Loop
+# --
+// For Loop
+for(<for_init>; <expression>; <for_step>)
+begin
+	// Statements
+end
+
+// <for_init> may set the value for multiple variables.
+// Likewise, <for_step> may update the value of multiple variables.
+
+for(i = 0, i2 = 0; i < 8; i++, i2 *= 8)
+begin
+	// Statements
+end

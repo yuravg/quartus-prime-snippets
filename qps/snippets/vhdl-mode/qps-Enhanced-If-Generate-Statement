@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: qps-Enhanced-If-Generate-Statement
+# key: qps-VHDL-2008-Constructs-Enhanced-If-Generate-Statement
+# --
+// Enhanced If Generate Statement
+<generate_label>:
+if <optional_label1>: <condition> generate
+	--declarations
+	begin
+		-- Concurrent Statement(s)
+	end <optional_label1>;
+elsif <optional_label2>: <condition> generate
+	--declarations
+	begin
+		-- Concurrent Statement(s)
+	end <optional_label2>;
+else <optional_label3>: generate
+	--declarations
+	begin
+		-- Concurrent Statement(s)
+	end <optional_label3>;
+end generate;

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Tri-State-Buffer
+# key: qps-Tri-State-Tri-State-Buffer
+# --
+// Tri-State Buffer
+-- Altera devices contain tri-state buffers in the I/O.  Thus, a tri-state
+-- buffer must feed a top-level I/O in the final design.  Otherwise, the
+-- Quartus Prime software will convert the tri-state buffer into logic.
+<target> <= <data> when (<output_enable> = '1') else 'Z';

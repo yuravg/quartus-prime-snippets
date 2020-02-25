@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Lsearch-Command
+# key: qps-Commands-Lsearch-Command
+# --
+// Lsearch Command
+lsearch __mode __list __value;

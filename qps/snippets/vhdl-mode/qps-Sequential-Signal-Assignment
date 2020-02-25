@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Sequential-Signal-Assignment
+# key: qps-Sequential-Statements-Sequential-Signal-Assignment
+# --
+// Sequential Signal Assignment
+<optional_label>: <signal_name> <= <expression>;

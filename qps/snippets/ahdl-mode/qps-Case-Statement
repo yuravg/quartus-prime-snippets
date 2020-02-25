@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qps-Case-Statement
+# key: qps-Architecture-Case-Statement
+# --
+// Case Statement
+CASE __expression IS
+	WHEN __constant_value =>
+		__statement;
+		__statement;
+	WHEN __constant_value =>
+		__statement;
+		__statement;
+	WHEN OTHERS =>
+		__statement;
+		__statement;
+END CASE;

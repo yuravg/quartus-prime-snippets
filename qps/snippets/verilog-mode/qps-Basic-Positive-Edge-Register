@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-Basic-Positive-Edge-Register
+# key: qps-Registers-Basic-Positive-Edge-Register
+# --
+// Basic Positive Edge Register
+// Update the register output on the clock's rising edge
+always @ (posedge <clock_signal>)
+begin
+	<register_variable> <= <data>;
+end

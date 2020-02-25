@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-Always-Construct-(Sequential)
+# key: qps-Module-Items-Always-Construct-(Sequential)
+# --
+// Always Construct (Sequential)
+// <edge_events> may contain any number of posedge or negedge events
+// separated by "or", e.g. always@(posedge clk or negedge reset)
+always@(<edge_events>)
+begin
+	// Statements
+end

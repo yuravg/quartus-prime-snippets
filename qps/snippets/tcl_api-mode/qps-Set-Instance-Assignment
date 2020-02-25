@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-Set-Instance-Assignment
+# key: qps-Commands-Set-Instance-Assignment
+# --
+// Set Instance Assignment
+# Source is source of the assignment
+# Destination is destination of the assignment
+# Name is the keyword for the assignment
+# Value to be assigned (string, number, or ON/OFF)
+# Require package ::quartus::project
+set_instance_assignment -name __name -from __source -to __destination __value;

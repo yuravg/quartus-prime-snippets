@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-TRI
+# key: qps-Buffers-TRI
+# --
+// TRI
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating TRI
+	<instance_name> : TRI
+	-- <data_out> may feed an inout pin
+	port map (a_in => <data_in>, oe => <enable_signal>, a_out => <data_out>);

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-If-Statement
+# key: qps-Sequential-Statements-If-Statement
+# --
+// If Statement
+if <expression> then
+	-- Sequential Statement(s)
+elsif <expression> then
+	-- Sequential Statement(s)
+else
+	-- Sequential Statement(s);
+end if;

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-Parameters-Statement
+# key: qps-Architecture-Parameters-Statement
+# --
+// Parameters Statement
+PARAMETERS
+(
+	__parameter_name = __parameter_default_value,
+	__parameter_name,
+	__parameter_name
+);

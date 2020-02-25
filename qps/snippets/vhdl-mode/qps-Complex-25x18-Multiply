@@ -1,0 +1,86 @@
+# -*- mode: snippet -*-
+# name: qps-Complex-25x18-Multiply
+# key: qps-DSP-Features-for-28-nm-Device-Complex-25x18-Multiply
+# --
+// Complex 25x18 Multiply
+-- Quartus Prime VHDL Template
+-- Complex 25x18 multiply
+-- For use with the 28-nm device families
+
+-- This template is applicable to complex 25x18 mode on Stratix-V
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity complex_25x18 is
+	port
+	(
+		x_r	   : in signed	(24 downto 0);
+		x_i	   : in signed	(24 downto 0);
+		y_r	   : in signed	(17 downto 0);
+		y_i	   : in signed	(17 downto 0);
+		-- Stratix-V DSP supports up to 3 clock/ena pairs and 2 async reset signals
+		clock 	: in std_logic;
+		ena0		: in std_logic;
+		ena1		: in std_logic;
+		reset		: in std_logic;
+		p_r		: out signed (43 downto 0);
+		p_i		: out signed (43 downto 0)
+	);
+
+end entity;
+
+architecture rtl of complex_25x18 is
+
+signal a1							: signed	(25 downto 0);
+signal a2, a3						: signed	(18 downto 0);
+signal p1,p2,p3	   			: signed	(43 downto 0);
+-- All inputs/outputs have to be signed.
+-- All input registers must use the same {clock, ena, reset}
+-- All output registers must use the same {clock, ena, reset}
+signal x_r_reg, x_i_reg			: signed	(24 downto 0);
+signal y_r_reg, y_i_reg			: signed	(17 downto 0);
+
+begin
+
+a1 <= resize(x_r_reg, 26) - resize(x_i_reg, 26);
+p1 <= a1 * y_i_reg;
+
+a2 <= resize(y_r_reg, 19) - resize(y_i_reg, 19);
+p2 <= a2 * x_r_reg;
+
+a3 <= resize(y_r_reg, 19) + resize(y_i_reg, 19);
+p3 <= a3 * x_i_reg;
+
+process(clock, reset)
+begin
+	if (reset = '1') then
+
+		x_r_reg <= (others => '0');
+		x_i_reg <= (others => '0');
+		y_r_reg <= (others => '0');
+		y_i_reg <= (others => '0');
+		p_r <= (others => '0');
+		p_i <= (others => '0');
+
+	elsif rising_edge(clock) then
+
+		if (ena0 = '1') then
+			x_r_reg <= x_r;
+			x_i_reg <= x_i;
+			y_r_reg <= y_r;
+			y_i_reg <= y_i;
+		end if;
+
+		if (ena1 = '1') then
+			p_r <= p1 + p2;
+			p_i <= p1 + p3;
+		end if;
+
+	end if;
+
+end process;
+
+
+end rtl;

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-Basic-Positive-Edge-Register
+# key: qps-Registers-Basic-Positive-Edge-Register
+# --
+// Basic Positive Edge Register
+-- Update the register output on the clock's rising edge
+process (<clock_signal>)
+begin
+	if (rising_edge(<clock_signal>)) then
+		<register_variable> <= <data>;
+	end if;
+end process;

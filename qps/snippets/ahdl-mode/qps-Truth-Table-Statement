@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-Truth-Table-Statement
+# key: qps-Architecture-Truth-Table-Statement
+# --
+// Truth Table Statement
+TABLE
+	__node_name,	__node_name		=> __node_name,	__node_name;
+
+	__input_value,	__input_value	=>	__output_value,	__output_value;
+	__input_value,	__input_value	=>	__output_value,	__output_value;
+	__input_value,	__input_value	=>	__output_value,	__output_value;
+END TABLE;

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-Multicycle-Clock-to-Register
+# key: qps-SDC-Cookbook-Multicycle-Clock-to-Register
+# --
+// Multicycle Clock-to-Register
+# Create the source clock
+create_clock -period __period -name __sourceClock [get_ports __port]
+# Create the destination clock
+create_clock -period __period -name __destinationClock [get_ports __port]
+# Set a multicycle exception from a source register clocked by _sourceClock
+# to a destination register __destinationRegisterInputPin
+set_multicycle_path -from [get_clocks __sourceClock] -to [get_pins __destinationRegisterInputPin] -setup|hold -start|end __multicycleValue

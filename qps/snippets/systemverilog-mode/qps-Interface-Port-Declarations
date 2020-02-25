@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qps-Interface-Port-Declarations
+# key: qps-Interfaces-Interface-Port-Declarations
+# --
+// Interface Port Declarations
+// Both modules and interfaces may declare interface ports.
+
+// An interface port may refer to a specific interface and/or modport
+<interface_name> <port_name>
+<interface_name>.<modport_name> <port_name>
+
+// A generic interface port will be bound to a specific interface
+// and/or modport during instantiation.  As a result, the top-level
+// module in your design cannot contain a generic interface port.
+interface <port_name>

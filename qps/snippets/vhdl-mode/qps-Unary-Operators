@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-Unary-Operators
+# key: qps-Expressions-Unary-Operators
+# --
+// Unary Operators
+-- Unary Expressions
++  -- positive
+-  -- negative
+NOT   -- negation
+ABS   -- absolute value

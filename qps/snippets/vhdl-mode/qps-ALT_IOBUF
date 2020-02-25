@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: qps-ALT_IOBUF
+# key: qps-Buffers-ALT_IOBUF
+# --
+// ALT_IOBUF
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating ALT_IOBUF
+	<instance_name> : ALT_IOBUF
+	generic map (
+			IO_STANDARD => "Differential 1.2-V HSTL Class I",
+			CURRENT_STRENGTH_NEW => "4mA",
+			ENABLE_BUS_HOLD => "none",
+			WEAK_PULL_UP_RESISTOR => "off",
+			LOCATION => "IOBANK_3C"
+			)
+	port map (
+			i => <data_in>,
+			oe => <enable_signal>,
+			o => <data_out>,
+			io => <bidir>	  -- <bidir> must be declared as an inout pin
+			);

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-While-Statement
+# key: qps-Commands-While-Statement
+# --
+// While Statement
+while { __booleanExpr } {
+	__statement;
+	__statement;
+}

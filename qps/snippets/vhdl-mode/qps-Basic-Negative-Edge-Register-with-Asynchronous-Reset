@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qps-Basic-Negative-Edge-Register-with-Asynchronous-Reset
+# key: qps-Registers-Basic-Negative-Edge-Register-with-Asynchronous-Reset
+# --
+// Basic Negative Edge Register with Asynchronous Reset
+process (<clock_signal>, <reset>)
+begin
+	-- Reset whenever the reset signal goes low, regardless of the clock
+	if (reset = '0') then
+		<register_variable> <= '0';
+	-- If not resetting, update the register output on the clock's falling edge
+	elsif (falling_edge(<clock_signal>)) then
+		<register_variable> <= <data>;
+	end if;
+end process;

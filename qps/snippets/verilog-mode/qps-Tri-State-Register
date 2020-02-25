@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: qps-Tri-State-Register
+# key: qps-Tri-State-Tri-State-Register
+# --
+// Tri-State Register
+// Tri-state registers are registers on inout ports.  As with any
+// registers, their output can be updated synchronously or asynchronously.
+reg <bidir_variable>;
+always @ (posedge <clock_signal> or negedge <asynch_output_enable>)
+begin
+	if (!<asynch_output_enable>)
+	begin
+		<bidir_variable> <= 1'bZ;
+	end
+	else
+	begin
+		<bidir_variable> <= (<output_enable>) ? <data> : 1'bZ;
+	end
+end

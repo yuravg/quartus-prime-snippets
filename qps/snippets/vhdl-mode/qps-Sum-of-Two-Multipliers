@@ -1,0 +1,47 @@
+# -*- mode: snippet -*-
+# name: qps-Sum-of-Two-Multipliers
+# key: qps-DSP-Features-for-28-nm-Device-Sum-of-Two-Multipliers
+# --
+// Sum of Two Multipliers
+-- Quartus Prime VHDL Template
+-- Sum of two multipliers
+-- For use with the 28-nm device families
+
+-- This template is applicable to sum-of-2 18x18, 27x27, 36x18 modes on Stratix-V
+-- This template is applicable to sum-of-2 18x19(signed) mode on Arria-V and Cyclone-V
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity sum_of_2 is
+	generic
+	(
+		A_WIDTH : natural := 18;
+		B_WIDTH : natural := 18
+	);
+
+	port
+	(
+		a1	   : in signed	((A_WIDTH-1) downto 0);
+		b1	   : in signed	((B_WIDTH-1) downto 0);
+		a2	   : in signed	((A_WIDTH-1) downto 0);
+		b2	   : in signed	((B_WIDTH-1) downto 0);
+		p : out signed ((A_WIDTH+B_WIDTH) downto 0)
+	);
+
+end entity;
+
+architecture rtl of sum_of_2 is
+
+signal p1, p2 : signed ((A_WIDTH+B_WIDTH-1) downto 0);
+
+begin
+
+	p1 <= (a1 * b1);
+	p2 <= (a2 * b2);
+
+	-- Static add/sub is supported
+	p <= resize(p1, A_WIDTH+B_WIDTH+1) + resize(p2, A_WIDTH+B_WIDTH+1);
+
+end rtl;

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-keep-Attribute
+# key: qps-Synthesis-Attributes-keep-Attribute
+# --
+// keep Attribute
+// Prevents Quartus Prime from minimizing or removing a particular
+// signal net during combinational logic optimization.	Apply
+// the attribute to a net or variable declaration.
+
+(* keep *) wire <net_name>;
+(* keep *) reg <variable_name>;

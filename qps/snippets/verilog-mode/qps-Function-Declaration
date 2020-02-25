@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qps-Function-Declaration
+# key: qps-Declarations-Function-Declaration
+# --
+// Function Declaration
+// A function must declare one or more input arguments.  It must also
+// execute in a single simulation cycle; therefore, it cannot contain
+// timing controls or tasks.  You set the return value of a
+// function by assigning to the function name as if it were a variable.
+
+function <func_return_type> <func_name>(<input_arg_decls>);
+	// Optional Block Item Declarations, e.g. Local Variables
+	begin
+		// Statements
+	end
+endfunction

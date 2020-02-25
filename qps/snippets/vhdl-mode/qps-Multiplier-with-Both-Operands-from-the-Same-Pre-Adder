@@ -1,0 +1,118 @@
+# -*- mode: snippet -*-
+# name: qps-Multiplier-with-Both-Operands-from-the-Same-Pre-Adder
+# key: qps-DSP-Features-for-28-nm-Device-Multiplier-with-Both-Operands-from-the-Same-Pre-Adder
+# --
+// Multiplier with Both Operands from the Same Pre-Adder
+-- Quartus Prime VHDL Template
+-- Multiplier with both operands from the same pre-adder
+-- For use with the 28-nm device families
+
+-- This template can be used with sum-of-2 18x18 mode on Stratix-V
+--      Preadder supports 18-bit preadder (17-bit operands)
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity square is
+	generic
+	(
+		AB_WIDTH : natural := 17
+	);
+
+	port
+	(
+		a1	   : in signed	((AB_WIDTH-1) downto 0);
+		b1	   : in signed	((AB_WIDTH-1) downto 0);
+		a2	   : in signed	((AB_WIDTH-1) downto 0);
+		b2	   : in signed	((AB_WIDTH-1) downto 0);
+		-- DSP supports up to 3 clock/ena pairs and 2 async reset signals
+		-- When preadder is used, all registered data inputs on each multiplier must use the same {clock, ena}
+		-- All registered inputs must use the same reset
+		clock : in std_logic;
+		ena1 	: in std_logic;
+		ena0	: in std_logic;
+		reset	: in std_logic;
+		s		: out signed (((2*AB_WIDTH)+1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of square is
+
+signal a1_reg, a2_reg, b1_reg, b2_reg	   : signed	((AB_WIDTH-1) downto 0);
+signal ab1, ab2								   : signed	((AB_WIDTH) downto 0);
+signal p												: signed	((2*(AB_WIDTH+1)) downto 0);
+
+-- Pick an applicable basic mode template
+component sum_of_2
+	generic
+	(
+		A_WIDTH : natural := 18;
+		B_WIDTH : natural := 18
+	);
+
+	port
+	(
+		a1	   : in signed	((A_WIDTH-1) downto 0);
+		b1	   : in signed	((B_WIDTH-1) downto 0);
+		a2	   : in signed	((A_WIDTH-1) downto 0);
+		b2	   : in signed	((B_WIDTH-1) downto 0);
+		p : out signed ((A_WIDTH+B_WIDTH) downto 0)
+	);
+
+end component;
+
+begin
+
+-- input register
+process(clock, reset)
+begin
+	if (reset = '1') then
+
+		a1_reg <= (others => '0');
+		a2_reg <= (others => '0');
+		b1_reg <= (others => '0');
+		b2_reg <= (others => '0');
+
+	elsif rising_edge(clock) then
+
+		if (ena0 = '1') then
+			a1_reg <= a1;
+			b1_reg <= b1;
+		end if;
+
+		if (ena1 = '1') then
+			a2_reg <= a2;
+			b2_reg <= b2;
+		end if;
+
+	end if;
+
+end process;
+
+-- Preadder
+-- Preadder supports static add/sub
+-- Two 18x18 in one DSP block must use preadder simultaneously
+-- Two 18x18 in one DSP block must have the same add/sub
+ab1 <= resize(a1_reg, AB_WIDTH+1) - resize(b1_reg, AB_WIDTH+1);
+ab2 <= resize(a2_reg, AB_WIDTH+1) - resize(b2_reg, AB_WIDTH+1);
+
+s <= resize(p, (2*AB_WIDTH)+2);
+
+dsp0 : sum_of_2
+	generic map
+	(
+		A_WIDTH => AB_WIDTH+1,
+		B_WIDTH => AB_WIDTH+1
+	)
+	port MAP
+	(
+		a1	=> ab1,
+		b1	=> ab1,
+		a2	=> ab2,
+		b2	=> ab2,
+		p => p
+	);
+
+end rtl;

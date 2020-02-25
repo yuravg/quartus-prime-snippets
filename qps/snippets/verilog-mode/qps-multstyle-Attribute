@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# name: qps-multstyle-Attribute
+# key: qps-Synthesis-Attributes-multstyle-Attribute
+# --
+// multstyle Attribute
+// Controls the implementation of multiplication operators in your HDL
+// source.  Using this attribute, you can control whether the Quartus Prime
+// software should preferentially implement a multiplication operation in
+// general logic or dedicated hardware, if available in the target device.
+
+// Legal values = "dsp" or "logic"
+
+// Examples (in increasing order of priority)
+
+// Control the implementation of all multiplications in a module
+(* multstyle = "dsp" *) module foo(...);
+
+// Control the implementation of all multiplications whose result is
+// directly assigned to a variable
+(* multstyle = "logic" *) wire signed [31:0] result;
+assign result = a * b; // implement this multiplication in logic
+
+// Control the implementation of a specific multiplication
+wire signed [31:0] result;
+assign result = a * (* multstyle = "dsp") b;

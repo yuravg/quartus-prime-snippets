@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: qps-useioff-Attribute
+# key: qps-Synthesis-Attributes-useioff-Attribute
+# --
+// useioff Attribute
+-- Controls the packing input, output, and output enable registers into
+-- I/O cells.  Using a register in an I/O cell can improve performance
+-- by minimizing setup, clock-to-output, and clock-to-output-enable times.
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute useioff : boolean;
+
+attribute useioff of <object> : <object_class> is true;
+
+-- Apply the attribute to a port object (a signal)
+
+attribute useioff of my_input : signal is true;     -- enable packing
+attribute useioff of my_input : signal is false;    -- disable packing

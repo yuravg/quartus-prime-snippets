@@ -1,0 +1,48 @@
+# -*- mode: snippet -*-
+# name: qps-Sum-of-Two-Multipliers-with-a-Wide-Datapath
+# key: qps-Sums-of-Multipliers-Sum-of-Two-Multipliers-with-a-Wide-Datapath
+# --
+// Sum of Two Multipliers with a Wide Datapath
+-- Quartus Prime VHDL Template
+-- Sum of two multipliers with a wide datapath
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity sum_of_two_multipliers_wide_datapath is
+
+	generic
+	(
+		WIDTH_A	: natural := 36;
+		WIDTH_B	: natural := 18
+	);
+
+	port
+	(
+		clk, ena	        : in std_logic;
+		a0, a1		: in signed ((WIDTH_A-1) downto 0);
+		b0, b1		: in signed ((WIDTH_B-1) downto 0);
+		dataout		: out signed ((WIDTH_A+WIDTH_B) downto 0)
+	);
+
+end entity;
+
+architecture rtl of sum_of_two_multipliers_wide_datapath is
+	-- At least one product (of the two we're adding together)
+	-- must be as wide as the sum
+	signal resized_a0_times_b0 : signed ((WIDTH_A+WIDTH_B) downto 0);
+begin
+
+	-- Resize the product a0*b0 so we won't lose carry bits when adding
+	resized_a0_times_b0 <= RESIZE(a0 * b0, WIDTH_A+WIDTH_B+1);
+
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+			if (ena = '1') then
+				dataout <= resized_a0_times_b0 + a1 * b1;
+			end if;
+		end if;
+	end process;
+end rtl;

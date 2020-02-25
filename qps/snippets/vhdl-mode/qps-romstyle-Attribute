@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# name: qps-romstyle-Attribute
+# key: qps-Synthesis-Attributes-romstyle-Attribute
+# --
+// romstyle Attribute
+-- Controls the implementation of an inferred ROM.  Apply the
+-- attribute to a variable declaration that infers ROM or to a
+-- entity or architecture containing inferred ROMs.
+
+-- Legal values = "M9K", "M10K", "M20K", "M144K", "MLAB"
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute romstyle : string;
+
+attribute romstyle of <object> : <object_class> is <string_value>;
+
+-- Example
+
+-- Implement all ROMs in this architecture with M20K blocks
+attribute romstyle of rtl : architecture is "M20K";
+
+-- Implement this ROM with an MLAB
+signal rom : rom_t;
+attribute romstyle of rom : signal is "MLAB";

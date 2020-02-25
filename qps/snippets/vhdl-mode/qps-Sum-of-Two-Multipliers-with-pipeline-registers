@@ -1,0 +1,54 @@
+# -*- mode: snippet -*-
+# name: qps-Sum-of-Two-Multipliers-with-pipeline-registers
+# key: qps-Sums-of-Multipliers-Sum-of-Two-Multipliers-with-pipeline-registers
+# --
+// Sum of Two Multipliers with pipeline registers
+-- Quartus Prime VHDL Template
+-- Sum of two multipliers with pipeline registers
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity sum_of_two_multipliers_pipeline is
+
+	generic
+	(
+		WIDTH : natural := 16
+	);
+
+	port
+	(
+		clk, aclr : in std_logic;
+		a, b, c, d : in unsigned ((WIDTH-1) downto 0);
+		result : out unsigned ((2*WIDTH) downto 0)
+	);
+
+
+end entity;
+
+architecture rtl of sum_of_two_multipliers_pipeline is
+	signal a_reg, b_reg, c_reg, d_reg : unsigned ((WIDTH-1) downto 0);
+	signal pdt_reg, pdt2_reg : unsigned ((2*WIDTH-1) downto 0);
+	signal result_reg : unsigned ((2*WIDTH) downto 0);
+begin
+	PROCESS (clk, aclr)
+	BEGIN
+		IF (aclr = '1') THEN
+			a_reg <= (OTHERS => '0');
+			b_reg <= (OTHERS => '0');
+			c_reg <= (OTHERS => '0');
+			d_reg <= (OTHERS => '0');
+			pdt_reg <= (OTHERS => '0');
+			pdt2_reg <= (OTHERS => '0');
+		ELSIF (clk'event AND clk = '1') THEN
+			a_reg <= a;
+			b_reg <= b;
+			c_reg <= c;
+			d_reg <= d;
+			pdt_reg <= a_reg * b_reg;
+			pdt2_reg <= c_reg * d_reg;
+			result_reg <= resize(pdt_reg,2*WIDTH+1) + resize(pdt2_reg,2*WIDTH+1);
+		END IF;
+	END PROCESS;
+	result <= result_reg;
+end rtl;

@@ -1,0 +1,29 @@
+# -*- mode: snippet -*-
+# name: qps-System-Synchronous-Input-Constraints
+# key: qps-SDC-Cookbook-System-Synchronous-Input-Constraints
+# --
+// System Synchronous Input Constraints
+# Specify the maximum external clock delay from the external device
+set CLKs_max __CLKsMaxValue
+# Specify the minimum external clock delay from the external device
+set CLKs_min __CLKsMinValue
+# Specify the maximum external clock delay to the FPGA
+set CLKd_max __CLKdMaxValue
+# Specify the minimum external clock delay to the FPGA
+set CLKd_min __CLKdMinValue
+# Specify the maximum clock-to-out of the external device
+set tCO_max __tCOMax
+# Specify the minimum clock-to-out of the external device
+set tCO_min __tCOMin
+# Specify the maximum board delay
+set BD_max __BDMax
+# Specify the minimum board delay
+set BD_min __BDMin
+# Create a clock
+create_clock -period __period -name __name [get_ports __port]
+# Create the associated virtual input clock
+create_clock -period __period -name __virtualClockName
+# Create the input maximum delay for the data input to the FPGA that accounts for all delays specified
+set_input_delay -clock __virtualClockName -max [expr $CLKs_max + $tCO_max + $BD_max - $CLKd_min] [get_ports __dataPorts]
+# Create the input minimum delay for the data input to the FPGA that accounts for all delays specified
+set_input_delay -clock __virtualClockName -min [expr $CLKs_min + $tCO_min + $BD_min - $CLKd_max] [get_ports __dataPorts]

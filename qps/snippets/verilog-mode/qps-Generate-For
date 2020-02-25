@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Generate-For
+# key: qps-Generates-Generate-For
+# --
+// Generate For
+for(<genvar_id> = <constant_expr>; <constant_expr>; <genvar_id> = <constant_expr>)
+begin : <required_block_name>
+	// Generate Items
+end

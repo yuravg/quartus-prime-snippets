@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-2-1-Clock-Muxing
+# key: qps-SDC-Cookbook-2-1-Clock-Muxing
+# --
+// 2:1 Clock Muxing
+# Create the first input clock to the mux
+create_clock -period __period -name __nameOfFirstClock [get_ports __target]
+# Create the second input clock to the mux
+create_clock -period __period -name __nameOfSecondClock [get_ports __target]
+#Cut transfers between __nameOfFirstClock and __nameOfSecondClock
+set_clock_groups -exclusive -group {__nameOfFirstClock} -group {__nameOfSecondClock}

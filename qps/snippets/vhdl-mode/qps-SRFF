@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qps-SRFF
+# key: qps-Registers-and-Latches-SRFF
+# --
+// SRFF
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating SRFF
+	<instance_name> : SRFF
+	port map (
+			s => <synchronous_set>,
+			r => <synchronous_reset>,
+			clk => <clock_signal>,
+			clrn => <active_low_clear>,
+			prn => <active_low_preset>,
+			q => <data_out>
+			);

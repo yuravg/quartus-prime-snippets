@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: qps-DFFEA
+# key: qps-Registers-and-Latches-DFFEA
+# --
+// DFFEA
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating DFFEA
+	<instance_name> : DFFEA
+	port map (
+			d => <data_in>,
+			clk => <clock_signal>,
+			clrn => <active_low_clear>,
+			prn => <active_low_preset>,
+			ena => <clock_enable>,
+			adata => <asynch_data_in>,
+			aload => <asynch_load_signal>,
+			q => <data_out>
+			);

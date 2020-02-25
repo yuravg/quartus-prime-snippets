@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: qps-Generate-Case
+# key: qps-Generates-Generate-Case
+# --
+// Generate Case
+case(<constant_expr>)
+<constant_expr>:
+	begin : <block_name>
+		// Generate Items
+	end
+<constant_expr>:
+	begin : <block_name>
+		// Generate Items
+	end
+// ...
+default:
+	begin : <block_name>
+
+	end
+endcase
+
+// NOTE: Block names are optional but Altera recommends them.

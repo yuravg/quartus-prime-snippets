@@ -1,0 +1,58 @@
+# -*- mode: snippet -*-
+# name: qps-Overall-Structure
+# key: qps-Architecture-Overall-Structure
+# --
+// Overall Structure
+-- Title Statement (optional)
+
+-- Include Statement (optional)
+
+-- Constant Statement (optional)
+
+-- Define Statement (optional)
+
+-- Parameters Statement (optional)
+
+-- Function Prototype Statement (optional)
+
+-- Options Statement (optional)
+
+-- Assert Statement (optional)
+
+-- Subdesign Section
+
+-- Variable Section (optional)
+
+	-- If Generate Statement (optional)
+
+	-- Node Declaration (optional)
+
+	-- Instance Declaration (optional)
+
+	-- Register Declaration (optional)
+
+	-- State Machine Declaration (optional)
+
+	-- Machine Alias Declaration (optional)
+
+-- Logic Section
+
+	-- Defaults Statement (optional)
+
+	-- The following statements can be freely intermixed:
+
+	-- Boolean Equation
+
+	-- Case Statement
+
+	-- For Generate Statement
+
+	-- If Generate Statement
+
+	-- If Then Statement
+
+	-- In-Line Logic Function Reference
+
+	-- Truth Table Statement
+
+	-- Assert Statement

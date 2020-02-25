@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: qps-In-Line-Reference-(parameterized)
+# key: qps-Architecture-In-Line-Reference-(parameterized)
+# --
+// In-Line Reference (parameterized)
+(__node_name, __node_name) = __function_name(__node_name, __node_name)
+	WITH (__parameter_name = __parameter_value,
+		__parameter_name = __parameter_value);

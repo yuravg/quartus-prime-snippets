@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qps-Casez-Statement
+# key: qps-Sequential-Statements-Casez-Statement
+# --
+// Casez Statement
+// z values are don't-care's
+casez(<expr>)
+<case_item_exprs>: <sequential statement>
+<case_item_exprs>: <sequential statement>
+<case_item_exprs>: <sequential statement>
+default: <sequential statement>
+endcase

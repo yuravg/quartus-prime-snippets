@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: qps-String-Type-Declaration
+# key: qps-Type-Declarations-String-Type-Declaration
+# --
+// String Type Declaration
+
+// String constants are supported and can be returned via packed array from function
+// They can be used also to override parameters in module instantiation
+module t0(output o);
+function [8*8-1:0] f(input dummy);
+integer i;
+f = "Hi";
+f[7:0] = 8'd73;
+endfunction
+
+initial begin
+("f() == %s", f(1'b1));
+end
+
+sub #(f(1'b1)) inst(o);
+
+endmodule // t0
+
+module sub(output o);
+parameter P = "Bye";
+initial begin
+("P == %s", P);
+end
+assign o = 1'b1;
+endmodule

@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: qps-ALT_OUTBUF_TRI
+# key: qps-Buffers-ALT_OUTBUF_TRI
+# --
+// ALT_OUTBUF_TRI
+	ALT_OUTBUF_TRI <instance_name> (
+						.i(<data_in>),
+						.oe(<enable_signal>),
+						.o(<data_out>)	//<data_out> must be declared as an output pin
+						);
+
+	defparam <instance_name>.io_standard = "1.8 V";
+	defparam <instance_name>.current_strength  = "maximum current";
+	defparam <instance_name>.slow_slew_rate = "off";
+	defparam <instance_name>.enable_bus_hold = "on";
+	defparam <instance_name>.weak_pull_up_resistor = "off";
+	defparam <instance_name>.termination = "series 50 ohms";

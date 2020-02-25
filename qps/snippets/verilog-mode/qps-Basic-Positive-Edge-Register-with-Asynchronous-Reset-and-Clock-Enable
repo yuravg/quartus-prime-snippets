@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: qps-Basic-Positive-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
+# key: qps-Registers-Basic-Positive-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
+# --
+// Basic Positive Edge Register with Asynchronous Reset and Clock Enable
+always @ (negedge <reset> or posedge <clock_signal>)
+begin
+	// Reset whenever the reset signal goes low, regardless of the clock
+	// or the clock enable
+	if (!<reset>)
+	begin
+		<register_variable> <= 1'b0;
+	end
+	// If not resetting, and the clock signal is enabled on this register,
+	// update the register output on the clock's rising edge
+	else
+	begin
+		if (<clock_enable>)
+		begin
+			<register_variable> <= <data>;
+		end
+	end
+end

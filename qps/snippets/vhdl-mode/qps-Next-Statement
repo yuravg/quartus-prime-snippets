@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qps-Next-Statement
+# key: qps-Sequential-Statements-Next-Statement
+# --
+// Next Statement
+-- Unconditional next.
+<optional_label>: next <optional_loop_label>;
+
+-- Conditional next
+<optional_loop_label>: next <optional_loop_label> when <condition>;

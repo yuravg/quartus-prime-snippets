@@ -1,0 +1,130 @@
+# -*- mode: snippet -*-
+# name: qps-Chainout-Adder-with-Rounding
+# key: qps-DSP-Features-for-28-nm-Device-Chainout-Adder-with-Rounding
+# --
+// Chainout Adder with Rounding
+-- Quartus Prime VHDL Template
+-- Chainout adder with rounding
+-- For use with the 28-nm device families
+
+-- This template can be used with 18x18, sum-of-2 18x18, 36+18x18, 27x27, 36x18 modes on Stratix-V
+-- This template can be used with 18x19(signed), 36+18x19(signed), 27x27 modes on Arria-V and Cyclone-V
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity chainout_rnd is
+	generic
+	(
+		A_WIDTH 		: natural := 27;
+		B_WIDTH 		: natural := 27;
+		-- When this template applies to single 18x18, max chain_width is 44, othewise 64
+		CHAIN_WIDTH : natural := 64;
+		ROUNDING_BIT : std_logic_vector := X"2000"
+	);
+
+	port
+	(
+		a1	   : in signed	((A_WIDTH-1) downto 0);
+		b1	   : in signed	((B_WIDTH-1) downto 0);
+		a2	   : in signed	((A_WIDTH-1) downto 0);
+		b2	   : in signed	((B_WIDTH-1) downto 0);
+		a3	   : in signed	((A_WIDTH-1) downto 0);
+		b3	   : in signed	((B_WIDTH-1) downto 0);
+		-- DSP supports up to 3 clock/ena pairs and 2 async reset signals
+		-- All output registers must have the same {clock, ena, reset}
+		clock : in std_logic;
+		ena	: in std_logic;
+		reset	: in std_logic;
+		s		: out signed ((CHAIN_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of chainout_rnd is
+
+signal p1, p2, p3					: signed	((A_WIDTH+B_WIDTH-1) downto 0);
+signal s1, s2						: signed	((CHAIN_WIDTH-1) downto 0);
+
+component single_mult
+	generic
+	(
+		A_WIDTH : natural := 18;
+		B_WIDTH : natural := 18
+	);
+
+	port
+	(
+		a	   : in signed	((A_WIDTH-1) downto 0);
+		b	   : in signed	((B_WIDTH-1) downto 0);
+		p 		: out signed ((A_WIDTH+B_WIDTH-1) downto 0)
+	);
+
+end component;
+
+begin
+
+process(clock, reset)
+begin
+	if (reset = '1') then
+
+		s1 <= (others => '0');
+		s2 <= (others => '0');
+		s <= (others => '0');
+
+	elsif rising_edge(clock) then
+
+		if (ena = '1') then
+			-- chainout adder support static add or sub
+			-- basic mode result (p) must be the second operand
+			s1 <= resize(p1, CHAIN_WIDTH);
+			s2 <= s1 + resize(p2, CHAIN_WIDTH);
+			-- rounding bit sign has to match with other operands
+			s  <= resize(signed (ROUNDING_BIT), CHAIN_WIDTH) + (s2 + resize(p3, CHAIN_WIDTH));
+		end if;
+
+	end if;
+
+end process;
+
+mult1 : single_mult
+	generic map
+	(
+		A_WIDTH => A_WIDTH,
+		B_WIDTH => B_WIDTH
+	)
+	port MAP
+	(
+		a	=> a1,
+		b	=> b1,
+		p 	=> p1
+	);
+
+mult2 : single_mult
+	generic map
+	(
+		A_WIDTH => A_WIDTH,
+		B_WIDTH => B_WIDTH
+	)
+	port MAP
+	(
+		a	=> a2,
+		b	=> b2,
+		p 	=> p2
+	);
+
+mult3 : single_mult
+	generic map
+	(
+		A_WIDTH => A_WIDTH,
+		B_WIDTH => B_WIDTH
+	)
+	port MAP
+	(
+		a	=> a3,
+		b	=> b3,
+		p 	=> p3
+	);
+
+end rtl;

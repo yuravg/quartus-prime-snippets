@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qps-Matching-Operators
+# key: qps-VHDL-2008-Constructs-Matching-Operators
+# --
+// Matching Operators
+?=	--matching equality: defined for STD_ULOGIC and BIT, and their one dimensional arrays ( a single '-' is considered to be equal to every scalar value of type BIT or STD_ULOGIC)
+?/=	--matching inequality: defined for STD_ULOGIC and BIT, and their one dimensional arrays ( a single '-' is considered to be equal to every scalar value of type BIT or STD_ULOGIC)

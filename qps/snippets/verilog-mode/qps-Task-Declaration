@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qps-Task-Declaration
+# key: qps-Declarations-Task-Declaration
+# --
+// Task Declaration
+// A task may have input, output, and inout arguments.  It may also
+// contain timing controls.  A task does not return a value and, thus,
+// may not be used in an expression.
+
+task <task_name>(<arg_decls>);
+	// Optional Block Item Declarations, e.g Local Variables
+	begin
+		// Statements
+	end
+endtask

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Join-Command
+# key: qps-Commands-Join-Command
+# --
+// Join Command
+joint __list __joinString;

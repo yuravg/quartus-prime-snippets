@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: qps-Instance-Declaration-(parameterized)
+# key: qps-Architecture-Instance-Declaration-(parameterized)
+# --
+// Instance Declaration (parameterized)
+__function_instance_name	: __function_name
+	WITH (__parameter_name = __parameter_value,
+		__parameter_name = __parameter_value);

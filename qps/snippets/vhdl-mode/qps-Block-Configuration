@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qps-Block-Configuration
+# key: qps-Design-Units-Block-Configuration
+# --
+// Block Configuration
+-- Block configurations go inside configuration declarations.  See the
+-- full-design configuration templates for examples using block configurations.
+
+for <architecture_name, block_label, _or_ generate_label>
+
+	-- Use Clause (optional)
+
+	-- Block Configuration or Component Configuration (optional)
+
+end for;

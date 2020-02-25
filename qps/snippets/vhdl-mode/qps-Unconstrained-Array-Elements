@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: qps-Unconstrained-Array-Elements
+# key: qps-VHDL-2008-Constructs-Unconstrained-Array-Elements
+# --
+// Unconstrained Array Elements
+-- Examples
+
+-- Declare unconstrained array types with unconstrained elements.
+type my_type1 is array(natural range <>) of std_logic_vector;
+-- Three level deep unconstrained array
+type my_type2 is array(natural range <>) of my_type1;
+
+--partially constrained types/subtypes
+type my_type3 is array(5 to 9) of my_type1(8 downto 4); --the std_logic_vector is still unconstrained
+type my_type4 is array(4 to 6) of my_type1(open)(8 downto 4);
+subtype my_subtype1 is my_type1(open)(10 to 12);
+subtype my_subtype2 is my_type2(3 downto 0)(open)(3 to 5);
+
+--fully constrained types/subtypes
+type fully_constrained1 is array(7 downto 3) of my_type3(open)(open)(5 to 9);
+type fully_constrained2 is array(0 to 3) of my_type1(7 to 9)(5 downto 2);
+subtype fully_constrained3 is my_subtype1(4 to 6);

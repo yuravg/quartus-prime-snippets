@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qps-Library-Clause
+# key: qps-Design-Units-Library-Clause
+# --
+// Library Clause
+-- A library clause declares a name as a library.  It
+-- does not create the library; it simply forward declares
+-- it.
+library <library_name>;

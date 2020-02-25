@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-Create-Base-Clocks-Manually-and-PLL-Output-Clocks-Manually
+# key: qps-SDC-Cookbook-Create-Base-Clocks-Manually-and-PLL-Output-Clocks-Manually
+# --
+// Create Base Clocks Manually and PLL Output Clocks Manually
+# Create a base clock for the PLL input clock
+create_clock -name __name -period __period [get_ports __port]
+# Create a generated clock for each PLL output clock
+create_generated_clock -name __name -divide_by __factor -multiply_by __factor -source __source [get_pins __target]
+# Create additional generated clocks for each PLL output clock
+create_generated_clock -name __name -divide_by __factor -multiply_by __factor -source __source [get_pins __target]

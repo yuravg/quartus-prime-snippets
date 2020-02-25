@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qps-Basic-Latch-with-Reset
+# key: qps-Latches-Basic-Latch-with-Reset
+# --
+// Basic Latch with Reset
+process(<reset>, <enable>, <data>)
+begin
+	-- The reset signal overrrides the enable signal; reset the value to 0
+	if (<reset> = '0') then
+		<latch_variable> <= '0';
+	-- Otherwise, change the variable only when updates are enabled
+	elsif (<enable> = '1') then
+		<latch_variable> <= <data>;
+	end if;
+end process;

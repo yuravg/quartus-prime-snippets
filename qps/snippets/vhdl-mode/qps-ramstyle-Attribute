@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# name: qps-ramstyle-Attribute
+# key: qps-Synthesis-Attributes-ramstyle-Attribute
+# --
+// ramstyle Attribute
+-- Controls the implementation of an inferred memory.  Apply the
+-- attribute to a variable declaration that infers a RAM, ROM, or shift-register.
+
+-- Legal values = "M9K", "M10K", "M20K", "M144K", "MLAB", "no_rw_check", "logic"
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute ramstyle : string;
+
+attribute ramstyle of <object> : <object_class> is <string_value>;
+
+-- If the attribute is set to "logic", then the RAM is implemented in logic cells
+
+-- The "no_rw_check" value indicates that your design does not depend
+-- on the behavior of the inferred RAM when there are simultaneous reads
+-- and writes to the same address.  Thus, the Quartus Prime software may ignore
+-- the read-during-write behavior of your HDL source and choose a behavior
+-- that matches the behavior of the RAM blocks in the target device.
+
+-- You may combine "no_rw_check" with a block type by separating the values
+-- with a comma:  "M20K, no_rw_check" or "no_rw_check, M20K"
+
+-- Example
+
+-- Implement all RAMs in this architecture with M20K blocks
+attribute ramstyle of rtl : architecture is "M20K";
+
+-- Implement this RAM with an MLAB and ignore read-during-write behavior
+signal ram : ram_t;
+attribute ramstyle of ram : signal is "MLAB, no_rw_check";

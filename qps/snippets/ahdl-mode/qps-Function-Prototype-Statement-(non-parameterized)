@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qps-Function-Prototype-Statement-(non-parameterized)
+# key: qps-Architecture-Function-Prototype-Statement-(non-parameterized)
+# --
+// Function Prototype Statement (non-parameterized)
+FUNCTION __function_name(__input_name, MACHINE __state_machine_name)
+	RETURNS (__output_name, __bidir_name, MACHINE __state_machine_name);

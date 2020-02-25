@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Global-Command
+# key: qps-Commands-Global-Command
+# --
+// Global Command
+global __varName1 __varName2;

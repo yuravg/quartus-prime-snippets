@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Collection-Size
+# key: qps-Collections-Collection-Size
+# --
+// Collection Size
+set __collectionSize [get_collection_size __collectionCommand]

@@ -1,0 +1,73 @@
+# -*- mode: snippet -*-
+# name: qps-Complex-25x18-Multiply
+# key: qps-DSP-Features-for-28-nm-Device-Complex-25x18-Multiply
+# --
+// Complex 25x18 Multiply
+// Quartus Prime Verilog Template
+// Complex 25x18 multiply
+// For use with the 28-nm device families
+
+module complex_25x18(x_r, x_i, y_r, y_i, clock, ena1, ena0, reset, p_r, p_i);
+//This template is applicable to complex 25x18 mode on Stratix-V
+input [24:0] x_r;
+input [24:0] x_i;
+input [17:0] y_r;
+input [17:0] y_i;
+//Stratix-V DSP supports up to 3 clock/ena pairs and 2 async reset signals
+input clock;
+input ena1;
+input ena0;
+input reset;
+output [43:0] p_r;
+output [43:0] p_i;
+
+//All inputs/outputs have to be signed.
+//All input registers must use the same {clock, ena, reset}
+//All output registers must use the same {clock, ena, reset}
+reg signed [24:0] x_r_reg, x_i_reg;
+reg signed [17:0] y_r_reg, y_i_reg;
+reg signed [43:0] p_r, p_i;
+
+wire signed [25:0] a1;
+wire signed [18:0] a2;
+wire signed [18:0] a3;
+wire signed [43:0] p1;
+wire signed [43:0] p2;
+wire signed [43:0] p3;
+
+assign a1 = x_r_reg - x_i_reg;
+assign p1 = a1 * y_i_reg;
+assign a2 = y_r_reg - y_i_reg;
+assign p2 = a2 * x_r_reg;
+assign a3 = y_r_reg + y_i_reg;
+assign p3 = a3 * x_i_reg;
+
+always @(posedge clock or posedge reset)
+begin
+	if (reset == 1'b1)
+	begin
+		x_r_reg <= 0;
+		x_i_reg <= 0;
+		y_r_reg <= 0;
+		y_i_reg <= 0;
+		p_r <= 0;
+		p_i <= 0;
+	end
+	else
+	begin
+		if (ena0 == 1'b1)
+		begin
+			x_r_reg <= x_r;
+			x_i_reg <= x_i;
+			y_r_reg <= y_r;
+			y_i_reg <= y_i;
+		end
+		if (ena1 == 1'b1)
+		begin
+			p_r <= p1 + p2;
+			p_i <= p1 + p3;
+		end
+	end
+end
+
+endmodule

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Catch-Command
+# key: qps-Commands-Catch-Command
+# --
+// Catch Command
+catch __command __resultVar;

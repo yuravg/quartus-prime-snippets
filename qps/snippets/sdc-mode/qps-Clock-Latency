@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qps-Clock-Latency
+# key: qps-Clock-Attributes-Clock-Latency
+# --
+// Clock Latency
+set_clock_latency -source -late __value [get_ports __listOfWildcards]
+set_clock_latency -source -early __value [get_ports __listOfWildcards]

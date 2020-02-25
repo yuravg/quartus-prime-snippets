@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: qps-Binary-Operators
+# key: qps-Expressions-Binary-Operators
+# --
+// Binary Operators
+-- Binary Expressions
+AND
+OR
+NAND
+NOR
+XOR
+XNOR
+=
+/=
+<
+<=
+>
+>=
+SLL   -- Shift Left Logical
+SRL   -- Shift Right Logical
+SLA   -- Shift Left Arithmetic: same as "logical" shift but uses sign extension (the leftmost bit is considered the sign bit)
+SRA   -- Shift Right Arithmetic: same as "logical" shift but uses sign extension (the rightmost bit is considered the sign bit)
+ROL   -- Rotate Left: Same as a shift, but bits that would "fall off" the left side during a shift will reappear on the right side in a rotation.
+ROR   -- Rotate Right
++   -- Addition
+-   -- Subtraction
+&   -- Concatenation
+*   -- Multiplication
+/   -- Division
+MOD   -- Modulus: If C <= A MOD B, then A = B*N + C (for some integral N), and ABS(C) < ABS(B).  Also, C must be positive if B is positive, and C must be negative if B is negative.
+REM   -- Remainder: If C <= A REM B, then A = (A/B)*B + C, and ABS(C) < ABS(B).  Also, C must be positive if A is positive, and C must be negative if A is negative.
+**   -- Exponent

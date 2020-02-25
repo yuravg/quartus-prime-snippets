@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qps-Integer-Type-Declaration
+# key: qps-Type-and-Subtype-Declarations-Integer-Type-Declaration
+# --
+// Integer Type Declaration
+-- Basic integer type declaration
+type <name> is range <low> to <high>;
+
+-- Examples
+type index_t is range 0 to 7;
+type addr_t is range 255 downto 0;

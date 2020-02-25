@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-Interface-Instantiations
+# key: qps-Interfaces-Interface-Instantiations
+# --
+// Interface Instantiations
+// Basic interface instantiation
+<interface_name> <inst_name>(<port_connects>);
+
+// Interface instantiation with parameter overrides
+<interface_name> #(<parameters>) <inst_name>(<port_connects>);
+
+// Array of instances
+<interface_name> #(<parameters) <inst_name>  [<msb>:<lsb>] (<port_conects>);

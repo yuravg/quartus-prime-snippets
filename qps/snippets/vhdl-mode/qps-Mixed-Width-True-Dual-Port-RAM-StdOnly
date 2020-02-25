@@ -1,0 +1,87 @@
+# -*- mode: snippet -*-
+# name: qps-Mixed-Width-True-Dual-Port-RAM-StdOnly
+# key: qps-RAMs-and-ROMs-Mixed-Width-True-Dual-Port-RAM-StdOnly
+# --
+// Mixed-Width True Dual Port RAM
+standard_edition_only
+-- Quartus Prime VHDL Template
+--
+-- True Dual-Port RAM with single clock and different data width on the two ports
+--
+-- The first datawidth and the widths of the addresses are specified
+-- The second data width is equal to DATA_WIDTH1 * RATIO, where RATIO = (1 << (ADDRESS_WIDTH1 - ADDRESS_WIDTH2)
+-- RATIO must have value that is supported by the memory blocks in your target
+-- device.  Otherwise, no RAM will be inferred.
+--
+-- Read-during-write behavior returns old data for all combinations of read and
+-- write on both ports
+--
+-- This style of RAM cannot be used on certain devices, e.g. Stratix V; in that case use the template for Dual-Port RAM with new data on read-during write on the same port
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity mixed_width_true_dual_port_ram is
+
+	generic (
+		DATA_WIDTH1    : natural :=  8;
+		ADDRESS_WIDTH1 : natural :=  10;
+		ADDRESS_WIDTH2 : natural :=  8);
+
+	port (
+	we1   : in std_logic;
+		we2   : in std_logic;
+	clk   : in std_logic;
+	addr1 : in natural range 0 to (2 ** ADDRESS_WIDTH1 - 1);
+		addr2 : in natural range 0 to (2 ** ADDRESS_WIDTH2 - 1);
+	data_in1 : in  std_logic_vector(DATA_WIDTH1 - 1 downto 0);
+	data_in2 : in  std_logic_vector(DATA_WIDTH1 * (2 ** (ADDRESS_WIDTH1 - ADDRESS_WIDTH2)) - 1 downto 0);
+	data_out1   : out std_logic_vector(DATA_WIDTH1 - 1 downto 0);
+	data_out2   : out std_logic_vector(DATA_WIDTH1 * 2 ** (ADDRESS_WIDTH1 - ADDRESS_WIDTH2) - 1 downto 0));
+
+end mixed_width_true_dual_port_ram;
+
+architecture rtl of mixed_width_true_dual_port_ram is
+	constant RATIO       : natural := 2 ** (ADDRESS_WIDTH1 - ADDRESS_WIDTH2) ;
+	constant DATA_WIDTH2 : natural := DATA_WIDTH1 * RATIO;
+	constant RAM_DEPTH   : natural := 2 ** ADDRESS_WIDTH2;
+
+	-- Use a multidimensional array to model mixed-width
+	type word_t is array(RATIO - 1 downto 0) of std_logic_vector(DATA_WIDTH1 - 1 downto 0);
+	type ram_t is array (0 to RAM_DEPTH - 1) of word_t;
+
+	-- declare the RAM
+	signal ram : ram_t;
+
+	signal w1_local : word_t;
+	signal q1_local : word_t;
+
+begin  -- rtl
+	-- Re-organize the write data to match the RAM word type
+	unpack: for i in 0 to RATIO - 1 generate
+		w1_local(i) <= data_in2(DATA_WIDTH1*(i+1) - 1 downto DATA_WIDTH1*i);
+		data_out2(DATA_WIDTH1*(i+1) - 1 downto DATA_WIDTH1*i) <= q1_local(i);
+	end generate unpack;
+
+	--port A
+	process(clk)
+	begin
+		if(rising_edge(clk)) then
+			if(we2 = '1') then
+				ram(addr2) <= w1_local;
+			end if;
+			q1_local <= ram(addr2);
+		end if;
+	end process;
+
+	-- port B
+	process(clk)
+	begin
+		if(rising_edge(clk)) then
+			data_out1 <= ram(addr1 / RATIO )(addr1 mod RATIO);
+			if(we1 ='1') then
+				ram(addr1 / RATIO)(addr1 mod RATIO) <= data_in1;
+			end if;
+		end if;
+	end process;
+end rtl;

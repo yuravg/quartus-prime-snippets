@@ -1,0 +1,197 @@
+# -*- mode: snippet -*-
+# name: qps-M27x27-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant
+# key: qps-DSP-Features-for-20-nm-Device-M27x27-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant
+# --
+// M27x27 with Input Cascade, Output Chaining, Accumulator, Double Accumulator and Preload Constant
+-- Quartus Prime VHDL Template
+-- m27x27 multiplier with full registers (input, pipeline and output) + input cascade chain (and input delay register) + chainout adder + accumulate + double accumulate + preload constant
+-- Formula: final_output[t] = acc_sel + a1*b1 + a2*b1[t-1]
+--          where acc_sel = final_output[t-2] or preload_value or 0 depending on dynamic control inputs "accum" and "loadconst"
+	-- Note: The Input Delay register is not supported in 27x27 mode.
+	-- Note: Arria 10 ES devices do not support dynamic negate and subtraction for chainout/accumulation.
+-- For use with 20-nm device families
+-- For more information on the 20nm DSP features, please refer to http://www.altera.com/literature/hb/arria-10/a10_dsp.pdf
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity m27x27_full_regs_inputcascade_chainoutadder_acc_doubleacc_preloadConst is
+	generic
+	(
+		-- This template will only work where one of the two multiplier operands(signed A and signed B) data width falls within >19 and <=27.
+		A_WIDTH : natural := 27;
+		B_WIDTH : natural := 27;
+		-- PRELOAD_VALUE can be 2 power of N, which N should less than 64
+		-- PRELOAD_VALUE should contain only one bit 1
+		PRELOAD_VALUE : std_logic_vector := X"400";
+		-- Maximum chain width is 64
+		CHAIN_WIDTH : natural := 64;
+		-- Double accumulation enable control parameter
+		enable_double_accum : boolean := TRUE
+	);
+
+	port
+	(
+	-- Data input ports
+		a1	   : in signed	((A_WIDTH-1) downto 0);
+		b1	   : in signed	((B_WIDTH-1) downto 0);
+		a2	   : in signed	((A_WIDTH-1) downto 0);
+		-- Register clock and control signals
+		-- DSP supports up to 3 clock/ena pairs, and 2 async reset signals
+		clock1	: in std_logic;
+		clock2	: in std_logic;
+		clock3	: in std_logic;
+		ena1		: in std_logic;
+		ena2		: in std_logic;
+		ena3		: in std_logic;
+		reset1	: in std_logic;
+		reset2	: in std_logic;
+		-- Dynamic ACCUMULATE and LOADCONST control signals
+		accum	   : in std_logic;
+		loadconst : in std_logic;
+		-- Output signal
+		-- Max output width for chaining is 64
+		final_output : out signed ((CHAIN_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of m27x27_full_regs_inputcascade_chainoutadder_acc_doubleacc_preloadConst is
+
+-- Multiplier Result
+signal m1, m2 : signed ((A_WIDTH+B_WIDTH-1) downto 0);
+
+-- Data Input Register
+signal a1_reg, a2_reg	   : signed	((A_WIDTH-1) downto 0);
+signal b1_reg, b2_reg	   : signed	((B_WIDTH-1) downto 0);
+
+-- Data Input Pipeline Register
+signal a1_pipeline_reg, a2_pipeline_reg   : signed	((A_WIDTH-1) downto 0);
+signal b1_pipeline_reg, b2_pipeline_reg	   : signed	((B_WIDTH-1) downto 0);
+
+-- LOADCONST Input Register
+signal loadconst_reg : std_logic;
+
+-- LOADCONST Pipeline Register
+signal loadconst_pipeline_reg : std_logic;
+
+-- ACCUMULATE Input Register
+signal accum_reg : std_logic;
+
+-- ACCUMULATE Pipeline Register
+signal accum_pipeline_reg : std_logic;
+
+-- Output Register
+signal s1_output_reg: signed ((A_WIDTH+B_WIDTH-1) downto 0);
+
+-- Accumulate, double acc
+signal acc_sel, s_reg, s_double: signed ((CHAIN_WIDTH-1) downto 0);
+signal selected_value, select_feedback: signed	((CHAIN_WIDTH-1) downto 0);
+
+begin
+
+-- accumulator path
+with accum_pipeline_reg select
+	acc_sel <= 	select_feedback when '1',
+					selected_value when others;
+
+with enable_double_accum select
+	select_feedback <= 	s_double when TRUE,
+								s_reg when others;
+
+with loadconst_pipeline_reg select
+	selected_value <= resize(signed(preload_value), CHAIN_WIDTH) when '1',
+							(others => '0') when others;
+
+	-- Input registers (for DATA and DYNAMIC CONTROL SIGNAL).
+	-- All input registers must use the same reset signal,
+	-- Each DATA input register may have different pair of clock and ena signal.
+	-- The DYNAMIC CONTROL SIGNAL input registers(e.g. loadconst and accumulate) can have different clock/ena signal pair than that of the DATA input register.
+-- But all DYNAMIC CONTROL SIGNAL input registers must share the same clock and ena signal.
+	process(clock1, reset1)
+	begin
+		if (reset1 = '1') then
+		-- Input registers (for DATA)
+			a1_reg <= (others => '0');
+			b1_reg <= (others => '0');
+			a2_reg <= (others => '0');
+			b2_reg <= (others => '0');
+			-- Input registers (for DYNAMIC CONTROL SIGNAL)
+			loadconst_reg <= '0';
+			accum_reg <= '0';
+		elsif rising_edge(clock1) then
+
+			if (ena1 = '1') then
+				a1_reg <= a1;
+				b1_reg <= b1;
+				a2_reg <= a2;
+				b2_reg <= b1_reg;
+				loadconst_reg <= loadconst;
+			accum_reg <= accum;
+			end if;
+
+		end if;
+
+	end process;
+
+	-- Input pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	-- All pipeline registers must use the same {clock, ena, reset}
+	-- Pipeline register must use the same reset as the output register
+	-- The DYNAMIC CONTROL SIGNAL input pipeline register can be bypass differently
+	process(clock2, reset2)
+	begin
+		if (reset2 = '1') then
+			a1_pipeline_reg <= (others => '0');
+			b1_pipeline_reg <= (others => '0');
+			a2_pipeline_reg <= (others => '0');
+			b2_pipeline_reg <= (others => '0');
+			loadconst_pipeline_reg <= '0';
+			accum_pipeline_reg <= '0';
+		elsif rising_edge(clock2) then
+
+			if (ena2 = '1') then
+				a1_pipeline_reg <= a1_reg;
+				b1_pipeline_reg <= b1_reg;
+				a2_pipeline_reg <= a2_reg;
+				b2_pipeline_reg <= b2_reg;
+				loadconst_pipeline_reg <= loadconst_reg;
+			accum_pipeline_reg <= accum_reg;
+			end if;
+
+		end if;
+
+	end process;
+
+-- Output register
+	-- Output register must share the same reset with input pipeline register
+	process(clock3, reset2)
+	begin
+		if (reset2 = '1') then
+			s1_output_reg <= (others => '0');
+			s_reg <= (others => '0');
+			s_double <= (others => '0');
+
+		elsif rising_edge(clock3) then
+
+			if (ena3 = '1') then
+					-- First 27x27 result. Support static add/sub
+						s1_output_reg <= m1;
+						-- Accumulate and chainout adder
+						s_reg <= acc_sel + (resize(s1_output_reg,CHAIN_WIDTH) + resize(m2,CHAIN_WIDTH));
+						--- Double Accumulate
+						s_double <= s_reg;
+			end if;
+
+		end if;
+
+	end process;
+
+	-- Multiplier
+	m1 <= (a1_pipeline_reg * b1_pipeline_reg);
+	m2 <= (a2_pipeline_reg * b2_pipeline_reg);
+
+	-- Final output
+final_output <= s_reg;
+
+end rtl;

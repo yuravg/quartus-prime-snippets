@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: qps-Assignment-Operators
+# key: qps-Expressions-Assignment-Operators
+# --
+// Assignment Operators
+// SystemVerilog supports the assignment operators
+
+// arithmetic
+	++
+	--
+	+=
+	-=
+	*=
+	/=
+	%=
+
+// logical
+	&=
+	^=
+	|=
+	<<=
+	>>=
+	<<<=
+	>>>=

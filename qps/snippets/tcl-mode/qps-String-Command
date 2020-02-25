@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-String-Command
+# key: qps-Commands-String-Command
+# --
+// String Command
+string __option __str;

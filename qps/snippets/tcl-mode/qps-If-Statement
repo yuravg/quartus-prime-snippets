@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qps-If-Statement
+# key: qps-Commands-If-Statement
+# --
+// If Statement
+if { __booleanExpr } {
+	__statement;
+	__statement;
+
+} else {
+	__statement;
+	__statement;
+}

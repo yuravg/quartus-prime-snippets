@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: qps-Configuration_Declaration
+# key: qps-Design-Units-Configuration_Declaration
+# --
+// Configuration_Declaration
+-- A configuration can control how the various parts of a design fit
+-- together.  It can specify which architecture is used with a given
+-- entity.  It can select the entity (and architecture) corresponding
+-- to a component instantiation.   It can control how the ports and
+-- generics of a component map to the ports and generics of the entity
+-- it instantiates.
+
+configuration <configuration_name> of <entity_name> is
+	for <architecture_name>
+
+		-- Use Clause (optional)
+
+		-- Block Configuration or Component Configuration (optional)
+
+	end for;
+end <configuration_name>;
+
+
+-- Note: A configuration declaration is used to configure one or more
+-- instances of an entity.  Quartus Prime must be able to determine which
+-- instance(s) to configure, or it will ignore the configuration declaration.
+-- Quartus Prime is able to determine which instances to configure in the
+-- following cases:
+-- 1. The configuration declaration pertains to the top-level entity.
+-- 2. The configuration declaration is named in a component configuration
+--    that is inside another, higher-level configuration declaration.
+-- 3. The configuration declaration is named in a configuration specification.

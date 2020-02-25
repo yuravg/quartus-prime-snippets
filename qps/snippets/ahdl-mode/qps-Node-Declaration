@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qps-Node-Declaration
+# key: qps-Architecture-Node-Declaration
+# --
+// Node Declaration
+__node_name	: NODE;
+__node_name	: TRI_STATE_NODE;

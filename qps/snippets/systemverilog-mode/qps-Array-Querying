@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: qps-Array-Querying
+# key: qps-Array-Querying-Array-Querying
+# --
+// Array Querying
+// Return the number of packed + unpacked dimensions in an array object
+// or data type
+$dimensions(<array_object_or_data_type>)
+
+// Return the number of unpacked dimensions in an array object or data type.
+$unpacked_dimensions(<array_object_or_data_type>)
+
+// Return the specific bounds of an array object or data type.
+$left(<array_object_or_data_type>, <dimension>)
+$right(<array_object_or_data_type>, <dimension>)
+$low(<array_object_or_data_type>, <dimension>)
+$high(<array_object_or_data_type>, <dimension>)
+
+// Return the number of elements in an array object or data type
+$size(<array_object_or_data_type>, <dimension>)
+
+// Return 1 if $left >= $right; otherwise, return -1.
+$increment(<array_object_or_data_type>, <dimension>)

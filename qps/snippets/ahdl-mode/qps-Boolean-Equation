@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qps-Boolean-Equation
+# key: qps-Architecture-Boolean-Equation
+# --
+// Boolean Equation
+__node_name = __node_name __operator __node_name;

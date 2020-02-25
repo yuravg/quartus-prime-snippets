@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-While-Loop-Statement
+# key: qpp-Sequential-Statements-While-Loop-Statement
+# --
+// While Loop Statement
+<optional_label>:
+	while <condition> loop
+		-- Sequential Statement(s)
+	end loop;

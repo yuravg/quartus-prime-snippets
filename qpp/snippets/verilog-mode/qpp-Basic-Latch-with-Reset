@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qpp-Basic-Latch-with-Reset
+# key: qpp-Latches-Basic-Latch-with-Reset
+# --
+// Basic Latch with Reset
+always @(*)
+begin
+	// The reset signal overrides the hold signal; reset the value to 0
+	if (!<reset>)
+	begin
+		<latch_variable> <= 1'b0;
+	end
+	// Otherwise, change the variable only when updates are enabled
+	else if (<enable>)
+	begin
+		<latch_variable> <= <data>;
+	end
+end

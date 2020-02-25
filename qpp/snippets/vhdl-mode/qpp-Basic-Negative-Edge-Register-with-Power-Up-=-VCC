@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qpp-Basic-Negative-Edge-Register-with-Power-Up-=-VCC
+# key: qpp-Registers-Basic-Negative-Edge-Register-with-Power-Up-=-VCC
+# --
+// Basic Negative Edge Register with Power-Up = VCC
+-- Set the initial value to 1
+signal <register_variable> : STD_LOGIC := '1';
+
+-- After initialization, update the register output on the clock's
+-- falling edge
+process (<clock_signal>)
+begin
+	if (falling_edge(<clock_signal>)) then
+		<register_variable> <= <data>;
+	end if;
+end process;

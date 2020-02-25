@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qpp-preserve_syn_only-Attribute
+# key: qpp-Synthesis-Attributes-preserve_syn_only-Attribute
+# --
+// preserve_syn_only Attribute
+-- Prevents Quartus Prime from optimizing away or merging a register
+-- during Synthesis, but allows the register to be retimed during Retimer.
+-- Often used instead of "preserve" for HyperFlex architectures.
+-- Apply the attribute to the variable declaration for an object that infers
+-- a register.
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute preserve_syn_only : boolean;
+
+attribute preserve_syn_only of <object> : <object_class> is true;

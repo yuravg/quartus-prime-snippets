@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Block-Comment
+# key: qpp-VHDL-2008-Constructs-Block-Comment
+# --
+// Block Comment
+/*
+	Descriptive comment goes here.
+	It can span multiple lines.
+*/

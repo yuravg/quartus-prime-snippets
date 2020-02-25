@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Set-Global-Assignment
+# key: qpp-Commands-Set-Global-Assignment
+# --
+// Set Global Assignment
+# Name is the keyword for the assignment
+# Value to be assigned (string, number, or ON/OFF)
+# Require package ::quartus::project
+set_global_assignment -name __name  __value;

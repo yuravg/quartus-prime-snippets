@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qpp-ALT_OUTBUF
+# key: qpp-Buffers-ALT_OUTBUF
+# --
+// ALT_OUTBUF
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating ALT_OUTBUF
+	<instance_name> : ALT_OUTBUF
+	generic map (
+			IO_STANDARD => "LVDS",
+			LOCATION => "IOBANK_2A",
+			CURRENT_STRENGTH => "minimum current",
+			ENABLE_BUS_HOLD => "off",
+			WEAK_PULL_UP_RESISTOR => "off"
+			)
+	port map ( i => <data_in>, o => <data_out>);  -- <data_out> must be declared as an output pin

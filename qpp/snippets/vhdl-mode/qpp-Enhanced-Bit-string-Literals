@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qpp-Enhanced-Bit-string-Literals
+# key: qpp-VHDL-2008-Constructs-Enhanced-Bit-string-Literals
+# --
+// Enhanced Bit-string Literals
+-- Examples
+8B"XX_01LH" --"00XX01LH"
+10D"56"	--"0000110110"
+5UB"0010X1"	--"010X1"
+5SX"FW" --"1WWWW"
+5UX"17"	--"10111"
+
+-- Error cases
+3UB"0010X1"	--Error: only 0's can be removed from an unsigned bit-string literal to adjust the length
+4SX"F0" --Error: for a signed bit-string literal, all the removed bits should be the same, and they should be the same as the left-most bit in the remaining bit-string
+		--here, the final string would be "0000",so all the removed bits are '1' but they do not match the left-most bit ('0') of the final bit-string

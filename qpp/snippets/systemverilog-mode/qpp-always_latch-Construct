@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-always_latch-Construct
+# key: qpp-Module-Items-always_latch-Construct
+# --
+// always_latch Construct
+// This construct should be used to infer latched logic.
+always_latch
+begin
+	// Statements
+end

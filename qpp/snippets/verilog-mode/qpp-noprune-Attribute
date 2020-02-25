@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-noprune-Attribute
+# key: qpp-Synthesis-Attributes-noprune-Attribute
+# --
+// noprune Attribute
+// Prevents Quartus Prime from removing or optimizing a fanout free register.
+// Apply the attribute to the variable declaration for an object that infers
+// a register.
+
+(* noprune *)  <variable_declaration>;

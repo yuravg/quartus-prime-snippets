@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qpp-Selected-Signal-Assignment
+# key: qpp-Concurrent-Statements-Selected-Signal-Assignment
+# --
+// Selected Signal Assignment
+<optional_label>: with <expression> select
+	<target> <= <value> when <choices>,
+				<value> when <choices>,
+				<value> when <choices>,
+				...
+				<value> when others;

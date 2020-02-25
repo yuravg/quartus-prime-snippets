@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# name: qpp-Component-Configuration
+# key: qpp-Design-Units-Component-Configuration
+# --
+// Component Configuration
+-- Component configurations go inside configuration declarations.  See the
+-- full-design configuration templates for examples using component configurations.
+
+for <instance_name>:<component_name>
+
+	-- Optionally specify either an entity or configuration (not both).
+	-- Only use the semicolon if there is no port/generic binding to follow.
+	use entity <library_name>.<entity_name>(<optional_architecture_name>);
+	use configuration <library_name>.<configuration_name>;
+
+	-- Optionally specify port and generic bindings.
+	-- Use these if the names of the ports/generics of the component
+	-- don't match the names of the corresponding ports/generics of the
+	-- entity being instantiated.
+	generic map
+	(
+		<instantiated_entity_generic_name> => <component_generic_name>,
+		...
+	)
+	port map
+	(
+		<instantiated_entity_input_name> => <component_input_name>,
+		<instantiated_entity_output_name> => <component_output_name>,
+		<instantiated_entity_inout_name> => <component_inout_name>,
+		...
+	);
+
+	-- Block Configuration (optional)
+
+end for;

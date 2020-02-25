@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-tri
+# key: qpp-Buffers-tri
+# --
+// tri
+// The tri primitive cannot be used in Verilog as tri is a reserved word
+// in the Verilog language. Use the alt_outbuf_tri primitive instead, or
+// use the equivalent behavioral Verilog, for example:
+assign out = oe ? in : 1'bZ;

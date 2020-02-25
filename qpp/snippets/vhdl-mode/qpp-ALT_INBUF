@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: qpp-ALT_INBUF
+# key: qpp-Buffers-ALT_INBUF
+# --
+// ALT_INBUF
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating ALT_INBUF
+	<instance_name> : ALT_INBUF
+	generic map (
+			IO_STANDARD => "LVDS",
+			LOCATION => "IOBANK_1A",
+			ENABLE_BUS_HOLD => "off",
+			WEAK_PULL_UP_RESISTOR => "off"
+			)
+	port map (
+			i => <data_in>,	  -- <data_in> must be declared as an input pin
+			o => <data_out>
+			);

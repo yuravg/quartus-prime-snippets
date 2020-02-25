@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Linsert-Command
+# key: qpp-Commands-Linsert-Command
+# --
+// Linsert Command
+linsert __list __index __arg;

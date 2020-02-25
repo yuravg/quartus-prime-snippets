@@ -1,0 +1,40 @@
+# -*- mode: snippet -*-
+# name: qpp-Struct-Type-Declaration
+# key: qpp-Type-Declarations-Struct-Type-Declaration
+# --
+// Struct Type Declaration
+typedef struct {
+	// Member Declaration(s)
+} <type_name>;
+
+struct {
+	// Member Declaration(s)
+} <variable_name>;
+
+// Packed structs can be treated as vectors with the range
+// [N-1:0], where N is the total number of bits in the type.
+// A packed struct can contain struct members, but they must
+// also be packed.
+struct packed {
+	// Member Declaration(s)
+} <variable_name>;
+
+// Examples
+typedef struct { int x, y, z; } coordinate_t;
+struct { int x, y, z; } coordinate = '{ -1, -1, -1 };
+
+// packed_coordinate[31:0]  == packed_coordinate.z
+// packed_coordinate[63:32] == packed_coordinate.y
+// packed_coordinate[95:64] == packed_coordinate.x
+struct packed { int x, y, z; } packed_coordinate;
+
+// A packed array of packed structure can also be declared
+typedef struct packed{
+bit  [1:0] param1;
+bit        param5;
+} my_struct;
+
+// unpacked array can be declared of either packed or unpacked structure
+my_struct upast [1:0];
+// for packed array the structure must be packed
+my_struct [1:0] b;

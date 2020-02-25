@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-global
+# key: qpp-Buffers-global
+# --
+// global
+	global <instance_name> (.in(<data_in>), .out(<data_out>));

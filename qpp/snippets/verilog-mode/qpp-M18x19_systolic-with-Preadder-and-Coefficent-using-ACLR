@@ -1,0 +1,278 @@
+# -*- mode: snippet -*-
+# name: qpp-M18x19_systolic-with-Preadder-and-Coefficent-using-ACLR
+# key: qpp-DSP-Features-for-10-nm-Device-M18x19_systolic-with-Preadder-and-Coefficent-using-ACLR
+# --
+// M18x19_systolic with Preadder and Coefficent using ACLR
+// Quartus Prime Verilog Template
+// 18x19_systolic with full registers (input, 2 pipeline stages and output) using asynchronous clear + preadder + coefficients
+// Formula: final_output[t] = ((a1[t-6]+b1[t-6])*c1_coef[t-6]) + ((a2[t-5]+b2[t-5])*c2_coef[t-5]) - ((a3[t-4]+b3[t-4])*c3_coef[t-4]) + (zero_bit_a+zero_bit_b)*c0_coef
+//          where (zero_bit_a+zero_bit_b)*c0_coef is a dummy multiplier
+// When this template is used, the number of multipliers has to be even
+// A dummy 0x0 multiplier can be created if the number of multipliers is odd to make up the number to even.
+// Both multipliers in one DSP block must use coefficient inputs simultaneously
+// For use with 10-nm device families
+// All registers support asynchronous or synchronous clear but all registers within the same design must use the same clear type
+// When synchronous clear is used, the ena signal has a higher priority than the clear signal
+// Synchronizer register identification is disabled in all registers used in this template to ensure the DSP block's internal registers are fully packed for maximum DSP performance (fMAX). Ensure proper timing constraints are done if this template is used in asynchronous clock domains to avoid potential metastability issue. For more information on managing metastability in Quartus, refer to https://www.altera.co.jp/ja_JP/pdfs/literature/hb/qts/qts_qii51018.pdf
+
+module m18x19_systolic_full_regs_preadd_coef_10nm #(
+	// This template will only work within the AxB data width range from 2x2 to 18x19.
+	parameter AB_WIDTH = 18, COEF_WIDTH = 18,
+	// up to 8 coefficients (3-bit address)
+	parameter SEL_WIDTH = 3,
+	// The formula for the multiplier width of one (A+B)xCoefficient.
+	parameter MULT_OUTPUT_WIDTH = (AB_WIDTH+1)+ COEF_WIDTH,
+	// This example uses n=4 multipliers (including dummy multiplier), hence the final output width is MULT_OUTPUT_WIDTH + (n-1)
+	parameter FINAL_OUTPUT_WIDTH = MULT_OUTPUT_WIDTH + 3
+) (
+	// Data input ports
+	input signed [AB_WIDTH-1:0] a1,
+	input signed [AB_WIDTH-1:0] a2,
+	input signed [AB_WIDTH-1:0] a3,
+	input signed [AB_WIDTH-1:0] b1,
+	input signed [AB_WIDTH-1:0] b2,
+	input signed [AB_WIDTH-1:0] b3,
+
+	// Coefficient selection ports. Selection of up to 8 coefficients (3-bit address)
+	input [SEL_WIDTH-1:0] c1_sel,
+	input [SEL_WIDTH-1:0] c2_sel,
+	input [SEL_WIDTH-1:0] c3_sel,
+
+	// Register clock and control signals
+	// DSP supports single clock, 3 ena and 2 async reset signals
+	input clock,
+	input ena1,
+	input ena2,
+	input ena3,
+	input aclr1,
+	input aclr2,
+
+	// Output signal
+	// Max output width is 44
+	output signed [FINAL_OUTPUT_WIDTH-1:0] final_output
+);
+
+	// Coefficient storage (ROM inferencing template)
+	reg signed [COEF_WIDTH-1:0] c1_coef[2**SEL_WIDTH-1:0];
+	reg signed [COEF_WIDTH-1:0] c2_coef[2**SEL_WIDTH-1:0];
+	reg signed [COEF_WIDTH-1:0] c3_coef[2**SEL_WIDTH-1:0];
+	// Extra empty Coefficient storage to fulfil even number requirement for systolic mode
+	reg signed [COEF_WIDTH-1:0] c0_coef[0:0];
+
+	// Coefficient selection result
+	wire signed [COEF_WIDTH-1:0] c1_coef_wire, c2_coef_wire, c3_coef_wire;
+	// Extra empty coefficient to fulfil even number requirement for systolic mode
+	wire signed [COEF_WIDTH-1:0] c0_coef_wire;
+
+	// Preadder result
+	wire signed [AB_WIDTH:0] ab1, ab2, ab3;
+	// Extra empty preadder to fulfil even number requirement for systolic mode
+	wire signed [AB_WIDTH:0] ab0;
+
+	// Multiplier result
+	wire signed [MULT_OUTPUT_WIDTH-1:0] m1, m2, m3, m0;
+
+	// Input Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] a1_reg, a2_reg, a3_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] b1_reg, b2_reg, b3_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [SEL_WIDTH-1:0] c2_sel_reg, c1_sel_reg, c3_sel_reg;
+
+	// Input Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] a1_pipeline1_reg, a2_pipeline1_reg, a3_pipeline1_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] b1_pipeline1_reg, b2_pipeline1_reg, b3_pipeline1_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [SEL_WIDTH-1:0] c1_sel_pipeline1_reg, c2_sel_pipeline1_reg, c3_sel_pipeline1_reg;
+
+	// Second Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] a1_pipeline2_reg, a2_pipeline2_reg, a3_pipeline2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] b1_pipeline2_reg, b2_pipeline2_reg, b3_pipeline2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [SEL_WIDTH-1:0] c1_sel_pipeline2_reg, c2_sel_pipeline2_reg, c3_sel_pipeline2_reg;
+
+	// Output Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [FINAL_OUTPUT_WIDTH-1:0] s1_reg, s2_reg, s3_reg, s0_reg;
+
+	// The following is required for the dummy multiplier.
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] zero_bit_a_reg, zero_bit_a_pipeline1_reg, zero_bit_a_pipeline2_reg /* synthesis preserve */;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] zero_bit_b_reg, zero_bit_b_pipeline1_reg, zero_bit_b_pipeline2_reg /* synthesis preserve */;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [SEL_WIDTH-1:0] zero_bit_c_reg, zero_bit_c_pipeline1_reg, zero_bit_c_pipeline2_reg /* synthesis preserve */;
+	wire signed zero_bit;
+	soft sbz (1'b0, zero_bit);
+
+	// Data Input register
+	// DSP supports single clock, 3 ena and 2 async reset signals
+	// When preadder is used, the inputs to the preadder must use the same ena signal.
+	// The coefficient select input may use a different ena signal than that of the preadder inputs.
+	// All registered inputs must use the same reset
+	always @(posedge clock or posedge aclr1) begin
+		if (aclr1) begin
+			a1_reg <= 0;
+			b1_reg <= 0;
+			a2_reg <= 0;
+			b2_reg <= 0;
+			a3_reg <= 0;
+			b3_reg <= 0;
+			c1_sel_reg <= 0;
+			c2_sel_reg <= 0;
+			c3_sel_reg <= 0;
+			zero_bit_a_reg <= 0;
+			zero_bit_b_reg <= 0;
+			zero_bit_c_reg <= 0;
+		end else if (ena1) begin
+			a1_reg <= a1;
+			b1_reg <= b1;
+			a2_reg <= a2;
+			b2_reg <= b2;
+			a3_reg <= a3;
+			b3_reg <= b3;
+			c1_sel_reg <= c1_sel;
+			c2_sel_reg <= c2_sel;
+			c3_sel_reg <= c3_sel;
+			zero_bit_a_reg <= {AB_WIDTH{zero_bit}};
+			zero_bit_b_reg <= {AB_WIDTH{zero_bit}};
+			zero_bit_c_reg <= 1'b0;
+		end
+	end
+
+	// Input pipeline register
+	// All input pipeline registers must use the same {ena, reset}
+	// The input pipeline register bank must use the same reset as the second pipeline and output register banks
+	always @(posedge clock or posedge aclr2) begin
+		if (aclr2) begin
+			a1_pipeline1_reg <= 0;
+			b1_pipeline1_reg <= 0;
+			a2_pipeline1_reg <= 0;
+			b2_pipeline1_reg <= 0;
+			a3_pipeline1_reg <= 0;
+			b3_pipeline1_reg <= 0;
+			c1_sel_pipeline1_reg <= 0;
+			c2_sel_pipeline1_reg <= 0;
+			c3_sel_pipeline1_reg <= 0;
+			zero_bit_a_pipeline1_reg <= 0;
+			zero_bit_b_pipeline1_reg <= 0;
+			zero_bit_c_pipeline1_reg <= 0;
+		end else if (ena2) begin
+			a1_pipeline1_reg <= a1_reg;
+			b1_pipeline1_reg <= b1_reg;
+			a2_pipeline1_reg <= a2_reg;
+			b2_pipeline1_reg <= b2_reg;
+			a3_pipeline1_reg <= a3_reg;
+			b3_pipeline1_reg <= b3_reg;
+			c1_sel_pipeline1_reg <= c1_sel_reg;
+			c2_sel_pipeline1_reg <= c2_sel_reg;
+			c3_sel_pipeline1_reg <= c3_sel_reg;
+			zero_bit_a_pipeline1_reg <= zero_bit_a_reg;
+			zero_bit_b_pipeline1_reg <= zero_bit_b_reg;
+			zero_bit_c_pipeline1_reg <= zero_bit_c_reg;
+		end
+	end
+
+	// Second pipeline register
+	// All second pipeline registers must use the same {ena, reset}
+	// For systolic designs, the second pipeline register bank must use the same {ena, reset} as the output register bank
+	always @(posedge clock or posedge aclr2) begin
+		if (aclr2) begin
+			a1_pipeline2_reg <= 0;
+			b1_pipeline2_reg <= 0;
+			a2_pipeline2_reg <= 0;
+			b2_pipeline2_reg <= 0;
+			a3_pipeline2_reg <= 0;
+			b3_pipeline2_reg <= 0;
+			c1_sel_pipeline2_reg <= 0;
+			c2_sel_pipeline2_reg <= 0;
+			c3_sel_pipeline2_reg <= 0;
+			zero_bit_a_pipeline2_reg <= 0;
+			zero_bit_b_pipeline2_reg <= 0;
+			zero_bit_c_pipeline2_reg <= 0;
+		end else if (ena3) begin
+			a1_pipeline2_reg <= a1_pipeline1_reg;
+			b1_pipeline2_reg <= b1_pipeline1_reg;
+			a2_pipeline2_reg <= a2_pipeline1_reg;
+			b2_pipeline2_reg <= b2_pipeline1_reg;
+			a3_pipeline2_reg <= a3_pipeline1_reg;
+			b3_pipeline2_reg <= b3_pipeline1_reg;
+			c1_sel_pipeline2_reg <= c1_sel_pipeline1_reg;
+			c2_sel_pipeline2_reg <= c2_sel_pipeline1_reg;
+			c3_sel_pipeline2_reg <= c3_sel_pipeline1_reg;
+			zero_bit_a_pipeline2_reg <= zero_bit_a_pipeline1_reg;
+			zero_bit_b_pipeline2_reg <= zero_bit_b_pipeline1_reg;
+			zero_bit_c_pipeline2_reg <= zero_bit_c_pipeline1_reg;
+		end
+	end
+
+	// Output register
+	// The output register bank must share the same reset with input pipeline and second pipeline register banks
+	always @(posedge clock or posedge aclr2) begin
+		if (aclr2) begin
+			s0_reg <= 0;
+			s1_reg <= 0;
+			s2_reg <= 0;
+			s3_reg <= 0;
+		end else if (ena3) begin
+			s0_reg <= m0;
+			// Static add/sub is supported
+			s1_reg <= s0_reg + m1;
+			s2_reg <= s1_reg + m2;
+			s3_reg <= s2_reg - m3;
+		end
+	end
+
+	// Preadder
+	// Preadder supports static add/sub
+	// Both 18x18 in one DSP block must use preadder simultaneously
+	// Both 18x18 in one DSP block must have the same add/sub
+	assign ab1 = a1_pipeline2_reg + b1_pipeline2_reg;
+	assign ab2 = a2_pipeline2_reg + b2_pipeline2_reg;
+	assign ab3 = a3_pipeline2_reg + b3_pipeline2_reg;
+	assign ab0 = zero_bit_a_pipeline2_reg + zero_bit_b_pipeline2_reg;
+
+	// Coefficients
+	initial
+	begin
+		c1_coef[0] = 18'b001010111111101011;
+		c1_coef[1] = 18'b001010111111101011;
+		c1_coef[2] = 18'b001010110000001011;
+		c1_coef[3] = 18'b001010000011101011;
+		c1_coef[4] = 18'b001010111111101011;
+		c1_coef[5] = 18'b001010111111101011;
+		c1_coef[6] = 18'b001010100111101011;
+		c1_coef[7] = 18'b110101111001110100;
+
+		c2_coef[0] = 18'b001010101001000110;
+		c2_coef[1] = 18'b011010111111101011;
+		c2_coef[2] = 18'b001011011000001010;
+		c2_coef[3] = 18'b101010100011101011;
+		c2_coef[4] = 18'b001010110101101010;
+		c2_coef[5] = 18'b001010110111011011;
+		c2_coef[6] = 18'b011010101110101010;
+		c2_coef[7] = 18'b010101011010100100;
+
+		c3_coef[0] = 18'b100101011001000110;
+		c3_coef[1] = 18'b010100101111101011;
+		c3_coef[2] = 18'b001001010000001010;
+		c3_coef[3] = 18'b101011010101101011;
+		c3_coef[4] = 18'b001000110101101010;
+		c3_coef[5] = 18'b001010111000111011;
+		c3_coef[6] = 18'b101010011010101010;
+		c3_coef[7] = 18'b010101010101101100;
+
+		// To fulfil even number requirement for systolic mode
+		c0_coef[0] = 18'b000000000000000000;
+	end
+
+	assign c1_coef_wire = c1_coef[c1_sel_pipeline2_reg];
+	assign c2_coef_wire = c2_coef[c2_sel_pipeline2_reg];
+	assign c3_coef_wire = c3_coef[c3_sel_pipeline2_reg];
+	assign c0_coef_wire = c0_coef[zero_bit_c_pipeline2_reg];
+
+	// Multiplier
+	assign m1 = (c1_coef_wire * ab1);
+	assign m2 = (c2_coef_wire * ab2);
+	assign m3 = (c3_coef_wire * ab3);
+	// When this template is used, the number of multipliers has to be even
+	// Create a 0x0 multiplier as below to make up for the even number requirement if the number of multipliers is odd
+	assign m0 = (c0_coef_wire * ab0);
+
+	// Final output
+	assign final_output = s3_reg;
+
+
+endmodule

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Create-Base-Clock
+# key: qpp-Commands-Create-Base-Clock
+# --
+// Create Base Clock
+# Create a new base clock
+# Fmax is the clock frequency
+# Clock name is the clock name
+# Require package ::quartus::project
+create_base_clock -fmax __fmax __clock_name;

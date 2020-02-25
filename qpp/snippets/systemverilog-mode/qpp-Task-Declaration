@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: qpp-Task-Declaration
+# key: qpp-Type-Declarations-Task-Declaration
+# --
+// Task Declaration
+// A task may have input, output, and inout arguments.  It may also
+// contain timing controls.  A task does not return a value and, thus,
+// may not be used in an expression.  SystemVerilog allows you to
+// specify default values for task arguments.
+
+task <task_name>(<arg_decls>);
+	// Optional Block Declarations
+	// Statements
+endtask

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Simple-50-50-Clock
+# key: qpp-Clocks-Simple-50-50-Clock
+# --
+// Simple 50/50 Clock
+create_clock -name __name -period __period [get_ports __port]

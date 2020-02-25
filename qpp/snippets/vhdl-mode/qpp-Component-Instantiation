@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qpp-Component-Instantiation
+# key: qpp-Instances-Component-Instantiation
+# --
+// Component Instantiation
+<instance_name> : <component_name>
+	generic map
+	(
+		<name> => <value>,
+		...
+	)
+	port map
+	(
+		<formal_input> => <expression>,
+		<formal_output> => <signal>,
+		<formal_inout> => <signal>,
+		...
+	);

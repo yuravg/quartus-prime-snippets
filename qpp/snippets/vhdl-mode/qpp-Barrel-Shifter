@@ -1,0 +1,58 @@
+# -*- mode: snippet -*-
+# name: qpp-Barrel-Shifter
+# key: qpp-Shift-Registers-Barrel-Shifter
+# --
+// Barrel Shifter
+-- Quartus Prime VHDL Template
+-- Barrel Shifter
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity barrel_shifter is
+
+	generic
+	(
+		DIST_WIDTH : natural := 3;
+		NUM_STAGES : natural := 256
+	);
+
+	port
+	(
+		clk			: in std_logic;
+		enable		: in std_logic;
+		is_left		: in std_logic;
+		data		: in std_logic_vector((NUM_STAGES-1) downto 0);
+		distance	: in unsigned((DIST_WIDTH-1) downto 0);
+		sr_out		: out std_logic_vector((NUM_STAGES-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of barrel_shifter is
+
+	-- Declare the shift register signal
+	signal sr : unsigned ((NUM_STAGES-1) downto 0);
+
+begin
+
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+			if (enable = '1') then
+
+				-- Perform rotation with functions rol and ror
+				if (is_left = '1') then
+					sr <= unsigned(data) rol to_integer(distance);
+				else
+					sr <= unsigned(data) ror to_integer(distance);
+				end if;
+
+			end if;
+		end if;
+	end process;
+
+	sr_out <= std_logic_vector(sr);
+
+end rtl;

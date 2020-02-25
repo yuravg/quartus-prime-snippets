@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qpp-max_depth-Attribute
+# key: qpp-Synthesis-Attributes-max_depth-Attribute
+# --
+// max_depth Attribute
+// Controls the implementation of an inferred memory.  Apply the
+// attribute to a variable declaration that infers a RAM or ROM.
+
+// Legal values = 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4192
+
+(* max_depth = 1024*) reg [<msb>:<lsb>]        <variable_name2>[<msb>:<lsb>];
+
+// Control the depth of an inferred memory block using the max_depth attribute.
+// By using this attribute, you can optimize the usage of the memory block.
+// Values other than exact powers of 2 are ignored.

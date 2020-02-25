@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qpp-always_ff-Construct
+# key: qpp-Module-Items-always_ff-Construct
+# --
+// always_ff Construct
+// This construct should be used to infer sequential logic such as
+// registers and state machines.
+always_ff@(<edge_events>)
+begin
+	// Statements
+end

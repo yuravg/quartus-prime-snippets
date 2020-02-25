@@ -1,0 +1,67 @@
+# -*- mode: snippet -*-
+# name: qpp-Multiplier-with-Both-Operands-from-the-Same-PreAdder
+# key: qpp-DSP-Features-for-28-nm-Device-Multiplier-with-Both-Operands-from-the-Same-PreAdder
+# --
+// Multiplier with Both Operands from the Same PreAdder
+// Quartus Prime Verilog Template
+// Multiplier with both operands from the same preadder
+// For use with the 28-nm later device families
+
+module square(a1, b1, a2, b2, clock, ena1, ena0, reset, s);
+//This template can be used with sum-of-2 18x18 mode on Stratix-V
+//     Preadder supports 18-bit preadder (17-bit operands)
+parameter ab_width = 17;
+input [ab_width-1:0] a1;
+input [ab_width-1:0] b1;
+input [ab_width-1:0] a2;
+input [ab_width-1:0] b2;
+//DSP supports up to 3 clock/ena pairs and 2 async reset signals
+//When preadder is used, all registered data inputs on each multiplier must use the same {clock, ena}
+//All registered inputs must use the same reset
+input clock;
+input ena1;
+input ena0;
+input reset;
+output [2*ab_width+1:0] s;
+
+reg signed [ab_width-1:0] a1_reg, b1_reg, a2_reg, b2_reg;
+wire signed [ab_width:0] ab1, ab2;
+
+//Preadder
+//Preadder supports static add/sub
+//Two 18x18 in one DSP block must use preadder simultaneously
+//Two 18x18 in one DSP block must have the same add/sub
+assign ab1 = a1_reg - b1_reg;
+assign ab2 = a2_reg - b2_reg;
+
+//input register
+always @(posedge clock or posedge reset)
+begin
+	if (reset == 1'b1)
+	begin
+		a1_reg <= 0;
+		a2_reg <= 0;
+		b1_reg <= 0;
+		b2_reg <= 0;
+	end
+	else
+	begin
+		if (ena0 == 1'b1)
+		begin
+			a1_reg <= a1;
+			b1_reg <= b1;
+		end
+		if (ena1 == 1'b1)
+		begin
+			a2_reg <= a2;
+			b2_reg <= b2;
+		end
+	end
+end
+
+//Pick an applicable basic mode template
+sum_of_2 dsp0 (ab1, ab1, ab2, ab2, s);
+defparam dsp0.a_width = ab_width+1;
+defparam dsp0.b_width = ab_width+1;
+
+endmodule

@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: qpp-Binary-Operators
+# key: qpp-Expressions-Binary-Operators
+# --
+// Binary Operators
+**           // Power
+*            // Multiply
+/            // Divide
+%            // Modulo
++            // Plus
+-            // Minus
+<<           // Shift Left (Logical)
+>>           // Shift Right (Logical)
+<<<          // Shift Left (Arithmetic)
+>>>          // Shift Right (Arithmetic)
+<            // Less Than
+<=           // Less Than or Equal To
+>            // Greater Than
+>=           // Greater Than or Equal To
+==           // Logical Equality (any x or z results in an x result)
+!=           // Logical Inequality (any x or z results in an x result)
+===          // Case Equality (x and z match exactly, result 1 or 0)
+!===         // Case Inequality (x and z match exactly, result 1 or 0)
+&            // Bitwise AND
+~&           // Bitwise NAND
+^            // Bitwise XOR
+^~           // Bitwise XNOR
+~^           // Bitwise XNOR
+|            // Bitwise OR
+~|           // Bitwise NOR
+&&           // Logical AND
+||           // Logical OR
+or           // Logical OR for event expressions

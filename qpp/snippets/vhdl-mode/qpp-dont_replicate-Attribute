@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-dont_replicate-Attribute
+# key: qpp-Synthesis-Attributes-dont_replicate-Attribute
+# --
+// dont_replicate Attribute
+-- Prevents Quartus Prime from replicating a register.
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute dont_replicate : boolean;
+
+attribute dont_replicate of <object> : <object_class> is true;

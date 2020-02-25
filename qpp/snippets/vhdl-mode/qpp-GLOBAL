@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qpp-GLOBAL
+# key: qpp-Buffers-GLOBAL
+# --
+// GLOBAL
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating GLOBAL
+	<instance_name> : GLOBAL
+	port map (a_in => <data_in>, a_out => <data_out>);

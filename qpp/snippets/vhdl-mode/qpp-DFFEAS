@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: qpp-DFFEAS
+# key: qpp-Registers-and-Latches-DFFEAS
+# --
+// DFFEAS
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating DFFEAS
+	<instance_name> : DFFEAS
+	port map (
+			d => <data_in>,
+			clk => <clock_signal>,
+			clrn => <active_low_clear>,
+			prn => <active_low_preset>,
+			ena => <clock_enable>,
+			asdata => <asynch_data_in>,
+			aload => <asynch_load_signal>,
+			sclr => <synchronous_clear>,
+			sload => <synchronous_load>,
+			q => <data_out>
+			);

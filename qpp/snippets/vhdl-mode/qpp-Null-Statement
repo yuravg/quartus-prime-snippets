@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qpp-Null-Statement
+# key: qpp-Sequential-Statements-Null-Statement
+# --
+// Null Statement
+-- A null statement does nothing.
+<optional_label>: null;

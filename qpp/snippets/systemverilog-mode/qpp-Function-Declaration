@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: qpp-Function-Declaration
+# key: qpp-Type-Declarations-Function-Declaration
+# --
+// Function Declaration
+// A function must execute in a single simulation cycle; therefore, it
+// cannot contain timing controls or tasks.  You set the return value of a
+// function by assigning to the function name as if it were a variable or
+// by using the return statement. SystemVerilog allows you to specify default
+// values for function arguments.  In addition, functions may contain input
+// and inout arguments, and the return type of a function may be void.
+
+function <func_return_type> <func_name>(<arg_decls>);
+	// Optional Block Declarations
+	// Statements
+endfunction
+
+// Examples
+
+function int add(int a, int b = 1);
+	return a + b;
+endfunction

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qpp-Basic-Negative-Edge-Register-with-Power-Up-=-VCC
+# key: qpp-Registers-Basic-Negative-Edge-Register-with-Power-Up-=-VCC
+# --
+// Basic Negative Edge Register with Power-Up = VCC
+// Set the initial value to 1
+reg <register_variable> = 1'b1;
+
+// After initialization, update the register output on the clock's rising edge
+always @ (negedge <clock_signal>)
+begin
+	<register_variable> <= <data>;
+end

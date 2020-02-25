@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Exit-Statement
+# key: qpp-Sequential-Statements-Exit-Statement
+# --
+// Exit Statement
+-- Unconditional exit
+<optional_label>: exit <optional_loop_label>;
+
+-- Conditional exit
+<optional_label>: exit <optional_loop_label> when <condition>;

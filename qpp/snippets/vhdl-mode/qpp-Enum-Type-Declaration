@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Enum-Type-Declaration
+# key: qpp-Type-and-Subtype-Declarations-Enum-Type-Declaration
+# --
+// Enum Type Declaration
+type <name> is (<enum_literal>, <enum_literal>, ...);
+
+-- Example
+type state_t is (IDLE, READING, WRITING, DONE);

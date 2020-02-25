@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qpp-System-Tasks
+# key: qpp-Sequential-Statements-System-Tasks
+# --
+// System Tasks
+// arguments must be compile time constants
+
+$display(message_arguments);
+
+// Example
+
+$display("a=%d; b=%b, h=%h; str=%s", a, b, h, str);
+
+$warning("a=%d", a);
+
+(* critical *) $warning("Critical Issue found"); // display critical warning in Quartus
+
+$info("a=%d", a);

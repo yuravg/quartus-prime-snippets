@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Keeper-(Register--Ports)
+# key: qpp-Collections-Keeper-(Register--Ports)
+# --
+// Keeper (Register + Ports)
+set __name [get_keepers __listOfWildcards]

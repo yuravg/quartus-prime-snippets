@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qpp-Array-Reduction-Methods
+# key: qpp-Expressions-Array-Reduction-Methods
+# --
+// Array Reduction Methods
+module reduction(output byte  and_out, xor_out, or_out, sout, pout,
+			input byte in[3:0]);
+assign and_out = in.and;
+assign xor_out = in.xor;
+assign  or_out = in.or;
+assign sout = in.sum;
+assign pout = in.product;
+endmodule

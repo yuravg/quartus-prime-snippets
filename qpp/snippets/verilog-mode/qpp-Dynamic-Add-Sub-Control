@@ -1,0 +1,95 @@
+# -*- mode: snippet -*-
+# name: qpp-Dynamic-Add-Sub-Control
+# key: qpp-DSP-Features-for-28-nm-Device-Dynamic-Add-Sub-Control
+# --
+// Dynamic Add/Sub Control
+// Quartus Prime Verilog Template
+// Dynamic add/sub control
+// For use with the 28-nm device families
+
+module dynamic_addsub(a1, b1, a2, b2, a3, b3, a4, b4, a5, b5, a6, b6,
+	addnsub12, addnsub34, addnsub56, subnadd_chain34, subnadd_chain56,
+	clock, ena, reset, s);
+parameter a_width = 18;
+parameter b_width = 18;
+parameter o_width = 64;
+input [a_width-1:0] a1;
+input [b_width-1:0] b1;
+input [a_width-1:0] a2;
+input [b_width-1:0] b2;
+input [a_width-1:0] a3;
+input [b_width-1:0] b3;
+input [a_width-1:0] a4;
+input [b_width-1:0] b4;
+input [a_width-1:0] a5;
+input [b_width-1:0] b5;
+input [a_width-1:0] a6;
+input [b_width-1:0] b6;
+input addnsub12;
+input addnsub34;
+input addnsub56;
+input subnadd_chain34;
+input subnadd_chain56;
+input clock;
+input ena;
+input reset;
+output [o_width-1:0] s;
+
+reg signed [a_width-1:0] a1_reg, a2_reg, a3_reg, a4_reg, a5_reg, a6_reg;
+reg signed [b_width-1:0] b1_reg, b2_reg, b3_reg, b4_reg, b5_reg, b6_reg;
+reg signed [o_width-1:0] s12, s1234, s;
+
+//Dynamic add/sub can be used in basic modes: sum-of-2 18x18, 36+18x18, two level sum-of-4 18x18, sum-of-2 27x27 and sum-of-2 36x18.
+//Input and output signals of the dynamic add/sub operation must be explicitly defined.
+wire signed [a_width+b_width-1:0] p1, p2, p3, p4, p5, p6;
+wire signed [a_width+b_width:0] p12, p34, p56;
+assign p1 = a1_reg*b1_reg;
+assign p2 = a2_reg*b2_reg;
+assign p3 = a3_reg*b3_reg;
+assign p4 = a4_reg*b4_reg;
+assign p5 = a5_reg*b5_reg;
+assign p6 = a6_reg*b6_reg;
+assign p12 = addnsub12 ? (p1 + p2) : (p1 - p2);
+assign p34 = addnsub34 ? (p3 + p4) : (p3 - p4);
+assign p56 = addnsub56 ? (p5 + p6) : (p5 - p6);
+
+//Dynamic add/sub is also applicable to chainout adder or accumulator (not both).
+//Dynamic add/sub is not applicable to 18x18 systolic mode.
+always @(posedge clock or posedge reset)
+if (reset) begin
+	a1_reg <= 0;
+	a2_reg <= 0;
+	a3_reg <= 0;
+	a4_reg <= 0;
+	a5_reg <= 0;
+	a6_reg <= 0;
+	b1_reg <= 0;
+	b2_reg <= 0;
+	b3_reg <= 0;
+	b4_reg <= 0;
+	b5_reg <= 0;
+	b6_reg <= 0;
+	s12 <= 0;
+	s1234 <= 0;
+	s <= 0;
+end else begin
+	if (ena) begin
+		a1_reg <= a1;
+		a2_reg <= a2;
+		a3_reg <= a3;
+		a4_reg <= a4;
+		a5_reg <= a5;
+		a6_reg <= a6;
+		b1_reg <= b1;
+		b2_reg <= b2;
+		b3_reg <= b3;
+		b4_reg <= b4;
+		b5_reg <= b5;
+		b6_reg <= b6;
+		s12 <= p12;
+		s1234 <= subnadd_chain34 ? (s12 - p34) : (s12 + p34);
+		s <= subnadd_chain56 ? (s1234 - p56) : (s1234 + p56);
+	end
+end
+
+endmodule

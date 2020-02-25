@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Basic-Negative-Edge-Register
+# key: qpp-Registers-Basic-Negative-Edge-Register
+# --
+// Basic Negative Edge Register
+// Update the register output on the clock's falling edge
+always @ (negedge <clock_signal>)
+begin
+	<register_variable> <= <data>;
+end

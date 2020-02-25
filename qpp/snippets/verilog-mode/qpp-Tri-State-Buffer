@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Tri-State-Buffer
+# key: qpp-Tri-State-Tri-State-Buffer
+# --
+// Tri-State Buffer
+// When tri-state buffers are output enabled, they output a value.
+// Otherwise their "output" is set to high-impedence.
+inout <bidir_variable>;
+assign <bidir_variable> = (<output_enable> ? <data> : 1'bZ);

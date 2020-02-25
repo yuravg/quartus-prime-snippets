@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: qpp-Hyper-Pipelining-Module-Instantiation
+# key: qpp-Pipelining-Hyper-Pipelining-Module-Instantiation
+# --
+// Hyper-Pipelining Module Instantiation
+-- Quartus Prime VHDL Template
+--
+-- Hyper-Pipelining Module Instantiation
+
+-- Template Declaration
+component hyperpipe
+	generic (
+		CYCLES : integer;
+		WIDTH : integer
+ 	);
+ 	port (
+ 		clk : in std_logic;
+ 		din : in std_logic_vector(WIDTH - 1 downto 0);
+ 		dout : out std_logic_vector(WIDTH - 1 downto 0)
+ 	);
+end component;
+
+-- Instantiation Template:
+	hp : hyperpipe
+ 		generic map (
+ 			CYCLES => ,
+ 			WIDTH =>
+ 		)
+ 		port map (
+ 			clk => ,
+ 			din => ,
+ 			dout =>
+ 		);

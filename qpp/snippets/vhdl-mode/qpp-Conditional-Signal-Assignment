@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qpp-Conditional-Signal-Assignment
+# key: qpp-Concurrent-Statements-Conditional-Signal-Assignment
+# --
+// Conditional Signal Assignment
+<optional_label>: <target> <=
+	<value> when <condition> else
+	<value> when <condition> else
+	<value> when <condition> else
+	...
+	<value>;

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-alt_inbuf_diff
+# key: qpp-Buffers-alt_inbuf_diff
+# --
+// alt_inbuf_diff
+	// <data_in_pos> and <data_in_neg> must be declared as input pins
+	alt_inbuf_diff <instance_name> (.i(<data_in_pos>), .ibar(<data_in_neg>), .o(<data_out>));
+
+	defparam <instance_name>.io_standard = "LVDS";
+	defparam <instance_name>.location = "IOBANK_1";
+	defparam <instance_name>.weak_pull_up_resistor = "off";
+	defparam <instance_name>.enable_bus_hold = "off";

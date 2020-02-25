@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: qpp-Enum-Methods
+# key: qpp-Expressions-Enum-Methods
+# --
+// Enum Methods
+// Return the first enum literal in the enum data type returned by
+// the expression
+<expression>.first()
+
+// Return the last enum literal in the enum data type returned by
+// the expression
+<expression>.last()
+
+// Return the enum literal that follows the enum literal returned by
+// the expression
+<expression>.next()
+
+// Return the enum literal that precedes the enum literal returned by
+// the expression.
+<expression>.prev()
+
+// Return the number of enum literals in the enum data type returned
+// by the expression
+<expression>.num()
+
+// Examples
+enum { A, B, C, D, E } enum_object = C;
+
+enum_object.first() == A
+enum_object.last() == E
+enum_object.next() == D
+enum_object.prev() == B
+enum_object.num() == 5

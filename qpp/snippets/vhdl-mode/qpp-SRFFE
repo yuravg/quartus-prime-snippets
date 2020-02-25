@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: qpp-SRFFE
+# key: qpp-Registers-and-Latches-SRFFE
+# --
+// SRFFE
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating SRFFE
+	<instance_name> : SRFFE
+	port map (
+			s => <synchronous_set>,
+			r => <synchronous_reset>,
+			clk => <clock_signal>,
+			ena => <clock_enable>,
+			clrn => <active_low_clear>,
+			prn => <active_low_preset>,
+			q => <data_out>
+			);

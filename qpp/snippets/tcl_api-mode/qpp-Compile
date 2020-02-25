@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Compile
+# key: qpp-Commands-Compile
+# --
+// Compile
+# Make active the specified revision and compile the design
+# Require package ::quartus::flow
+# Require package ::quartus::project
+set_current_revision __revision_name;
+execute_flow -compile;

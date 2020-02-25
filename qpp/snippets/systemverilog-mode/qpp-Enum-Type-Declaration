@@ -1,0 +1,42 @@
+# -*- mode: snippet -*-
+# name: qpp-Enum-Type-Declaration
+# key: qpp-Type-Declarations-Enum-Type-Declaration
+# --
+// Enum Type Declaration
+typedef enum <optional_base_type> {
+	// Enum Literals
+} <type_name>;
+
+enum <optional_base_type> {
+	// Enum Literals
+} <variable_name>;
+
+// You can declare a single enum literal or multiple enum literals
+// with a single construct.  If you don't assign an enum literal a
+// value, it is automatically assigned a value by incrementing the
+// previous enum literal's value.  If the first literal has no
+// explicit value, it is assigned the value 0.
+
+// Declare a single enum literal
+<literal_name>
+<literal_name> = <constant_expression>
+
+// Declare multiple enums
+<literal_name>[<num>]
+<literal_name>[<num>] = <constant_expression>
+<literal_name>[<begin>:<end>]
+<literal_name>[<begin>:<end>] = <constant_expression>
+
+// Examples
+
+// Implicit base type (int)
+// A == 0, B0 == 1, B1 == 2, C3 == 3, C4 == 4
+typedef enum { A, B[2], C[3:4] } enum_t;
+
+// Explicit base type
+typedef enum bit [3:0] { X = 4'ha, Y = 4'hb, Z = 4'hc } enum_t;
+
+// Quartus Prime will infer state machines from enum types when possible
+// but the type must be unsigned.  The implicit base type for
+// an enum is 'int', a signed type.
+typedef enum int unsigned { S0, S1, S2, S3, S4 } state_t;

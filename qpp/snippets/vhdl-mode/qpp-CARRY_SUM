@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qpp-CARRY_SUM
+# key: qpp-Buffers-CARRY_SUM
+# --
+// CARRY_SUM
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating CARRY_SUM
+	<instance_name> : CARRY_SUM
+	-- <carry_in> cannot be fed by an input pin
+	-- <carry_out> cannot feed an output pin
+	port map(sin => <sum_in>, cin => <carry_in>, sout => <sum_out>, cout => <carry_out>);

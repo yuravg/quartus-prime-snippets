@@ -1,0 +1,27 @@
+# -*- mode: snippet -*-
+# name: qpp-Single-Multiply
+# key: qpp-DSP-Features-for-28-nm-Device-Single-Multiply
+# --
+// Single Multiply
+// Quartus Prime Verilog Template
+// Independent multiply
+// For use with the 28-nm device families
+
+module single_mult(a, b, p);
+//This template is applicable to 9x9, 18x18, 27x27, 36x18, 36x36 modes on Stratix-V
+//This template is applicable to 9x9, 18x19(signed), 27x27 modes on Arria-V and Cyclone-V
+parameter a_width = 18;
+parameter b_width = 18;
+input	[a_width-1:0] a;
+input	[b_width-1:0] b;
+output 	[a_width+b_width-1:0] p;
+
+//each multiplier can be signed or unsigned
+//for mixed-sign multiplication, refer to mixed-sign template
+wire signed	[a_width-1:0] a;
+wire signed	[b_width-1:0] b;
+wire signed [a_width+b_width-1:0] p;
+
+assign p = a * b;
+
+endmodule

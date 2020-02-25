@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Generate-If
+# key: qpp-Generates-Generate-If
+# --
+// Generate If
+<generate_label>:
+	if <condition> generate
+		-- Concurrent Statement(s)
+	end generate;

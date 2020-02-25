@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: qpp-TFF
+# key: qpp-Registers-and-Latches-TFF
+# --
+// TFF
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating TFF
+	<instance_name> : TFF
+	port map (
+			t => <toggle>,
+			clk => <clock_signal>,
+			clrn => <active_low_clear>,
+			prn => <active_low_preset>,
+			q => <data_out>
+			);

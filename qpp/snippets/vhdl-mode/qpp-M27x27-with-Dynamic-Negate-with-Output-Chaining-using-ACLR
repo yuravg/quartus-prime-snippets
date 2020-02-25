@@ -1,0 +1,196 @@
+# -*- mode: snippet -*-
+# name: qpp-M27x27-with-Dynamic-Negate-with-Output-Chaining-using-ACLR
+# key: qpp-DSP-Features-for-10-nm-Device-M27x27-with-Dynamic-Negate-with-Output-Chaining-using-ACLR
+# --
+// M27x27 with Dynamic Negate with Output Chaining using ACLR
+-- Quartus Prime VHDL Template
+-- m27x27 multiplier with full registers (input, 2 pipeline stages and output) using asynchronous clear + chainout adder + dynamic negate
+-- Formula: final_output[t] = a1[t-5]*b1[t-5] +/- a2[t-4]*b2[t-4]
+-- For use with 10-nm device families
+-- All registers support asynchronous or synchronous clear but all registers within the same design must use the same clear type
+-- When synchronous clear is used, the ena signal has a higher priority than the clear signal
+-- Synchronizer register identification is disabled in all registers used in this template to ensure the DSP block's internal registers are fully packed for maximum DSP performance (fMAX). Ensure proper timing constraints are done if this template is used in asynchronous clock domains to avoid potential metastability issue. For more information on managing metastability in Quartus, refer to https://www.altera.co.jp/ja_JP/pdfs/literature/hb/qts/qts_qii51018.pdf
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity m27x27_full_regs_chainoutadder_dynNegate_10nm is
+	generic
+	(
+		-- This template will only work where one of the two multiplier operands(signed A and signed B) data width falls within >19 and <=27.
+		A_WIDTH : natural := 27;
+		B_WIDTH : natural := 27;
+		-- This example uses n=2 multiplers, hence the final output width is A_WIDTH + B_WIDTH + (n-1)
+		-- FINAL_OUTPUT_WIDTH = A_WIDTH + B_WIDTH + 1
+		FINAL_OUTPUT_WIDTH : natural := 27 + 27 + 1
+	);
+
+	port
+	(
+		-- Data input ports
+		a1       : in signed    ((A_WIDTH-1) downto 0);
+		b1       : in signed    ((B_WIDTH-1) downto 0);
+		a2       : in signed    ((A_WIDTH-1) downto 0);
+		b2       : in signed    ((B_WIDTH-1) downto 0);
+		-- Register clock and control signals
+		-- DSP supports single clock, 3 ena, and 2 reset signals
+		clock    : in std_logic;
+		ena1      : in std_logic;
+		ena2      : in std_logic;
+		ena3      : in std_logic;
+		aclr1     : in std_logic;
+		aclr2     : in std_logic;
+		-- Dynamic NEGATE control signals
+		negate    : in std_logic;
+		-- Output signal
+		-- Max output width for chaining is 64
+		final_output : out signed ((FINAL_OUTPUT_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of m27x27_full_regs_chainoutadder_dynNegate_10nm is
+
+-- Multiplier Result
+signal m1, m2 : signed ((A_WIDTH+B_WIDTH-1) downto 0);
+
+-- Data Input Register
+signal a1_reg, a2_reg       : signed    ((A_WIDTH-1) downto 0);
+signal b1_reg, b2_reg       : signed    ((B_WIDTH-1) downto 0);
+
+-- Data Input Pipeline Register
+signal a1_pipeline1_reg, a2_pipeline1_reg    : signed    ((A_WIDTH-1) downto 0);
+signal b1_pipeline1_reg, b2_pipeline1_reg    : signed    ((B_WIDTH-1) downto 0);
+
+-- Data Input Second Pipeline Register
+signal a1_pipeline2_reg, a2_pipeline2_reg    : signed    ((A_WIDTH-1) downto 0);
+signal b1_pipeline2_reg, b2_pipeline2_reg    : signed    ((B_WIDTH-1) downto 0);
+
+-- Negate Input Register
+signal negate_reg : std_logic;
+
+-- Negate Pipeline Register
+signal negate_pipeline1_reg: std_logic;
+
+-- Negate Second Pipeline Register
+signal negate_pipeline2_reg: std_logic;
+
+-- Output Register
+signal m1_output_reg: signed ((A_WIDTH+B_WIDTH-1) downto 0);
+signal final_output_reg: signed ((FINAL_OUTPUT_WIDTH-1) downto 0);
+
+--Disable synchronizer register identification
+attribute altera_attribute : string;
+attribute altera_attribute of a1_reg, a2_reg, b1_reg, b2_reg, a1_pipeline1_reg, a2_pipeline1_reg, b1_pipeline1_reg, b2_pipeline1_reg, a1_pipeline2_reg, a2_pipeline2_reg, b1_pipeline2_reg, b2_pipeline2_reg, negate_reg, negate_pipeline1_reg, negate_pipeline2_reg, m1_output_reg, final_output_reg : signal is "-name SYNCHRONIZER_IDENTIFICATION OFF";
+
+begin
+	-- Input registers (for DATA and DYNAMIC CONTROL SIGNAL).
+	-- All input registers must use the same reset signal,
+	-- Each DATA input register may hava different ena signal.
+	-- The DYNAMIC CONTROL SIGNAL input registers(e.g. negate) can have different clock enable signal than that of the DATA input register.
+	-- But all DYNAMIC CONTROL SIGNAL input registers must share the same ena signal.
+	process(clock, aclr1)
+	begin
+		if (aclr1 = '1') then
+			-- Input registers (for DATA)
+			a1_reg <= (others => '0');
+			b1_reg <= (others => '0');
+			a2_reg <= (others => '0');
+			b2_reg <= (others => '0');
+			-- Input registers (for DYNAMIC CONTROL SIGNAL)
+			negate_reg <= '0';
+		elsif rising_edge(clock) then
+
+			if (ena1 = '1') then
+				a1_reg <= a1;
+				b1_reg <= b1;
+				a2_reg <= a2;
+				b2_reg <= b2;
+				negate_reg <= negate;
+			end if;
+
+		end if;
+	end process;
+
+	-- Input pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	-- All input pipeline registers must use the same {ena, reset}
+	-- The input pipeline register bank must use the same reset as the second pipeline and output register banks
+	-- The DYNAMIC CONTROL SIGNAL input pipeline register can be bypassed differently
+	process(clock, aclr2)
+	begin
+		if (aclr2 = '1') then
+			a1_pipeline1_reg <= (others => '0');
+			b1_pipeline1_reg <= (others => '0');
+			a2_pipeline1_reg <= (others => '0');
+			b2_pipeline1_reg <= (others => '0');
+			negate_pipeline1_reg <= '0';
+		elsif rising_edge(clock) then
+
+			if (ena2 = '1') then
+				a1_pipeline1_reg <= a1_reg;
+				b1_pipeline1_reg <= b1_reg;
+				a2_pipeline1_reg <= a2_reg;
+				b2_pipeline1_reg <= b2_reg;
+				negate_pipeline1_reg <= negate_reg;
+			end if;
+
+		end if;
+	end process;
+
+	-- Second pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	-- All second pipeline registers must use the same {ena, reset}
+	-- The second pipeline register bank must use the same reset as the input pipeline and output register banks
+	-- The DYNAMIC CONTROL SIGNAL second pipeline register can be bypassed differently
+	process(clock, aclr2)
+	begin
+		if (aclr2 = '1') then
+			a1_pipeline2_reg <= (others => '0');
+			b1_pipeline2_reg <= (others => '0');
+			a2_pipeline2_reg <= (others => '0');
+			b2_pipeline2_reg <= (others => '0');
+			negate_pipeline2_reg <= '0';
+		elsif rising_edge(clock) then
+
+			if (ena2 = '1') then
+				a1_pipeline2_reg <= a1_pipeline1_reg;
+				b1_pipeline2_reg <= b1_pipeline1_reg;
+				a2_pipeline2_reg <= a2_pipeline1_reg;
+				b2_pipeline2_reg <= b2_pipeline1_reg;
+				negate_pipeline2_reg <= negate_pipeline1_reg;
+			end if;
+
+		end if;
+	end process;
+
+	-- Output register
+	-- The output register bank must share the same reset with the input pipeline and second pipeline register banks
+	process(clock, aclr2)
+	begin
+		if (aclr2 = '1') then
+			m1_output_reg <= (others => '0');
+			final_output_reg <= (others => '0');
+		elsif rising_edge(clock) then
+
+			if (ena3 = '1') then
+				m1_output_reg <= m1;
+
+				-- Dynamic negate
+				if (negate_pipeline2_reg = '1') then
+					final_output_reg <= resize(m1_output_reg,FINAL_OUTPUT_WIDTH)  - resize(m2,FINAL_OUTPUT_WIDTH);
+				else
+					final_output_reg <= resize(m1_output_reg,FINAL_OUTPUT_WIDTH)  + resize(m2,FINAL_OUTPUT_WIDTH);
+				end if;
+			end if;
+
+		end if;
+	end process;
+
+	-- Multiplier
+	m1 <= (a1_pipeline2_reg * b1_pipeline2_reg);
+	m2 <= (a2_pipeline2_reg * b2_pipeline2_reg);
+
+	-- Final output
+	final_output <= final_output_reg;
+
+end rtl;

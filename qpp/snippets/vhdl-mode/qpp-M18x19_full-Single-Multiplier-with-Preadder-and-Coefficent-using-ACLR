@@ -1,0 +1,188 @@
+# -*- mode: snippet -*-
+# name: qpp-M18x19_full-Single-Multiplier-with-Preadder-and-Coefficent-using-ACLR
+# key: qpp-DSP-Features-for-10-nm-Device-M18x19_full-Single-Multiplier-with-Preadder-and-Coefficent-using-ACLR
+# --
+// M18x19_full Single Multiplier with Preadder and Coefficent using ACLR
+-- Quartus Prime VHDL Template
+-- m18x19_full mode by utilizing half a DSP block resource
+-- Single multiplier with full registers (input, 2 pipeline stages and output) using asynchronous clear + preadder + coefficients
+-- Formula: final_output[t] = (a[t-4]+b[t-4])*c_coef[t-4]
+--    Note: This mode does not support chainout adder nor dynamic ACCUMULATE/LOADCONST/SUB/NEGATE.
+-- For use with 10-nm device families
+-- All registers support asynchronous or synchronous clear but all registers within the same design must use the same clear type
+-- When synchronous clear is used, the ena signal has a higher priority than the clear signal
+-- Synchronizer register identification is disabled in all registers used in this template to ensure the DSP block's internal registers are fully packed for maximum DSP performance (fMAX). Ensure proper timing constraints are done if this template is used in asynchronous clock domains to avoid potential metastability issue. For more information on managing metastability in Quartus, refer to https://www.altera.co.jp/ja_JP/pdfs/literature/hb/qts/qts_qii51018.pdf
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity m18x19_single_mult_full_regs_preadd_coef_10nm is
+	generic
+	(
+		-- This template will only work within the AxB data width range from 2x2 to 18x19.
+		AB_WIDTH    : natural := 18;
+		COEF_WIDTH  : natural := 18;
+		-- up to 8 coefficients (3-bit address)
+		SEL_WIDTH   : natural := 3
+	);
+
+	port
+	(
+		-- Data input ports
+		a       : in signed    ((AB_WIDTH-1) downto 0);
+		b       : in signed    ((AB_WIDTH-1) downto 0);
+		-- Coefficient selection ports. Selection of up to 8 coefficients (3-bit address)
+		c_sel   : in std_logic_vector ((SEL_WIDTH)-1 downto 0);
+		-- Register clock and control signals
+		-- DSP supports single clock, 3 ena, and 2 reset signals
+		clock  : in std_logic;
+		ena1    : in std_logic;
+		ena2    : in std_logic;
+		ena3    : in std_logic;
+		aclr1   : in std_logic;
+		aclr2   : in std_logic;
+		-- Output signal
+		-- Max output width is 64
+		final_output : out signed ((AB_WIDTH+COEF_WIDTH) downto 0)
+	);
+
+end entity;
+
+architecture rtl of m18x19_single_mult_full_regs_preadd_coef_10nm is
+-- This template uses integer type as the coeffecient constant
+-- Can use other preferred type, for example signed/unsigned
+
+-- Array type define for coef or ROM purpose
+TYPE coef_type IS ARRAY(0 to ((2**SEL_WIDTH)-1))  of std_logic_vector((COEF_WIDTH-1) DOWNTO 0);
+
+-- Coefficient storage (ROM inferencing template)
+SIGNAL c_coef : coef_type :=
+			("110101111001110100",
+			"001010100111101011",
+			"001010111111101011",
+			"101010111111101011",
+			"001010000011010110",
+			"111010110000001011",
+			"001010111111010111",
+			"001010111111101011");
+
+-- Coefficient selection result
+signal c_coef_wire    : signed ((COEF_WIDTH)-1 downto 0);
+
+-- Preadder result
+signal ab           : signed    ((AB_WIDTH) downto 0);
+
+-- Data Input Register
+signal a_reg       : signed    ((AB_WIDTH-1) downto 0);
+signal b_reg       : signed    ((AB_WIDTH-1) downto 0);
+signal c_sel_reg   : std_logic_vector ((SEL_WIDTH)-1 downto 0);
+
+-- Data Input Pipeline Register
+signal a_pipeline1_reg      : signed    ((AB_WIDTH-1) downto 0);
+signal b_pipeline1_reg      : signed    ((AB_WIDTH-1) downto 0);
+signal c_sel_pipeline1_reg  : std_logic_vector ((SEL_WIDTH)-1 downto 0);
+
+-- Data Input Second Pipeline Register
+signal a_pipeline2_reg      : signed    ((AB_WIDTH-1) downto 0);
+signal b_pipeline2_reg      : signed    ((AB_WIDTH-1) downto 0);
+signal c_sel_pipeline2_reg  : std_logic_vector ((SEL_WIDTH)-1 downto 0);
+
+-- Output Register
+signal final_output_reg : signed ((AB_WIDTH+COEF_WIDTH) downto 0);
+
+--Disable synchronizer register identification
+attribute altera_attribute : string;
+attribute altera_attribute of a_reg, b_reg, c_sel_reg, a_pipeline1_reg, b_pipeline1_reg, c_sel_pipeline1_reg, a_pipeline2_reg, b_pipeline2_reg, c_sel_pipeline2_reg, final_output_reg : signal is "-name SYNCHRONIZER_IDENTIFICATION OFF";
+
+begin
+	-- Data Input register
+	-- DSP supports single clock, 3 ena and 2 reset signals
+	-- When preadder is used, the inputs to the preadder must use the same clock enable signal
+	-- The coefficient select input may use a different clock enable than that of the preadder inputs.
+	-- All registered inputs must use the same reset
+	process(clock, aclr1)
+	begin
+		if (aclr1 = '1') then
+			a_reg <= (others => '0');
+			b_reg <= (others => '0');
+			c_sel_reg <= (others => '0');
+		elsif rising_edge(clock) then
+
+			if (ena1 = '1') then
+				a_reg <= a;
+				b_reg <= b;
+				c_sel_reg <= c_sel;
+			end if;
+
+		end if;
+	end process;
+
+	-- Input pipeline register
+	-- All input pipeline registers must use the same {ena, reset}
+	-- The input pipeline register bank must use the same reset as the second pipeline and output register banks
+	process(clock, aclr2 )
+	begin
+		if (aclr2  = '1') then
+			a_pipeline1_reg <= (others => '0');
+			b_pipeline1_reg <= (others => '0');
+			c_sel_pipeline1_reg <= (others => '0');
+		elsif rising_edge(clock) then
+
+			if (ena2 = '1') then
+				a_pipeline1_reg <= a_reg;
+				b_pipeline1_reg <= b_reg;
+				c_sel_pipeline1_reg <= c_sel_reg;
+			end if;
+
+		end if;
+	end process;
+
+	-- Second pipeline register
+	-- All second pipeline registers must use the same {ena, reset}
+	-- The second pipeline register bank must use the same reset as the input pipeline and output register banks
+	process(clock, aclr2 )
+	begin
+		if (aclr2  = '1') then
+			a_pipeline2_reg <= (others => '0');
+			b_pipeline2_reg <= (others => '0');
+			c_sel_pipeline2_reg <= (others => '0');
+		elsif rising_edge(clock) then
+
+			if (ena2 = '1') then
+				a_pipeline2_reg <= a_pipeline1_reg;
+				b_pipeline2_reg <= b_pipeline1_reg;
+				c_sel_pipeline2_reg <= c_sel_pipeline1_reg;
+			end if;
+
+		end if;
+	end process;
+
+	-- Output register
+	-- THe output register bank must share the same reset with the input pipeline and second pipeline register banks
+	process(clock, aclr2 )
+	begin
+		if (aclr2  = '1') then
+			final_output_reg <= (others => '0');
+
+		elsif rising_edge(clock) then
+
+			if (ena3 = '1') then
+			-- Static add/sub is supported
+				final_output_reg <= resize(c_coef_wire,COEF_WIDTH) * resize(ab,AB_WIDTH+1);
+			end if;
+
+		end if;
+	end process;
+
+	-- Preadder
+	-- Preadder supports static add/sub
+	ab <= resize(a_pipeline2_reg, AB_WIDTH+1) + resize(b_pipeline2_reg, AB_WIDTH+1);
+
+	-- Coefficients
+	c_coef_wire <= signed(c_coef(to_integer(unsigned(c_sel_pipeline2_reg))));
+
+	-- Final output
+final_output <= final_output_reg;
+
+end rtl;

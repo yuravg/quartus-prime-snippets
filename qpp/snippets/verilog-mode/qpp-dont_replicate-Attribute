@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-dont_replicate-Attribute
+# key: qpp-Synthesis-Attributes-dont_replicate-Attribute
+# --
+// dont_replicate Attribute
+// Prevents Quartus Prime from replicating a register.
+
+(* dont_replicate *) <variable_declaration>;
+(* dont_replicate *) module <module_name>(...);

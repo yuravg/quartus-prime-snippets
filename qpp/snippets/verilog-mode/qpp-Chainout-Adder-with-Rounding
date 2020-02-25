@@ -1,0 +1,69 @@
+# -*- mode: snippet -*-
+# name: qpp-Chainout-Adder-with-Rounding
+# key: qpp-DSP-Features-for-28-nm-Device-Chainout-Adder-with-Rounding
+# --
+// Chainout Adder with Rounding
+// Quartus Prime Verilog Template
+// Chainout adder with rounding
+// For use with the 28-nm device families
+
+module chainout_rnd(a1, b1, a2, b2, a3, b3, clock, ena, reset, s);
+//This template can be used with 18x18, sum-of-2 18x18, 36+18x18, 27x27, 36x18 modes on Stratix-V
+//This template can be used with 18x19(signed), 36+18x19(signed), 27x27 modes on Arria-V and Cyclone-V
+parameter a_width = 27;
+parameter b_width = 27;
+//When this template applies to single 18x18, max chain_width is 44, othewise 64
+parameter chain_width = 64;
+parameter [chain_width-1:0] rounding_bit = 'h2000;
+input	[a_width-1:0] a1;
+input	[b_width-1:0] b1;
+input	[a_width-1:0] a2;
+input	[b_width-1:0] b2;
+input	[a_width-1:0] a3;
+input	[b_width-1:0] b3;
+//DSP supports up to 3 clock/ena pairs and 2 async reset signals
+//All output registers must have the same {clock, ena, reset}
+input	clock;
+input	ena;
+input	reset;
+output 	[chain_width-1:0] s;
+
+wire signed	[a_width-1:0] a1;
+wire signed	[b_width-1:0] b1;
+wire signed	[a_width-1:0] a2;
+wire signed	[b_width-1:0] b2;
+wire signed	[a_width-1:0] a3;
+wire signed	[b_width-1:0] b3;
+wire signed [a_width+b_width-1:0] p1, p2, p3;
+reg signed [chain_width-1:0] s1, s2, s;
+
+//Pick an applicable basic mode template
+single_mult mult1 (a1, b1, p1);
+defparam mult1.a_width = a_width;
+defparam mult1.b_width = b_width;
+
+single_mult mult2 (a2, b2, p2);
+defparam mult2.a_width = a_width;
+defparam mult2.b_width = b_width;
+
+single_mult mult3 (a3, b3, p3);
+defparam mult3.a_width = a_width;
+defparam mult3.b_width = b_width;
+
+always @(posedge clock or posedge reset)
+if (reset) begin
+	s1 <= 0;
+	s2 <= 0;
+	s <= 0;
+end else begin
+	if (ena) begin
+		//chainout adder support static add or sub
+		//basic mode result (p) must be the second operand
+		s1 <= p1;
+		s2 <= s1 + p2;
+		//rounding bit sign has to match with other operands
+		s  <= $signed(rounding_bit) + (s2 + p3);
+	end
+end
+
+endmodule

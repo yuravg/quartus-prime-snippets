@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-dont_retime-Attribute
+# key: qpp-Synthesis-Attributes-dont_retime-Attribute
+# --
+// dont_retime Attribute
+// Prevents Quartus Prime from retiming a register
+
+(* dont_retime *) <variable_declaration>;
+(* dont_retime *) module <module_name>(...);

@@ -1,0 +1,155 @@
+# -*- mode: snippet -*-
+# name: qpp-M27x27-with-Preadder-and-Coefficent-using-SCLR
+# key: qpp-DSP-Features-for-10-nm-Device-M27x27-with-Preadder-and-Coefficent-using-SCLR
+# --
+// M27x27 with Preadder and Coefficent using SCLR
+// Quartus Prime Verilog Template
+// m27x27 multiplier with full registers (input, 2 pipeline stages and output) using synchronous clear + preadder + coefficients
+// Formula: final_output[t] = (a[t-4]+b[t-4])*c_coef[t-4]
+// For use with 10-nm device families
+// All registers support asynchronous or synchronous clear but all registers within the same design must use the same clear type
+// When synchronous clear is used, the ena signal has a higher priority than the clear signal
+// Synchronizer register identification is disabled in all registers used in this template to ensure the DSP block's internal registers are fully packed for maximum DSP performance (fMAX). Ensure proper timing constraints are done if this template is used in asynchronous clock domains to avoid potential metastability issue. For more information on managing metastability in Quartus, refer to https://www.altera.co.jp/ja_JP/pdfs/literature/hb/qts/qts_qii51018.pdf
+
+module m27x27_full_regs_preadd_coef_sclr_10nm #(
+	// This template will only work where one of the two multiplier operands(signed A and signed B) data width falls within >19 and <=27.
+	parameter AB_WIDTH = 26, COEF_WIDTH = 27,
+	// Select up to 8 coefficients (3-bit address)
+	parameter SEL_WIDTH = 3
+)(
+	// Data input ports
+	input signed [AB_WIDTH-1:0] a,
+	input signed [AB_WIDTH-1:0] b,
+
+	// Coefficient selection ports. Selection of up to 8 coefficients (3-bit address)
+	input [SEL_WIDTH-1:0] c_sel,
+
+	// Register clock and control signals
+	// DSP supports single clock, 3 ena and 2 sync reset signals
+	input clock,
+	input ena1,
+	input ena2,
+	input ena3,
+	input sclr1,
+	input sclr2,
+
+	// Output signal
+	// Max output width is 64
+	output signed [AB_WIDTH+COEF_WIDTH:0] final_output
+);
+
+	// Coefficient storage (ROM inferencing template)
+	reg signed [COEF_WIDTH-1:0] c_coef[2**SEL_WIDTH-1:0];
+
+	// Coefficient selection result
+	wire signed [COEF_WIDTH-1:0] c_coef_wire;
+
+	// Preadder result
+	wire signed [AB_WIDTH:0] ab;
+
+	// Input Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] a_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] b_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [SEL_WIDTH-1:0] c_sel_reg;
+
+	// Input Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] a_pipeline1_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] b_pipeline1_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [SEL_WIDTH-1:0] c_sel_pipeline1_reg;
+
+	// Second Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] a_pipeline2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH-1:0] b_pipeline2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [SEL_WIDTH-1:0] c_sel_pipeline2_reg;
+
+	// Output Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [AB_WIDTH+COEF_WIDTH:0] final_output_reg;
+
+	// Data Input register
+	// DSP supports single clock, 3 ena and 2 async reset signals
+	// When preadder is used, the inputs to the preadder must use the same ena signal
+	// The coefficient select input may use a different ena signal than that of the preadder inputs.
+	// All registered inputs must use the same reset
+	always @(posedge clock) begin
+		if (ena1) begin
+			if (sclr1) begin
+				a_reg <= 0;
+				b_reg <= 0;
+				c_sel_reg <= 0;
+			end else begin
+				a_reg <= a;
+				b_reg <= b;
+				c_sel_reg <= c_sel;
+			end
+		end
+	end
+
+	// Input pipeline register
+	// All input pipeline registers must use the same {ena, reset}
+	// The input pipeline register bank must use the same reset as the second pipeline and output register banks
+	always @(posedge clock) begin
+		if (ena2) begin
+			if (sclr2) begin
+				a_pipeline1_reg <= 0;
+				b_pipeline1_reg <= 0;
+				c_sel_pipeline1_reg <= 0;
+			end else begin
+				a_pipeline1_reg <= a_reg;
+				b_pipeline1_reg <= b_reg;
+				c_sel_pipeline1_reg <= c_sel_reg;
+			end
+		end
+	end
+
+	// Second pipeline register
+	// All second pipeline registers must use the same {ena, reset}
+	// The second pipeline register bank must use the same reset as the input pipeline and output register banks
+	always @(posedge clock) begin
+		if (ena2) begin
+			if (sclr2) begin
+				a_pipeline2_reg <= 0;
+				b_pipeline2_reg <= 0;
+				c_sel_pipeline2_reg <= 0;
+			end else begin
+				a_pipeline2_reg <= a_pipeline1_reg;
+				b_pipeline2_reg <= b_pipeline1_reg;
+				c_sel_pipeline2_reg <= c_sel_pipeline1_reg;
+			end
+		end
+	end
+
+	// Output register
+	// The output register bank must share the same reset with input pipeline and second pipeline register banks
+	always @(posedge clock) begin
+		if (ena3) begin
+			if (sclr2) begin
+				final_output_reg <= 0;
+			end else begin
+				// Static add/sub is supported
+				final_output_reg <= (c_coef_wire * ab);
+			end
+		end
+	end
+
+	// Preadder
+	// Preadder supports static add/sub
+	assign ab = a_pipeline2_reg + b_pipeline2_reg;
+
+	// Coefficients
+	initial begin
+		c_coef[0] = 27'b110101111001110100001010100;
+		c_coef[1] = 27'b001010100111101011101010111;
+		c_coef[2] = 27'b001010111111101011000100000;
+		c_coef[3] = 27'b101010111111101011111111111;
+		c_coef[4] = 27'b001010000011010110101101101;
+		c_coef[5] = 27'b111010110000001011000011101;
+		c_coef[6] = 27'b001010111111010111111110110;
+		c_coef[7] = 27'b001010111111101011010111011;
+	end
+
+	assign c_coef_wire = c_coef[c_sel_pipeline2_reg];
+
+	// Final output
+	assign final_output = final_output_reg;
+
+endmodule

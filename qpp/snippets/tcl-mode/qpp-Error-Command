@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Error-Command
+# key: qpp-Commands-Error-Command
+# --
+// Error Command
+error __message __info __code;

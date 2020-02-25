@@ -1,0 +1,332 @@
+# -*- mode: snippet -*-
+# name: qpp-M18x19_systolic-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant-using-ACLR
+# key: qpp-DSP-Features-for-10-nm-Device-M18x19_systolic-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant-using-ACLR
+# --
+// M18x19_systolic with Input Cascade, Output Chaining, Accumulator, Double Accumulator and Preload Constant using ACLR
+-- Quartus Prime VHDL Template
+-- 18x19_systolic with full registers (input, pipeline, systolic and output) using asynchronous clear + input cascade chain (and input delay register) + chainout adder + accumulate + double accumulate + preload constant
+-- Formula: final_output[t] = zero_bit_a*zero_bit_b + a1[t-8]*b1[t-8] + a2[t-7]*b1[t-9] - a3[t-6]*b1(t-10) + a4[t-5]*b1[t-11] + a5(t-4)*b1(t-12) + acc_sel
+--          where zero_bit_a*zero_bit_b is a dummy multiplier
+--          where acc_sel = final_output[t-2] or preload_value or 0 depending on dynamic control inputs "accum" and "loadconst"
+-- When this template is used, the number of multipliers has to be even
+-- A dummy 0x0 multiplier can be created if the number of multipliers is odd to make up the number to even.
+-- For use with 10-nm device families
+-- All registers support asynchronous or synchronous clear but all registers within the same design must use the same clear type
+-- When synchronous clear is used, the ena signal has a higher priority than the clear signal
+-- Synchronizer register identification is disabled in all registers used in this template to ensure the DSP block's internal registers are fully packed for maximum DSP performance (fMAX). Ensure proper timing constraints are done if this template is used in asynchronous clock domains to avoid potential metastability issue. For more information on managing metastability in Quartus, refer to https://www.altera.co.jp/ja_JP/pdfs/literature/hb/qts/qts_qii51018.pdf
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity m18x19_systolic_full_regs_inputcascade_chainoutadder_acc_doubleacc_preloadConst_10nm is
+	generic
+	(
+		-- This template will only work within the AxB data width range from 2x2 to 18x19.
+		A_WIDTH : natural := 18;
+		B_WIDTH : natural := 19;
+		-- The max chain width for systolic mode is 44.
+		CHAIN_WIDTH : natural := 44;
+		-- PRELOAD_VALUE can be 2 power of N, which N should less than 64
+		-- PRELOAD_VALUE should contain only one bit 1
+		PRELOAD_VALUE : std_logic_vector := X"400";
+		-- Double accumulation enable control parameter
+		enable_double_accum : boolean := TRUE
+	);
+
+	port
+	(
+		-- Data input ports
+		a1       : in signed    ((A_WIDTH-1) downto 0);
+		a2       : in signed    ((A_WIDTH-1) downto 0);
+		a3       : in signed    ((A_WIDTH-1) downto 0);
+		a4       : in signed    ((A_WIDTH-1) downto 0);
+		a5       : in signed    ((A_WIDTH-1) downto 0);
+		b1       : in signed    ((B_WIDTH-1) downto 0);
+		-- Register clock and control signals
+		-- DSP supports single clock, 3 ena, and 2 reset signals
+		clock    : in std_logic;
+		ena1      : in std_logic;
+		ena2      : in std_logic;
+		ena3      : in std_logic;
+		aclr1     : in std_logic;
+		aclr2     : in std_logic;
+		-- Dynamic ACCUMULATE and LOADCONST control signals
+		accum     : in std_logic;
+		loadconst : in std_logic;
+		-- Output signal
+		-- Max output width for chaining is 44
+		final_output : out signed ((CHAIN_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of m18x19_systolic_full_regs_inputcascade_chainoutadder_acc_doubleacc_preloadConst_10nm is
+
+-- Multiplier result
+signal m1, m2, m3, m4, m5, m0: signed ((A_WIDTH+B_WIDTH-1) downto 0);
+-- Summation result
+signal s1_output_reg, s2_output_reg, s3_output_reg, s4_output_reg, s5_output_reg : signed ((CHAIN_WIDTH-1) downto 0);
+
+-- Data Input Register
+signal a1_reg, a2_reg, a3_reg, a4_reg, a5_reg, zero_bit_a_reg  : signed   ((A_WIDTH-1) downto 0);
+signal b1_reg, b2_reg, b3_reg, b4_reg, b5_reg, zero_bit_b_reg  : signed   ((B_WIDTH-1) downto 0);
+
+-- Data Input Cascade Delay register
+signal b1_delay_reg, b2_delay_reg, b3_delay_reg, b4_delay_reg  : signed   ((B_WIDTH-1) downto 0);
+
+-- Data Input Pipeline Register
+signal a1_pipeline1_reg, a2_pipeline1_reg, a3_pipeline1_reg, a4_pipeline1_reg, a5_pipeline1_reg,  zero_bit_a_pipeline1_reg   : signed    ((A_WIDTH-1) downto 0);
+signal b1_pipeline1_reg, b2_pipeline1_reg, b3_pipeline1_reg, b4_pipeline1_reg, b5_pipeline1_reg,  zero_bit_b_pipeline1_reg   : signed    ((B_WIDTH-1) downto 0);
+
+-- Data Input Second Pipeline Register
+signal a1_pipeline2_reg, a2_pipeline2_reg, a3_pipeline2_reg, a4_pipeline2_reg, a5_pipeline2_reg,  zero_bit_a_pipeline2_reg   : signed    ((A_WIDTH-1) downto 0);
+signal b1_pipeline2_reg, b2_pipeline2_reg, b3_pipeline2_reg, b4_pipeline2_reg, b5_pipeline2_reg,  zero_bit_b_pipeline2_reg   : signed    ((B_WIDTH-1) downto 0);
+
+-- LOADCONST Input Register
+signal loadconst_reg : std_logic;
+
+-- LOADCONST Pipeline Register
+signal loadconst_pipeline1_reg : std_logic;
+
+-- LOADCONST Second Pipeline Register
+signal loadconst_pipeline2_reg : std_logic;
+
+-- ACCUMULATE Input Register
+signal accum_reg : std_logic;
+
+-- ACCUMULATE Pipeline Register
+signal accum_pipeline1_reg : std_logic;
+
+-- ACCUMULATE Second Pipeline Register
+signal accum_pipeline2_reg : std_logic;
+
+-- Accumulate, double acc
+signal acc_sel, s_reg, s_double: signed ((CHAIN_WIDTH-1) downto 0);
+signal selected_value, select_feedback: signed    ((CHAIN_WIDTH-1) downto 0);
+
+-- The following is required for the dummy multiplier.
+signal zero_bit        : signed    (0 downto 0);
+signal zero_bit_a      : signed    ((A_WIDTH-1) downto 0);
+signal zero_bit_b      : signed    ((B_WIDTH-1) downto 0);
+attribute preserve: boolean;
+attribute preserve of zero_bit_a_reg: signal is true;
+attribute preserve of zero_bit_b_reg: signal is true;
+attribute preserve of zero_bit_a_pipeline1_reg: signal is true;
+attribute preserve of zero_bit_b_pipeline1_reg: signal is true;
+attribute preserve of zero_bit_a_pipeline2_reg: signal is true;
+attribute preserve of zero_bit_b_pipeline2_reg: signal is true;
+
+--Disable synchronizer register identification
+attribute altera_attribute : string;
+attribute altera_attribute of a1_reg, a2_reg, a3_reg, a4_reg, a5_reg, zero_bit_a_reg, b1_reg, b2_reg, b3_reg, b4_reg, b5_reg, zero_bit_b_reg, b1_delay_reg, b2_delay_reg, b3_delay_reg, b4_delay_reg, a1_pipeline1_reg, a2_pipeline1_reg, a3_pipeline1_reg, a4_pipeline1_reg, a5_pipeline1_reg, zero_bit_a_pipeline1_reg, b1_pipeline1_reg, b2_pipeline1_reg, b3_pipeline1_reg, b4_pipeline1_reg, b5_pipeline1_reg, zero_bit_b_pipeline1_reg, a1_pipeline2_reg, a2_pipeline2_reg, a3_pipeline2_reg, a4_pipeline2_reg, a5_pipeline2_reg, zero_bit_a_pipeline2_reg, b1_pipeline2_reg, b2_pipeline2_reg, b3_pipeline2_reg, b4_pipeline2_reg, b5_pipeline2_reg, zero_bit_b_pipeline2_reg, loadconst_reg, loadconst_pipeline1_reg, loadconst_pipeline2_reg, accum_reg, accum_pipeline1_reg, accum_pipeline2_reg, s_reg, s_double, s1_output_reg, s2_output_reg, s3_output_reg, s4_output_reg, s5_output_reg : signal is "-name SYNCHRONIZER_IDENTIFICATION OFF";
+
+begin
+
+	-- accumulator path
+	with accum_pipeline2_reg select
+	acc_sel <= select_feedback when '1',
+				selected_value when others;
+
+	with enable_double_accum select
+	select_feedback <= s_double when TRUE,
+						s_reg when others;
+
+	with loadconst_pipeline2_reg select
+	selected_value <= resize(signed(preload_value), CHAIN_WIDTH) when '1',
+						(others => '0') when others;
+
+	-- Input registers (for DATA and DYNAMIC CONTROL SIGNAL), and delay registers
+	-- All input and delay registers must use the same reset signal.
+	-- Each DATA input and delay register may have different pair of clock ena signal.
+	-- The DYNAMIC CONTROL SIGNAL input registers(e.g. loadconst and accumulate) can have different clock enable signal than that of the DATA input register.
+	-- But all DYNAMIC CONTROL SIGNAL input registers must share the same ena signal.
+	process(clock, aclr1)
+	begin
+		if (aclr1 = '1') then
+		-- Input registers (for DATA)
+			a1_reg <= (others => '0');
+			b1_reg <= (others => '0');
+			a2_reg <= (others => '0');
+			b2_reg <= (others => '0');
+			a3_reg <= (others => '0');
+			b3_reg <= (others => '0');
+			a4_reg <= (others => '0');
+			b4_reg <= (others => '0');
+			a5_reg <= (others => '0');
+			b5_reg <= (others => '0');
+			-- Input registers (for DYNAMIC CONTROL SIGNAL)
+			loadconst_reg <= '0';
+			accum_reg <= '0';
+			-- Input Cascade Delay register
+			b1_delay_reg <= (others => '0');
+			b2_delay_reg <= (others => '0');
+			b3_delay_reg <= (others => '0');
+			b4_delay_reg <= (others => '0');
+			-- input for dummy multiplier 0x0
+			zero_bit_a_reg <= (others => '0');
+			zero_bit_b_reg <= (others => '0');
+		elsif rising_edge(clock) then
+
+			if (ena1 = '1') then
+				a1_reg <= a1;
+				b1_reg <= b1;
+				a2_reg <= a2;
+				b2_reg <= b1_delay_reg;
+				a3_reg <= a3;
+				b3_reg <= b2_delay_reg;
+				a4_reg <= a4;
+				b4_reg <= b3_delay_reg;
+				a5_reg <= a5;
+				b5_reg <= b4_delay_reg;
+				loadconst_reg <= loadconst;
+				accum_reg <= accum;
+				b1_delay_reg <= b1_reg;
+				b2_delay_reg <= b2_reg;
+				b3_delay_reg <= b3_reg;
+				b4_delay_reg <= b4_reg;
+				zero_bit_a_reg <= zero_bit_a;
+				zero_bit_b_reg <= zero_bit_b;
+			end if;
+
+		end if;
+	end process;
+
+	-- Input pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	-- All input pipeline registers must use the same {ena, reset}
+	-- The input pipeline register bank must use the same reset as the second pipeline and output register banks
+	-- The DYNAMIC CONTROL SIGNAL input pipeline register can be bypassed differently
+	process(clock, aclr2)
+	begin
+		if (aclr2 = '1') then
+			a1_pipeline1_reg <= (others => '0');
+			b1_pipeline1_reg <= (others => '0');
+			a2_pipeline1_reg <= (others => '0');
+			b2_pipeline1_reg <= (others => '0');
+			a3_pipeline1_reg <= (others => '0');
+			b3_pipeline1_reg <= (others => '0');
+			a4_pipeline1_reg <= (others => '0');
+			b4_pipeline1_reg <= (others => '0');
+			a5_pipeline1_reg <= (others => '0');
+			b5_pipeline1_reg <= (others => '0');
+			zero_bit_a_pipeline1_reg <= (others => '0');
+			zero_bit_b_pipeline1_reg <= (others => '0');
+			loadconst_pipeline1_reg <= '0';
+			accum_pipeline1_reg <= '0';
+		elsif rising_edge(clock) then
+
+			if (ena2 = '1') then
+				a1_pipeline1_reg <= a1_reg;
+				b1_pipeline1_reg <= b1_reg;
+				a2_pipeline1_reg <= a2_reg;
+				b2_pipeline1_reg <= b2_reg;
+				a3_pipeline1_reg <= a3_reg;
+				b3_pipeline1_reg <= b3_reg;
+				a4_pipeline1_reg <= a4_reg;
+				b4_pipeline1_reg <= b4_reg;
+				a5_pipeline1_reg <= a5_reg;
+				b5_pipeline1_reg <= b5_reg;
+				zero_bit_a_pipeline1_reg <= zero_bit_a_reg;
+				zero_bit_b_pipeline1_reg <= zero_bit_b_reg;
+				loadconst_pipeline1_reg <= loadconst_reg;
+				accum_pipeline1_reg <= accum_reg;
+			end if;
+
+		end if;
+	end process;
+
+	-- Second pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	-- All second pipeline registers must use the same {ena, reset}
+	-- For systolic designs, the second pipeline register bank must use the same {clock, ena, reset} as the output register bank
+	-- The DYNAMIC CONTROL SIGNAL second pipeline register can be bypassed differently
+	process(clock, aclr2)
+	begin
+		if (aclr2 = '1') then
+			a1_pipeline2_reg <= (others => '0');
+			b1_pipeline2_reg <= (others => '0');
+			a2_pipeline2_reg <= (others => '0');
+			b2_pipeline2_reg <= (others => '0');
+			a3_pipeline2_reg <= (others => '0');
+			b3_pipeline2_reg <= (others => '0');
+			a4_pipeline2_reg <= (others => '0');
+			b4_pipeline2_reg <= (others => '0');
+			a5_pipeline2_reg <= (others => '0');
+			b5_pipeline2_reg <= (others => '0');
+			zero_bit_a_pipeline2_reg <= (others => '0');
+			zero_bit_b_pipeline2_reg <= (others => '0');
+			loadconst_pipeline2_reg <= '0';
+			accum_pipeline2_reg <= '0';
+		elsif rising_edge(clock) then
+
+			if (ena3 = '1') then
+				a1_pipeline2_reg <= a1_pipeline1_reg;
+				b1_pipeline2_reg <= b1_pipeline1_reg;
+				a2_pipeline2_reg <= a2_pipeline1_reg;
+				b2_pipeline2_reg <= b2_pipeline1_reg;
+				a3_pipeline2_reg <= a3_pipeline1_reg;
+				b3_pipeline2_reg <= b3_pipeline1_reg;
+				a4_pipeline2_reg <= a4_pipeline1_reg;
+				b4_pipeline2_reg <= b4_pipeline1_reg;
+				a5_pipeline2_reg <= a5_pipeline1_reg;
+				b5_pipeline2_reg <= b5_pipeline1_reg;
+				zero_bit_a_pipeline2_reg <= zero_bit_a_pipeline1_reg;
+				zero_bit_b_pipeline2_reg <= zero_bit_b_pipeline1_reg;
+				loadconst_pipeline2_reg <= loadconst_pipeline1_reg;
+				accum_pipeline2_reg <= accum_pipeline1_reg;
+			end if;
+
+		end if;
+	end process;
+
+	-- Output register
+	-- The output register bank must share the same reset with the input pipeline and second pipeline register banks
+	-- Even though the output registers are not explicitly declared, they will be inferred later during compilation.
+	-- Thus, it is important to place the s1_output_reg-s5_output_reg operation within the output register enable (i.e. ena3=1) condition.
+	process(clock, aclr2)
+	begin
+		if (aclr2 = '1') then
+			s1_output_reg <= (others => '0');
+			s2_output_reg <= (others => '0');
+			s3_output_reg <= (others => '0');
+			s4_output_reg <= (others => '0');
+			s5_output_reg <= (others => '0');
+			s_reg <= (others => '0');
+			s_double <= (others => '0');
+		elsif rising_edge(clock) then
+
+			if (ena3 = '1') then
+				-- chainout adder support static add or sub
+				-- basic mult result (m) must be the second operand
+				s1_output_reg <= resize(m0, CHAIN_WIDTH);
+				s2_output_reg <= s1_output_reg + resize(m1, CHAIN_WIDTH);
+				s3_output_reg <= s2_output_reg + resize(m2, CHAIN_WIDTH);
+				s4_output_reg <= s3_output_reg - resize(m3, CHAIN_WIDTH);
+				s5_output_reg <= s4_output_reg + resize(m4, CHAIN_WIDTH);
+				-- chainout accumulator only support addition when use with chainout adder
+				s_reg <= acc_sel + (s5_output_reg + resize(m5, CHAIN_WIDTH)); -- loopback path (acc_sel) must be the first operand
+				-- Double Accumulate
+				s_double <= s_reg;
+			end if;
+
+		end if;
+	end process;
+
+	-- Assign zero bit
+zero_bit <= B"0";
+zero_bit_a <= resize(zero_bit, A_WIDTH);
+zero_bit_b <= resize(zero_bit, B_WIDTH);
+
+	-- Multiplier
+	m1 <= (a1_pipeline2_reg * b1_pipeline2_reg);
+	m2 <= (a2_pipeline2_reg * b2_pipeline2_reg);
+	m3 <= (a3_pipeline2_reg * b3_pipeline2_reg);
+	m4 <= (a4_pipeline2_reg * b4_pipeline2_reg);
+	m5 <= (a5_pipeline2_reg * b5_pipeline2_reg);
+	-- When this template is used, the number of multipliers has to be even
+	-- Create a 0x0 multiplier as below to make up for the even number requirement if the number of multipliers is odd
+	m0 <= (zero_bit_a_pipeline2_reg * zero_bit_b_pipeline2_reg);
+
+	-- Final output
+	final_output <= s_reg;
+
+end rtl;

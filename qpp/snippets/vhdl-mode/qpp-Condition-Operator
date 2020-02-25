@@ -1,0 +1,52 @@
+# -*- mode: snippet -*-
+# name: qpp-Condition-Operator
+# key: qpp-VHDL-2008-Constructs-Condition-Operator
+# --
+// Condition Operator
+-- Examples of explicit invocation
+signal in1 : std_logic;
+signal in2,in3 : bit;
+
+if ?? in1 then
+	out1 <= '1';
+elsif ?? (in2 and in3) then
+	out1 <= '0';
+end if;
+
+
+-- Examples of implicit Invocations
+signal in1,in2 : std_logic;
+signal in3,in4 : bit;
+
+while in1 loop
+	<sequential statements>
+end loop;
+
+outdata <=  "00" when not in1 and not in2 else
+		"01" when not in1 and in2 else
+		"10" when in3 and not in4 else
+		"11" when in3 and in4;
+
+-- Error cases
+--error1
+signal in1 : std_ulogic;
+signal in2 : bit;
+
+if ?? (in1 and in2) then --error: in1 and in2 are of different types
+	out1 <= '0';
+end if;
+
+--error2
+signal in1 : integer;
+
+if ?? in1 then --error: in1 is of integer type - condition operator is only defined for bit and std_ulogic
+	out1 <= '0';
+end if;
+
+--error3
+signal in1 : std_ulogic;
+signal in2 : bit;
+
+if in1 and in2 = '1' then -- error: cannot mix std_ulogic and boolean types
+	out1 <= '0';
+end if;

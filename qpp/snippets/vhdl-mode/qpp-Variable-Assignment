@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Variable-Assignment
+# key: qpp-Sequential-Statements-Variable-Assignment
+# --
+// Variable Assignment
+<optional_label>: <variable_name> := <expression>;

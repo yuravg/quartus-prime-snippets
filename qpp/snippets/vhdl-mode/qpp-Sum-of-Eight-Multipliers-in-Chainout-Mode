@@ -1,0 +1,62 @@
+# -*- mode: snippet -*-
+# name: qpp-Sum-of-Eight-Multipliers-in-Chainout-Mode
+# key: qpp-Sums-of-Multipliers-Sum-of-Eight-Multipliers-in-Chainout-Mode
+# --
+// Sum of Eight Multipliers in Chainout Mode
+-- Quartus Prime VHDL Template
+-- Sum of eight multipliers in chainout mode
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity sum_of_eight_multipliers_chainout is
+
+	generic
+	(
+		WIDTH : natural := 18
+	);
+
+	port
+	(
+		clk, ena			        : in std_logic;
+		a0, a1, a2, a3, a4, a5, a6, a7	: in signed ((WIDTH-1) downto 0);
+		b0, b1, b2, b3 ,b4, b5, b6, b7	: in signed ((WIDTH-1) downto 0);
+		dataout				: out signed ((2*WIDTH+2) downto 0)
+	);
+
+end entity;
+
+architecture rtl of sum_of_eight_multipliers_chainout is
+
+	-- Declare signals for intermediate values
+	signal sum1, sum2 : signed ((2*WIDTH+2) downto 0);
+
+	-- At least two products (of the eight we're adding together)
+	-- must be as wide as the sum
+	signal resized_a0_times_b0 : signed ((2*WIDTH+2) downto 0);
+	signal resized_a2_times_b2 : signed ((2*WIDTH+2) downto 0);
+	signal resized_a4_times_b4 : signed ((2*WIDTH+2) downto 0);
+	signal resized_a6_times_b6 : signed ((2*WIDTH+2) downto 0);
+
+begin
+
+	-- Resize products a0*b0 and a4*b4 so we won't lose carry bits
+	resized_a0_times_b0 <= RESIZE(a0 * b0, 2*WIDTH+3);
+	resized_a2_times_b2 <= RESIZE(a2 * b2, 2*WIDTH+3);
+	resized_a4_times_b4 <= RESIZE(a4 * b4, 2*WIDTH+3);
+	resized_a6_times_b6 <= RESIZE(a6 * b6, 2*WIDTH+3);
+
+	-- Store the results of the first two sums
+	sum1 <= (resized_a0_times_b0 + a1 * b1) + (resized_a2_times_b2 + a3 * b3);
+	sum2 <= (resized_a4_times_b4 + a5 * b5) + (resized_a6_times_b6 + a7 * b7);
+
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+			if (ena = '1') then
+				dataout <= sum1 + sum2;
+			end if;
+		end if;
+	end process;
+end rtl;

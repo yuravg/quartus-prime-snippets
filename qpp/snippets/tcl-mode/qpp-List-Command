@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-List-Command
+# key: qpp-Commands-List-Command
+# --
+// List Command
+list __arg1 __arg2;

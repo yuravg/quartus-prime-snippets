@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-dont_retime-Attribute
+# key: qpp-Synthesis-Attributes-dont_retime-Attribute
+# --
+// dont_retime Attribute
+-- Prevents Quartus Prime from retiming a register
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute dont_retime : boolean;
+
+attribute dont_retime of <object> : <object_class> is true;

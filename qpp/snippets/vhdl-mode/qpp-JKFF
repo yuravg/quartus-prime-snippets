@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qpp-JKFF
+# key: qpp-Registers-and-Latches-JKFF
+# --
+// JKFF
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating JKFF
+	<instance_name> : JKFF
+	port map (
+			j => <synchronous_set>,
+			k => <synchronous_reset>,
+			clk => <clock_signal>,
+			clrn => <active_low_clear>,
+			prn => <active_low_preset>,
+			q => <data_out>
+			);

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-String-Command
+# key: qpp-Commands-String-Command
+# --
+// String Command
+string __option __str;

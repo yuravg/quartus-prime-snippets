@@ -1,0 +1,29 @@
+# -*- mode: snippet -*-
+# name: qpp-syn_encoding-Attribute
+# key: qpp-Synthesis-Attributes-syn_encoding-Attribute
+# --
+// syn_encoding Attribute
+-- Controls the encoding of the states in an inferred state machine.
+
+-- Legal values = "sequential", "gray", "johnson", "compact", "onehot",
+--                "auto", "default", "safe", or a space-delimited list of
+--                 binary encodings, e.g. "00100 11010 10110"
+
+-- The value "safe" instructs the Quartus Prime software to add extra logic
+-- to detect illegal states (unreachable states) and force the state machine
+-- into the reset state. You cannot implement a safe state machine by
+-- specifying manual recovery logic in your design; the Quartus Prime software
+-- eliminates this logic while optimizing your design.  You can combine
+-- "safe" with any encoding style (but not a list of binary encodings), e.g.
+-- "sequential, safe"
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute syn_encoding : string;
+
+attribute syn_encoding of <object> : <object_class> is <string_value>;
+
+-- Implement all state machines with type state_t as safe, gray-encoded
+-- state machines
+type state_t is (S0, S1, S2, S3, S4);
+attribute syn_encoding of state_t : type is "gray, safe";

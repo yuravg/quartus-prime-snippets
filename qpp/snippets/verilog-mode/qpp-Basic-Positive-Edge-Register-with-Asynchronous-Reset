@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qpp-Basic-Positive-Edge-Register-with-Asynchronous-Reset
+# key: qpp-Registers-Basic-Positive-Edge-Register-with-Asynchronous-Reset
+# --
+// Basic Positive Edge Register with Asynchronous Reset
+always @ (negedge <reset> or posedge <clock_signal>)
+begin
+	// Reset whenever the reset signal goes low, regardless of the clock
+	if (!<reset>)
+	begin
+		<register_variable> <= 1'b0;
+	end
+	// If not resetting, update the register output on the clock's rising edge
+	else
+	begin
+		<register_variable> <= <data>;
+	end
+end

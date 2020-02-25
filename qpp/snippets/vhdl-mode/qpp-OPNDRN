@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-OPNDRN
+# key: qpp-Buffers-OPNDRN
+# --
+// OPNDRN
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating OPNDRN
+	<instance_name> : OPNDRN
+	-- <data_out> may feed an inout pin
+	port map (a_in => <data_in>, a_out => <data_out>);

@@ -1,0 +1,61 @@
+# -*- mode: snippet -*-
+# name: qpp-Signed-Multiply-with-Input-and-Output-Registers
+# key: qpp-Multipliers-Signed-Multiply-with-Input-and-Output-Registers
+# --
+// Signed Multiply with Input and Output Registers
+-- Quartus Prime VHDL Template
+-- Signed Multiply with Input and Output Registers
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity signed_multiply_with_input_and_output_registers is
+
+	generic
+	(
+		DATA_WIDTH : natural := 8
+	);
+
+	port
+	(
+		a		: in signed ((DATA_WIDTH-1) downto 0);
+		b		: in signed ((DATA_WIDTH-1) downto 0);
+		clk		: in std_logic;
+		clear	    : in std_logic;
+		result	: out signed ((2*DATA_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of signed_multiply_with_input_and_output_registers is
+
+	-- Declare I/O registers
+	signal a_reg, b_reg : signed ((DATA_WIDTH-1) downto 0);
+	signal out_reg	  : signed ((2*DATA_WIDTH-1) downto 0);
+
+begin
+
+	process (clk, clear)
+	begin
+		if (clear = '1') then
+
+			-- Reset all register data to 0
+			a_reg <= (others => '0');
+			b_reg <= (others => '0');
+			out_reg <= (others => '0');
+
+		elsif (rising_edge(clk)) then
+
+			-- Store input and output values in registers
+			a_reg <= a;
+			b_reg <= b;
+			out_reg <= a_reg * b_reg;
+
+		end if;
+	end process;
+
+	-- Output multiplication result
+	result <= out_reg;
+
+end rtl;

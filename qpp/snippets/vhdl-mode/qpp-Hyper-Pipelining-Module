@@ -1,0 +1,53 @@
+# -*- mode: snippet -*-
+# name: qpp-Hyper-Pipelining-Module
+# key: qpp-Pipelining-Hyper-Pipelining-Module
+# --
+// Hyper-Pipelining Module
+-- Quartus Prime VHDL Template
+--
+-- Hyper-Pipelining Module
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+library altera;
+use altera.altera_syn_attributes.all;
+
+entity hyperpipe is
+	generic (
+ 		CYCLES : integer := 1;
+ 		WIDTH : integer := 1
+ 	);
+ 	port (
+ 		clk : in std_logic;
+ 		din : in std_logic_vector (WIDTH - 1 downto 0);
+ 		dout : out std_logic_vector (WIDTH - 1 downto 0)
+ 	);
+end entity;
+
+architecture arch of hyperpipe is
+
+	type hyperpipe_t is array(CYCLES-1 downto 0) of
+ 		std_logic_vector(WIDTH-1 downto 0);
+	signal HR : hyperpipe_t;
+
+	-- Prevent large hyperpipes from going into memory-based altshift_taps,
+	-- since that won't take advantage of Hyper-Registers
+ 	attribute altera_attribute of HR :
+ 		signal is "-name AUTO_SHIFT_REGISTER_RECOGNITION off";
+
+begin
+ 	wire : if CYCLES = 0 GENERATE
+ 		-- The 0 bit is just a pass-thru, when CYCLES is set to 0
+ 		dout <= din;
+ 	end generate wire;
+
+ 	hp : if CYCLES > 0 GENERATE
+ 		process (clk) begin
+ 			if (clk'event and clk = '1')then
+ 				HR <= HR(HR'high-1 downto 0) & din;
+ 			end if;
+ 		end process;
+ 		dout <= HR(HR'high);
+ 	end generate hp;
+
+end arch;

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Return-Statement
+# key: qpp-Sequential-Statements-Return-Statement
+# --
+// Return Statement
+-- Inside a function, this statement must return a value.
+<optional_label>: return <expression>;
+
+-- Inside a procedure, this stamement must NOT return a value.
+<optional_label>: return;

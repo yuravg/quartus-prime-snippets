@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: qpp-Hyper-Pipelining-Module-Instantiation
+# key: qpp-Pipelining-Hyper-Pipelining-Module-Instantiation
+# --
+// Hyper-Pipelining Module Instantiation
+// Quartus Prime Verilog Template
+//
+// Hyper-Pipelining Module Instantiation
+
+hyperpipe # (
+		.CYCLES  ( ),
+		.WIDTH   ( )
+	) hp (
+		.clk      ( ),
+		.din      ( ),
+		.dout     ( )
+	);

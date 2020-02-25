@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-Case-Statement
+# key: qpp-Sequential-Statements-Case-Statement
+# --
+// Case Statement
+// x and z values are NOT treated as don't-care's
+case(<expr>)
+<case_item_exprs>: <sequential statement>
+<case_item_exprs>: <sequential statement>
+<case_item_exprs>: <sequential statement>
+default: <statement>
+endcase

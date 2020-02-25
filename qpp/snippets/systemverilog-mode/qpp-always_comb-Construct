@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-always_comb-Construct
+# key: qpp-Module-Items-always_comb-Construct
+# --
+// always_comb Construct
+// This construct should be used to infer purely combinational logic.
+always_comb
+begin
+	// Statements
+end

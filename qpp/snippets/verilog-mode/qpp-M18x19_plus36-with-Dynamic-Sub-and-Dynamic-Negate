@@ -1,0 +1,175 @@
+# -*- mode: snippet -*-
+# name: qpp-M18x19_plus36-with-Dynamic-Sub-and-Dynamic-Negate
+# key: qpp-DSP-Features-for-20-nm-Device-M18x19_plus36-with-Dynamic-Sub-and-Dynamic-Negate
+# --
+// M18x19_plus36 with Dynamic Sub and Dynamic Negate
+// Quartus Prime Verilog Template
+// 18x19_plus36 with full registers (input, pipeline and output) + dynamic add/sub + dynamic negate
+// Formula: final_output[t] = ((a1[t-4]*b1[t-4])+/-c1[t-4]) +/- ((a2[t-3]*b2[t-3])+/-c2[t-3])
+//		Note: Arria 10 ES devices do not support dynamic negate and subtraction for chainout/accumulation.
+// For use with 20-nm device families
+
+module m18x19plus36_full_regs_dynSub_dynNegate (
+	a1, a2, b1, b2, c1, c2,
+	clock1, clock2, clock3, ena1, ena2, ena3, reset1, reset2,
+	addnsub1, addnsub2, negate,
+	final_output
+);
+
+	// This template will only work for (AxB)+C where the AxB data width range from 2x2 to 18x19, and the add add/sub data input (C) data width range from 2 to 36
+	parameter A_WIDTH = 18;
+	parameter B_WIDTH = 19;
+	parameter C_WIDTH = 36;
+	// The formula for the output width of one (AxB)+C should be either (A_WIDTH+B_WIDTH+1) or (C_WIDTH+1), whichever is larger.
+	parameter SUM_OUTPUT_WIDTH = (A_WIDTH+B_WIDTH+1);
+	// This example uses n=2 multipliers, hence the final output width is SUM_OUTPUT_WIDTH + (n-1)
+	parameter FINAL_OUTPUT_WIDTH = SUM_OUTPUT_WIDTH +1;
+
+	// Data input ports
+	input signed [A_WIDTH-1:0] a1, a2;
+	input signed [B_WIDTH-1:0] b1, b2;
+	input signed [C_WIDTH-1:0] c1, c2;
+
+	// Register clock and control signals
+	// DSP supports up to 3 clock/ena pairs, and 2 async reset signals
+	input clock1, clock2, clock3, ena1, ena2, ena3, reset1, reset2;
+
+	// Dynamic addition and subtraction control signals
+	input addnsub1, addnsub2, negate;
+
+	// Output signal
+	// Max output width for chaining is 64
+	output signed [FINAL_OUTPUT_WIDTH-1:0] final_output;
+
+	// Multiplier Result
+	wire signed [A_WIDTH+B_WIDTH-1:0] m1, m2;
+	// 18x19_plus36 Result
+	wire signed [SUM_OUTPUT_WIDTH-1:0] s1, s2;
+
+	// Data Input Register
+	reg signed [A_WIDTH-1:0] a1_reg, a2_reg;
+	reg signed [B_WIDTH-1:0] b1_reg, b2_reg;
+	reg signed [C_WIDTH-1:0] c1_reg, c2_reg;
+
+	// Data Input Pipeline Register
+	reg signed [A_WIDTH-1:0] a1_pipeline_reg, a2_pipeline_reg;
+	reg signed [B_WIDTH-1:0] b1_pipeline_reg, b2_pipeline_reg;
+	reg signed [C_WIDTH-1:0] c1_pipeline_reg, c2_pipeline_reg;
+
+	// Sub Input Register
+	reg addnsub1_reg, addnsub2_reg;
+
+	// Sub Pipeline Register
+	reg addnsub1_pipeline_reg, addnsub2_pipeline_reg;
+
+	// Negate Input Register
+	reg negate_reg;
+
+	// Negate Pipeline Register
+	reg negate_pipeline_reg;
+
+	// Output Register
+	reg signed [SUM_OUTPUT_WIDTH-1:0] s1_output_reg;
+	reg signed [FINAL_OUTPUT_WIDTH-1:0] s_reg;
+
+	// Input register (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All input registers must use the same reset signal,
+	// Each DATA input register may have different pair of clock and ena signal.
+	// The DYNAMIC CONTROL SIGNAL input registers(e.g. sub and negate) can have different clock/ena signal pair than that of the DATA input register.
+// But all DYNAMIC CONTROL SIGNAL input registers must share the same clock and ena signal.
+	always @(posedge clock1 or posedge reset1)
+	if (reset1) begin
+		// Input registers (for DATA)
+		a1_reg <= 0;
+		b1_reg <= 0;
+		c1_reg <= 0;
+		a2_reg <= 0;
+		b2_reg <= 0;
+		c2_reg <= 0;
+		// Input registers (for DYNAMIC CONTROL SIGNAL)
+		addnsub1_reg <= 0;
+		addnsub2_reg <= 0;
+		negate_reg <= 0;
+	end else begin
+		if (ena1) begin
+			a1_reg <= a1;
+			b1_reg <= b1;
+			c1_reg <= c1;
+			a2_reg <= a2;
+			b2_reg <= b2;
+			c2_reg <= c2;
+			addnsub1_reg <= addnsub1;
+			addnsub2_reg <= addnsub2;
+			negate_reg <= negate;
+		end
+	end
+
+	// Input pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All pipeline registers must use the same {clock, ena, reset}
+	// The Pipeline registers must use the same reset as the output register
+	// The DYNAMIC CONTROL SIGNAL input pipeline registers can be bypassed differently
+	always @(posedge clock2 or posedge reset2)
+	if (reset2) begin
+		a1_pipeline_reg <= 0;
+		b1_pipeline_reg <= 0;
+		c1_pipeline_reg <= 0;
+		a2_pipeline_reg <= 0;
+		b2_pipeline_reg <= 0;
+		c2_pipeline_reg <= 0;
+		addnsub1_pipeline_reg <= 0;
+		addnsub2_pipeline_reg <= 0;
+		negate_pipeline_reg <= 0;
+	end else begin
+		if (ena2) begin
+			a1_pipeline_reg <= a1_reg;
+			b1_pipeline_reg <= b1_reg;
+			c1_pipeline_reg <= c1_reg;
+			a2_pipeline_reg <= a2_reg;
+			b2_pipeline_reg <= b2_reg;
+			c2_pipeline_reg <= c2_reg;
+			addnsub1_pipeline_reg <= addnsub1_reg;
+			addnsub2_pipeline_reg <= addnsub2_reg;
+			negate_pipeline_reg <= negate_reg;
+		end
+	end
+
+	// Output register
+	// Output register must share the same reset with input pipeline register
+	always @(posedge clock3 or posedge reset2)
+	if (reset2) begin
+		s1_output_reg <= 0;
+		s_reg <= 0;
+	end else begin
+		if (ena3) begin
+			s1_output_reg <= s1;
+
+			// Dynamic negate
+			if (negate_pipeline_reg) begin
+				s_reg <= s1_output_reg - s2;
+			end else begin
+				s_reg <= s1_output_reg + s2;
+			end
+		end
+	end
+
+	// Multiplier
+	assign m1 = (a1_pipeline_reg * b1_pipeline_reg);
+	assign m2 = (a2_pipeline_reg * b2_pipeline_reg);
+
+	// First 18x19_plus36
+	// Dynamic add/sub
+	// Addend must be the first operand
+	assign s1 = addnsub1_pipeline_reg?
+					(c1_pipeline_reg - m1) : (c1_pipeline_reg + m1);
+
+	// Second 18x19_plus36
+	// Dynamic add/sub
+	// Addend must be the first operand
+	assign s2 = addnsub2_pipeline_reg?
+					(c2_pipeline_reg - m2) : (c2_pipeline_reg + m2);
+
+	// Final output
+	assign final_output = s_reg;
+
+
+endmodule

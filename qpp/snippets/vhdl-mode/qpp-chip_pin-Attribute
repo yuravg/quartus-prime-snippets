@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qpp-chip_pin-Attribute
+# key: qpp-Synthesis-Attributes-chip_pin-Attribute
+# --
+// chip_pin Attribute
+-- Assigns pin location to ports on an entity.
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute chip_pin : string;
+
+attribute chip_pin of <object> : <object_class> is <string_value>;
+
+-- Example
+attribute chip_pin of my_input : signal is "B3, A3, A4";

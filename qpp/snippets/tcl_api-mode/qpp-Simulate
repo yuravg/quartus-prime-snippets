@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Simulate
+# key: qpp-Commands-Simulate
+# --
+// Simulate
+# Make active the specified revision and simulate the design
+# Require package ::quartus::project
+# Require package ::quartus::flow
+set_current_revision __revision_name;
+execute_module -tool sim;

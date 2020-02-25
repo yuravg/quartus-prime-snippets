@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qpp-Casting
+# key: qpp-Expressions-Casting
+# --
+// Casting
+module casting(output logic o);
+typedef enum { APPLE, ORANGE, LEMON } my_fruit;
+my_fruit fruit;
+
+// casting to change the size of a self-determined expression
+// no truncation warning
+assign o = 1'(3'b001) ;
+
+// casting is required to assign an integral value to an object with an enum typ
+assign fruit = my_fruit'(0);
+endmodule // casting

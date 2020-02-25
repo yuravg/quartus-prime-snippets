@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: qpp-syn_encoding-Attribute
+# key: qpp-Synthesis-Attributes-syn_encoding-Attribute
+# --
+// syn_encoding Attribute
+// Controls the encoding of the states in an inferred state machine.
+
+// Legal values = "user" or "safe" or "user, safe"
+
+// The value "user" instructs the Quartus Prime software to encode each state
+// with its corresponding value from the Verilog source. By changing the
+// values of your state constants, you can change the encoding of your state
+// machine
+
+// The value "safe" instructs the Quartus Prime software to add extra logic
+// to detect illegal states (unreachable states) and force the state machine
+// into the reset state. You cannot implement a safe state machine by
+// specifying manual recovery logic in your design; the Quartus Prime software
+// eliminates this logic while optimizing your design.
+
+// Examples
+
+// Implement state as a safe state machine
+(* syn_encoding = "safe" *) reg [7:0] state;

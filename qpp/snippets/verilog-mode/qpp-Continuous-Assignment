@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Continuous-Assignment
+# key: qpp-Module-Items-Continuous-Assignment
+# --
+// Continuous Assignment
+// The left-hand side of a continuous assignment must be a structural
+// net expression.  That is, it must be a net or a concatentation of
+// nets, and any index expressions must be constant.
+
+assign <net_lvalue> = <value>;

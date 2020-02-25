@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-latch
+# key: qpp-Registers-and-Latches-latch
+# --
+// latch
+	latch <instance_name> (
+				.d(<data_in>),
+				.ena(<clock_enable>),
+				.q(<data_out>)
+				);

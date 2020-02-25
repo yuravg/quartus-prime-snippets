@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Constant-Declaration
+# key: qpp-Type-and-Subtype-Declarations-Constant-Declaration
+# --
+// Constant Declaration
+constant <constant_name> : <type> := <constant_value>;

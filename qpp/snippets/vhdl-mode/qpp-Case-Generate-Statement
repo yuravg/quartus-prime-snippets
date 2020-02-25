@@ -1,0 +1,27 @@
+# -*- mode: snippet -*-
+# name: qpp-Case-Generate-Statement
+# key: qpp-VHDL-2008-Constructs-Case-Generate-Statement
+# --
+// Case Generate Statement
+--
+-- All choice expressions in a VHDL case generate statement must be constant
+-- and unique.	Also, the case statement must be complete, or it must
+-- include an others clause.
+<generate_label>:
+case <expression> generate
+	when <optional_label1>: <constant_expression> =>
+		--declarations
+		begin
+			-- Concurrent Statement(s)
+		end <optional_label1>;
+	when <optional_label2>: <constant_expression> =>
+		--declarations
+		begin
+			-- Concurrent Statement(s)
+		end <optional_label2>;
+	when <optional_label3>: others =>
+		--declarations
+		begin
+			-- Concurrent Statement(s)
+		end <optional_label3>;
+end generate;

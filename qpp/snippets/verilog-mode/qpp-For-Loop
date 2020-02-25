@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-For-Loop
+# key: qpp-Loops-For-Loop
+# --
+// For Loop
+for(<variable_name> = <value>; <expression>; <variable_name> = <value>)
+begin
+	// Statements
+end

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: qpp-parallel_case-Attribute
+# key: qpp-Synthesis-Attributes-parallel_case-Attribute
+# --
+// parallel_case Attribute
+// Indicates that Quartus Prime should consider the case items
+// in a case statement to be mutually exclusive, even if they
+// are not.  Without this attribute, the Quartus Prime software
+// may add priority logic when elaborating your case statement.
+// The Quartus Prime software will only add this logic if one or
+// more case items overlap or if one or more case items are
+// constant expressions.
+
+(* parallel_case *) case(...)

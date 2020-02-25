@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Subprogram-Declaration
+# key: qpp-Type-and-Subtype-Declarations-Subprogram-Declaration
+# --
+// Subprogram Declaration
+-- Procedure Declaration
+procedure <name>(<formal_parameter_decls>);
+
+-- Function Declaration
+function <name>(<formal_parameter_decls>) return <type_mark>;

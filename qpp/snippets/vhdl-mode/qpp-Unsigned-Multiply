@@ -1,0 +1,34 @@
+# -*- mode: snippet -*-
+# name: qpp-Unsigned-Multiply
+# key: qpp-Multipliers-Unsigned-Multiply
+# --
+// Unsigned Multiply
+-- Quartus Prime VHDL Template
+-- Unsigned Multiply
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity unsigned_multiply is
+
+	generic
+	(
+		DATA_WIDTH : natural := 8
+	);
+
+	port
+	(
+		a	   : in unsigned ((DATA_WIDTH-1) downto 0);
+		b	   : in unsigned ((DATA_WIDTH-1) downto 0);
+		result  : out unsigned ((2*DATA_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of unsigned_multiply is
+begin
+
+	result <= a * b;
+
+end rtl;

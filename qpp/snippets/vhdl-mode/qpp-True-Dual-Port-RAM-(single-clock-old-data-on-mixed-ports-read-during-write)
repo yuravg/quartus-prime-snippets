@@ -1,0 +1,80 @@
+# -*- mode: snippet -*-
+# name: qpp-True-Dual-Port-RAM-(single-clock-old-data-on-mixed-ports-read-during-write)
+# key: qpp-RAMs-and-ROMs-True-Dual-Port-RAM-(single-clock-old-data-on-mixed-ports-read-during-write)
+# --
+// True Dual-Port RAM (single clock, old data on mixed ports read during write)
+-- Quartus Prime VHDL Template
+-- True Dual-Port RAM with single clock
+--
+-- Read-during-write behavior is "old data" for mixed ports
+-- and "new data" on the same port
+--
+-- This style of RAM cannot be used on Stratix 10,
+-- which does not support "old data" read-during-write for mixed ports
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity true_dual_port_ram_single_clock_old_rw is
+
+	generic
+	(
+		DATA_WIDTH : natural := 8;
+		ADDR_WIDTH : natural := 6
+	);
+
+	port
+	(
+		clk		: in std_logic;
+		addr_a	: in natural range 0 to 2**ADDR_WIDTH - 1;
+		addr_b	: in natural range 0 to 2**ADDR_WIDTH - 1;
+		data_a	: in std_logic_vector((DATA_WIDTH-1) downto 0);
+		data_b	: in std_logic_vector((DATA_WIDTH-1) downto 0);
+		we_a	: in std_logic := '1';
+		we_b	: in std_logic := '1';
+		q_a		: out std_logic_vector((DATA_WIDTH -1) downto 0);
+		q_b		: out std_logic_vector((DATA_WIDTH -1) downto 0)
+	);
+
+end true_dual_port_ram_single_clock_old_rw;
+
+architecture rtl of true_dual_port_ram_single_clock_old_rw is
+
+	-- Build a 2-D array type for the RAM
+	subtype word_t is std_logic_vector((DATA_WIDTH-1) downto 0);
+	type memory_t is array(2**ADDR_WIDTH-1 downto 0) of word_t;
+
+	-- Declare the RAM
+	shared variable ram : memory_t;
+
+begin
+
+
+	-- Port A
+	process(clk)
+	begin
+	if(rising_edge(clk)) then
+		if(we_a = '1') then
+			ram(addr_a) <= data_a;
+			q_a <= data_a;
+		else
+			q_a <= ram(addr_a);
+		end if;
+	end if;
+	end process;
+
+	-- Port B
+	process(clk)
+	begin
+	if(rising_edge(clk)) then
+		if(we_b = '1') then
+			ram(addr_b) := data_b;
+			q_b <= data_a;
+		else
+			q_b <= ram(addr_b);
+		end if;
+	end if;
+	end process;
+
+end rtl;

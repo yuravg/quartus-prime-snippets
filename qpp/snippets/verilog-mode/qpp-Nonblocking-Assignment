@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Nonblocking-Assignment
+# key: qpp-Sequential-Statements-Nonblocking-Assignment
+# --
+// Nonblocking Assignment
+// Use nonblocking assignments when assigning to variables that
+// model sequential logic (registers, memories, state machines).
+
+<variable_lvalue> <= <expression>;

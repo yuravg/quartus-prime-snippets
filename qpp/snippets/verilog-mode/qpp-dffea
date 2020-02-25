@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qpp-dffea
+# key: qpp-Registers-and-Latches-dffea
+# --
+// dffea
+	dffea <instance_name> (
+				.d(<data_in>),
+				.clk(<clock_signal>),
+				.clrn(<active_low_clear>),
+				.prn(<active_low_preset>),
+				.ena(<clock_enable>),
+				.adata(<asynch_data_in>),
+				.aload(<asynch_load_signal>),
+				.q(<data_out>)
+				);

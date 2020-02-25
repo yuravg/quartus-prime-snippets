@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-useioff-Attribute
+# key: qpp-Synthesis-Attributes-useioff-Attribute
+# --
+// useioff Attribute
+// Controls the packing input, output, and output enable registers into
+// I/O cells.  Using a register in an I/O cell can improve performance
+// by minimizing setup, clock-to-output, and clock-to-output-enable times.
+
+// Apply the attribute to a port declaration
+(* useioff *) output reg [7:0] result;        // enable packing
+(* useioff = 0 *) output reg [7:0] result;    // disable packing

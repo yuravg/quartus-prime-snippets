@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qpp-Create-Base-Clock-with-Duty-Cycle-Assignment
+# key: qpp-Commands-Create-Base-Clock-with-Duty-Cycle-Assignment
+# --
+// Create Base Clock with Duty Cycle Assignment
+# Create a new base clock
+# Fmax is clock frequency
+# Duty_cycle is the percentage of time that the derived clock period is high
+# Clock_name is the clock name
+# Require package ::quartus::project
+create_base_clock -fmax __fmax -duty_cycle __duty_cycle __clock_name;

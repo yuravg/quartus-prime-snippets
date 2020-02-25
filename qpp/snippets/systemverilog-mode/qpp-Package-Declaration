@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: qpp-Package-Declaration
+# key: qpp-Design-Units-Package-Declaration
+# --
+// Package Declaration
+package <name>;
+
+	// Parameter Declaration(s)
+	// Function Declaration(s)
+	// Task Declarations(s)
+	// Type Declaration(s)
+
+endpackage
+
+// You can refer to specific objects in a package by name
+<package_name>::<object_name>
+
+// You can also import objects from a package into the current scope
+// using an import declaration
+import <package_name>::<object_name>;
+import <package_name>::*;

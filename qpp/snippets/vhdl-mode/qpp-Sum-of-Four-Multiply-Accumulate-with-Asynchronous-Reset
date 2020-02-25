@@ -1,0 +1,67 @@
+# -*- mode: snippet -*-
+# name: qpp-Sum-of-Four-Multiply-Accumulate-with-Asynchronous-Reset
+# key: qpp-Multiply-Accumulators-Sum-of-Four-Multiply-Accumulate-with-Asynchronous-Reset
+# --
+// Sum-of-Four Multiply-Accumulate with Asynchronous Reset
+-- Quartus Prime VHDL Template
+-- Sum-of-four multiply-accumulate with asynchronous reset
+-- For use with the Stratix III device family
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity sum_of_four_multiply_accumulate_with_asynchronous_reset is
+
+	generic
+	(
+		INPUT_WIDTH	  : natural := 18;
+		OUTPUT_WIDTH   : natural := 44
+	);
+
+	port
+	(
+		clk, ena, aclr		: in std_logic;
+		a, b, c, d, e, f, g, h	: in signed ((INPUT_WIDTH-1) downto 0);
+		dataout			: out signed ((OUTPUT_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of sum_of_four_multiply_accumulate_with_asynchronous_reset is
+
+	-- Each product can be up to 2*INPUT_WIDTH bits wide.
+	-- The sum of four of these products can be up to 2 bits wider.
+	signal mult_sum : signed ((2*INPUT_WIDTH+1) downto 0);
+
+	signal accum_reg : signed ((OUTPUT_WIDTH-1) downto 0);
+
+	-- At least one product (of the four we're adding together)
+	-- must be as wide as the sum
+	signal resized_a_times_b : signed ((2*INPUT_WIDTH+1) downto 0);
+	signal resized_e_times_f : signed ((2*INPUT_WIDTH+1) downto 0);
+begin
+
+	-- Resize the product a*b so we won't lose carry bits when adding
+	resized_a_times_b <= RESIZE(a * b, 2*INPUT_WIDTH+2);
+	resized_e_times_f <= RESIZE(e * f, 2*INPUT_WIDTH+2);
+
+	-- Store the results of the operations on the current inputs
+	mult_sum <= (resized_a_times_b + c *d) + (resized_e_times_f + g * h);
+
+	-- Store the value of the accumulation in a register
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+			if (ena = '1') then
+				if (aclr = '1') then
+					accum_reg <= RESIZE(mult_sum, accum_reg'length);
+				else
+					accum_reg <= accum_reg + mult_sum;
+				end if;
+			end if;
+		end if;
+	end process;
+
+	dataout <= accum_reg;
+end rtl;

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-False-Paths
+# key: qpp-Exceptions-False-Paths
+# --
+// False Paths
+set_false_path -from [__collectionCommand __listOfWildcards] -to [__collectionCommand __listOfWildcards]

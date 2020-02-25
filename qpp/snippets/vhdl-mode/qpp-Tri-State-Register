@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: qpp-Tri-State-Register
+# key: qpp-Tri-State-Tri-State-Register
+# --
+// Tri-State Register
+process (<clock_signal>, <asynch_output_enable>)
+begin
+	if (<asynch_output_enable> = '0') then
+		<bidir_variable> <= 'Z';
+	else
+		if (rising_edge(<clock_signal>)) then
+			if (<output_enable> = '0') then
+				<bidir_variable> <= 'Z';
+			else
+				<bidir_variable> <= <data>;
+			end if;
+		end if;
+	end if;
+end process;

@@ -1,0 +1,55 @@
+# -*- mode: snippet -*-
+# name: qpp-Hyper-Pipelining-Variable-Latency-Module
+# key: qpp-Pipelining-Hyper-Pipelining-Variable-Latency-Module
+# --
+// Hyper-Pipelining Variable Latency Module
+-- Quartus Prime VHDL Template
+--
+-- Hyper-Pipelining Variable Latency Module
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity hyperpipe_vlat is
+
+	generic
+	(
+		WIDTH     : integer := 1;
+		MAX_PIPE  : integer := 100 -- Valid range: 0 to 100 inclusive
+	);
+
+	port
+	(
+		clk    : in  std_logic;
+		din    : in  std_logic_vector(WIDTH-1 downto 0);
+		dout   : out std_logic_vector(WIDTH-1 downto 0)
+	);
+
+end entity;
+
+architecture rtl of hyperpipe_vlat is
+
+	signal vlat_r: std_logic_vector(WIDTH-1 downto 0);
+
+	attribute preserve : boolean;
+	attribute preserve of vlat_r: signal is true;
+
+	attribute altera_attribute : string;
+	-- Capping the value of MAX_PIPE to 100 because MAX_PIPE > 100 could cause errors
+	constant MAX_PIPE_CAPPED: integer range 0 to 100 := MAX_PIPE;
+
+	-- Converting MAX_PIPE_CAPPED to string so it can be used as a string when setting altera_attribute
+	attribute altera_attribute of vlat_r: signal is "-name ADV_NETLIST_OPT_ALLOWED NEVER_ALLOW; -name HYPER_RETIMER_ADD_PIPELINING " & INTEGER'IMAGE(MAX_PIPE_CAPPED);
+
+begin
+
+	process (clk)
+	begin
+		if (rising_edge(clk)) then
+			vlat_r <= din;
+		end if;
+	end process;
+
+	dout <= vlat_r;
+
+end rtl;

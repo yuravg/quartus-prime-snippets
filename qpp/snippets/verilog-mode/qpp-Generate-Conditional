@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# name: qpp-Generate-Conditional
+# key: qpp-Generates-Generate-Conditional
+# --
+// Generate Conditional
+// A <constant_expression> may only involve constant literals, parameters,
+// genvars, or constant function calls.
+
+// If
+if (<constant_expression>)
+begin : <if_block_name>
+	// Generate Items
+end
+
+// If-Else
+if(<constant_expression>)
+begin : <if_block_name>
+	// Generate Items
+end
+else
+begin : <else_block_name>
+	// Generate Items
+end
+
+// NOTE: Block names are optional but Altera recommends them.

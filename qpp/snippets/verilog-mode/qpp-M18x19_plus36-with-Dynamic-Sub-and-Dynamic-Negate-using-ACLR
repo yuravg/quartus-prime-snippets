@@ -1,0 +1,215 @@
+# -*- mode: snippet -*-
+# name: qpp-M18x19_plus36-with-Dynamic-Sub-and-Dynamic-Negate-using-ACLR
+# key: qpp-DSP-Features-for-10-nm-Device-M18x19_plus36-with-Dynamic-Sub-and-Dynamic-Negate-using-ACLR
+# --
+// M18x19_plus36 with Dynamic Sub and Dynamic Negate using ACLR
+// Quartus Prime Verilog Template
+// 18x19_plus36 with full registers (input, pipeline and output) using asynchronous clear + dynamic add/sub + dynamic negate
+// Formula: final_output[t] = ((a1[t-5]*b1[t-5])+/-c1[t-5]) +/- ((a2[t-4]*b2[t-4])+/-c2[t-4])
+// For use with 10-nm device families
+// All registers support asynchronous or synchronous clear but all registers within the same design must use the same clear type
+// When synchronous clear is used, the ena signal has a higher priority than the clear signal
+// Synchronizer register identification is disabled in all registers used in this template to ensure the DSP block's internal registers are fully packed for maximum DSP performance (fMAX). Ensure proper timing constraints are done if this template is used in asynchronous clock domains to avoid potential metastability issue. For more information on managing metastability in Quartus, refer to https://www.altera.co.jp/ja_JP/pdfs/literature/hb/qts/qts_qii51018.pdf
+
+module m18x19_plus36_full_regs_dynSub_dynNegate_10nm #(
+	// This template will only work for (AxB)+C where the AxB data width range from 2x2 to 18x19, and the add add/sub data input (C) data width range from 2 to 36
+	parameter A_WIDTH = 18, B_WIDTH = 19, C_WIDTH = 36,
+	// The formula for the output width of one (AxB)+C should be either (A_WIDTH+B_WIDTH+1) or (C_WIDTH+1), whichever is larger.
+	parameter SUM_OUTPUT_WIDTH = (A_WIDTH+B_WIDTH+1),
+	// This example uses n=2 multipliers, hence the final output width is SUM_OUTPUT_WIDTH + (n-1)
+	parameter FINAL_OUTPUT_WIDTH = SUM_OUTPUT_WIDTH +1
+) (
+	// Data input ports
+	input signed [A_WIDTH-1:0] a1,
+	input signed [A_WIDTH-1:0] a2,
+	input signed [B_WIDTH-1:0] b1,
+	input signed [B_WIDTH-1:0] b2,
+	input signed [C_WIDTH-1:0] c1,
+	input signed [C_WIDTH-1:0] c2,
+
+	// Register clock and control signals
+	// DSP supports single clock, 3 ena and 2 async reset signals
+	input clock,
+	input ena1,
+	input ena2,
+	input ena3,
+	input aclr1,
+	input aclr2,
+
+	// Dynamic addition and subtraction control signals
+	input addnsub1,
+	input addnsub2,
+	input negate,
+
+	// Output signal
+	// Max output width for chaining is 64
+	output signed [FINAL_OUTPUT_WIDTH-1:0] final_output
+);
+
+	// Multiplier Result
+	wire signed [A_WIDTH+B_WIDTH-1:0] m1, m2;
+	// 18x19_plus36 Result
+	wire signed [SUM_OUTPUT_WIDTH-1:0] s1, s2;
+
+	// Data Input Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [A_WIDTH-1:0] a1_reg, a2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [B_WIDTH-1:0] b1_reg, b2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [C_WIDTH-1:0] c1_reg, c2_reg;
+
+	// Data Input Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [A_WIDTH-1:0] a1_pipeline1_reg, a2_pipeline1_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [B_WIDTH-1:0] b1_pipeline1_reg, b2_pipeline1_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [C_WIDTH-1:0] c1_pipeline1_reg, c2_pipeline1_reg;
+
+	// Data Second Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [A_WIDTH-1:0] a1_pipeline2_reg, a2_pipeline2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [B_WIDTH-1:0] b1_pipeline2_reg, b2_pipeline2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [C_WIDTH-1:0] c1_pipeline2_reg, c2_pipeline2_reg;
+
+	// Sub Input Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg addnsub1_reg, addnsub2_reg;
+
+	// Sub Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg addnsub1_pipeline1_reg, addnsub2_pipeline1_reg;
+
+	// Sub Second Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg addnsub1_pipeline2_reg, addnsub2_pipeline2_reg;
+
+	// Negate Input Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg negate_reg;
+
+	// Negate Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg negate_pipeline1_reg;
+
+	// Negate Second Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg negate_pipeline2_reg;
+
+	// Output Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [SUM_OUTPUT_WIDTH-1:0] s1_output_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [FINAL_OUTPUT_WIDTH-1:0] s_reg;
+
+	// Input register (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All input registers must use the same reset signal,
+	// Each DATA input register may have different ena signal.
+	// The DYNAMIC CONTROL SIGNAL input registers(e.g. sub and negate) can have different ena signal than that of the DATA input register.
+	// However all DYNAMIC CONTROL SIGNAL input registers must share the same ena signal.
+	always @(posedge clock or posedge aclr1) begin
+		if (aclr1) begin
+			// Input registers (for DATA)
+			a1_reg <= 0;
+			b1_reg <= 0;
+			c1_reg <= 0;
+			a2_reg <= 0;
+			b2_reg <= 0;
+			c2_reg <= 0;
+			// Input registers (for DYNAMIC CONTROL SIGNAL)
+			addnsub1_reg <= 0;
+			addnsub2_reg <= 0;
+			negate_reg <= 0;
+		end else if (ena1) begin
+			a1_reg <= a1;
+			b1_reg <= b1;
+			c1_reg <= c1;
+			a2_reg <= a2;
+			b2_reg <= b2;
+			c2_reg <= c2;
+			addnsub1_reg <= addnsub1;
+			addnsub2_reg <= addnsub2;
+			negate_reg <= negate;
+		end
+	end
+
+	// Input pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All input pipeline registers must use the same {ena, reset}
+	// The input pipeline register bank must use the same reset as the second pipeline and output register banks
+	// The DYNAMIC CONTROL SIGNAL input pipeline registers can be bypassed differently
+	always @(posedge clock or posedge aclr2) begin
+		if (aclr2) begin
+			a1_pipeline1_reg <= 0;
+			b1_pipeline1_reg <= 0;
+			c1_pipeline1_reg <= 0;
+			a2_pipeline1_reg <= 0;
+			b2_pipeline1_reg <= 0;
+			c2_pipeline1_reg <= 0;
+			addnsub1_pipeline1_reg <= 0;
+			addnsub2_pipeline1_reg <= 0;
+			negate_pipeline1_reg <= 0;
+		end else if (ena2) begin
+			a1_pipeline1_reg <= a1_reg;
+			b1_pipeline1_reg <= b1_reg;
+			c1_pipeline1_reg <= c1_reg;
+			a2_pipeline1_reg <= a2_reg;
+			b2_pipeline1_reg <= b2_reg;
+			c2_pipeline1_reg <= c2_reg;
+			addnsub1_pipeline1_reg <= addnsub1_reg;
+			addnsub2_pipeline1_reg <= addnsub2_reg;
+			negate_pipeline1_reg <= negate_reg;
+		end
+	end
+
+	// Second pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All second pipeline registers must use the same {ena, reset}
+	// The second pipeline register bank must use the same reset as the input pipeline and output register banks
+	// The DYNAMIC CONTROL SIGNAL second pipeline registers can be bypassed independently
+	always @(posedge clock or posedge aclr2) begin
+		if (aclr2) begin
+			a1_pipeline2_reg <= 0;
+			b1_pipeline2_reg <= 0;
+			c1_pipeline2_reg <= 0;
+			a2_pipeline2_reg <= 0;
+			b2_pipeline2_reg <= 0;
+			c2_pipeline2_reg <= 0;
+			addnsub1_pipeline2_reg <= 0;
+			addnsub2_pipeline2_reg <= 0;
+			negate_pipeline2_reg <= 0;
+		end else if (ena2) begin
+			a1_pipeline2_reg <= a1_pipeline1_reg;
+			b1_pipeline2_reg <= b1_pipeline1_reg;
+			c1_pipeline2_reg <= c1_pipeline1_reg;
+			a2_pipeline2_reg <= a2_pipeline1_reg;
+			b2_pipeline2_reg <= b2_pipeline1_reg;
+			c2_pipeline2_reg <= c2_pipeline1_reg;
+			addnsub1_pipeline2_reg <= addnsub1_pipeline1_reg;
+			addnsub2_pipeline2_reg <= addnsub2_pipeline1_reg;
+			negate_pipeline2_reg <= negate_pipeline1_reg;
+		end
+	end
+
+	// Output register
+	// The output register bank must share the same reset with input pipeline and second pipeline register banks
+	always @(posedge clock or posedge aclr2) begin
+		if (aclr2) begin
+			s1_output_reg <= 0;
+			s_reg <= 0;
+		end else if (ena3) begin
+			s1_output_reg <= s1;
+
+			// Dynamic negate
+			if (negate_pipeline2_reg) begin
+				s_reg <= s1_output_reg - s2;
+			end else begin
+				s_reg <= s1_output_reg + s2;
+			end
+		end
+	end
+
+	// Multiplier
+	assign m1 = (a1_pipeline2_reg * b1_pipeline2_reg);
+	assign m2 = (a2_pipeline2_reg * b2_pipeline2_reg);
+
+	// First 18x19_plus36
+	// Dynamic add/sub
+	// Addend must be the first operand
+	assign s1 = addnsub1_pipeline2_reg?
+					(c1_pipeline2_reg - m1) : (c1_pipeline2_reg + m1);
+
+	// Second 18x19_plus36
+	// Dynamic add/sub
+	// Addend must be the first operand
+	assign s2 = addnsub2_pipeline2_reg?
+					(c2_pipeline2_reg - m2) : (c2_pipeline2_reg + m2);
+
+	// Final output
+	assign final_output = s_reg;
+
+endmodule

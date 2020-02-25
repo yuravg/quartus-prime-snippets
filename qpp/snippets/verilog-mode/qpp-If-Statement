@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: qpp-If-Statement
+# key: qpp-Sequential-Statements-If-Statement
+# --
+// If Statement
+if(<expression>)
+begin
+	// Statements
+end
+
+if(<expression>)
+begin
+	// Statements
+end
+else
+begin
+	// Statements
+end

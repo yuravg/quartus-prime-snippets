@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: qpp-Basic-Positive-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
+# key: qpp-Registers-Basic-Positive-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
+# --
+// Basic Positive Edge Register with Asynchronous Reset and Clock Enable
+process (<clock_signal>, <reset>)
+begin
+	-- Reset whenever the reset signal goes low, regardless of the clock
+	-- or the clock enable
+	if (reset = '0') then
+		<register_variable> <= '0';
+	-- If not resetting, and the clock signal is enabled on this register,
+	-- update the register output on the clock's rising edge
+	elsif (rising_edge(<clock_signal>)) then
+		if (<clock_enable> = '1') then
+			<register_variable> <= <data>;
+		end if;
+	end if;
+end process;

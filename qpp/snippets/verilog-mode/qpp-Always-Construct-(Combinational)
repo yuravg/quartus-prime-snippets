@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Always-Construct-(Combinational)
+# key: qpp-Module-Items-Always-Construct-(Combinational)
+# --
+// Always Construct (Combinational)
+always@(*)
+begin
+	// Statements
+end

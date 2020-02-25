@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: qpp-alt_outbuf_diff
+# key: qpp-Buffers-alt_outbuf_diff
+# --
+// alt_outbuf_diff
+	// <data_out_pos> and <data_out_neg> must be declared as output pins
+	alt_outbuf_diff <instance_name> (.i(<data_in>), .o(<data_out_pos>), .obar(<data_out_neg>));
+
+	defparam <instance_name>.io_standard = "none";
+	defparam <instance_name>.current_strength = "none";
+	defparam <instance_name>.current_strength_new = "none";
+	defparam <instance_name>.slew_rate = -1;
+	defparam <instance_name>.location = "none";
+	defparam <instance_name>.enable_bus_hold = "none";
+	defparam <instance_name>.weak_pull_up_resistor = "none";
+	defparam <instance_name>.termination = "none";

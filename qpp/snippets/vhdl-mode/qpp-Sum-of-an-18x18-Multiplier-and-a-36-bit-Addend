@@ -1,0 +1,47 @@
+# -*- mode: snippet -*-
+# name: qpp-Sum-of-an-18x18-Multiplier-and-a-36-bit-Addend
+# key: qpp-DSP-Features-for-28-nm-Device-Sum-of-an-18x18-Multiplier-and-a-36-bit-Addend
+# --
+// Sum of an 18x18 Multiplier and a 36-bit Addend
+-- Quartus Prime VHDL Template
+-- Sum of an 18x18 multiplier and a 36-bit addend
+-- For use with the 28-nm device families
+
+-- This template is applicable to 36+18x18 mode on Stratix-V
+-- This template is applicable to 36+18x19(signed) mode on Arria-V and Cyclone-V
+-- Note that the addend shouldn't be from another multiplier
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity plus36_18x18 is
+	generic
+	(
+		A_WIDTH : natural := 18;
+		B_WIDTH : natural := 18
+	);
+
+	port
+	(
+		a	   : in signed	((A_WIDTH-1) downto 0);
+		b	   : in signed	((B_WIDTH-1) downto 0);
+		addend : in signed ((A_WIDTH+B_WIDTH-1) downto 0);
+		p : out signed ((A_WIDTH+B_WIDTH) downto 0)
+	);
+
+end entity;
+
+architecture rtl of plus36_18x18 is
+
+signal p1 : signed ((A_WIDTH+B_WIDTH-1) downto 0);
+
+begin
+
+	p1 <= a * b;
+
+	-- addend must be the first operand
+	-- Static add/sub is supported
+	p <= resize(addend, A_WIDTH+B_WIDTH+1) - resize(p1, A_WIDTH+B_WIDTH+1);
+
+end rtl;

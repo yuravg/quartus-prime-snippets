@@ -1,0 +1,37 @@
+# -*- mode: snippet -*-
+# name: qpp-Variable-Declaration
+# key: qpp-Declarations-Variable-Declaration
+# --
+// Variable Declaration
+// A variable stores a value.  It may be assigned a value in a
+// sequential block but not in a continous assignment.  Variables
+// may be referenced in most expressions, except for expressions
+// in port connections to module inout and output ports.
+
+// NOTE: reg is a type of variable that models both combinational
+// or sequential logic.  It does not indicate that Quartus Prime
+// should infer a hardware register, which occurs when an variable
+// is assigned a value inside an edge-controlled always construct.
+
+// Scalar reg
+reg <variable_name>;
+
+// Scalar reg with initial value.  If the variable has no assigned value,
+// Quartus Prime Integrated Synthesis will use the initial value.  Integrated
+// Synthesis will also infer power-up conditions for registers and memories
+// from the initial value.
+reg <variable_name> = <initial_value>;
+
+// Unsigned vector
+reg [<msb>:<lsb>] <variable_name>;
+reg [<msb>:<lsb>] <variable_name> = <initial_value>;
+
+// Signed vector
+reg signed [<msb>:<lsb>] <variable_name>;
+reg signed [<msb>:<lsb>] <variable_name> = <initial_value>;
+
+// 2-D array.
+reg [<msb>:<lsb>] <variable_name>[<msb>:<lsb>];
+
+// 32-bit signed integer
+integer <variable_name>;

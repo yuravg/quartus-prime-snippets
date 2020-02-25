@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Concat-Command
+# key: qpp-Commands-Concat-Command
+# --
+// Concat Command
+concat __list1 __list2;

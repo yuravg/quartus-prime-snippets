@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: qpp-alt_iobuff
+# key: qpp-Buffers-alt_iobuff
+# --
+// alt_iobuff
+	alt_iobuff <instance_name> (
+					.i(<data_in>),
+					.oe(<enable_signal>),
+					.o(<data_out>),
+					.io(<bidir>)	//<bidir> must be declared as an inout pin
+					);
+
+	defparam <instance_name>.io_standard = "3.3-V PCI";
+	defparam <instance_name>.current_strength = "minimum current";
+	defparam <instance_name>.slow_slew_rate = "on";
+	defparam <instance_name>.location = "IOBANK_1";
+	defparam <instance_name>.enable_bus_hold = "on";
+	defparam <instance_name>.weak_pull_up_resistor = "off";
+	defparam <instance_name>.termination = "series 50 ohms";

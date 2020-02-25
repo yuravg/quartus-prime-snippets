@@ -1,0 +1,62 @@
+# -*- mode: snippet -*-
+# name: qpp-Single-Port-RAM
+# key: qpp-RAMs-and-ROMs-Single-Port-RAM
+# --
+// Single-Port RAM
+-- Quartus Prime VHDL Template
+-- Single port RAM with single read/write address
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity single_port_ram is
+
+	generic
+	(
+		DATA_WIDTH : natural := 8;
+		ADDR_WIDTH : natural := 6
+	);
+
+	port
+	(
+		clk		: in std_logic;
+		addr	: in natural range 0 to 2**ADDR_WIDTH - 1;
+		data	: in std_logic_vector((DATA_WIDTH-1) downto 0);
+		we		: in std_logic := '1';
+		q		: out std_logic_vector((DATA_WIDTH -1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of single_port_ram is
+
+	-- Build a 2-D array type for the RAM
+	subtype word_t is std_logic_vector((DATA_WIDTH-1) downto 0);
+	type memory_t is array(2**ADDR_WIDTH-1 downto 0) of word_t;
+
+	-- Declare the RAM signal.
+	signal ram : memory_t;
+
+begin
+
+	process(clk)
+	begin
+	if(rising_edge(clk)) then
+		-- Read returns OLD data. To return NEW data, use the following code:
+		-- if(we = '1') then
+		--     ram(addr) <= data;
+		--     q <= data;
+		-- else
+		--     q <= ram(addr);
+		-- end if;
+		-- NOTE: NEW data requires extra bypass logic around the RAM on Stratix10.
+
+		if(we = '1') then
+			ram(addr) <= data;
+		end if;
+		q <= ram(addr);
+
+		end if;
+	end process;
+
+end rtl;

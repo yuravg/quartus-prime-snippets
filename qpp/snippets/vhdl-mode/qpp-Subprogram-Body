@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Subprogram-Body
+# key: qpp-Type-and-Subtype-Declarations-Subprogram-Body
+# --
+// Subprogram Body
+<subprogram_decl> is
+	-- Declaration(s)
+begin
+	-- Statement(s)
+end;

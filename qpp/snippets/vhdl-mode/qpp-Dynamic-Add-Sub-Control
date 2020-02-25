@@ -1,0 +1,137 @@
+# -*- mode: snippet -*-
+# name: qpp-Dynamic-Add-Sub-Control
+# key: qpp-DSP-Features-for-28-nm-Device-Dynamic-Add-Sub-Control
+# --
+// Dynamic Add/Sub Control
+-- Quartus Prime VHDL Template
+-- Dynamic add/sub control
+-- For use with the 28-nm device families
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity dynamic_addsub is
+	generic
+	(
+		A_WIDTH : natural := 18;
+		B_WIDTH : natural := 18;
+		O_WIDTH : natural := 64
+	);
+
+	port
+	(
+		a1	   : in signed	((A_WIDTH-1) downto 0);
+		b1	   : in signed	((B_WIDTH-1) downto 0);
+		a2	   : in signed	((A_WIDTH-1) downto 0);
+		b2	   : in signed	((B_WIDTH-1) downto 0);
+		a3	   : in signed	((A_WIDTH-1) downto 0);
+		b3	   : in signed	((B_WIDTH-1) downto 0);
+		a4	   : in signed	((A_WIDTH-1) downto 0);
+		b4	   : in signed	((B_WIDTH-1) downto 0);
+		a5	   : in signed	((A_WIDTH-1) downto 0);
+		b5	   : in signed	((B_WIDTH-1) downto 0);
+		a6	   : in signed	((A_WIDTH-1) downto 0);
+		b6	   : in signed	((B_WIDTH-1) downto 0);
+		addnsub12			: in std_logic;
+		addnsub34			: in std_logic;
+		addnsub56			: in std_logic;
+		subnadd_chain34	: in std_logic;
+		subnadd_chain56	: in std_logic;
+		clock : in std_logic;
+		ena 	: in std_logic;
+		reset	: in std_logic;
+		s : out signed ((O_WIDTH-1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of dynamic_addsub is
+
+signal a1_reg, a2_reg, a3_reg, a4_reg, a5_reg, a6_reg : signed ((A_WIDTH-1) downto 0);
+signal b1_reg, b2_reg, b3_reg, b4_reg, b5_reg, b6_reg : signed ((B_WIDTH-1) downto 0);
+signal s12, s1234, s1234_reg, s_tmp : signed ((O_WIDTH-1) downto 0);
+
+--Dynamic add/sub can be used in basic modes: sum-of-2 18x18, 36+18x18, two level sum-of-4 18x18, sum-of-2 27x27 and sum-of-2 36x18.
+--Input and output signals of the dynamic add/sub operation must be explicitly defined.
+signal p1, p2, p3, p4, p5, p6 : signed ((A_WIDTH+B_WIDTH-1) downto 0);
+signal p12, p34, p56 : signed ((A_WIDTH+B_WIDTH) downto 0);
+
+begin
+
+	p1 <= a1_reg * b1_reg;
+	p2 <= a2_reg * b2_reg;
+	p3 <= a3_reg * b3_reg;
+	p4 <= a4_reg * b4_reg;
+	p5 <= a5_reg * b5_reg;
+	p6 <= a6_reg * b6_reg;
+
+	with addnsub12 select
+	p12 <= 	(resize(p1, A_WIDTH+B_WIDTH+1) + resize(p2, A_WIDTH+B_WIDTH+1)) when '1',
+				(resize(p1, A_WIDTH+B_WIDTH+1) - resize(p2, A_WIDTH+B_WIDTH+1)) when others;
+
+	with addnsub34 select
+	p34 <= 	(resize(p3, A_WIDTH+B_WIDTH+1) + resize(p4, A_WIDTH+B_WIDTH+1)) when '1',
+				(resize(p3, A_WIDTH+B_WIDTH+1) - resize(p4, A_WIDTH+B_WIDTH+1)) when others;
+
+	with addnsub56 select
+	p56 <= 	(resize(p5, A_WIDTH+B_WIDTH+1) + resize(p6, A_WIDTH+B_WIDTH+1)) when '1',
+				(resize(p5, A_WIDTH+B_WIDTH+1) - resize(p6, A_WIDTH+B_WIDTH+1)) when others;
+
+	with subnadd_chain34 select
+	s1234 <= 	(s12 - resize(p34, O_WIDTH)) when '1',
+					(s12 + resize(p34, O_WIDTH)) when others;
+
+	with subnadd_chain56 select
+	s_tmp <= 	(s1234_reg - resize(p56, O_WIDTH)) when '1',
+					(s1234_reg + resize(p56, O_WIDTH)) when others;
+
+
+
+--Dynamic add/sub is also applicable to chainout adder or accumulator (not both).
+--Dynamic add/sub is not applicable to 18x18 systolic mode.
+process(clock, reset)
+begin
+	if (reset = '1') then
+
+		a1_reg <= (others => '0');
+		a2_reg <= (others => '0');
+		a3_reg <= (others => '0');
+		a4_reg <= (others => '0');
+		a5_reg <= (others => '0');
+		a6_reg <= (others => '0');
+		b1_reg <= (others => '0');
+		b2_reg <= (others => '0');
+		b3_reg <= (others => '0');
+		b4_reg <= (others => '0');
+		b5_reg <= (others => '0');
+		b6_reg <= (others => '0');
+		s12 <= (others => '0');
+		s1234_reg <= (others => '0');
+		s <= (others => '0');
+
+	elsif rising_edge(clock) then
+
+		if (ena = '1') then
+			a1_reg <= a1;
+			a2_reg <= a2;
+			a3_reg <= a3;
+			a4_reg <= a4;
+			a5_reg <= a5;
+			a6_reg <= a6;
+			b1_reg <= b1;
+			b2_reg <= b2;
+			b3_reg <= b3;
+			b4_reg <= b4;
+			b5_reg <= b5;
+			b6_reg <= b6;
+			s12 <= resize(p12, O_WIDTH);
+			s1234_reg <= s1234;
+			s <= s_tmp;
+		end if;
+
+	end if;
+
+end process;
+
+end rtl;

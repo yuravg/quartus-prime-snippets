@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: qpp-Package-Body
+# key: qpp-Design-Units-Package-Body
+# --
+// Package Body
+
+package body <package_name> is
+
+	-- Type Declaration (optional)
+
+	-- Subtype Declaration (optional)
+
+	-- Constant Declaration (optional)
+
+	-- Function Declaration (optional)
+
+	-- Function Body (optional)
+
+	-- Procedure Declaration (optional)
+
+	-- Procedure Body (optional)
+
+end <package_name>;

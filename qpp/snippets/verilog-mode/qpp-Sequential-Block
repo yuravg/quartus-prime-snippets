@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: qpp-Sequential-Block
+# key: qpp-Loops-Sequential-Block
+# --
+// Sequential Block
+// Named blocks may include declarations at the beginning
+begin : <block_name>
+	// Optional Declarations
+	// Statements
+end
+
+// Anonymous blocks may not include declarations according to
+// the Verilog-2001 standard, which states that they do not define
+// a new scope.  However, Quartus Prime does create scopes for anonymous blocks
+// and allows declarations at the beginning.  The declared objects cannot
+// be referenced from outside the block.  Not all tools support this
+// non-standard Verilog behavior, but it is available a standard feature
+// in SystemVerilog.
+begin
+	// Optional Declarations
+	// Statements
+end

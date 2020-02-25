@@ -1,0 +1,40 @@
+# -*- mode: snippet -*-
+# name: qpp-Hyper-Pipelining-Module
+# key: qpp-Pipelining-Hyper-Pipelining-Module
+# --
+// Hyper-Pipelining Module
+// Quartus Prime SystemVerilog Template
+//
+// Hyper-Pipelining Module
+
+(* altera_attribute = "-name AUTO_SHIFT_REGISTER_RECOGNITION off" *)
+module hyperpipe
+	#(parameter int
+		CYCLES = 1,
+		PACKED_WIDTH = 1,
+		UNPACKED_WIDTH = 1
+)
+(
+	input clk,
+	input [PACKED_WIDTH-1:0] din [UNPACKED_WIDTH-1:0],
+	output [PACKED_WIDTH-1:0] dout [UNPACKED_WIDTH-1:0]
+);
+
+	generate if (CYCLES == 0) begin : GEN_COMB_INPUT
+		assign dout = din;
+	end
+	else begin : GEN_REG_INPUT
+		integer i;
+		reg [PACKED_WIDTH-1:0] R_data [CYCLES-1:0][UNPACKED_WIDTH-1:0];
+
+		always_ff@(posedge clk)
+		begin
+			R_data[0] <= din;
+			for(i = 1; i < CYCLES; i = i + 1)
+				R_data[i] <= R_data[i-1];
+		end
+		assign dout = R_data[CYCLES-1];
+	end
+	endgenerate
+
+endmodule : hyperpipe

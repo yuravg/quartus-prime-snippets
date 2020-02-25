@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-For-Statement
+# key: qpp-Commands-For-Statement
+# --
+// For Statement
+for __initial { __test } __final {
+	__statement;
+	__statement;
+}

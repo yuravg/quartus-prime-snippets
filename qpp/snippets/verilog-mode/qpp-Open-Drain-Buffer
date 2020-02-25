@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Open-Drain-Buffer
+# key: qpp-Tri-State-Open-Drain-Buffer
+# --
+// Open-Drain Buffer
+// An open-drain buffer is similar to a tri-state buffer, but only has one
+// possible output (GND).  If the output is not enabled, the "output" is set
+// to high-impedence.
+inout <bidir_variable>;
+assign <bidir_variable> = (<output_enable> ? 1'b0 : 1'bZ);

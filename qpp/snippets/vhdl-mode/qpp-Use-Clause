@@ -1,0 +1,40 @@
+# -*- mode: snippet -*-
+# name: qpp-Use-Clause
+# key: qpp-Design-Units-Use-Clause
+# --
+// Use Clause
+-- Use clauses import declarations into the current scope.
+-- If more than one use clause imports the same name into the
+-- the same scope, none of the names are imported.
+
+-- Import all the declarations in a package
+use <library_name>.<package_name>.all;
+
+-- Import a specific declaration from a package
+use <library_name>.<package_name>.<object_name>;
+
+-- Import a specific entity from a library
+use <library_name>.<entity_name>;
+
+-- Import from the work library.  The work library is an alias
+-- for the library containing the current design unit.
+use work.<package_name>.all;
+
+
+-- Commonly imported packages:
+
+	-- STD_LOGIC and STD_LOGIC_VECTOR types, and relevant functions
+	use ieee.std_logic_1164.all;
+
+	-- SIGNED and UNSIGNED types, and relevant functions
+	use ieee.numeric_std.all;
+
+	-- Basic sequential functions and concurrent procedures
+	use ieee.VITAL_Primitives.all;
+
+	-- Library of Parameterized Modules:
+	-- customizable, device-independent logic functions
+	use lpm.lpm_components.all;
+
+	-- Altera Megafunctions
+	use altera_mf.altera_mf_components.all;

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-PLL-Clock-Switchover
+# key: qpp-SDC-Cookbook-PLL-Clock-Switchover
+# --
+// PLL Clock Switchover
+# Create the first input clock to the PLL
+create_clock -period __period -name __nameOfFirstClock [get_ports __firstClockPort]
+# Create the second input clock to the PLL
+create_clock -period __period -name __nameOfSecondClock [get_ports __secondClockPort]
+# Automatically create clocks for the PLL output
+# The derive_pll_clocks command makes the proper clock constraints for clock-switchover
+derive_pll_clocks

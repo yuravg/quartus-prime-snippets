@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qpp-Assignment-Patterns
+# key: qpp-Expressions-Assignment-Patterns
+# --
+// Assignment Patterns
+// Assignment patterns are used to construct values for unpacked
+// arrays and structs.  They resemble concatenations except that
+// the opening brace is preceded by an apostrophe.
+
+int array_of_ints[1:0] = '{1, 1};
+struct { int a, b; } a_struct = '{1, 1};

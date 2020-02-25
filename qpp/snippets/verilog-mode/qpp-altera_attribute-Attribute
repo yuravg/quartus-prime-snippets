@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: qpp-altera_attribute-Attribute
+# key: qpp-Synthesis-Attributes-altera_attribute-Attribute
+# --
+// altera_attribute Attribute
+// Associates arbitrary Quartus Prime assignments with objects in your HDL
+// source.  Each assignment uses the QSF format, and you can associate
+// multiple assignments by separating them with ";".
+
+// Preserve all registers in this hierarchy
+(* altera_attribute = "-name PRESERVE_REGISTER on" *) module <name>(...);
+
+// Cut timing paths from register q1 to register q2
+(* altera_attribute = "-name CUT on -from q1" *) reg q2;
+
+// Assign I/O standard to a pin
+module top(
+(* altera_attribute = "-name IO_STANDARD \"3.3-V LVCMOS\"" *) input in,
+(* altera_attribute = "-name IO_STANDARD LVDS" *) input clk,
+	output out); // out will get the default I/O standard for the device

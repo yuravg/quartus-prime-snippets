@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Extern-Module-Declaration
+# key: qpp-Interfaces-Extern-Module-Declaration
+# --
+// Extern Module Declaration
+// An extern module declaration specifies the module's parameters
+// and ports.  It provides a prototype for a module that does not
+// depend directly on the module declaration.
+extern module <module_name> #(<parameters>) (<ports>);

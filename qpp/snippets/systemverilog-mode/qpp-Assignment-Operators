@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: qpp-Assignment-Operators
+# key: qpp-Expressions-Assignment-Operators
+# --
+// Assignment Operators
+// SystemVerilog supports the assignment operators
+
+// arithmetic
+	++
+	--
+	+=
+	-=
+	*=
+	/=
+	%=
+
+// logical
+	&=
+	^=
+	|=
+	<<=
+	>>=
+	<<<=
+	>>>=

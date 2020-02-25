@@ -1,0 +1,193 @@
+# -*- mode: snippet -*-
+# name: qpp-M27x27-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant-using-ACLR
+# key: qpp-DSP-Features-for-10-nm-Device-M27x27-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant-using-ACLR
+# --
+// M27x27 with Input Cascade, Output Chaining, Accumulator, Double Accumulator and Preload Constant using ACLR
+// Quartus Prime Verilog Template
+// m27x27 multiplier with full registers (input, 2 pipeline stages and output) using asynchronous clear + input cascade chain (and input delay register) + chainout adder + accumulate + double accumulate + preload constant
+// Formula: final_output[t] = acc_sel + a1[t-5]*b1[t-5] + a2[t-4]*b1[t-5]
+//          where acc_sel = final_output[t-2] or preload_value or 0 depending on dynamic control inputs "accum" and "loadconst"
+//     Note: The Input Delay register is not supported in 27x27 mode.
+// For use with 10-nm device families
+// All registers support asynchronous or synchronous clear but all registers within the same design must use the same clear type
+// When synchronous clear is used, the ena signal has a higher priority than the clear signal
+// Synchronizer register identification is disabled in all registers used in this template to ensure the DSP block's internal registers are fully packed for maximum DSP performance (fMAX). Ensure proper timing constraints are done if this template is used in asynchronous clock domains to avoid potential metastability issue. For more information on managing metastability in Quartus, refer to https://www.altera.co.jp/ja_JP/pdfs/literature/hb/qts/qts_qii51018.pdf
+
+module m27x27_full_regs_inputcascade_chainoutadder_acc_doubleacc_preloadConst_10nm #(
+	// This template will only work where one of the two multiplier operands(signed A and signed B) data width falls within >19 and <=27.
+	parameter A_WIDTH = 27, B_WIDTH = 27,
+
+	// PRELOAD_VALUE can be 2 power of N, which N should less than 64
+	// PRELOAD_VALUE should contain only one bit 1
+	parameter PRELOAD_VALUE = 'h400,
+
+	// Maximum chain width is 64
+	parameter CHAIN_WIDTH = 64,
+
+	// Double accumulation enable control parameter
+	parameter enable_double_accum = "TRUE"
+) (
+	// Data input ports
+	input signed [A_WIDTH-1:0] a1,
+	input signed [A_WIDTH-1:0] a2,
+	input signed [B_WIDTH-1:0] b1,
+
+	// Register clock and control signals
+	// DSP supports single clock, 3 ena and 2 async reset signals
+	input clock,
+	input ena1,
+	input ena2,
+	input ena3,
+	input aclr1,
+	input aclr2,
+
+	// Dynamic ACCUMULATE and LOADCONST control signals
+	input accum,
+	input loadconst,
+
+	// Output signal
+	// Max output width for chaining is 64
+	output signed [CHAIN_WIDTH-1:0] final_output
+);
+
+	// Multiplier Result
+	wire signed [A_WIDTH+B_WIDTH-1:0] m1, m2;
+
+	// Data Input Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [A_WIDTH-1:0] a1_reg, a2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [B_WIDTH-1:0] b1_reg, b2_reg;
+
+	// Data Input Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [A_WIDTH-1:0] a1_pipeline1_reg, a2_pipeline1_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [B_WIDTH-1:0] b1_pipeline1_reg, b2_pipeline1_reg;
+
+	// Data Second Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [A_WIDTH-1:0] a1_pipeline2_reg, a2_pipeline2_reg;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [B_WIDTH-1:0] b1_pipeline2_reg, b2_pipeline2_reg;
+
+	// LOADCONST Input Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg loadconst_reg;
+
+	// LOADCONST Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg loadconst_pipeline1_reg;
+
+	// LOADCONST Second Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg loadconst_pipeline2_reg;
+
+	// ACCUMULATE Input Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg accum_reg;
+
+	// ACCUMULATE Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg accum_pipeline1_reg;
+
+	// ACCUMULATE Second Pipeline Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg accum_pipeline2_reg;
+
+	// Output Register
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [A_WIDTH+B_WIDTH-1:0] s1_output_reg;
+
+	// Accumulate, double acc
+	wire signed [CHAIN_WIDTH-1:0] selected_value, select_feedback;
+	wire signed [CHAIN_WIDTH-1:0] acc_sel;
+	(* altera_attribute = {" -name SYNCHRONIZER_IDENTIFICATION OFF "} *) reg signed [CHAIN_WIDTH-1:0] s_reg, s_double;
+
+	// accumulator path
+	assign acc_sel = accum_pipeline2_reg ? select_feedback : selected_value;
+	assign select_feedback = (enable_double_accum == "TRUE")? s_double: s_reg;
+	assign selected_value = loadconst_pipeline2_reg? PRELOAD_VALUE : 0;
+
+	// Input registers (for DATA and DYNAMIC CONTROL SIGNAL).
+	// All input registers must use the same reset signal,
+	// Each DATA input register may have different ena signal.
+	// The DYNAMIC CONTROL SIGNAL input registers(e.g. loadconst and accumulate) can have different ena signal than that of the DATA input register.
+	// But all DYNAMIC CONTROL SIGNAL input registers must share the same ena signal.
+	always @(posedge clock or posedge aclr1) begin
+		if (aclr1) begin
+			// Input registers (for DATA)
+			a1_reg <= 0;
+			b1_reg <= 0;
+			a2_reg <= 0;
+			b2_reg <= 0;
+			// Input registers (for DYNAMIC CONTROL SIGNAL)
+			loadconst_reg <= 0;
+			accum_reg <= 0;
+		end else if (ena1) begin
+			a1_reg <= a1;
+			b1_reg <= b1;
+			a2_reg <= a2;
+			b2_reg <= b1_reg;
+			loadconst_reg <= loadconst;
+			accum_reg <= accum;
+		end
+	end
+
+	// Input pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All input pipeline registers must use the same {ena, reset}
+	// The input pipeline register bank must use the same reset as the second pipeline and output register banks
+	// The DYNAMIC CONTROL SIGNAL input pipeline register can be bypassed independently
+	always @(posedge clock or posedge aclr2) begin
+		if (aclr2) begin
+			a1_pipeline1_reg <= 0;
+			b1_pipeline1_reg <= 0;
+			a2_pipeline1_reg <= 0;
+			b2_pipeline1_reg <= 0;
+			loadconst_pipeline1_reg <= 0;
+			accum_pipeline1_reg <= 0;
+		end else if (ena2) begin
+			a1_pipeline1_reg <= a1_reg;
+			b1_pipeline1_reg <= b1_reg;
+			a2_pipeline1_reg <= a2_reg;
+			b2_pipeline1_reg <= b2_reg;
+			loadconst_pipeline1_reg <= loadconst_reg;
+			accum_pipeline1_reg <= accum_reg;
+		end
+	end
+
+	// Second pipeline register (for DATA and DYNAMIC CONTROL SIGNAL)
+	// All second pipeline registers must use the same {ena, reset}
+	// The second pipeline register bank must use the same reset as the input pipeline and output register banks
+	// The DYNAMIC CONTROL SIGNAL second pipeline register can be bypassed independently
+	always @(posedge clock or posedge aclr2) begin
+		if (aclr2) begin
+			a1_pipeline2_reg <= 0;
+			b1_pipeline2_reg <= 0;
+			a2_pipeline2_reg <= 0;
+			b2_pipeline2_reg <= 0;
+			loadconst_pipeline2_reg <= 0;
+			accum_pipeline2_reg <= 0;
+		end else if (ena2) begin
+			a1_pipeline2_reg <= a1_pipeline1_reg;
+			b1_pipeline2_reg <= b1_pipeline1_reg;
+			a2_pipeline2_reg <= a2_pipeline1_reg;
+			b2_pipeline2_reg <= b2_pipeline1_reg;
+			loadconst_pipeline2_reg <= loadconst_pipeline1_reg;
+			accum_pipeline2_reg <= accum_pipeline1_reg;
+		end
+	end
+
+	// Output register
+	// The output register bank must share the same reset with input pipeline and second pipeline register banks
+	always @(posedge clock or posedge aclr2) begin
+		if (aclr2) begin
+			s1_output_reg <= 0;
+			s_reg <= 0;
+			s_double <= 0;
+		end else if (ena3) begin
+			// First 27x27 result. Support static add/sub
+			// Addend must be the first operand
+			s1_output_reg <= m1;
+			// Accumulate and chainout adder
+			s_reg <= acc_sel + (s1_output_reg + m2);
+			// Double Accumulate
+			s_double <= s_reg;
+		end
+	end
+
+	// Multiplier
+	assign m1 = (a1_pipeline2_reg * b1_pipeline2_reg);
+	assign m2 = (a2_pipeline2_reg * b2_pipeline2_reg);
+
+	// Final output
+	assign final_output = s_reg;
+
+endmodule

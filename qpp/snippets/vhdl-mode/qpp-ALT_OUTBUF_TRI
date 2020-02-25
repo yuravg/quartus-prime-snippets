@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: qpp-ALT_OUTBUF_TRI
+# key: qpp-Buffers-ALT_OUTBUF_TRI
+# --
+// ALT_OUTBUF_TRI
+-- Add the library and use clauses before the design unit declaration
+library altera;
+use altera.altera_primitives_components.all;
+-- Instantiating ALT_OUTBUF_TRI
+	<instance_name> : ALT_OUTBUF_TRI
+	generic map (
+			IO_STANDARD => "Differential 1.8-V SSTL Class I",
+			LOCATION => "IOBANK_2C",
+			CURRENT_STRENGTH => "8mA",
+			ENABLE_BUS_HOLD => "off",
+			WEAK_PULL_UP_RESISTOR => "off"
+			)
+	port map (
+			i => <data_in>,
+			oe => <enable_signal>,
+			o => <data_out>	  -- <data_out> must be declared as an output pin
+			);

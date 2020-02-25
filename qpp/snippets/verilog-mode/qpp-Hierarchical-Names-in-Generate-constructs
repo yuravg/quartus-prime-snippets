@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: qpp-Hierarchical-Names-in-Generate-constructs
+# key: qpp-Generates-Hierarchical-Names-in-Generate-constructs
+# --
+// Hierarchical Names in Generate constructs
+module generate_labels(input [1:0] a, b, output [1:0] o1, o2);
+genvar i;
+
+generate for(i = 0; i < 2; i = i + 1) begin: GEN_LOOP
+	case(i)
+		0: begin : GEN_CASE0
+		wire q = a[0] & b[0];
+		assign o1[0] = q;
+		end
+		1: begin : GEN_CASE1
+		wire q = a[1] & b[1];
+		assign o1[1] = q;
+		end
+	endcase
+end
+endgenerate
+// access objects defined inside the genrate loop by using their hierarchical name
+assign 	 o2[0] = GEN_LOOP[0].GEN_CASE0.q;
+assign 	 o2[1] = GEN_LOOP[1].GEN_CASE1.q;
+
+endmodule

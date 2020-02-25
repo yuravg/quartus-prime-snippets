@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Mixed-Width-Port-RAM
+# key: qpp-RAMs-and-ROMs-Mixed-Width-Port-RAM
+# --
+// Mixed-Width Port RAM
+// Quartus Prime Verilog Template
+//
+// To infer mixed-width RAMs, Quartus Prime requires multidimensional array support only
+// available in SystemVerilog.  See the SystemVerilog templates.

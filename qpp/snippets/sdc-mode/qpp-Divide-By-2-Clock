@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: qpp-Divide-By-2-Clock
+# key: qpp-Clocks-Divide-By-2-Clock
+# --
+// Divide-By-2 Clock
+create_generated_clock -name __name -divide_by 2 -source __source [get_pins __target]
+or
+create_generated_clock -name __name -edges {1 3 5} -source __source [get_pins __target]

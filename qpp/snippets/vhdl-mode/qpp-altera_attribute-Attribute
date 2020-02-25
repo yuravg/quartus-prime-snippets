@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: qpp-altera_attribute-Attribute
+# key: qpp-Synthesis-Attributes-altera_attribute-Attribute
+# --
+// altera_attribute Attribute
+-- Associates arbitrary Quartus Prime assignments with objects in your HDL
+-- source.  Each assignment uses the QSF format, and you can associate
+-- multiple assignments by separating them with ";".
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute altera_attribute : string;
+
+attribute altera_attribute of <object> : <object_class> is <string_value>;
+
+-- Preserve all registers in this hierarchy
+attribute altera_attribute of foo : entity is "-name PRESERVE_REGISTER on";
+
+-- Cut timing paths from register q1 to register q2
+signal q1, q2 : std_logic;
+attribute altera_attribute of q2 : signal is "-name CUT on -from q1";

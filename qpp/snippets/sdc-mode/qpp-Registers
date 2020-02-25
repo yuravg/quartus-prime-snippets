@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Registers
+# key: qpp-Collections-Registers
+# --
+// Registers
+set __name [get_registers __listOfWildcards]

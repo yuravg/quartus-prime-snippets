@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-tff
+# key: qpp-Registers-and-Latches-tff
+# --
+// tff
+	tff <instance_name> (
+				.t(<toggle_signal>),
+				.clk(<clock_signal>),
+				.clrn(<active_low_clear>),
+				.prn(<active_low_preset>),
+				.q(<data_out>)
+				);

@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: qpp-Array-Type-Declaration
+# key: qpp-Type-and-Subtype-Declarations-Array-Type-Declaration
+# --
+// Array Type Declaration
+-- Basic 1-D array type declaration
+type <name> is array(<range_expr>) of <subtype_indication>;
+
+-- Specify a multidimensional array in a single declaration
+type <name> is array(<range_expr>,..) of <subtype_indication>;
+
+-- Examples
+
+-- Declare array types with fixed ranges.
+type byte_t is array(7 downto 0) of std_logic;
+type mem_t	is array(7 downto 0) of std_logic_vector(7 downto 0);
+
+-- Declare an array type with an unconstrained range.  When
+-- you declare an object of this type, you can specify the
+-- range constraint in the subtype indication.
+type vector_t is array(natural range <>) of std_logic;

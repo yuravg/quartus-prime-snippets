@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: qpp-Sequential-Process
+# key: qpp-Concurrent-Statements-Sequential-Process
+# --
+// Sequential Process
+<optional_label>:
+	process(reset, clk) is
+		-- Declaration(s)
+	begin
+		if(reset = '1') then
+			-- Asynchronous Sequential Statement(s)
+		elsif(rising_edge(clk)) then
+			-- Synchronous Sequential Statement(s)
+		end if;
+	end process;

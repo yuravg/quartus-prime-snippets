@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: qpp-Hyper-Pipelining-Variable-Latency-Instantiation
+# key: qpp-Pipelining-Hyper-Pipelining-Variable-Latency-Instantiation
+# --
+// Hyper-Pipelining Variable Latency Instantiation
+-- Quartus Prime VHDL Template
+--
+-- Hyper-Pipelining Variable Latency Module
+
+-- Template Declaration
+component hyperpipe_vlat
+	generic (
+		WIDTH      : integer;
+		MAX_PIPE   : integer := 100 -- Valid range: 0 to 100 inclusive
+ 	);
+ 	port (
+ 		clk        : in std_logic;
+ 		din        : in std_logic_vector(WIDTH - 1 downto 0);
+ 		dout       : out std_logic_vector(WIDTH - 1 downto 0)
+ 	);
+end component;
+
+-- Instantiation Template:
+	hp : hyperpipe_vlat
+ 		generic map (
+ 			WIDTH => ,
+ 			MAX_PIPE =>
+ 		)
+ 		port map (
+ 			clk => ,
+ 			din => ,
+ 			dout =>
+ 		);

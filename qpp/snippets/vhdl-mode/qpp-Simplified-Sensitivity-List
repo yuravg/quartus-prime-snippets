@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qpp-Simplified-Sensitivity-List
+# key: qpp-VHDL-2008-Constructs-Simplified-Sensitivity-List
+# --
+// Simplified Sensitivity List
+<optional_label>:
+	process(all) is
+		-- Declaration(s)
+	begin
+		-- Sequential Statement(s)
+	end process;

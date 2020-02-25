@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qpp-If-Statement
+# key: qpp-Commands-If-Statement
+# --
+// If Statement
+if { __booleanExpr } {
+	__statement;
+	__statement;
+
+} else {
+	__statement;
+	__statement;
+}

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Lrange-Command
+# key: qpp-Commands-Lrange-Command
+# --
+// Lrange Command
+lrange __list __i __j;

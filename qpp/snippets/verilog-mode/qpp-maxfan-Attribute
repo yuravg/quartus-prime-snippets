@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-maxfan-Attribute
+# key: qpp-Synthesis-Attributes-maxfan-Attribute
+# --
+// maxfan Attribute
+// Sets the maximum number of fanouts for a register or combinational
+// cell.  The Quartus Prime software will replicate the cell and split
+// the fanouts among the duplicates until the fanout of each cell
+// is below the maximum.
+
+// Register q should have no more than 8 fanouts
+(* maxfan = 8 *) reg q;

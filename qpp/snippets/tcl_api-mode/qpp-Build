@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: qpp-Build
+# key: qpp-Commands-Build
+# --
+// Build
+# Make active the specified revision and start the build
+# Require package ::quartus::flow
+# Require package ::quartus::project
+set_current_revision __revision_name;
+execute_module -tool swb;

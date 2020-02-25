@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Lappend-Command
+# key: qpp-Commands-Lappend-Command
+# --
+// Lappend Command
+lappend __listVar __arg;

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: qpp-Externally-Switched-Clock-Constraints
+# key: qpp-SDC-Cookbook-Externally-Switched-Clock-Constraints
+# --
+// Externally Switched Clock Constraints
+# Create the first input clock on the clock port
+create_clock -period __period -name __nameOfFirstClock [get_ports __clockPort]
+# Create the second input clock on the same clock port
+create_clock -period __period -name __nameOfSecondClock [get_ports __clockPort] -add
+# Cut transfers between __nameOfFirstClock and __nameOfSecondClock
+set_clock_groups -exclusive -group {__nameOfFirstClock} -group {__nameOfSecondClock}

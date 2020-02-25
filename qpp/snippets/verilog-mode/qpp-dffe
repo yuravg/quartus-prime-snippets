@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: qpp-dffe
+# key: qpp-Registers-and-Latches-dffe
+# --
+// dffe
+	dffe <instance_name> (
+				.d(<data_in>),
+				.clk(<clock_signal>),
+				.clrn(<active_low_clear>),
+				.prn(<active_low_preset>),
+				.ena(<clock_enable>),
+				.q(<data_out>)
+				);

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Llength-Command
+# key: qpp-Commands-Llength-Command
+# --
+// Llength Command
+llength __list;

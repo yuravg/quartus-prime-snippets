@@ -1,0 +1,37 @@
+# -*- mode: snippet -*-
+# name: qpp-Hyper-Pipelining-Variable-Latency-Module
+# key: qpp-Pipelining-Hyper-Pipelining-Variable-Latency-Module
+# --
+// Hyper-Pipelining Variable Latency Module
+// Quartus Prime SystemVerilog Template
+//
+// Hyper-Pipelining Variable Latency Module
+
+module hyperpipe_vlat
+	#(parameter int
+		WIDTH = 1,
+		MAX_PIPE = 100 // Valid range: 0 to 100 inclusive
+)
+(
+	input clk,
+	input  [WIDTH-1:0] din,
+	output [WIDTH-1:0] dout
+);
+
+	// Capping the value of MAX_PIPE to 100 because MAX_PIPE > 100 could cause errors
+	localparam MAX_PIPE_CAPPED = (MAX_PIPE > 100) ? 100 : ((MAX_PIPE < 0) ? 0 : MAX_PIPE);
+
+	// Converting MAX_PIPE_CAPPED to string so it can be used as a string when setting altera_attribute
+	localparam MAX_PIPE_STR = {((MAX_PIPE_CAPPED / 100) % 10) + 8'd48, ((MAX_PIPE_CAPPED / 10) % 10) + 8'd48, (MAX_PIPE_CAPPED % 10) + 8'd48};
+
+	(* altera_attribute = {"-name ADV_NETLIST_OPT_ALLOWED NEVER_ALLOW; -name HYPER_RETIMER_ADD_PIPELINING ", MAX_PIPE_STR} *)
+	logic [WIDTH-1:0] vlat_r /* synthesis preserve */;
+
+	always_ff@(posedge clk)
+	begin
+		vlat_r <= din;
+	end
+
+	assign dout = vlat_r;
+
+endmodule : hyperpipe_vlat

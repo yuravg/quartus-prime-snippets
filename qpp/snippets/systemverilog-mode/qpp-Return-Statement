@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Return-Statement
+# key: qpp-Jump-Statements-Return-Statement
+# --
+// Return Statement
+return <expression>;

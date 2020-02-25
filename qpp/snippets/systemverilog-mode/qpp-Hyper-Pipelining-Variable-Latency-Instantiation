@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: qpp-Hyper-Pipelining-Variable-Latency-Instantiation
+# key: qpp-Pipelining-Hyper-Pipelining-Variable-Latency-Instantiation
+# --
+// Hyper-Pipelining Variable Latency Instantiation
+// Quartus Prime SystemVerilog Template
+//
+// Hyper-Pipelining Variable Latency Module
+//
+hyperpipe_vlat # (
+		.WIDTH    ( ),
+		.MAX_PIPE ( ) // Valid range: 0 to 100 inclusive
+	) hp (
+		.clk      ( ),
+		.din      ( ),
+		.dout     ( )
+	);

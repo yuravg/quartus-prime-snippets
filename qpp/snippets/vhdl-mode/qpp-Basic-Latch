@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: qpp-Basic-Latch
+# key: qpp-Latches-Basic-Latch
+# --
+// Basic Latch
+-- Update the variable only when updates are enabled
+process(<enable>, <data>)
+begin
+	if (<enable> = '1') then
+		<latch_variable> <= <data>;
+	end if;
+end process;

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: qpp-Create-Base-Clocks-Manually-and-PLL-Output-Clocks-Automatically
+# key: qpp-SDC-Cookbook-Create-Base-Clocks-Manually-and-PLL-Output-Clocks-Automatically
+# --
+// Create Base Clocks Manually and PLL Output Clocks Automatically
+# Create a base clock for the PLL input clock
+create_clock -name __name -period __period [get_ports __port]
+# Create the PLL Output clocks automatically
+derive_pll_clocks

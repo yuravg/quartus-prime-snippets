@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: qpp-enum_encoding-Attribute
+# key: qpp-Synthesis-Attributes-enum_encoding-Attribute
+# --
+// enum_encoding Attribute
+-- Controls the encoding of an enumerated type.
+
+-- Legal values = "sequential", "gray", "johnson", "onehot", "default",
+--                "auto", or a space-delimited list of binary encodings,
+--                e.g. "00100 11010 10110"
+
+-- Declare the attribute or import its declaration from
+-- altera.altera_syn_attributes
+attribute syn_encoding : string;
+
+attribute syn_encoding of <object> : <object_class> is <string_value>;
+
+-- Implement all state machines with type state_t as safe, gray-encoded
+-- state machines
+type enum_t is (apple, orange, pear, cherry);
+attribute enum_encoding of enum_t : type is "onehot";

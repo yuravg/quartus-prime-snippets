@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qpp-Split-Command
+# key: qpp-Commands-Split-Command
+# --
+// Split Command
+split __string __splitChars;

@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: qpp-Record-Type-Declaration
+# key: qpp-Type-and-Subtype-Declarations-Record-Type-Declaration
+# --
+// Record Type Declaration
+type <name> is
+	record
+		<member_ids> : <subtype_indication>;
+		...
+	end record;
+
+-- Example
+type packet_t is
+	record
+		address : integer range 0 to 256;
+		data	   : std_logic_vector(7 downto 0);
+	end record;

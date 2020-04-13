@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-While-Statement
 # key: qpp-Commands-While-Statement
+# group: qpp Commands
 # --
 // While Statement
 while { __booleanExpr } {

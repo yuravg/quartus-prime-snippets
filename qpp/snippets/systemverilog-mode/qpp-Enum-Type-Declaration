@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Enum-Type-Declaration
 # key: qpp-Type-Declarations-Enum-Type-Declaration
+# group: qpp Type-Declarations
 # --
 // Enum Type Declaration
 typedef enum <optional_base_type> {

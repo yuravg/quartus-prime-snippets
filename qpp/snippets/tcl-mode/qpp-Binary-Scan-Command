@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Binary-Scan-Command
 # key: qpp-Commands-Binary-Scan-Command
+# group: qpp Commands
 # --
 // Binary Scan Command
 binary scan __value __template __var;

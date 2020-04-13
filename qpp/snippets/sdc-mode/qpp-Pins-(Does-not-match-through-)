@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Pins-(Does-not-match-through-)
 # key: qpp-Collections-Pins-(Does-not-match-through-)
+# group: qpp Collections
 # --
 // Pins (Does not match through |)
 set __name [get_pins __listOfWildcards]

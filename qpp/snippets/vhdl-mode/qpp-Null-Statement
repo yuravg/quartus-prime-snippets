@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Null-Statement
 # key: qpp-Sequential-Statements-Null-Statement
+# group: qpp Sequential-Statements
 # --
 // Null Statement
 -- A null statement does nothing.

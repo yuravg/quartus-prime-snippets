@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Build
 # key: qpp-Commands-Build
+# group: qpp Commands
 # --
 // Build
 # Make active the specified revision and start the build

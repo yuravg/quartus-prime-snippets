@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-dff
 # key: qpp-Registers-and-Latches-dff
+# group: qpp Registers-and-Latches
 # --
 // dff
 	dff <instance_name> (

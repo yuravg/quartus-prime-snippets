@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Generate-If
 # key: qpp-Generates-Generate-If
+# group: qpp Generates
 # --
 // Generate If
 <generate_label>:

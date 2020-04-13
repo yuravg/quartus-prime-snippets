@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Use-Clause
 # key: qpp-Design-Units-Use-Clause
+# group: qpp Design-Units
 # --
 // Use Clause
 -- Use clauses import declarations into the current scope.

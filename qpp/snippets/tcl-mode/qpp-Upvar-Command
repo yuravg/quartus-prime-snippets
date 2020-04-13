@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Upvar-Command
 # key: qpp-Commands-Upvar-Command
+# group: qpp Commands
 # --
 // Upvar Command
 upvar __level __varName __localVar;

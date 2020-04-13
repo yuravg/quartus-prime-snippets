@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-dont_merge-Attribute
 # key: qpp-Synthesis-Attributes-dont_merge-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // dont_merge Attribute
 // Prevents Quartus Prime from merging a register with a duplicate

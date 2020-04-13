@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-64-Stage-Shift-Register-with-Multiple-Taps
 # key: qpp-Shift-Registers-Basic-64-Stage-Shift-Register-with-Multiple-Taps
+# group: qpp Shift-Registers
 # --
 // Basic 64-Stage Shift Register with Multiple Taps
 // Quartus Prime Verilog Template

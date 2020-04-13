@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-OPNDRN
 # key: qpp-Buffers-OPNDRN
+# group: qpp Buffers
 # --
 // OPNDRN
 -- Add the library and use clauses before the design unit declaration

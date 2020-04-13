@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Case-Statement
 # key: qpp-Sequential-Statements-Case-Statement
+# group: qpp Sequential-Statements
 # --
 // Case Statement
 -- All choice expressions in a VHDL case statement must be constant

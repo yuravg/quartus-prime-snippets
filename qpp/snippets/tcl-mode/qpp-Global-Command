@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Global-Command
 # key: qpp-Commands-Global-Command
+# group: qpp Commands
 # --
 // Global Command
 global __varName1 __varName2;

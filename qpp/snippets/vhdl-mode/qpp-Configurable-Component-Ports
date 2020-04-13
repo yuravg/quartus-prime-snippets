@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Configurable-Component-Ports
 # key: qpp-Configuration-Specifications-Configurable-Component-Ports
+# group: qpp Configuration-Specifications
 # --
 // Configurable Component Ports
 -- Quartus Prime VHDL Templates

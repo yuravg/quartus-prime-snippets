@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Multiplier-for-Complex-Numbers
 # key: qpp-Multipliers-Multiplier-for-Complex-Numbers
+# group: qpp Multipliers
 # --
 // Multiplier for Complex Numbers
 -- Quartus Prime VHDL Template

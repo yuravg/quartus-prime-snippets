@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Configurable-Component-Gates
 # key: qpp-Configuration-Specifications-Configurable-Component-Gates
+# group: qpp Configuration-Specifications
 # --
 // Configurable Component Gates
 -- Quartus Prime VHDL Template

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-For-Loop-Statement
 # key: qpp-Sequential-Statements-For-Loop-Statement
+# group: qpp Sequential-Statements
 # --
 // For Loop Statement
 <optional_label>:

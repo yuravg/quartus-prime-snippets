@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Multiplier-with-Both-Operands-from-the-Same-Pre-Adder
 # key: qpp-DSP-Features-for-28-nm-Device-Multiplier-with-Both-Operands-from-the-Same-Pre-Adder
+# group: qpp DSP-Features-for-28-nm-Device
 # --
 // Multiplier with Both Operands from the Same Pre-Adder
 -- Quartus Prime VHDL Template

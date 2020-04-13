@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-always_latch-Construct
 # key: qpp-Module-Items-always_latch-Construct
+# group: qpp Module-Items
 # --
 // always_latch Construct
 // This construct should be used to infer latched logic.

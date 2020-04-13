@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Configuration-Declaration
 # key: qpp-Design-Units-Configuration-Declaration
+# group: qpp Design-Units
 # --
 // Configuration Declaration
 -- A configuration can control how the various parts of a design fit

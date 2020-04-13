@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Sum-of-Four-Multipliers-in-Scan-Chain-Mode
 # key: qpp-Sums-of-Multipliers-Sum-of-Four-Multipliers-in-Scan-Chain-Mode
+# group: qpp Sums-of-Multipliers
 # --
 // Sum of Four Multipliers in Scan Chain Mode
 -- Quartus Prime VHDL Template

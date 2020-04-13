@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-System-Tasks
 # key: qpp-Sequential-Statements-System-Tasks
+# group: qpp Sequential-Statements
 # --
 // System Tasks
 // arguments must be compile time constants

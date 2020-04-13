@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Single-Multiply
 # key: qpp-DSP-Features-for-28-nm-Device-Single-Multiply
+# group: qpp DSP-Features-for-28-nm-Device
 # --
 // Single Multiply
 // Quartus Prime Verilog Template

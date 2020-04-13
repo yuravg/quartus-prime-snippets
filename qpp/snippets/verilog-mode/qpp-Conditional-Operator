@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Conditional-Operator
 # key: qpp-Expressions-Conditional-Operator
+# group: qpp Expressions
 # --
 // Conditional Operator
 (expression) ? (true_value_expr) : (false_value_expr)

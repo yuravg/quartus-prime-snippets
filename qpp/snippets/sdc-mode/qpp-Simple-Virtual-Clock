@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Simple-Virtual-Clock
 # key: qpp-Clocks-Simple-Virtual-Clock
+# group: qpp Clocks
 # --
 // Simple Virtual Clock
 create_clock -name __name -period __period

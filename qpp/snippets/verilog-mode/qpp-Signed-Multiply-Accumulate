@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Signed-Multiply-Accumulate
 # key: qpp-Multiply-Accumulators-Signed-Multiply-Accumulate
+# group: qpp Multiply-Accumulators
 # --
 // Signed Multiply-Accumulate
 // Quartus Prime Verilog Template

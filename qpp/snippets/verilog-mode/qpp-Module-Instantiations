@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Module-Instantiations
 # key: qpp-Module-Items-Module-Instantiations
+# group: qpp Module-Items
 # --
 // Module Instantiations
 // Basic module instantiation

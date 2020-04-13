@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Multiplier-with-One-Operand-from-PreAdder
 # key: qpp-DSP-Features-for-28-nm-Device-Multiplier-with-One-Operand-from-PreAdder
+# group: qpp DSP-Features-for-28-nm-Device
 # --
 // Multiplier with One Operand from PreAdder
 // Quartus Prime Verilog Template

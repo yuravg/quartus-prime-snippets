@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Master-Slave-Example
 # key: qpp-Interfaces-Master-Slave-Example
+# group: qpp Interfaces
 # --
 // Master Slave Example
 // Full example with a top module instantiating and interface and a master and slave submodules

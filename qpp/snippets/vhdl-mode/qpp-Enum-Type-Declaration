@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Enum-Type-Declaration
 # key: qpp-Type-and-Subtype-Declarations-Enum-Type-Declaration
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Enum Type Declaration
 type <name> is (<enum_literal>, <enum_literal>, ...);

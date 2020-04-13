@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Collection-Size
 # key: qpp-Collections-Collection-Size
+# group: qpp Collections
 # --
 // Collection Size
 set __collectionSize [get_collection_size __collectionCommand]

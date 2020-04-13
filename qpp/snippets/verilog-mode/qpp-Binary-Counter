@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Binary-Counter
 # key: qpp-Counters-Binary-Counter
+# group: qpp Counters
 # --
 // Binary Counter
 // Quartus Prime Verilog Template

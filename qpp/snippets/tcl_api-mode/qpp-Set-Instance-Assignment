@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Set-Instance-Assignment
 # key: qpp-Commands-Set-Instance-Assignment
+# group: qpp Commands
 # --
 // Set Instance Assignment
 # Source is source of the assignment

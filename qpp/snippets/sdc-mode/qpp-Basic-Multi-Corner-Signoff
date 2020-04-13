@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-Multi-Corner-Signoff
 # key: qpp-Scripting-Basic-Multi-Corner-Signoff
+# group: qpp Scripting
 # --
 // Basic Multi-Corner Signoff
 project_open __project

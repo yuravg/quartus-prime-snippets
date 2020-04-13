@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Auto-Generated-PLL-Clocks
 # key: qpp-Clocks-Auto-Generated-PLL-Clocks
+# group: qpp Clocks
 # --
 // Auto-Generated PLL Clocks
 derive_pll_clocks

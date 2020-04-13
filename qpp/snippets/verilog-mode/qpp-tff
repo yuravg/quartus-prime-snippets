@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-tff
 # key: qpp-Registers-and-Latches-tff
+# group: qpp Registers-and-Latches
 # --
 // tff
 	tff <instance_name> (

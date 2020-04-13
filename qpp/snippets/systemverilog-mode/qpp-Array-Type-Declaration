@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Array-Type-Declaration
 # key: qpp-Type-Declarations-Array-Type-Declaration
+# group: qpp Type-Declarations
 # --
 // Array Type Declaration
 // Multiple packed, unpacked or mixed type array dimensions can be declared

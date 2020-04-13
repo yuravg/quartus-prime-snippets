@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M27x27-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant-using-ACLR
 # key: qpp-DSP-Features-for-10-nm-Device-M27x27-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant-using-ACLR
+# group: qpp DSP-Features-for-10-nm-Device
 # --
 // M27x27 with Input Cascade, Output Chaining, Accumulator, Double Accumulator and Preload Constant using ACLR
 -- Quartus Prime VHDL Template

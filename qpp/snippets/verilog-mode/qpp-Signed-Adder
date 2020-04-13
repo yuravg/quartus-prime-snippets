@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Signed-Adder
 # key: qpp-Adders-Signed-Adder
+# group: qpp Adders
 # --
 // Signed Adder
 // Quartus Prime Verilog Template

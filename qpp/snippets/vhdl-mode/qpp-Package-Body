@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Package-Body
 # key: qpp-Design-Units-Package-Body
+# group: qpp Design-Units
 # --
 // Package Body
 

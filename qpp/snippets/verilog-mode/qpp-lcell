@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-lcell
 # key: qpp-Buffers-lcell
+# group: qpp Buffers
 # --
 // lcell
 	lcell <instance_name> (.in(<data_in>), .out(<data_out>));

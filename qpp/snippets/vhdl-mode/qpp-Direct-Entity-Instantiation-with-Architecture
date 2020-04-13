@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Direct-Entity-Instantiation-with-Architecture
 # key: qpp-Instances-Direct-Entity-Instantiation-with-Architecture
+# group: qpp Instances
 # --
 // Direct Entity Instantiation with Architecture
 -- To instantiate an entity directly, the entity must be written in VHDL.

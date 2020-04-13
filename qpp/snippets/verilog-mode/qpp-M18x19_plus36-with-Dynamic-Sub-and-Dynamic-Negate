@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M18x19_plus36-with-Dynamic-Sub-and-Dynamic-Negate
 # key: qpp-DSP-Features-for-20-nm-Device-M18x19_plus36-with-Dynamic-Sub-and-Dynamic-Negate
+# group: qpp DSP-Features-for-20-nm-Device
 # --
 // M18x19_plus36 with Dynamic Sub and Dynamic Negate
 // Quartus Prime Verilog Template

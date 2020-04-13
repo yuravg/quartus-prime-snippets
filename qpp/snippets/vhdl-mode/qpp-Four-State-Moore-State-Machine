@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Four-State-Moore-State-Machine
 # key: qpp-State-Machines-Four-State-Moore-State-Machine
+# group: qpp State-Machines
 # --
 // Four-State Moore State Machine
 -- Quartus Prime VHDL Template

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Configurable-Gate-Architecture
 # key: qpp-Configuration-Declarations-Configurable-Gate-Architecture
+# group: qpp Configuration-Declarations
 # --
 // Configurable Gate Architecture
 -- Quartus Prime VHDL Template

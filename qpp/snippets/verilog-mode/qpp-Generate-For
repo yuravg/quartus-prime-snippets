@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Generate-For
 # key: qpp-Generates-Generate-For
+# group: qpp Generates
 # --
 // Generate For
 for(<genvar_id> = <constant_expr>; <constant_expr>; <genvar_id> = <constant_expr>)

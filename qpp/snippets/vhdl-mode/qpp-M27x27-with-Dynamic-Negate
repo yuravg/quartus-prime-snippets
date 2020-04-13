@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M27x27-with-Dynamic-Negate
 # key: qpp-DSP-Features-for-20-nm-Device-M27x27-with-Dynamic-Negate
+# group: qpp DSP-Features-for-20-nm-Device
 # --
 // M27x27 with Dynamic Negate
 -- Quartus Prime VHDL Template

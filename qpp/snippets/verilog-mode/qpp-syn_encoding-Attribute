@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-syn_encoding-Attribute
 # key: qpp-Synthesis-Attributes-syn_encoding-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // syn_encoding Attribute
 // Controls the encoding of the states in an inferred state machine.

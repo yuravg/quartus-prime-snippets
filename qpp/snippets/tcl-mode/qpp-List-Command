@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-List-Command
 # key: qpp-Commands-List-Command
+# group: qpp Commands
 # --
 // List Command
 list __arg1 __arg2;

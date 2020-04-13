@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Casez-Statement
 # key: qpp-Sequential-Statements-Casez-Statement
+# group: qpp Sequential-Statements
 # --
 // Casez Statement
 // z values are don't-care's

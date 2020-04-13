@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Component-Instantiation
 # key: qpp-Instances-Component-Instantiation
+# group: qpp Instances
 # --
 // Component Instantiation
 <instance_name> : <component_name>

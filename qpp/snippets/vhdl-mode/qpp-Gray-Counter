@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Gray-Counter
 # key: qpp-Counters-Gray-Counter
+# group: qpp Counters
 # --
 // Gray Counter
 -- Quartus Prime VHDL Template

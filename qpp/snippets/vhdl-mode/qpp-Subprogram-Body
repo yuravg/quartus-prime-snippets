@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Subprogram-Body
 # key: qpp-Type-and-Subtype-Declarations-Subprogram-Body
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Subprogram Body
 <subprogram_decl> is

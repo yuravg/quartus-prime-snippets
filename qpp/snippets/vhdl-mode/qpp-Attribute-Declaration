@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Attribute-Declaration
 # key: qpp-Type-and-Subtype-Declarations-Attribute-Declaration
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Attribute Declaration
 -- Attributes allow you to associate additional properties with another

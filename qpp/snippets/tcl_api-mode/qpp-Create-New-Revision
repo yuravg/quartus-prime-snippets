@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Create-New-Revision
 # key: qpp-Commands-Create-New-Revision
+# group: qpp Commands
 # --
 // Create New Revision
 # Create a new revision and set to active

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-alt_outbuf
 # key: qpp-Buffers-alt_outbuf
+# group: qpp Buffers
 # --
 // alt_outbuf
 	alt_outbuf <instance_name> (.i(<data_in>), .o(<data_out>)); //<data_out> must be declared as an output pin

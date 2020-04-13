@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Byte-enabled-True-Dual-Port-RAM
 # key: qpp-RAMs-and-ROMs-Byte-enabled-True-Dual-Port-RAM
+# group: qpp RAMs-and-ROMs
 # --
 // Byte-enabled True Dual Port RAM
 // Quartus Prime SystemVerilog Template

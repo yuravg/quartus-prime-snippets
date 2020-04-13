@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-If-Statement
 # key: qpp-Commands-If-Statement
+# group: qpp Commands
 # --
 // If Statement
 if { __booleanExpr } {

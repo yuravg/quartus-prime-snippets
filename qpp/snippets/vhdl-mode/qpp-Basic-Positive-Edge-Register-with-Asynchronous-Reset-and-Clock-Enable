@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-Positive-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
 # key: qpp-Registers-Basic-Positive-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
+# group: qpp Registers
 # --
 // Basic Positive Edge Register with Asynchronous Reset and Clock Enable
 process (<clock_signal>, <reset>)

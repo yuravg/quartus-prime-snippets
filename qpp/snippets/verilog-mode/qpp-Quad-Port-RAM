@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Quad-Port-RAM
 # key: qpp-RAMs-and-ROMs-Quad-Port-RAM
+# group: qpp RAMs-and-ROMs
 # --
 // Quad Port RAM
 // Quartus Prime Verilog Template

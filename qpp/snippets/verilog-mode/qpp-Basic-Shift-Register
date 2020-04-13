@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-Shift-Register
 # key: qpp-Shift-Registers-Basic-Shift-Register
+# group: qpp Shift-Registers
 # --
 // Basic Shift Register
 // Quartus Prime Verilog Template

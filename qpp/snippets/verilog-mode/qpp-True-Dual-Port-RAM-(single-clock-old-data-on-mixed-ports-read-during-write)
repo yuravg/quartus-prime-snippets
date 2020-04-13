@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-True-Dual-Port-RAM-(single-clock-old-data-on-mixed-ports-read-during-write)
 # key: qpp-RAMs-and-ROMs-True-Dual-Port-RAM-(single-clock-old-data-on-mixed-ports-read-during-write)
+# group: qpp RAMs-and-ROMs
 # --
 // True Dual Port RAM (single clock, old data on mixed ports read during write)
 // Quartus Prime Verilog Template

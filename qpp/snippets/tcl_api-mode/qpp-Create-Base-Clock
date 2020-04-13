@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Create-Base-Clock
 # key: qpp-Commands-Create-Base-Clock
+# group: qpp Commands
 # --
 // Create Base Clock
 # Create a new base clock

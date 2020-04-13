@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Genvar-Declaration
 # key: qpp-Declarations-Genvar-Declaration
+# group: qpp Declarations
 # --
 // Genvar Declaration
 // A genvar is a signed integer object that functions as a loop variable

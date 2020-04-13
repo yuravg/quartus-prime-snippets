@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-carry_sum
 # key: qpp-Buffers-carry_sum
+# group: qpp Buffers
 # --
 // carry_sum
 	carry_sum <instance_name> (

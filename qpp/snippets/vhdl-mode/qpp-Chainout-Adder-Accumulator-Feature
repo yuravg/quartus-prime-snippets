@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Chainout-Adder-Accumulator-Feature
 # key: qpp-DSP-Features-for-28-nm-Device-Chainout-Adder-Accumulator-Feature
+# group: qpp DSP-Features-for-28-nm-Device
 # --
 // Chainout Adder/Accumulator Feature
 -- Quartus Prime VHDL Template

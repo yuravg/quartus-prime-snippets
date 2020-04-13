@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Continue-Statement
 # key: qpp-Jump-Statements-Continue-Statement
+# group: qpp Jump-Statements
 # --
 // Continue Statement
 continue;

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M18x19_plus36-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant
 # key: qpp-DSP-Features-for-20-nm-Device-M18x19_plus36-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant
+# group: qpp DSP-Features-for-20-nm-Device
 # --
 // M18x19_plus36 with Input Cascade, Output Chaining, Accumulator, Double Accumulator and Preload Constant
 -- Quartus Prime VHDL Template

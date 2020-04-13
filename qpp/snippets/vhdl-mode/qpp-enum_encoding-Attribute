@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-enum_encoding-Attribute
 # key: qpp-Synthesis-Attributes-enum_encoding-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // enum_encoding Attribute
 -- Controls the encoding of an enumerated type.

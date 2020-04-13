@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M18x19_sumof2-with-Preadder-and-Coefficent
 # key: qpp-DSP-Features-for-20-nm-Device-M18x19_sumof2-with-Preadder-and-Coefficent
+# group: qpp DSP-Features-for-20-nm-Device
 # --
 // M18x19_sumof2 with Preadder and Coefficent
 // Quartus Prime Verilog Template

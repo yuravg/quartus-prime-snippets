@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Compile
 # key: qpp-Commands-Compile
+# group: qpp Commands
 # --
 // Compile
 # Make active the specified revision and compile the design

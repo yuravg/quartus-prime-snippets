@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-useioff-Attribute
 # key: qpp-Synthesis-Attributes-useioff-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // useioff Attribute
 -- Controls the packing input, output, and output enable registers into

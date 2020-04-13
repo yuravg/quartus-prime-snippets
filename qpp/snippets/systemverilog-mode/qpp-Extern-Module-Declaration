@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Extern-Module-Declaration
 # key: qpp-Interfaces-Extern-Module-Declaration
+# group: qpp Interfaces
 # --
 // Extern Module Declaration
 // An extern module declaration specifies the module's parameters

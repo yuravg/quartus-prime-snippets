@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-multstyle-Attribute
 # key: qpp-Synthesis-Attributes-multstyle-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // multstyle Attribute
 // Controls the implementation of multiplication operators in your HDL

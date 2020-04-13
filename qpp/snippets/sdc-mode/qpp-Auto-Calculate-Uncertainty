@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Auto-Calculate-Uncertainty
 # key: qpp-Clock-Attributes-Auto-Calculate-Uncertainty
+# group: qpp Clock-Attributes
 # --
 // Auto-Calculate Uncertainty
 derive_clock_uncertainty

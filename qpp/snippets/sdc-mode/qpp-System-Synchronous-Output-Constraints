@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-System-Synchronous-Output-Constraints
 # key: qpp-SDC-Cookbook-System-Synchronous-Output-Constraints
+# group: qpp SDC-Cookbook
 # --
 // System Synchronous Output Constraints
 # Specify the maximum external clock delay to the FPGA

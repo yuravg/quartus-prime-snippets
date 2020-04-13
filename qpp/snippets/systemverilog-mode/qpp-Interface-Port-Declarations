@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Interface-Port-Declarations
 # key: qpp-Interfaces-Interface-Port-Declarations
+# group: qpp Interfaces
 # --
 // Interface Port Declarations
 // Both modules and interfaces may declare interface ports.

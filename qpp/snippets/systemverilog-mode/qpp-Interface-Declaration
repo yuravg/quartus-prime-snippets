@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Interface-Declaration
 # key: qpp-Interfaces-Interface-Declaration
+# group: qpp Interfaces
 # --
 // Interface Declaration
 interface <interface_name>(<port_list>);

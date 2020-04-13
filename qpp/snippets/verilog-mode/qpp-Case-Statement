@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Case-Statement
 # key: qpp-Sequential-Statements-Case-Statement
+# group: qpp Sequential-Statements
 # --
 // Case Statement
 // x and z values are NOT treated as don't-care's

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Simple-Dual-Port-RAM-(dual-clock)
 # key: qpp-RAMs-and-ROMs-Simple-Dual-Port-RAM-(dual-clock)
+# group: qpp RAMs-and-ROMs
 # --
 // Simple Dual-Port RAM (dual clock)
 -- Quartus Prime VHDL Template

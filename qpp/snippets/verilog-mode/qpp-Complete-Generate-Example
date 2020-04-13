@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Complete-Generate-Example
 # key: qpp-Generates-Complete-Generate-Example
+# group: qpp Generates
 # --
 // Complete Generate Example
 module generate_design #(parameter N = 4) (input a, b, output [N * (N + 1) / 2 - 1 : 0] o);

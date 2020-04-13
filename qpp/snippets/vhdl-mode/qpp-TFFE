@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-TFFE
 # key: qpp-Registers-and-Latches-TFFE
+# group: qpp Registers-and-Latches
 # --
 // TFFE
 -- Add the library and use clauses before the design unit declaration

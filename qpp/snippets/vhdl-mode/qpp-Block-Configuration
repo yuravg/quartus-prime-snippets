@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Block-Configuration
 # key: qpp-Design-Units-Block-Configuration
+# group: qpp Design-Units
 # --
 // Block Configuration
 -- Block configurations go inside configuration declarations.  See the

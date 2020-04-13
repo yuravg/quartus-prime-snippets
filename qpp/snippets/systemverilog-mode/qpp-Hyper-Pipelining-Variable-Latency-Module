@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Hyper-Pipelining-Variable-Latency-Module
 # key: qpp-Pipelining-Hyper-Pipelining-Variable-Latency-Module
+# group: qpp Pipelining
 # --
 // Hyper-Pipelining Variable Latency Module
 // Quartus Prime SystemVerilog Template

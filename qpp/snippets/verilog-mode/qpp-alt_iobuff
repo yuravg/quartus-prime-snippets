@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-alt_iobuff
 # key: qpp-Buffers-alt_iobuff
+# group: qpp Buffers
 # --
 // alt_iobuff
 	alt_iobuff <instance_name> (

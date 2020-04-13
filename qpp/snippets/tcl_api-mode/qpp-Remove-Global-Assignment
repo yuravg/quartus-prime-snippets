@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Remove-Global-Assignment
 # key: qpp-Commands-Remove-Global-Assignment
+# group: qpp Commands
 # --
 // Remove Global Assignment
 # Name is the keyword for the assignment

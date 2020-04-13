@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Unsigned-Adder-Subtractor
 # key: qpp-Adders-Unsigned-Adder-Subtractor
+# group: qpp Adders
 # --
 // Unsigned Adder/Subtractor
 -- Quartus Prime VHDL Template

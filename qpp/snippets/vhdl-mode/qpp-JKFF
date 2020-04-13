@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-JKFF
 # key: qpp-Registers-and-Latches-JKFF
+# group: qpp Registers-and-Latches
 # --
 // JKFF
 -- Add the library and use clauses before the design unit declaration

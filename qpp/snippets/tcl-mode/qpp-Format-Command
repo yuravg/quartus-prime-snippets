@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Format-Command
 # key: qpp-Commands-Format-Command
+# group: qpp Commands
 # --
 // Format Command
 format __spec __value1 __value2;

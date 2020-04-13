@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Array-Reduction-Methods
 # key: qpp-Expressions-Array-Reduction-Methods
+# group: qpp Expressions
 # --
 // Array Reduction Methods
 module reduction(output byte  and_out, xor_out, or_out, sout, pout,

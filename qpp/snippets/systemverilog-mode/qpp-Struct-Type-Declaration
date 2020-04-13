@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Struct-Type-Declaration
 # key: qpp-Type-Declarations-Struct-Type-Declaration
+# group: qpp Type-Declarations
 # --
 // Struct Type Declaration
 typedef struct {

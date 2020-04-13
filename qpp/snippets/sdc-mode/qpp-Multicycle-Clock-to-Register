@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Multicycle-Clock-to-Register
 # key: qpp-SDC-Cookbook-Multicycle-Clock-to-Register
+# group: qpp SDC-Cookbook
 # --
 // Multicycle Clock-to-Register
 # Create the source clock

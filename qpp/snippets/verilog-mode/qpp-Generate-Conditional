@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Generate-Conditional
 # key: qpp-Generates-Generate-Conditional
+# group: qpp Generates
 # --
 // Generate Conditional
 // A <constant_expression> may only involve constant literals, parameters,

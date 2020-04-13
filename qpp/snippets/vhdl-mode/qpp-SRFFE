@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-SRFFE
 # key: qpp-Registers-and-Latches-SRFFE
+# group: qpp Registers-and-Latches
 # --
 // SRFFE
 -- Add the library and use clauses before the design unit declaration

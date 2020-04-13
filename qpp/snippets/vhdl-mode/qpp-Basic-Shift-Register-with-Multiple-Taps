@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-Shift-Register-with-Multiple-Taps
 # key: qpp-Shift-Registers-Basic-Shift-Register-with-Multiple-Taps
+# group: qpp Shift-Registers
 # --
 // Basic Shift Register with Multiple Taps
 -- Quartus Prime VHDL Template

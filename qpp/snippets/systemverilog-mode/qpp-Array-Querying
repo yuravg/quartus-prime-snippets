@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Array-Querying
 # key: qpp-Array-Querying-Array-Querying
+# group: qpp Array-Querying
 # --
 // Array Querying
 // Return the number of packed + unpacked dimensions in an array object

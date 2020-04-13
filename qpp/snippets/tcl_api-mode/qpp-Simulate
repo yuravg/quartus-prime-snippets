@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Simulate
 # key: qpp-Commands-Simulate
+# group: qpp Commands
 # --
 // Simulate
 # Make active the specified revision and simulate the design

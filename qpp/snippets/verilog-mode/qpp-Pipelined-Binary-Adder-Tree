@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Pipelined-Binary-Adder-Tree
 # key: qpp-Adders-Pipelined-Binary-Adder-Tree
+# group: qpp Adders
 # --
 // Pipelined Binary Adder Tree
 // Quartus Prime Verilog Template

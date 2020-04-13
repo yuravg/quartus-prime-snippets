@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Enum-Methods
 # key: qpp-Expressions-Enum-Methods
+# group: qpp Expressions
 # --
 // Enum Methods
 // Return the first enum literal in the enum data type returned by

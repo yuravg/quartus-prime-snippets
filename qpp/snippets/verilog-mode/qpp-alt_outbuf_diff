@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-alt_outbuf_diff
 # key: qpp-Buffers-alt_outbuf_diff
+# group: qpp Buffers
 # --
 // alt_outbuf_diff
 	// <data_out_pos> and <data_out_neg> must be declared as output pins

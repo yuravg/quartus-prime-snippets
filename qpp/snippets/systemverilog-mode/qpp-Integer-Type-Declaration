@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Integer-Type-Declaration
 # key: qpp-Type-Declarations-Integer-Type-Declaration
+# group: qpp Type-Declarations
 # --
 // Integer Type Declaration
 // Built-in integer vector types.  By default, these types

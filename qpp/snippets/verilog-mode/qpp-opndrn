@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-opndrn
 # key: qpp-Buffers-opndrn
+# group: qpp Buffers
 # --
 // opndrn
 	// <data_out> may feed an inout pin

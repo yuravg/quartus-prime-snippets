@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Module-Declaration-(style2)
 # key: qpp-Design-Units-Module-Declaration-(style2)
+# group: qpp Design-Units
 # --
 // Module Declaration (style2)
 module <module_name>(<port_name>, <port_name>, ...);

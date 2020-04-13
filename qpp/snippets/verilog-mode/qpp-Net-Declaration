@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Net-Declaration
 # key: qpp-Declarations-Net-Declaration
+# group: qpp Declarations
 # --
 // Net Declaration
 // A net models connectivity in a design.

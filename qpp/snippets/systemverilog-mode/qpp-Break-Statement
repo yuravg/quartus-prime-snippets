@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Break-Statement
 # key: qpp-Jump-Statements-Break-Statement
+# group: qpp Jump-Statements
 # --
 // Break Statement
 break;

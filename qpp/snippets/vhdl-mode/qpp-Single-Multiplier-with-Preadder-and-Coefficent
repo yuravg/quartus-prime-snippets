@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Single-Multiplier-with-Preadder-and-Coefficent
 # key: qpp-DSP-Features-for-20-nm-Device-Single-Multiplier-with-Preadder-and-Coefficent
+# group: qpp DSP-Features-for-20-nm-Device
 # --
 // Single Multiplier with Preadder and Coefficent
 -- Quartus Prime VHDL Template

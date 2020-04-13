@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-full_case-Attribute
 # key: qpp-Synthesis-Attributes-full_case-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // full_case Attribute
 // Indicates that Quartus Prime should consider a case statement

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-While-Loop
 # key: qpp-Loops-While-Loop
+# group: qpp Loops
 # --
 // While Loop
 while(<expression>)

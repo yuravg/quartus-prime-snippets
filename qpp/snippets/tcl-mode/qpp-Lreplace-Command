@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Lreplace-Command
 # key: qpp-Commands-Lreplace-Command
+# group: qpp Commands
 # --
 // Lreplace Command
 lreplace __list __i __j __arg;

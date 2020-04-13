@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-CARRY_SUM
 # key: qpp-Buffers-CARRY_SUM
+# group: qpp Buffers
 # --
 // CARRY_SUM
 -- Add the library and use clauses before the design unit declaration

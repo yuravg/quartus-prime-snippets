@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Variable-Declaration
 # key: qpp-Type-and-Subtype-Declarations-Variable-Declaration
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Variable Declaration
 -- Variables should be declared in a process statement or subprogram.

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-srff
 # key: qpp-Registers-and-Latches-srff
+# group: qpp Registers-and-Latches
 # --
 // srff
 	srff <instance_name> (

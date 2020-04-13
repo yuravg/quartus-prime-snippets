@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Multicycle-Clock-to-Clock
 # key: qpp-SDC-Cookbook-Multicycle-Clock-to-Clock
+# group: qpp SDC-Cookbook
 # --
 // Multicycle Clock-to-Clock
 # Create the source clock

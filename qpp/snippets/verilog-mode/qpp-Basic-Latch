@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-Latch
 # key: qpp-Latches-Basic-Latch
+# group: qpp Latches
 # --
 // Basic Latch
 // Update the variable only when updates are enabled

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Package-Import-Declaration
 # key: qpp-Type-Declarations-Package-Import-Declaration
+# group: qpp Type-Declarations
 # --
 // Package Import Declaration
 // Import declaration(s) from a package into the current scope.  You can

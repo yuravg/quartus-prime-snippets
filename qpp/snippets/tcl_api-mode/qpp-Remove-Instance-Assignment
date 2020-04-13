@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Remove-Instance-Assignment
 # key: qpp-Commands-Remove-Instance-Assignment
+# group: qpp Commands
 # --
 // Remove Instance Assignment
 # Source is source of the assignment

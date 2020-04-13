@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Generate-Case
 # key: qpp-Generates-Generate-Case
+# group: qpp Generates
 # --
 // Generate Case
 case(<constant_expr>)

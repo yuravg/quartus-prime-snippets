@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-`define
 # key: qpp-Compiler-Directives-`define
+# group: qpp Compiler-Directives
 # --
 // `define
 `define <name> <macro_text>

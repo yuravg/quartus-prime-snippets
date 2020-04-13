@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Matching-Case-Statement
 # key: qpp-VHDL-2008-Constructs-Matching-Case-Statement
+# group: qpp VHDL-2008-Constructs
 # --
 // Matching Case Statement
 -- All choice expressions in a VHDL case statement must be constant

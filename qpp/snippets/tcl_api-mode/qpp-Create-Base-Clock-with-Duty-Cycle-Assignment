@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Create-Base-Clock-with-Duty-Cycle-Assignment
 # key: qpp-Commands-Create-Base-Clock-with-Duty-Cycle-Assignment
+# group: qpp Commands
 # --
 // Create Base Clock with Duty Cycle Assignment
 # Create a new base clock

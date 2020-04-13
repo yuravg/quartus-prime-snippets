@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Entity
 # key: qpp-Design-Units-Entity
+# group: qpp Design-Units
 # --
 // Entity
 entity <entity_name> is

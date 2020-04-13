@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Scan-Command
 # key: qpp-Commands-Scan-Command
+# group: qpp Commands
 # --
 // Scan Command
 scan __string __format __var;

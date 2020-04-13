@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M27x27-with-Preadder-and-Coefficent-using-SCLR
 # key: qpp-DSP-Features-for-10-nm-Device-M27x27-with-Preadder-and-Coefficent-using-SCLR
+# group: qpp DSP-Features-for-10-nm-Device
 # --
 // M27x27 with Preadder and Coefficent using SCLR
 -- Quartus Prime VHDL Template

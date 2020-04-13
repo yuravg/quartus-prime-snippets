@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Clock-Latency
 # key: qpp-Clock-Attributes-Clock-Latency
+# group: qpp Clock-Attributes
 # --
 // Clock Latency
 set_clock_latency -source -late __value [get_ports __listOfWildcards]

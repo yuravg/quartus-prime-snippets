@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Single-Port-RAM-with-Initial-Contents
 # key: qpp-RAMs-and-ROMs-Single-Port-RAM-with-Initial-Contents
+# group: qpp RAMs-and-ROMs
 # --
 // Single Port RAM with Initial Contents
 // Quartus Prime Verilog Template

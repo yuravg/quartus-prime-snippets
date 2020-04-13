@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-ramstyle-Attribute
 # key: qpp-Synthesis-Attributes-ramstyle-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // ramstyle Attribute
 -- Controls the implementation of an inferred memory.  Apply the

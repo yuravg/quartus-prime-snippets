@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-Latch-with-Reset
 # key: qpp-Latches-Basic-Latch-with-Reset
+# group: qpp Latches
 # --
 // Basic Latch with Reset
 always @(*)

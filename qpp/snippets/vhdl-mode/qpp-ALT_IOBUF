@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-ALT_IOBUF
 # key: qpp-Buffers-ALT_IOBUF
+# group: qpp Buffers
 # --
 // ALT_IOBUF
 -- Add the library and use clauses before the design unit declaration

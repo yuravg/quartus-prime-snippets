@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Barrel-Shifter
 # key: qpp-Shift-Registers-Barrel-Shifter
+# group: qpp Shift-Registers
 # --
 // Barrel Shifter
 -- Quartus Prime VHDL Template

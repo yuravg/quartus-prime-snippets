@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Sum-of-Two-Multipliers-with-a-Wide-Datapath
 # key: qpp-Sums-of-Multipliers-Sum-of-Two-Multipliers-with-a-Wide-Datapath
+# group: qpp Sums-of-Multipliers
 # --
 // Sum of Two Multipliers with a Wide Datapath
 // Quartus Prime Verilog Template

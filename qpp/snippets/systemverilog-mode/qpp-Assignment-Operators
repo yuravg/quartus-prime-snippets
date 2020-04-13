@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Assignment-Operators
 # key: qpp-Expressions-Assignment-Operators
+# group: qpp Expressions
 # --
 // Assignment Operators
 // SystemVerilog supports the assignment operators

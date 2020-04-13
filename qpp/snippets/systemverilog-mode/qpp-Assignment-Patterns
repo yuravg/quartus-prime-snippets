@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Assignment-Patterns
 # key: qpp-Expressions-Assignment-Patterns
+# group: qpp Expressions
 # --
 // Assignment Patterns
 // Assignment patterns are used to construct values for unpacked

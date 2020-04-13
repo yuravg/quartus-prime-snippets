@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-TFF
 # key: qpp-Registers-and-Latches-TFF
+# group: qpp Registers-and-Latches
 # --
 // TFF
 -- Add the library and use clauses before the design unit declaration

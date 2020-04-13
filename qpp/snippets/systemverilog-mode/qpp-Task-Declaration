@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Task-Declaration
 # key: qpp-Type-Declarations-Task-Declaration
+# group: qpp Type-Declarations
 # --
 // Task Declaration
 // A task may have input, output, and inout arguments.  It may also

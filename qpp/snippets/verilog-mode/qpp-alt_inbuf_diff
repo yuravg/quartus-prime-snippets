@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-alt_inbuf_diff
 # key: qpp-Buffers-alt_inbuf_diff
+# group: qpp Buffers
 # --
 // alt_inbuf_diff
 	// <data_in_pos> and <data_in_neg> must be declared as input pins

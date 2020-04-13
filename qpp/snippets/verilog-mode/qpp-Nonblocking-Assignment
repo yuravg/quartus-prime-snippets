@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Nonblocking-Assignment
 # key: qpp-Sequential-Statements-Nonblocking-Assignment
+# group: qpp Sequential-Statements
 # --
 // Nonblocking Assignment
 // Use nonblocking assignments when assigning to variables that

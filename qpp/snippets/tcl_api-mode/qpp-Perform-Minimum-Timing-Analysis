@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Perform-Minimum-Timing-Analysis
 # key: qpp-Commands-Perform-Minimum-Timing-Analysis
+# group: qpp Commands
 # --
 // Perform Minimum Timing Analysis
 # Make active the specified revision and perform timing analysis with minimum delays

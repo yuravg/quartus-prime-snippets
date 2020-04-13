@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Always-Construct-(Sequential)
 # key: qpp-Module-Items-Always-Construct-(Sequential)
+# group: qpp Module-Items
 # --
 // Always Construct (Sequential)
 // <edge_events> may contain any number of posedge or negedge events

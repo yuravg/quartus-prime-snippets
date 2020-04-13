@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Catch-Command
 # key: qpp-Commands-Catch-Command
+# group: qpp Commands
 # --
 // Catch Command
 catch __command __resultVar;

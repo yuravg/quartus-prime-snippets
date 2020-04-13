@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-State-Machine-With-Enumerated-Types
 # key: qpp-State-Machines-State-Machine-With-Enumerated-Types
+# group: qpp State-Machines
 # --
 // State Machine With Enumerated Types
 // SystemVerilog state machine implementation that uses enumerated types.

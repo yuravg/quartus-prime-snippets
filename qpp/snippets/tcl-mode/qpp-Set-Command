@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Set-Command
 # key: qpp-Commands-Set-Command
+# group: qpp Commands
 # --
 // Set Command
 set __var __value;

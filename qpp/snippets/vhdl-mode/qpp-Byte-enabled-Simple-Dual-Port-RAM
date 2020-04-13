@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Byte-enabled-Simple-Dual-Port-RAM
 # key: qpp-RAMs-and-ROMs-Byte-enabled-Simple-Dual-Port-RAM
+# group: qpp RAMs-and-ROMs
 # --
 // Byte-enabled Simple Dual Port RAM
 -- Quartus Prime VHDL Template

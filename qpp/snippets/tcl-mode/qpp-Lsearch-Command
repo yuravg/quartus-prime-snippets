@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Lsearch-Command
 # key: qpp-Commands-Lsearch-Command
+# group: qpp Commands
 # --
 // Lsearch Command
 lsearch __mode __list __value;

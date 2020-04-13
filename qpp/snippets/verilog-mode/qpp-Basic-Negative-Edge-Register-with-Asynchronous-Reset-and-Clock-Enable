@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-Negative-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
 # key: qpp-Registers-Basic-Negative-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
+# group: qpp Registers
 # --
 // Basic Negative Edge Register with Asynchronous Reset and Clock Enable
 always @ (negedge <reset> or negedge <clock_signal>)

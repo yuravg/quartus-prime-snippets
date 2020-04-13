@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Mixed-Width-RAM
 # key: qpp-RAMs-and-ROMs-Mixed-Width-RAM
+# group: qpp RAMs-and-ROMs
 # --
 // Mixed-Width RAM
 -- Quartus Prime VHDL Template

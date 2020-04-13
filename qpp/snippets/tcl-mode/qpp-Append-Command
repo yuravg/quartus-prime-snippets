@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Append-Command
 # key: qpp-Commands-Append-Command
+# group: qpp Commands
 # --
 // Append Command
 append __var __arg;

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Variable-Declaration
 # key: qpp-Declarations-Variable-Declaration
+# group: qpp Declarations
 # --
 // Variable Declaration
 // A variable stores a value.  It may be assigned a value in a

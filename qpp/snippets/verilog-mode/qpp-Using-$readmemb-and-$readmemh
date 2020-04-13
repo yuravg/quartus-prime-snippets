@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Using-$readmemb-and-$readmemh
 # key: qpp-RAMs-and-ROMs-Using-$readmemb-and-$readmemh
+# group: qpp RAMs-and-ROMs
 # --
 // Using $readmemb and $readmemh
 // The $readmemb and $readmemh system tasks load the contents of a 2-D

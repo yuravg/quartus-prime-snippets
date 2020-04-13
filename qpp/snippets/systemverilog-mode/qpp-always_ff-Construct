@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-always_ff-Construct
 # key: qpp-Module-Items-always_ff-Construct
+# group: qpp Module-Items
 # --
 // always_ff Construct
 // This construct should be used to infer sequential logic such as

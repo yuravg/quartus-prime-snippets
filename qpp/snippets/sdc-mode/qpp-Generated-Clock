@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Generated-Clock
 # key: qpp-Clocks-Generated-Clock
+# group: qpp Clocks
 # --
 // Generated Clock
 create_generated_clock -name __name -divide_by|-multiply_by __factor -source __source __targets

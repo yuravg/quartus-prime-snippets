@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Configuration-Specification
 # key: qpp-Type-and-Subtype-Declarations-Configuration-Specification
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Configuration Specification
 -- A configuration specification is a way of configuring a component instance.

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Bidirectional-I-O
 # key: qpp-Tri-State-Bidirectional-I-O
+# group: qpp Tri-State
 # --
 // Bidirectional I/O
 module bidirectional_io

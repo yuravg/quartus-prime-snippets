@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Signed-Multiply
 # key: qpp-Multipliers-Signed-Multiply
+# group: qpp Multipliers
 # --
 // Signed Multiply
 -- Quartus Prime VHDL Template

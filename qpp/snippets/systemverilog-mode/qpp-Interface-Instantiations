@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Interface-Instantiations
 # key: qpp-Interfaces-Interface-Instantiations
+# group: qpp Interfaces
 # --
 // Interface Instantiations
 // Basic interface instantiation

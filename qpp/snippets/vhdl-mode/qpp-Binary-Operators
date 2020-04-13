@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Binary-Operators
 # key: qpp-Expressions-Binary-Operators
+# group: qpp Expressions
 # --
 // Binary Operators
 -- Binary Expressions

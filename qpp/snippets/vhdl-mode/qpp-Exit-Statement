@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Exit-Statement
 # key: qpp-Sequential-Statements-Exit-Statement
+# group: qpp Sequential-Statements
 # --
 // Exit Statement
 -- Unconditional exit

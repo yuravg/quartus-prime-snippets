@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Subprogram-Declaration
 # key: qpp-Type-and-Subtype-Declarations-Subprogram-Declaration
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Subprogram Declaration
 -- Procedure Declaration

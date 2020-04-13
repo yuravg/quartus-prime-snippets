@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Open-Drain-Buffer
 # key: qpp-Tri-State-Open-Drain-Buffer
+# group: qpp Tri-State
 # --
 // Open-Drain Buffer
 // An open-drain buffer is similar to a tri-state buffer, but only has one

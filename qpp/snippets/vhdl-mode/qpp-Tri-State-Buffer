@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Tri-State-Buffer
 # key: qpp-Tri-State-Tri-State-Buffer
+# group: qpp Tri-State
 # --
 // Tri-State Buffer
 -- Altera devices contain tri-state buffers in the I/O.  Thus, a tri-state

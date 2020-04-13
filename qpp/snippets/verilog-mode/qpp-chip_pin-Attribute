@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-chip_pin-Attribute
 # key: qpp-Synthesis-Attributes-chip_pin-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // chip_pin Attribute
 // Assigns pin location to ports on a module.

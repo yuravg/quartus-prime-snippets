@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Simple-Dual-Port-RAM-(with-enable-signals)
 # key: qpp-RAMs-and-ROMs-Simple-Dual-Port-RAM-(with-enable-signals)
+# group: qpp RAMs-and-ROMs
 # --
 // Simple Dual-Port RAM (with enable signals)
 -- Quartus Prime VHDL Template

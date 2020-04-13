@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-dffea
 # key: qpp-Registers-and-Latches-dffea
+# group: qpp Registers-and-Latches
 # --
 // dffea
 	dffea <instance_name> (

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-tSU-tH-and-tCO-Constraints
 # key: qpp-SDC-Cookbook-tSU-tH-and-tCO-Constraints
+# group: qpp SDC-Cookbook
 # --
 // tSU, tH, and tCO Constraints
 # Specify the clock period

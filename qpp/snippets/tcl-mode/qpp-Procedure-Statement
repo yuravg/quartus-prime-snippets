@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Procedure-Statement
 # key: qpp-Commands-Procedure-Statement
+# group: qpp Commands
 # --
 // Procedure Statement
 proc __name __params {

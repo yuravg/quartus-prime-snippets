@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-System-Synchronous-Input-Constraints
 # key: qpp-SDC-Cookbook-System-Synchronous-Input-Constraints
+# group: qpp SDC-Cookbook
 # --
 // System Synchronous Input Constraints
 # Specify the maximum external clock delay from the external device

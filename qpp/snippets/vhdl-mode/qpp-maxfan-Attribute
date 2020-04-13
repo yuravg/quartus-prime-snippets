@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-maxfan-Attribute
 # key: qpp-Synthesis-Attributes-maxfan-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // maxfan Attribute
 -- Sets the maximum number of fanouts for a register or combinational

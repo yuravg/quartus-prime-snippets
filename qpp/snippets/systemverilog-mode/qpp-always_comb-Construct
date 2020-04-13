@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-always_comb-Construct
 # key: qpp-Module-Items-always_comb-Construct
+# group: qpp Module-Items
 # --
 // always_comb Construct
 // This construct should be used to infer purely combinational logic.

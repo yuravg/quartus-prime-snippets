@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Sum-of-Four-Multiply-Accumulate
 # key: qpp-Multiply-Accumulators-Sum-of-Four-Multiply-Accumulate
+# group: qpp Multiply-Accumulators
 # --
 // Sum-of-Four Multiply-Accumulate
 // Quartus Prime Verilog Template

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-alt_outbuf_tri
 # key: qpp-Buffers-alt_outbuf_tri
+# group: qpp Buffers
 # --
 // alt_outbuf_tri
 	alt_outbuf_tri <instance_name> (

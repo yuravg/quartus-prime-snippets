@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-romstyle-Attribute
 # key: qpp-Synthesis-Attributes-romstyle-Attribute
+# group: qpp Synthesis-Attributes
 # --
 // romstyle Attribute
 -- Controls the implementation of an inferred ROM.  Apply the

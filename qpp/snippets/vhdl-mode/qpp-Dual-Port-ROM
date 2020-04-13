@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Dual-Port-ROM
 # key: qpp-RAMs-and-ROMs-Dual-Port-ROM
+# group: qpp RAMs-and-ROMs
 # --
 // Dual-Port ROM
 -- Quartus Prime VHDL Template

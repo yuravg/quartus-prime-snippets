@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-DFFEA
 # key: qpp-Registers-and-Latches-DFFEA
+# group: qpp Registers-and-Latches
 # --
 // DFFEA
 -- Add the library and use clauses before the design unit declaration

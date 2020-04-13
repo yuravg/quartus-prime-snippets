@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Sum-of-Eight-Multipliers-in-Chainout-Mode
 # key: qpp-Sums-of-Multipliers-Sum-of-Eight-Multipliers-in-Chainout-Mode
+# group: qpp Sums-of-Multipliers
 # --
 // Sum of Eight Multipliers in Chainout Mode
 // Quartus Prime Verilog Template

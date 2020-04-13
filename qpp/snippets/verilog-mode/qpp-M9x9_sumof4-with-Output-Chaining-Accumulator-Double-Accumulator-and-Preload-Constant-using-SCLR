@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M9x9_sumof4-with-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant-using-SCLR
 # key: qpp-DSP-Features-for-10-nm-Device-M9x9_sumof4-with-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant-using-SCLR
+# group: qpp DSP-Features-for-10-nm-Device
 # --
 // M9x9_sumof4 with Output Chaining, Accumulator, Double Accumulator and Preload Constant using SCLR
 // Quartus Prime Verilog Template

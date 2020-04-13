@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Integer-Type-Declaration
 # key: qpp-Type-and-Subtype-Declarations-Integer-Type-Declaration
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Integer Type Declaration
 -- Basic integer type declaration

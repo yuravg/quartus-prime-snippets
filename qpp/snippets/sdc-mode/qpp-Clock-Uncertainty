@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Clock-Uncertainty
 # key: qpp-Clock-Attributes-Clock-Uncertainty
+# group: qpp Clock-Attributes
 # --
 // Clock Uncertainty
 set_clock_uncertainty -setup -from [get_clocks __listOfWildcards] -to [get_clocks __listOfWildcards]

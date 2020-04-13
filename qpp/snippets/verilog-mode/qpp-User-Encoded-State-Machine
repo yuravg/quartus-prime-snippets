@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-User-Encoded-State-Machine
 # key: qpp-State-Machines-User-Encoded-State-Machine
+# group: qpp State-Machines
 # --
 // User-Encoded State Machine
 // Quartus Prime Verilog Template

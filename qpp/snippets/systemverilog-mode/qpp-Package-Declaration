@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Package-Declaration
 # key: qpp-Design-Units-Package-Declaration
+# group: qpp Design-Units
 # --
 // Package Declaration
 package <name>;

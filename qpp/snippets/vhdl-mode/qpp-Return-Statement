@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Return-Statement
 # key: qpp-Sequential-Statements-Return-Statement
+# group: qpp Sequential-Statements
 # --
 // Return Statement
 -- Inside a function, this statement must return a value.

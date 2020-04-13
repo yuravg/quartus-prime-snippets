@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Signal-Declaration
 # key: qpp-Type-and-Subtype-Declarations-Signal-Declaration
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Signal Declaration
 -- Signal with no default value.  Your design should assign an explicit

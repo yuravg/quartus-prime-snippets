@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Hyper-Pipelining-Module-Instantiation
 # key: qpp-Pipelining-Hyper-Pipelining-Module-Instantiation
+# group: qpp Pipelining
 # --
 // Hyper-Pipelining Module Instantiation
 -- Quartus Prime VHDL Template

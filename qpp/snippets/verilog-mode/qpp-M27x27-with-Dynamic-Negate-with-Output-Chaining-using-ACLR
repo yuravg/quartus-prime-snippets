@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M27x27-with-Dynamic-Negate-with-Output-Chaining-using-ACLR
 # key: qpp-DSP-Features-for-10-nm-Device-M27x27-with-Dynamic-Negate-with-Output-Chaining-using-ACLR
+# group: qpp DSP-Features-for-10-nm-Device
 # --
 // M27x27 with Dynamic Negate with Output Chaining using ACLR
 // Quartus Prime Verilog Template

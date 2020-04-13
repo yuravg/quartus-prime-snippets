@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Switch-Statement
 # key: qpp-Commands-Switch-Statement
+# group: qpp Commands
 # --
 // Switch Statement
 switch __flags __value {

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Architecture
 # key: qpp-Design-Units-Architecture
+# group: qpp Design-Units
 # --
 // Architecture
 

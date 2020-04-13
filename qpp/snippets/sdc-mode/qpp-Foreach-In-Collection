@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Foreach-In-Collection
 # key: qpp-Collections-Foreach-In-Collection
+# group: qpp Collections
 # --
 // Foreach In Collection
 set __collection [__collectionCommand]

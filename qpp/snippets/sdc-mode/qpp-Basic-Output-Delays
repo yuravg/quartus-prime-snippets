@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-Output-Delays
 # key: qpp-I-O-Delays-Basic-Output-Delays
+# group: qpp I-O-Delays
 # --
 // Basic Output Delays
 set_output_delay -clock __clock -max __maxValue [get_ports __listOfWildcards]

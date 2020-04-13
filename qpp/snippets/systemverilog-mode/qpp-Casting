@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Casting
 # key: qpp-Expressions-Casting
+# group: qpp Expressions
 # --
 // Casting
 module casting(output logic o);

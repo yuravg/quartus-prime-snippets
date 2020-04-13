@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Basic-Negative-Edge-Register-with-Asynchronous-Reset
 # key: qpp-Registers-Basic-Negative-Edge-Register-with-Asynchronous-Reset
+# group: qpp Registers
 # --
 // Basic Negative Edge Register with Asynchronous Reset
 process (<clock_signal>, <reset>)

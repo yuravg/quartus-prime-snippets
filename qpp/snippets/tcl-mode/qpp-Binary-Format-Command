@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Binary-Format-Command
 # key: qpp-Commands-Binary-Format-Command
+# group: qpp Commands
 # --
 // Binary Format Command
 binary format __template __value;

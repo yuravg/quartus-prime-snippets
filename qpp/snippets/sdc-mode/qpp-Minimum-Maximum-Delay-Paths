@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Minimum-Maximum-Delay-Paths
 # key: qpp-Exceptions-Minimum-Maximum-Delay-Paths
+# group: qpp Exceptions
 # --
 // Minimum/Maximum Delay Paths
 set_max_delay -from [__collectionCommand __listOfWildcards] -to [__collectionCommand __listOfWildcards] __value

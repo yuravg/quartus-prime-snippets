@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-If-Statement
 # key: qpp-Sequential-Statements-If-Statement
+# group: qpp Sequential-Statements
 # --
 // If Statement
 if <expression> then

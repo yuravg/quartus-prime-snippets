@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-jkffe
 # key: qpp-Registers-and-Latches-jkffe
+# group: qpp Registers-and-Latches
 # --
 // jkffe
 	jkffe <instance_name> (

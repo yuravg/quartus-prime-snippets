@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-ALT_INBUF
 # key: qpp-Buffers-ALT_INBUF
+# group: qpp Buffers
 # --
 // ALT_INBUF
 -- Add the library and use clauses before the design unit declaration

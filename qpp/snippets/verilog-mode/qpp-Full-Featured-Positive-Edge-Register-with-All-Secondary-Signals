@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Full-Featured-Positive-Edge-Register-with-All-Secondary-Signals
 # key: qpp-Registers-Full-Featured-Positive-Edge-Register-with-All-Secondary-Signals
+# group: qpp Registers
 # --
 // Full-Featured Positive Edge Register with All Secondary Signals
 // In Altera devices, register signals have a set priority.

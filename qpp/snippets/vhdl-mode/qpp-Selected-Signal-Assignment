@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Selected-Signal-Assignment
 # key: qpp-Concurrent-Statements-Selected-Signal-Assignment
+# group: qpp Concurrent-Statements
 # --
 // Selected Signal Assignment
 <optional_label>: with <expression> select

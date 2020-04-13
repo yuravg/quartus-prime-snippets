@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M27x27-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant
 # key: qpp-DSP-Features-for-20-nm-Device-M27x27-with-Input-Cascade-Output-Chaining-Accumulator-Double-Accumulator-and-Preload-Constant
+# group: qpp DSP-Features-for-20-nm-Device
 # --
 // M27x27 with Input Cascade, Output Chaining, Accumulator, Double Accumulator and Preload Constant
 // Quartus Prime Verilog Template

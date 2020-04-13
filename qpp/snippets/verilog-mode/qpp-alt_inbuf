@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-alt_inbuf
 # key: qpp-Buffers-alt_inbuf
+# group: qpp Buffers
 # --
 // alt_inbuf
 	//<data_in> must be declared as an input pin

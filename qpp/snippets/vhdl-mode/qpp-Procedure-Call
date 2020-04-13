@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Procedure-Call
 # key: qpp-Sequential-Statements-Procedure-Call
+# group: qpp Sequential-Statements
 # --
 // Procedure Call
 <optional_label>: <procedure_name> (<arguments>);

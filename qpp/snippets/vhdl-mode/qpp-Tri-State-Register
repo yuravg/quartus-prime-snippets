@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Tri-State-Register
 # key: qpp-Tri-State-Tri-State-Register
+# group: qpp Tri-State
 # --
 // Tri-State Register
 process (<clock_signal>, <asynch_output_enable>)

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-M27x27-with-Preadder-and-Coefficent
 # key: qpp-DSP-Features-for-20-nm-Device-M27x27-with-Preadder-and-Coefficent
+# group: qpp DSP-Features-for-20-nm-Device
 # --
 // M27x27 with Preadder and Coefficent
 -- Quartus Prime VHDL Template

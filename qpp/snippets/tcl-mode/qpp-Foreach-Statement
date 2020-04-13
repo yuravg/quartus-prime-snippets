@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Foreach-Statement
 # key: qpp-Commands-Foreach-Statement
+# group: qpp Commands
 # --
 // Foreach Statement
 foreach __loopVar __valueList {

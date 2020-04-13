@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Unsigned-Multiply-with-Input-and-Output-Registers
 # key: qpp-Multipliers-Unsigned-Multiply-with-Input-and-Output-Registers
+# group: qpp Multipliers
 # --
 // Unsigned Multiply with Input and Output Registers
 -- Quartus Prime VHDL Template

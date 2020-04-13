@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Generate-Construct
 # key: qpp-Generates-Generate-Construct
+# group: qpp Generates
 # --
 // Generate Construct
 // Generate costructs allow you to conditionally replicate HDL code in

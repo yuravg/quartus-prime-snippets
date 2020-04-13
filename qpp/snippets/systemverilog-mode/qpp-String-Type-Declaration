@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-String-Type-Declaration
 # key: qpp-Type-Declarations-String-Type-Declaration
+# group: qpp Type-Declarations
 # --
 // String Type Declaration
 

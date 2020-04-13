@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-cascade
 # key: qpp-Buffers-cascade
+# group: qpp Buffers
 # --
 // cascade
 	// <data_out> cannot feed an output pin, a register, or an XOR gate

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Sequential-Process
 # key: qpp-Concurrent-Statements-Sequential-Process
+# group: qpp Concurrent-Statements
 # --
 // Sequential Process
 <optional_label>:

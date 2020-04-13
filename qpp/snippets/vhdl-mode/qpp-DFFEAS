@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-DFFEAS
 # key: qpp-Registers-and-Latches-DFFEAS
+# group: qpp Registers-and-Latches
 # --
 // DFFEAS
 -- Add the library and use clauses before the design unit declaration

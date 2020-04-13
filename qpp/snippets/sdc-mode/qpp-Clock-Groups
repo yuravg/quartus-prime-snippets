@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Clock-Groups
 # key: qpp-Clock-Attributes-Clock-Groups
+# group: qpp Clock-Attributes
 # --
 // Clock Groups
 set_clock_groups -exclusive -group __listOfWildcards -group __listOfWildcards

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Array-Type-Declaration
 # key: qpp-Type-and-Subtype-Declarations-Array-Type-Declaration
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Array Type Declaration
 -- Basic 1-D array type declaration

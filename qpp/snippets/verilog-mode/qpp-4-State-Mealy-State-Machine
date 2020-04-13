@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-4-State-Mealy-State-Machine
 # key: qpp-State-Machines-4-State-Mealy-State-Machine
+# group: qpp State-Machines
 # --
 // 4-State Mealy State Machine
 // Quartus Prime Verilog Template

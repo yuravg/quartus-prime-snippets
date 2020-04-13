@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Safe-State-Machine
 # key: qpp-State-Machines-Safe-State-Machine
+# group: qpp State-Machines
 # --
 // Safe State Machine
 -- Quartus Prime VHDL Template

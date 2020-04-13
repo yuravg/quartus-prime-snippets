@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Package
 # key: qpp-Design-Units-Package
+# group: qpp Design-Units
 # --
 // Package
 

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-DFF
 # key: qpp-Registers-and-Latches-DFF
+# group: qpp Registers-and-Latches
 # --
 // DFF
 -- Add the library and use clauses before the design unit declaration

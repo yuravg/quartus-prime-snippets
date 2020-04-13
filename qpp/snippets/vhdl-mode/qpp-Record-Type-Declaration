@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Record-Type-Declaration
 # key: qpp-Type-and-Subtype-Declarations-Record-Type-Declaration
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Record Type Declaration
 type <name> is

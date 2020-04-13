@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-JTAG-Signal-Constraints
 # key: qpp-SDC-Cookbook-JTAG-Signal-Constraints
+# group: qpp SDC-Cookbook
 # --
 // JTAG Signal Constraints
 # Search "---customize here---" for the few decisions you need to make

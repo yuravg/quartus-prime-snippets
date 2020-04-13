@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-latch
 # key: qpp-Registers-and-Latches-latch
+# group: qpp Registers-and-Latches
 # --
 // latch
 	latch <instance_name> (

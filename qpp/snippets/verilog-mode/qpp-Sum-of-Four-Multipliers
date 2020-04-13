@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Sum-of-Four-Multipliers
 # key: qpp-DSP-Features-for-28-nm-Device-Sum-of-Four-Multipliers
+# group: qpp DSP-Features-for-28-nm-Device
 # --
 // Sum of Four Multipliers
 // Quartus Prime Verilog Template

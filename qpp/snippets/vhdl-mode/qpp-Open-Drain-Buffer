@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Open-Drain-Buffer
 # key: qpp-Tri-State-Open-Drain-Buffer
+# group: qpp Tri-State
 # --
 // Open-Drain Buffer
 -- Altera devices contain tri-state buffers in the I/O.  Thus, an open-drain

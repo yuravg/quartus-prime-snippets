@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-True-Dual-Port-RAM-(dual-clock)
 # key: qpp-RAMs-and-ROMs-True-Dual-Port-RAM-(dual-clock)
+# group: qpp RAMs-and-ROMs
 # --
 // True Dual Port RAM (dual clock)
 // Quartus Prime Verilog Template

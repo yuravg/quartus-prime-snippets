@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Next-Statement
 # key: qpp-Sequential-Statements-Next-Statement
+# group: qpp Sequential-Statements
 # --
 // Next Statement
 -- Unconditional next.

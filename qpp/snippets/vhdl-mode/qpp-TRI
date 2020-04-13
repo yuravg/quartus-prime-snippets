@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-TRI
 # key: qpp-Buffers-TRI
+# group: qpp Buffers
 # --
 // TRI
 -- Add the library and use clauses before the design unit declaration

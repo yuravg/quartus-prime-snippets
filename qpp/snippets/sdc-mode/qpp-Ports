@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Ports
 # key: qpp-Collections-Ports
+# group: qpp Collections
 # --
 // Ports
 set __name [get_ports __listOfWildcards]

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Join-Command
 # key: qpp-Commands-Join-Command
+# group: qpp Commands
 # --
 // Join Command
 joint __list __joinString;

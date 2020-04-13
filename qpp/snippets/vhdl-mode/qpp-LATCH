@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-LATCH
 # key: qpp-Registers-and-Latches-LATCH
+# group: qpp Registers-and-Latches
 # --
 // LATCH
 -- Add the library and use clauses before the design unit declaration

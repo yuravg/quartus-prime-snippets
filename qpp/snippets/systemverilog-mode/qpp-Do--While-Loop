@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Do--While-Loop
 # key: qpp-Loops-Do--While-Loop
+# group: qpp Loops
 # --
 // Do...While Loop
 do

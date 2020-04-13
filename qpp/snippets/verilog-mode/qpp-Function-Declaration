@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Function-Declaration
 # key: qpp-Declarations-Function-Declaration
+# group: qpp Declarations
 # --
 // Function Declaration
 // A function must declare one or more input arguments.  It must also

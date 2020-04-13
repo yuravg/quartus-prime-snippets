@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Set-Global-Assignment
 # key: qpp-Commands-Set-Global-Assignment
+# group: qpp Commands
 # --
 // Set Global Assignment
 # Name is the keyword for the assignment

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Module-Declaration-(style1)
 # key: qpp-Design-Units-Module-Declaration-(style1)
+# group: qpp Design-Units
 # --
 // Module Declaration (style1)
 module <module_name>

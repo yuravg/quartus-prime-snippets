@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Library-Clause
 # key: qpp-Design-Units-Library-Clause
+# group: qpp Design-Units
 # --
 // Library Clause
 -- A library clause declares a name as a library.  It

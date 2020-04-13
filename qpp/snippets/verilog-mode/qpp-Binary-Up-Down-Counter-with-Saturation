@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Binary-Up-Down-Counter-with-Saturation
 # key: qpp-Counters-Binary-Up-Down-Counter-with-Saturation
+# group: qpp Counters
 # --
 // Binary Up/Down Counter with Saturation
 // Quartus Prime Verilog Template

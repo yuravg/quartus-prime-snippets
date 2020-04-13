@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Unset-Command
 # key: qpp-Commands-Unset-Command
+# group: qpp Commands
 # --
 // Unset Command
 unset __varName;

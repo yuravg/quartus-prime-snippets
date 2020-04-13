@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Sequential-Block
 # key: qpp-Loops-Sequential-Block
+# group: qpp Loops
 # --
 // Sequential Block
 // Named blocks may include declarations at the beginning

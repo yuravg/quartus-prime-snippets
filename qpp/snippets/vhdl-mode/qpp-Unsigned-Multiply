@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Unsigned-Multiply
 # key: qpp-Multipliers-Unsigned-Multiply
+# group: qpp Multipliers
 # --
 // Unsigned Multiply
 -- Quartus Prime VHDL Template

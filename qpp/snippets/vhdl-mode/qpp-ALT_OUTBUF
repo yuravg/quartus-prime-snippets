@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-ALT_OUTBUF
 # key: qpp-Buffers-ALT_OUTBUF
+# group: qpp Buffers
 # --
 // ALT_OUTBUF
 -- Add the library and use clauses before the design unit declaration

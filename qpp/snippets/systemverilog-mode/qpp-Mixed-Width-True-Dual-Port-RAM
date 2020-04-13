@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Mixed-Width-True-Dual-Port-RAM
 # key: qpp-RAMs-and-ROMs-Mixed-Width-True-Dual-Port-RAM
+# group: qpp RAMs-and-ROMs
 # --
 // Mixed-Width True Dual Port RAM
 // Quartus Prime SystemVerilog Template

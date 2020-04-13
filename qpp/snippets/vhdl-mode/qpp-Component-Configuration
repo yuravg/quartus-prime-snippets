@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Component-Configuration
 # key: qpp-Design-Units-Component-Configuration
+# group: qpp Design-Units
 # --
 // Component Configuration
 -- Component configurations go inside configuration declarations.  See the

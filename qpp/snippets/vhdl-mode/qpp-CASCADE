@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-CASCADE
 # key: qpp-Buffers-CASCADE
+# group: qpp Buffers
 # --
 // CASCADE
 -- Add the library and use clauses before the design unit declaration

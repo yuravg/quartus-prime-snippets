@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Unary-Operators
 # key: qpp-Expressions-Unary-Operators
+# group: qpp Expressions
 # --
 // Unary Operators
 +            // Unary plus

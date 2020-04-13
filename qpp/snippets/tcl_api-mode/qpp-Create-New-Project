@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Create-New-Project
 # key: qpp-Commands-Create-New-Project
+# group: qpp Commands
 # --
 // Create New Project
 # Create a new project and open it

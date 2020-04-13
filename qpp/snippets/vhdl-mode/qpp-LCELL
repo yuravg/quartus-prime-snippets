@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-LCELL
 # key: qpp-Buffers-LCELL
+# group: qpp Buffers
 # --
 // LCELL
 -- Add the library and use clauses before the design unit declaration

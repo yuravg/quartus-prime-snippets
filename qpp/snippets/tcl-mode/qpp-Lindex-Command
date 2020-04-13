@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Lindex-Command
 # key: qpp-Commands-Lindex-Command
+# group: qpp Commands
 # --
 // Lindex Command
 lindex __list __i;

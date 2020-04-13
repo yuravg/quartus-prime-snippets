@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Concurrent-Procedure-Call
 # key: qpp-Concurrent-Statements-Concurrent-Procedure-Call
+# group: qpp Concurrent-Statements
 # --
 // Concurrent Procedure Call
 <optional_label>: <procedure_name> (<arguments>);

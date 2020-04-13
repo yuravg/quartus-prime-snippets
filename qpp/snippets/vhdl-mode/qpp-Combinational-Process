@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Combinational-Process
 # key: qpp-Concurrent-Statements-Combinational-Process
+# group: qpp Concurrent-Statements
 # --
 // Combinational Process
 <optional_label>:

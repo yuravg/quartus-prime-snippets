@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Component-Declaration
 # key: qpp-Type-and-Subtype-Declarations-Component-Declaration
+# group: qpp Type-and-Subtype-Declarations
 # --
 // Component Declaration
 -- A component declaration declares the interface of an entity or

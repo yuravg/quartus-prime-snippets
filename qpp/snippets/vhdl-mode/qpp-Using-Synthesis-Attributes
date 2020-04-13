@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Using-Synthesis-Attributes
 # key: qpp-Synthesis-Attributes-Using-Synthesis-Attributes
+# group: qpp Synthesis-Attributes
 # --
 // Using Synthesis Attributes
 -- Before using an attribute, you must first declare it or import

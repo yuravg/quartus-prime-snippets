@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qpp-Tri-State-Register
 # key: qpp-Tri-State-Tri-State-Register
+# group: qpp Tri-State
 # --
 // Tri-State Register
 // Tri-state registers are registers on inout ports.  As with any

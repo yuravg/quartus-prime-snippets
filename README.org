@@ -1,0 +1,34 @@
+#+TITLE: YASnippets-quartus
+
+* Overview
+This is Emacs package with [[https://github.com/joaotavora/yasnippet][snippets]] for
+Intel Quartus Prime Standard(QPS) and Professional(QPP) tool(FPGAs).
+
+All snippets [[https://github.com/yuravg/quartus_template_parser.git][were obtained]] from
+Quartus template files (*.tpl) of appropriate (QPS/QPP) tool.
+
+* Setup
+
+1. Download [[https://github.com/yuravg/yasnippets-quartus.git][yasnippets-quartus]]
+
+2. Add this to your .emacs:
+
+#+begin_src elisp
+(load-file "PATH-TO-THE-FILE-YOU-JUST-DOWNLOADED")
+
+(yasnippets-quartus-standard-initialize)
+;; or/and
+(yasnippets-quartus-professional-initialize)
+#+end_src
+
+or
+
+#+begin_src elisp
+(use-package yasnippets-quartus
+  :load-path "PATH-TO-THE-FILE-YOU-JUST-DOWNLOADED"
+  :config
+  (progn
+    (yasnippets-quartus-standard-initialize)
+    ;; or/and
+    (yasnippets-quartus-professional-initialize)))
+#+end_src

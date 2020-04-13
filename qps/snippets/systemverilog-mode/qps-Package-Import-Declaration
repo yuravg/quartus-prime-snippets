@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Package-Import-Declaration
 # key: qps-Type-Declarations-Package-Import-Declaration
+# group: qps Type-Declarations
 # --
 // Package Import Declaration
 // Import declaration(s) from a package into the current scope.  You can

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Instance-Declaration-(non-parameterized)
 # key: qps-Architecture-Instance-Declaration-(non-parameterized)
+# group: qps Architecture
 # --
 // Instance Declaration (non-parameterized)
 __function_instance_name	: __function_name;

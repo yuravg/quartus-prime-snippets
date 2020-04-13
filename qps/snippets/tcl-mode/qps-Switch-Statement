@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Switch-Statement
 # key: qps-Commands-Switch-Statement
+# group: qps Commands
 # --
 // Switch Statement
 switch __flags __value {

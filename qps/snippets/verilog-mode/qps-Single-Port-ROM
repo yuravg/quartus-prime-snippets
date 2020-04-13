@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Single-Port-ROM
 # key: qps-RAMs-and-ROMs-Single-Port-ROM
+# group: qps RAMs-and-ROMs
 # --
 // Single Port ROM
 // Quartus Prime Verilog Template

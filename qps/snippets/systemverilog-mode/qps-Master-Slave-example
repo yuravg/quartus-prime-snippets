@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Master-Slave-example
 # key: qps-Interfaces-Master-Slave-example
+# group: qps Interfaces
 # --
 // Master Slave example
 // Full example with a top module instantiating and interface and a master and slave submodules

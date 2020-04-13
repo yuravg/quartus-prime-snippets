@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Conditional-Operator
 # key: qps-Expressions-Conditional-Operator
+# group: qps Expressions
 # --
 // Conditional Operator
 (expression) ? (true_value_expr) : (false_value_expr)

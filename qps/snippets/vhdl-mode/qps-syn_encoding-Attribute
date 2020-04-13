@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-syn_encoding-Attribute
 # key: qps-Synthesis-Attributes-syn_encoding-Attribute
+# group: qps Synthesis-Attributes
 # --
 // syn_encoding Attribute
 -- Controls the encoding of the states in an inferred state machine.

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-ALT_INBUF
 # key: qps-Buffers-ALT_INBUF
+# group: qps Buffers
 # --
 // ALT_INBUF
 -- Add the library and use clauses before the design unit declaration

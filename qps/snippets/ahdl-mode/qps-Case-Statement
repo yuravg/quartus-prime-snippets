@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Case-Statement
 # key: qps-Architecture-Case-Statement
+# group: qps Architecture
 # --
 // Case Statement
 CASE __expression IS

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Sum-of-Two-Multipliers-with-pipeline-registers
 # key: qps-Sums-of-Multipliers-Sum-of-Two-Multipliers-with-pipeline-registers
+# group: qps Sums-of-Multipliers
 # --
 // Sum of Two Multipliers with pipeline registers
 // Quartus Prime Verilog Template

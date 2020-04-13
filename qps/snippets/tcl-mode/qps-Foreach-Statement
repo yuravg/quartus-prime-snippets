@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Foreach-Statement
 # key: qps-Commands-Foreach-Statement
+# group: qps Commands
 # --
 // Foreach Statement
 foreach __loopVar __valueList {

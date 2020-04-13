@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-TFFE
 # key: qps-Registers-and-Latches-TFFE
+# group: qps Registers-and-Latches
 # --
 // TFFE
 -- Add the library and use clauses before the design unit declaration

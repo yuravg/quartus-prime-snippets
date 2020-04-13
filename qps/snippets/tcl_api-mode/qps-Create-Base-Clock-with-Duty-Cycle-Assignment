@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Create-Base-Clock-with-Duty-Cycle-Assignment
 # key: qps-Commands-Create-Base-Clock-with-Duty-Cycle-Assignment
+# group: qps Commands
 # --
 // Create Base Clock with Duty Cycle Assignment
 # Create a new base clock

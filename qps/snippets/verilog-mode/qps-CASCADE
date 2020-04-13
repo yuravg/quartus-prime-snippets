@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-CASCADE
 # key: qps-Buffers-CASCADE
+# group: qps Buffers
 # --
 // CASCADE
 	// <data_out> cannot feed an output pin, a register, or an XOR gate

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Multiplier-with-One-Operand-from-Pre-Adder-and-the-Other-from-Coefficient-ROM
 # key: qps-DSP-Features-for-28-nm-Device-Multiplier-with-One-Operand-from-Pre-Adder-and-the-Other-from-Coefficient-ROM
+# group: qps DSP-Features-for-28-nm-Device
 # --
 // Multiplier with One Operand from Pre-Adder and the Other from Coefficient ROM
 // Quartus Prime Verilog Template

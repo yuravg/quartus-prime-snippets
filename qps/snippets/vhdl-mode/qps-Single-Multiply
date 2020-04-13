@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Single-Multiply
 # key: qps-DSP-Features-for-28-nm-Device-Single-Multiply
+# group: qps DSP-Features-for-28-nm-Device
 # --
 // Single Multiply
 -- Quartus Prime VHDL Template

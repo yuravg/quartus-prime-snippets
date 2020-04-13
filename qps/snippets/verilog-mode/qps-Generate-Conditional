@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Generate-Conditional
 # key: qps-Generates-Generate-Conditional
+# group: qps Generates
 # --
 // Generate Conditional
 // A <constant_expression> may only involve constant literals, parameters,

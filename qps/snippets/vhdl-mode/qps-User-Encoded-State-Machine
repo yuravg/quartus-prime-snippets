@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-User-Encoded-State-Machine
 # key: qps-State-Machines-User-Encoded-State-Machine
+# group: qps State-Machines
 # --
 // User-Encoded State Machine
 -- Quartus Prime VHDL Template

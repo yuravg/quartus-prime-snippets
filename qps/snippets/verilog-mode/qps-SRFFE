@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-SRFFE
 # key: qps-Registers-and-Latches-SRFFE
+# group: qps Registers-and-Latches
 # --
 // SRFFE
 	SRFFE <instance_name> (

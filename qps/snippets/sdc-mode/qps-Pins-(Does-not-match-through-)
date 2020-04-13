@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Pins-(Does-not-match-through-)
 # key: qps-Collections-Pins-(Does-not-match-through-)
+# group: qps Collections
 # --
 // Pins (Does not match through |)
 set __name [get_pins __listOfWildcards]

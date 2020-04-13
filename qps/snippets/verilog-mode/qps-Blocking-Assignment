@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Blocking-Assignment
 # key: qps-Sequential-Statements-Blocking-Assignment
+# group: qps Sequential-Statements
 # --
 // Blocking Assignment
 // Use blocking assignments when assigning to loop variables, temporary

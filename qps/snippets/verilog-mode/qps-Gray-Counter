@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Gray-Counter
 # key: qps-Counters-Gray-Counter
+# group: qps Counters
 # --
 // Gray Counter
 // Quartus Prime Verilog Template

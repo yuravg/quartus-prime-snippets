@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-`define
 # key: qps-Compiler-Directives-`define
+# group: qps Compiler-Directives
 # --
 // `define
 `define <name> <macro_text>

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-String-Type-Declaration
 # key: qps-Type-Declarations-String-Type-Declaration
+# group: qps Type-Declarations
 # --
 // String Type Declaration
 

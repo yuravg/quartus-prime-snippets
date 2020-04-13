@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-TRI
 # key: qps-Buffers-TRI
+# group: qps Buffers
 # --
 // TRI
 // The TRI primitive cannot be used in Verilog as TRI is a reserved word

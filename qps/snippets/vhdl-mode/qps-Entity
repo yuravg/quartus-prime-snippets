@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Entity
 # key: qps-Design-Units-Entity
+# group: qps Design-Units
 # --
 // Entity
 entity <entity_name> is

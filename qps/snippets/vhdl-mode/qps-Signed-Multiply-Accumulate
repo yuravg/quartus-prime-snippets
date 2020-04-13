@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Signed-Multiply-Accumulate
 # key: qps-Multiply-Accumulators-Signed-Multiply-Accumulate
+# group: qps Multiply-Accumulators
 # --
 // Signed Multiply-Accumulate
 -- Quartus Prime VHDL Template

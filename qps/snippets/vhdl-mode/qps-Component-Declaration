@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Component-Declaration
 # key: qps-Type-and-Subtype-Declarations-Component-Declaration
+# group: qps Type-and-Subtype-Declarations
 # --
 // Component Declaration
 -- A component declaration declares the interface of an entity or

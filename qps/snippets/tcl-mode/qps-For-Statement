@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-For-Statement
 # key: qps-Commands-For-Statement
+# group: qps Commands
 # --
 // For Statement
 for __initial { __test } __final {

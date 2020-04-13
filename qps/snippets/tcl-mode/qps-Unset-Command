@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Unset-Command
 # key: qps-Commands-Unset-Command
+# group: qps Commands
 # --
 // Unset Command
 unset __varName;

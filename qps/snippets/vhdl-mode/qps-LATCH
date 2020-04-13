@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-LATCH
 # key: qps-Registers-and-Latches-LATCH
+# group: qps Registers-and-Latches
 # --
 // LATCH
 -- Add the library and use clauses before the design unit declaration

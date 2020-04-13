@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Single-Port-RAM-with-Initial-Contents-ProOnly
 # key: qps-RAMs-and-ROMs-Single-Port-RAM-with-Initial-Contents-ProOnly
+# group: qps RAMs-and-ROMs
 # --
 // Single Port RAM with Initial Contents
 pro_edition_only

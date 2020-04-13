@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Always-Construct-(Combinational)
 # key: qps-Module-Items-Always-Construct-(Combinational)
+# group: qps Module-Items
 # --
 // Always Construct (Combinational)
 always@(*)

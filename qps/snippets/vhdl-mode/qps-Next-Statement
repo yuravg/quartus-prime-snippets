@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Next-Statement
 # key: qps-Sequential-Statements-Next-Statement
+# group: qps Sequential-Statements
 # --
 // Next Statement
 -- Unconditional next.

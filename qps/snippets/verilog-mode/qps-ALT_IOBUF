@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-ALT_IOBUF
 # key: qps-Buffers-ALT_IOBUF
+# group: qps Buffers
 # --
 // ALT_IOBUF
 	ALT_IOBUF <instance_name> (

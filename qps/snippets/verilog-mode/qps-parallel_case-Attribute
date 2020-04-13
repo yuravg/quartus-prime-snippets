@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-parallel_case-Attribute
 # key: qps-Synthesis-Attributes-parallel_case-Attribute
+# group: qps Synthesis-Attributes
 # --
 // parallel_case Attribute
 // Indicates that Quartus Prime should consider the case items

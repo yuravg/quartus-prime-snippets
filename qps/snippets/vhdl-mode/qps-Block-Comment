@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Block-Comment
 # key: qps-VHDL-2008-Constructs-Block-Comment
+# group: qps VHDL-2008-Constructs
 # --
 // Block Comment
 /*

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Define-Statement
 # key: qps-Architecture-Define-Statement
+# group: qps Architecture
 # --
 // Define Statement
 DEFINE __evaluated_function_name (__variable, __variable) = __expression;

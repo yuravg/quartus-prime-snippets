@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Pins-(Matches-leafs-e-g--mycell-q-of-myhier-mycell-q)
 # key: qps-Collections-Pins-(Matches-leafs-e-g--mycell-q-of-myhier-mycell-q)
+# group: qps Collections
 # --
 // Pins (Matches leafs, e.g., mycell|q of myhier|mycell|q)
 set __name [get_pins -hier __listOfWildcards]

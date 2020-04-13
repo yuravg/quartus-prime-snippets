@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Basic-Latch
 # key: qps-Latches-Basic-Latch
+# group: qps Latches
 # --
 // Basic Latch
 -- Update the variable only when updates are enabled

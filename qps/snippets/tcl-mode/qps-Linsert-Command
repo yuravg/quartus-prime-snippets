@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Linsert-Command
 # key: qps-Commands-Linsert-Command
+# group: qps Commands
 # --
 // Linsert Command
 linsert __list __index __arg;

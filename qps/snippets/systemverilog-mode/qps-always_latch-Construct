@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-always_latch-Construct
 # key: qps-Module-Items-always_latch-Construct
+# group: qps Module-Items
 # --
 // always_latch Construct
 // This construct should be used to infer latched logic.

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Unsigned-Multiply-with-Input-and-Output-Registers
 # key: qps-Multipliers-Unsigned-Multiply-with-Input-and-Output-Registers
+# group: qps Multipliers
 # --
 // Unsigned Multiply with Input and Output Registers
 // Quartus Prime Verilog Template

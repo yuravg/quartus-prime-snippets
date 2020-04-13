@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Generate-Case
 # key: qps-Generates-Generate-Case
+# group: qps Generates
 # --
 // Generate Case
 case(<constant_expr>)

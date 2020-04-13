@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Multicycle-Clock-to-Register
 # key: qps-SDC-Cookbook-Multicycle-Clock-to-Register
+# group: qps SDC-Cookbook
 # --
 // Multicycle Clock-to-Register
 # Create the source clock

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Create-New-Project
 # key: qps-Commands-Create-New-Project
+# group: qps Commands
 # --
 // Create New Project
 # Create a new project and open it

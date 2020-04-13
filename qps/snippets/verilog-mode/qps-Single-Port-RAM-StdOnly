@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Single-Port-RAM-StdOnly
 # key: qps-RAMs-and-ROMs-Single-Port-RAM-StdOnly
+# group: qps RAMs-and-ROMs
 # --
 // Single Port RAM
 standard_edition_only

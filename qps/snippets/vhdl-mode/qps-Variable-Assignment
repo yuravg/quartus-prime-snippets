@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Variable-Assignment
 # key: qps-Sequential-Statements-Variable-Assignment
+# group: qps Sequential-Statements
 # --
 // Variable Assignment
 <optional_label>: <variable_name> := <expression>;

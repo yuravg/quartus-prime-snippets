@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-dont_replicate-Attribute
 # key: qps-Synthesis-Attributes-dont_replicate-Attribute
+# group: qps Synthesis-Attributes
 # --
 // dont_replicate Attribute
 // Prevents Quartus Prime from replicating a register.

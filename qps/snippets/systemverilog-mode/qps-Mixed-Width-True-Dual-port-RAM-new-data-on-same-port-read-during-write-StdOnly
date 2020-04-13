@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Mixed-Width-True-Dual-port-RAM-new-data-on-same-port-read-during-write-StdOnly
 # key: qps-RAMs-and-ROMs-Mixed-Width-True-Dual-port-RAM-new-data-on-same-port-read-during-write-StdOnly
+# group: qps RAMs-and-ROMs
 # --
 // Mixed-Width True Dual port RAM new data on same port read during write
 standard_edition_only

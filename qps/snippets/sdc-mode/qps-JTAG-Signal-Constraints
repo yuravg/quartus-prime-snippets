@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-JTAG-Signal-Constraints
 # key: qps-SDC-Cookbook-JTAG-Signal-Constraints
+# group: qps SDC-Cookbook
 # --
 // JTAG Signal Constraints
 # Search "---customize here---" for the few decisions you need to make

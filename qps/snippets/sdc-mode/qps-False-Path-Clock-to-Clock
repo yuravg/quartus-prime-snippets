@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-False-Path-Clock-to-Clock
 # key: qps-SDC-Cookbook-False-Path-Clock-to-Clock
+# group: qps SDC-Cookbook
 # --
 // False Path Clock-to-Clock
 # Create the source clock

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Pipelined-Binary-Adder-Tree
 # key: qps-Adders-Pipelined-Binary-Adder-Tree
+# group: qps Adders
 # --
 // Pipelined Binary Adder Tree
 -- Quartus Prime VHDL Template

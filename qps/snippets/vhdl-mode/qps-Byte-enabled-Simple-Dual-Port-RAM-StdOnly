@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Byte-enabled-Simple-Dual-Port-RAM-StdOnly
 # key: qps-RAMs-and-ROMs-Byte-enabled-Simple-Dual-Port-RAM-StdOnly
+# group: qps RAMs-and-ROMs
 # --
 // Byte-enabled Simple Dual Port RAM
 standard_edition_only

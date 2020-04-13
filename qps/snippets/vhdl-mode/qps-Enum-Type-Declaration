@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Enum-Type-Declaration
 # key: qps-Type-and-Subtype-Declarations-Enum-Type-Declaration
+# group: qps Type-and-Subtype-Declarations
 # --
 // Enum Type Declaration
 type <name> is (<enum_literal>, <enum_literal>, ...);

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Full-Featured-Positive-Edge-Register-with-All-Secondary-Signals
 # key: qps-Registers-Full-Featured-Positive-Edge-Register-with-All-Secondary-Signals
+# group: qps Registers
 # --
 // Full-Featured Positive Edge Register with All Secondary Signals
 -- In Altera devices, register signals have a set priority.

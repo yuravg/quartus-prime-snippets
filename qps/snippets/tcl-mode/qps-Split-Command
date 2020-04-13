@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Split-Command
 # key: qps-Commands-Split-Command
+# group: qps Commands
 # --
 // Split Command
 split __string __splitChars;

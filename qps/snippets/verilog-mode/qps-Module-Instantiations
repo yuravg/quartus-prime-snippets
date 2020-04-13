@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Module-Instantiations
 # key: qps-Module-Items-Module-Instantiations
+# group: qps Module-Items
 # --
 // Module Instantiations
 // Basic module instantiation

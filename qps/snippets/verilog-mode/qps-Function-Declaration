@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Function-Declaration
 # key: qps-Declarations-Function-Declaration
+# group: qps Declarations
 # --
 // Function Declaration
 // A function must declare one or more input arguments.  It must also

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Variable-Section
 # key: qps-Architecture-Variable-Section
+# group: qps Architecture
 # --
 // Variable Section
 VARIABLE

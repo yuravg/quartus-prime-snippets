@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Divide-By-2-Clock
 # key: qps-Clocks-Divide-By-2-Clock
+# group: qps Clocks
 # --
 // Divide-By-2 Clock
 create_generated_clock -name __name -divide_by 2 -source __source [get_pins __target]

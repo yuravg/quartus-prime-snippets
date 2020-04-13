@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Llength-Command
 # key: qps-Commands-Llength-Command
+# group: qps Commands
 # --
 // Llength Command
 llength __list;

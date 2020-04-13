@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-GLOBAL
 # key: qps-Buffers-GLOBAL
+# group: qps Buffers
 # --
 // GLOBAL
 	GLOBAL <instance_name> (.in(<data_in>), .out(<data_out>));

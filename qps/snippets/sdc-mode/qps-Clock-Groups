@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Clock-Groups
 # key: qps-Clock-Attributes-Clock-Groups
+# group: qps Clock-Attributes
 # --
 // Clock Groups
 set_clock_groups -exclusive -group __listOfWildcards -group __listOfWildcards

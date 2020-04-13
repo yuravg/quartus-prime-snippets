@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Function-Declaration
 # key: qps-Type-Declarations-Function-Declaration
+# group: qps Type-Declarations
 # --
 // Function Declaration
 // A function must execute in a single simulation cycle; therefore, it

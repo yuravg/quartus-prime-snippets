@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Continuous-Assignment
 # key: qps-Module-Items-Continuous-Assignment
+# group: qps Module-Items
 # --
 // Continuous Assignment
 // The left-hand side of a continuous assignment must be a structural

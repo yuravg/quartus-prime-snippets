@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-While-Loop
 # key: qps-Loops-While-Loop
+# group: qps Loops
 # --
 // While Loop
 while(<expression>)

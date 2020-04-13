@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Complex-25x18-Multiply
 # key: qps-DSP-Features-for-28-nm-Device-Complex-25x18-Multiply
+# group: qps DSP-Features-for-28-nm-Device
 # --
 // Complex 25x18 Multiply
 // Quartus Prime Verilog Template

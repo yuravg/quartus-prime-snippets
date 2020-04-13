@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Node-Declaration
 # key: qps-Architecture-Node-Declaration
+# group: qps Architecture
 # --
 // Node Declaration
 __node_name	: NODE;

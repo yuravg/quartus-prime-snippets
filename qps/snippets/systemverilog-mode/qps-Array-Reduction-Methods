@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Array-Reduction-Methods
 # key: qps-Expressions-Array-Reduction-Methods
+# group: qps Expressions
 # --
 // Array Reduction Methods
 module reduction(output byte  and_out, xor_out, or_out, sout, pout,

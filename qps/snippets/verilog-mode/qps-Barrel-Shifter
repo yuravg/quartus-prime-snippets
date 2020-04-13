@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Barrel-Shifter
 # key: qps-Shift-Registers-Barrel-Shifter
+# group: qps Shift-Registers
 # --
 // Barrel Shifter
 // Quartus Prime Verilog Template

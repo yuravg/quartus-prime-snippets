@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Basic-Latch-with-Reset
 # key: qps-Latches-Basic-Latch-with-Reset
+# group: qps Latches
 # --
 // Basic Latch with Reset
 process(<reset>, <enable>, <data>)

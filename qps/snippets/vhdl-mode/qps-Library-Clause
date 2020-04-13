@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Library-Clause
 # key: qps-Design-Units-Library-Clause
+# group: qps Design-Units
 # --
 // Library Clause
 -- A library clause declares a name as a library.  It

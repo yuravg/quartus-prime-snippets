@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Tri-State-Buffer
 # key: qps-Tri-State-Tri-State-Buffer
+# group: qps Tri-State
 # --
 // Tri-State Buffer
 -- Altera devices contain tri-state buffers in the I/O.  Thus, a tri-state

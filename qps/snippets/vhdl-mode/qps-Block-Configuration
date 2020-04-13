@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Block-Configuration
 # key: qps-Design-Units-Block-Configuration
+# group: qps Design-Units
 # --
 // Block Configuration
 -- Block configurations go inside configuration declarations.  See the

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Set-Global-Assignment
 # key: qps-Commands-Set-Global-Assignment
+# group: qps Commands
 # --
 // Set Global Assignment
 # Name is the keyword for the assignment

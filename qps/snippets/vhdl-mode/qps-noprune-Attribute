@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-noprune-Attribute
 # key: qps-Synthesis-Attributes-noprune-Attribute
+# group: qps Synthesis-Attributes
 # --
 // noprune Attribute
 -- Prevents Quartus Prime from removing or optimizing a fanout free register.

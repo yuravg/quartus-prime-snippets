@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Basic-Positive-Edge-Register-with-Asynchronous-Reset
 # key: qps-Registers-Basic-Positive-Edge-Register-with-Asynchronous-Reset
+# group: qps Registers
 # --
 // Basic Positive Edge Register with Asynchronous Reset
 process (<clock_signal>, <reset>)

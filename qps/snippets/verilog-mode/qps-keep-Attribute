@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-keep-Attribute
 # key: qps-Synthesis-Attributes-keep-Attribute
+# group: qps Synthesis-Attributes
 # --
 // keep Attribute
 // Prevents Quartus Prime from minimizing or removing a particular

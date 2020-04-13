@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Variable-Declaration
 # key: qps-Declarations-Variable-Declaration
+# group: qps Declarations
 # --
 // Variable Declaration
 // A variable stores a value.  It may be assigned a value in a

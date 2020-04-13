@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Safe-State-Machine
 # key: qps-State-Machines-Safe-State-Machine
+# group: qps State-Machines
 # --
 // Safe State Machine
 // Quartus Prime Verilog Template

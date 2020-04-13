@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Register-Declaration
 # key: qps-Architecture-Register-Declaration
+# group: qps Architecture
 # --
 // Register Declaration
 __register_instance_name	: __register_name;

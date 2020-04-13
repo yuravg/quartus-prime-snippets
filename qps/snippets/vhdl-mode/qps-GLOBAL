@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-GLOBAL
 # key: qps-Buffers-GLOBAL
+# group: qps Buffers
 # --
 // GLOBAL
 -- Add the library and use clauses before the design unit declaration

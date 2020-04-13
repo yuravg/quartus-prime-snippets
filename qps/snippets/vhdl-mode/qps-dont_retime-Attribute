@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-dont_retime-Attribute
 # key: qps-Synthesis-Attributes-dont_retime-Attribute
+# group: qps Synthesis-Attributes
 # --
 // dont_retime Attribute
 -- Prevents Quartus Prime from retiming a register

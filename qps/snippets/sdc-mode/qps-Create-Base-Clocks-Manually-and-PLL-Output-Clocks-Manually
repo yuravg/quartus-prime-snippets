@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Create-Base-Clocks-Manually-and-PLL-Output-Clocks-Manually
 # key: qps-SDC-Cookbook-Create-Base-Clocks-Manually-and-PLL-Output-Clocks-Manually
+# group: qps SDC-Cookbook
 # --
 // Create Base Clocks Manually and PLL Output Clocks Manually
 # Create a base clock for the PLL input clock

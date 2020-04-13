@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-List-Command
 # key: qps-Commands-List-Command
+# group: qps Commands
 # --
 // List Command
 list __arg1 __arg2;

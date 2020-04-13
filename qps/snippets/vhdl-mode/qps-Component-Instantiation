@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Component-Instantiation
 # key: qps-Instances-Component-Instantiation
+# group: qps Instances
 # --
 // Component Instantiation
 <instance_name> : <component_name>

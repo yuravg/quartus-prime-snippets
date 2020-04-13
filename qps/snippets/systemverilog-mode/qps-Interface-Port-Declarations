@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Interface-Port-Declarations
 # key: qps-Interfaces-Interface-Port-Declarations
+# group: qps Interfaces
 # --
 // Interface Port Declarations
 // Both modules and interfaces may declare interface ports.

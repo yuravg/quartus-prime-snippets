@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Dynamic-Add-Sub-Control
 # key: qps-DSP-Features-for-28-nm-Device-Dynamic-Add-Sub-Control
+# group: qps DSP-Features-for-28-nm-Device
 # --
 // Dynamic Add/Sub Control
 -- Quartus Prime VHDL Template

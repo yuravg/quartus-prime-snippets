@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Concurrent-Procedure-Call
 # key: qps-Concurrent-Statements-Concurrent-Procedure-Call
+# group: qps Concurrent-Statements
 # --
 // Concurrent Procedure Call
 <optional_label>: <procedure_name> (<arguments>);

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-TRI
 # key: qps-Buffers-TRI
+# group: qps Buffers
 # --
 // TRI
 -- Add the library and use clauses before the design unit declaration

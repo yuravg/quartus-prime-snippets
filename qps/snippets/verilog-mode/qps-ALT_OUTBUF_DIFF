@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-ALT_OUTBUF_DIFF
 # key: qps-Buffers-ALT_OUTBUF_DIFF
+# group: qps Buffers
 # --
 // ALT_OUTBUF_DIFF
 	// <data_out_pos> and <data_out_neg> must be declared as output pins

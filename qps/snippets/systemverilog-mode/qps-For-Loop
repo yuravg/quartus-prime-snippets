@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-For-Loop
 # key: qps-Loops-For-Loop
+# group: qps Loops
 # --
 // For Loop
 for(<for_init>; <expression>; <for_step>)

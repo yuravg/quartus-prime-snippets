@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Multicycle-Paths
 # key: qps-Exceptions-Multicycle-Paths
+# group: qps Exceptions
 # --
 // Multicycle Paths
 # Use -start instead of -end to apply the multicycleFactor to the source clock

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Module-Declaration-(style1)
 # key: qps-Design-Units-Module-Declaration-(style1)
+# group: qps Design-Units
 # --
 // Module Declaration (style1)
 module <module_name>

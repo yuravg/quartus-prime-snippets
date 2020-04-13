@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-For-Generate-Statement
 # key: qps-Architecture-For-Generate-Statement
+# group: qps Architecture
 # --
 // For Generate Statement
 FOR __index_variable IN __range GENERATE

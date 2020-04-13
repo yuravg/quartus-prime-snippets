@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Signal-Declaration
 # key: qps-Type-and-Subtype-Declarations-Signal-Declaration
+# group: qps Type-and-Subtype-Declarations
 # --
 // Signal Declaration
 -- Signal with no default value.  Your design should assign an explicit

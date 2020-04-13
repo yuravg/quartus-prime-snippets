@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Lrange-Command
 # key: qps-Commands-Lrange-Command
+# group: qps Commands
 # --
 // Lrange Command
 lrange __list __i __j;

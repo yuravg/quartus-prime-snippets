@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-ALT_OUTBUF_TRI
 # key: qps-Buffers-ALT_OUTBUF_TRI
+# group: qps Buffers
 # --
 // ALT_OUTBUF_TRI
 -- Add the library and use clauses before the design unit declaration

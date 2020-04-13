@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Lreplace-Command
 # key: qps-Commands-Lreplace-Command
+# group: qps Commands
 # --
 // Lreplace Command
 lreplace __list __i __j __arg;

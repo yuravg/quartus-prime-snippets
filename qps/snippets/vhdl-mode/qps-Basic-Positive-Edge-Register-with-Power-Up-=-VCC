@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Basic-Positive-Edge-Register-with-Power-Up-=-VCC
 # key: qps-Registers-Basic-Positive-Edge-Register-with-Power-Up-=-VCC
+# group: qps Registers
 # --
 // Basic Positive Edge Register with Power-Up = VCC
 -- Set the initial value to 1

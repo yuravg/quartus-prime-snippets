@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Case-Statement
 # key: qps-Sequential-Statements-Case-Statement
+# group: qps Sequential-Statements
 # --
 // Case Statement
 // x and z values are NOT treated as don't-care's

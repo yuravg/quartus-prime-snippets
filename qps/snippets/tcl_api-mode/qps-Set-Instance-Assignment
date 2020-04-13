@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Set-Instance-Assignment
 # key: qps-Commands-Set-Instance-Assignment
+# group: qps Commands
 # --
 // Set Instance Assignment
 # Source is source of the assignment

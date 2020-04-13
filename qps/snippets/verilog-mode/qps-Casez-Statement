@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Casez-Statement
 # key: qps-Sequential-Statements-Casez-Statement
+# group: qps Sequential-Statements
 # --
 // Casez Statement
 // z values are don't-care's

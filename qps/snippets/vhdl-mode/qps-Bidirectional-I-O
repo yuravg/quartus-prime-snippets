@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Bidirectional-I-O
 # key: qps-Tri-State-Bidirectional-I-O
+# group: qps Tri-State
 # --
 // Bidirectional I/O
 library ieee;

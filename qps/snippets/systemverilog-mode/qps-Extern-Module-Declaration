@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Extern-Module-Declaration
 # key: qps-Interfaces-Extern-Module-Declaration
+# group: qps Interfaces
 # --
 // Extern Module Declaration
 // An extern module declaration specifies the module's parameters

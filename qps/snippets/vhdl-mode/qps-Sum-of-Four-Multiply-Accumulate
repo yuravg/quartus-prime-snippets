@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Sum-of-Four-Multiply-Accumulate
 # key: qps-Multiply-Accumulators-Sum-of-Four-Multiply-Accumulate
+# group: qps Multiply-Accumulators
 # --
 // Sum-of-Four Multiply-Accumulate
 -- Quartus Prime VHDL Template

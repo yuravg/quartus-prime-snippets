@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Sum-of-Two-Multipliers-with-a-Wide-Datapath
 # key: qps-Sums-of-Multipliers-Sum-of-Two-Multipliers-with-a-Wide-Datapath
+# group: qps Sums-of-Multipliers
 # --
 // Sum of Two Multipliers with a Wide Datapath
 -- Quartus Prime VHDL Template

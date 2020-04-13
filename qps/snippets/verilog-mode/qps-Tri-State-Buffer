@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Tri-State-Buffer
 # key: qps-Tri-State-Tri-State-Buffer
+# group: qps Tri-State
 # --
 // Tri-State Buffer
 // When tri-state buffers are output enabled, they output a value.

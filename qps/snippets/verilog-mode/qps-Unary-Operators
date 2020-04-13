@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Unary-Operators
 # key: qps-Expressions-Unary-Operators
+# group: qps Expressions
 # --
 // Unary Operators
 +            // Unary plus

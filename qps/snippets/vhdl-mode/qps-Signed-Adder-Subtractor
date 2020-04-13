@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Signed-Adder-Subtractor
 # key: qps-Adders-Signed-Adder-Subtractor
+# group: qps Adders
 # --
 // Signed Adder/Subtractor
 -- Quartus Prime VHDL Template

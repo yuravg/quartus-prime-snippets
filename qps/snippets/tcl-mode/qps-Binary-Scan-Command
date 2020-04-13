@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Binary-Scan-Command
 # key: qps-Commands-Binary-Scan-Command
+# group: qps Commands
 # --
 // Binary Scan Command
 binary scan __value __template __var;

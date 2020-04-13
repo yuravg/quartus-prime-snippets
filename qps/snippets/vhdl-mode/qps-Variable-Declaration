@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Variable-Declaration
 # key: qps-Type-and-Subtype-Declarations-Variable-Declaration
+# group: qps Type-and-Subtype-Declarations
 # --
 // Variable Declaration
 -- Variables should be declared in a process statement or subprogram.

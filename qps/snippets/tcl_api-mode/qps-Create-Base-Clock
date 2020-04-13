@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Create-Base-Clock
 # key: qps-Commands-Create-Base-Clock
+# group: qps Commands
 # --
 // Create Base Clock
 # Create a new base clock

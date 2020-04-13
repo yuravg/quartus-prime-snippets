@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-ALT_OUTBUF
 # key: qps-Buffers-ALT_OUTBUF
+# group: qps Buffers
 # --
 // ALT_OUTBUF
 	ALT_OUTBUF <instance_name> (.i(<data_in>), .o(<data_out>)); //<data_out> must be declared as an output pin

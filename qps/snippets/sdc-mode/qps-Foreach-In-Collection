@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Foreach-In-Collection
 # key: qps-Collections-Foreach-In-Collection
+# group: qps Collections
 # --
 // Foreach In Collection
 set __collection [__collectionCommand]

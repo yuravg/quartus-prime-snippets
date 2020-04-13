@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Remove-Instance-Assignment
 # key: qps-Commands-Remove-Instance-Assignment
+# group: qps Commands
 # --
 // Remove Instance Assignment
 # Source is source of the assignment

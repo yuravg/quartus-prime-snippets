@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Procedure-Statement
 # key: qps-Commands-Procedure-Statement
+# group: qps Commands
 # --
 // Procedure Statement
 proc __name __params {

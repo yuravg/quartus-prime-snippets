@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Remove-Global-Assignment
 # key: qps-Commands-Remove-Global-Assignment
+# group: qps Commands
 # --
 // Remove Global Assignment
 # Name is the keyword for the assignment

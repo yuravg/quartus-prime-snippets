@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-JKFF
 # key: qps-Registers-and-Latches-JKFF
+# group: qps Registers-and-Latches
 # --
 // JKFF
 	JKFF <instance_name> (

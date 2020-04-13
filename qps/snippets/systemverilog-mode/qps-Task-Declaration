@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Task-Declaration
 # key: qps-Type-Declarations-Task-Declaration
+# group: qps Type-Declarations
 # --
 // Task Declaration
 // A task may have input, output, and inout arguments.  It may also

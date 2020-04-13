@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Defaults-Statement
 # key: qps-Architecture-Defaults-Statement
+# group: qps Architecture
 # --
 // Defaults Statement
 DEFAULTS

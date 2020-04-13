@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-DFFEAS
 # key: qps-Registers-and-Latches-DFFEAS
+# group: qps Registers-and-Latches
 # --
 // DFFEAS
 	DFFEAS <instance_name> (

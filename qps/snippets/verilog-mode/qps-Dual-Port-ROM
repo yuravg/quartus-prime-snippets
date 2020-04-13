@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Dual-Port-ROM
 # key: qps-RAMs-and-ROMs-Dual-Port-ROM
+# group: qps RAMs-and-ROMs
 # --
 // Dual Port ROM
 // Quartus Prime Verilog Template

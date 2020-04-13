@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Set-Command
 # key: qps-Commands-Set-Command
+# group: qps Commands
 # --
 // Set Command
 set __var __value;

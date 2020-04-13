@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Concat-Command
 # key: qps-Commands-Concat-Command
+# group: qps Commands
 # --
 // Concat Command
 concat __list1 __list2;

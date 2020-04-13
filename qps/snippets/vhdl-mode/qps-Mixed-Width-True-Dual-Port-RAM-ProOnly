@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Mixed-Width-True-Dual-Port-RAM-ProOnly
 # key: qps-RAMs-and-ROMs-Mixed-Width-True-Dual-Port-RAM-ProOnly
+# group: qps RAMs-and-ROMs
 # --
 // Mixed-Width True Dual Port RAM
 pro_edition_only

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-In-Line-Reference-(parameterized)
 # key: qps-Architecture-In-Line-Reference-(parameterized)
+# group: qps Architecture
 # --
 // In-Line Reference (parameterized)
 (__node_name, __node_name) = __function_name(__node_name, __node_name)

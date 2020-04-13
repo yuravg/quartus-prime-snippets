@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-PLL-Clock-Switchover
 # key: qps-SDC-Cookbook-PLL-Clock-Switchover
+# group: qps SDC-Cookbook
 # --
 // PLL Clock Switchover
 # Create the first input clock to the PLL

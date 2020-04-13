@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Complete-Generate-Example
 # key: qps-Generates-Complete-Generate-Example
+# group: qps Generates
 # --
 // Complete Generate Example
 module generate_design #(parameter N = 4) (input a, b, output [N * (N + 1) / 2 - 1 : 0] o);

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-System-Synchronous-Input-Constraints
 # key: qps-SDC-Cookbook-System-Synchronous-Input-Constraints
+# group: qps SDC-Cookbook
 # --
 // System Synchronous Input Constraints
 # Specify the maximum external clock delay from the external device

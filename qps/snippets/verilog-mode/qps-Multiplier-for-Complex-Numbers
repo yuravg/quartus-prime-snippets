@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Multiplier-for-Complex-Numbers
 # key: qps-Multipliers-Multiplier-for-Complex-Numbers
+# group: qps Multipliers
 # --
 // Multiplier for Complex Numbers
 // Quartus Prime Verilog Template

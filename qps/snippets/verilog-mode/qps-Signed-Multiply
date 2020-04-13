@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Signed-Multiply
 # key: qps-Multipliers-Signed-Multiply
+# group: qps Multipliers
 # --
 // Signed Multiply
 // Quartus Prime Verilog Template

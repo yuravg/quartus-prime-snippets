@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Generate-If
 # key: qps-Generates-Generate-If
+# group: qps Generates
 # --
 // Generate If
 <generate_label>:

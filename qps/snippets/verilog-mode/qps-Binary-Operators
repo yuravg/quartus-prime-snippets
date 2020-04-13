@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Binary-Operators
 # key: qps-Expressions-Binary-Operators
+# group: qps Expressions
 # --
 // Binary Operators
 **           // Power

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Package-Body
 # key: qps-Design-Units-Package-Body
+# group: qps Design-Units
 # --
 // Package Body
 

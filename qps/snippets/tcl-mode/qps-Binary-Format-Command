@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Binary-Format-Command
 # key: qps-Commands-Binary-Format-Command
+# group: qps Commands
 # --
 // Binary Format Command
 binary format __template __value;

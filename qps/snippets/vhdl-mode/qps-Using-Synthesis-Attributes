@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Using-Synthesis-Attributes
 # key: qps-Synthesis-Attributes-Using-Synthesis-Attributes
+# group: qps Synthesis-Attributes
 # --
 // Using Synthesis Attributes
 -- Before using an attribute, you must first declare it or import

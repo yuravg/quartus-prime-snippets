@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-If-Statement
 # key: qps-Sequential-Statements-If-Statement
+# group: qps Sequential-Statements
 # --
 // If Statement
 if(<expression>)

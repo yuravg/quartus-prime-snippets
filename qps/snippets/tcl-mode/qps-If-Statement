@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-If-Statement
 # key: qps-Commands-If-Statement
+# group: qps Commands
 # --
 // If Statement
 if { __booleanExpr } {

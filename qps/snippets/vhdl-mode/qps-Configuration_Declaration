@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Configuration_Declaration
 # key: qps-Design-Units-Configuration_Declaration
+# group: qps Design-Units
 # --
 // Configuration_Declaration
 -- A configuration can control how the various parts of a design fit

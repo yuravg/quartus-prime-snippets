@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-altera_attribute-Attribute
 # key: qps-Synthesis-Attributes-altera_attribute-Attribute
+# group: qps Synthesis-Attributes
 # --
 // altera_attribute Attribute
 -- Associates arbitrary Quartus Prime assignments with objects in your HDL

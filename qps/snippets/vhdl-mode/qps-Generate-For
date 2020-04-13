@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Generate-For
 # key: qps-Generates-Generate-For
+# group: qps Generates
 # --
 // Generate For
 <generate_label>:

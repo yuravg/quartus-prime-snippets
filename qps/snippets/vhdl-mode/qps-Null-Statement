@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Null-Statement
 # key: qps-Sequential-Statements-Null-Statement
+# group: qps Sequential-Statements
 # --
 // Null Statement
 -- A null statement does nothing.

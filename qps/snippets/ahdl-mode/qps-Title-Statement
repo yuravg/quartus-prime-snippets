@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Title-Statement
 # key: qps-Architecture-Title-Statement
+# group: qps Architecture
 # --
 // Title Statement
 TITLE "__your_title";

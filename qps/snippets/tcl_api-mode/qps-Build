@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Build
 # key: qps-Commands-Build
+# group: qps Commands
 # --
 // Build
 # Make active the specified revision and start the build

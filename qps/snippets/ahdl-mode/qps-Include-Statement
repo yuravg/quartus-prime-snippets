@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Include-Statement
 # key: qps-Architecture-Include-Statement
+# group: qps Architecture
 # --
 // Include Statement
 INCLUDE "__include_filename.inc";

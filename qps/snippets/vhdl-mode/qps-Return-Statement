@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Return-Statement
 # key: qps-Sequential-Statements-Return-Statement
+# group: qps Sequential-Statements
 # --
 // Return Statement
 -- Inside a function, this statement must return a value.

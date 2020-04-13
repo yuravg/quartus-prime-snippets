@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-System-tasks
 # key: qps-Sequential-Statements-System-tasks
+# group: qps Sequential-Statements
 # --
 // System tasks
 // arguments must be compile time constants

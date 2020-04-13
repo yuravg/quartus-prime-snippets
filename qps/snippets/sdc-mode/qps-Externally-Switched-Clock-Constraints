@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Externally-Switched-Clock-Constraints
 # key: qps-SDC-Cookbook-Externally-Switched-Clock-Constraints
+# group: qps SDC-Cookbook
 # --
 // Externally Switched Clock Constraints
 # Create the first input clock on the clock port

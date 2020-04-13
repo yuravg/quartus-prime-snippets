@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Interface-Declaration
 # key: qps-Interfaces-Interface-Declaration
+# group: qps Interfaces
 # --
 // Interface Declaration
 interface <interface_name>(<port_list>);

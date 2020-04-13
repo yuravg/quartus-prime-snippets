@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Modport-Declaration
 # key: qps-Interfaces-Modport-Declaration
+# group: qps Interfaces
 # --
 // Modport Declaration
 // A modport limits the access to the objects in an interface.  Each port

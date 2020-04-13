@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Unconstrained-Array-Elements
 # key: qps-VHDL-2008-Constructs-Unconstrained-Array-Elements
+# group: qps VHDL-2008-Constructs
 # --
 // Unconstrained Array Elements
 -- Examples

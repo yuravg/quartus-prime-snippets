@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Single-Port-RAM-with-Initial-Contents-StdOnly
 # key: qps-RAMs-and-ROMs-Single-Port-RAM-with-Initial-Contents-StdOnly
+# group: qps RAMs-and-ROMs
 # --
 // Single Port RAM with Initial Contents
 standard_edition_only

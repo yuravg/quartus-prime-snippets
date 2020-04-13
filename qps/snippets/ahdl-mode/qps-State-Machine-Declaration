@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-State-Machine-Declaration
 # key: qps-Architecture-State-Machine-Declaration
+# group: qps Architecture
 # --
 // State Machine Declaration
 __machine_name	: MACHINE

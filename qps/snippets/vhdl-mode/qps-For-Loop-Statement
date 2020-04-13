@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-For-Loop-Statement
 # key: qps-Sequential-Statements-For-Loop-Statement
+# group: qps Sequential-Statements
 # --
 // For Loop Statement
 <optional_label>:

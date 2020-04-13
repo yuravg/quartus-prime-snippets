@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-State-Machine-With-Enumerated-Types
 # key: qps-State-Machines-State-Machine-With-Enumerated-Types
+# group: qps State-Machines
 # --
 // State Machine With Enumerated Types
 // SystemVerilog state machine implementation that uses enumerated types.

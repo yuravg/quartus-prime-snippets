@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-False-Paths
 # key: qps-Exceptions-False-Paths
+# group: qps Exceptions
 # --
 // False Paths
 set_false_path -from [__collectionCommand __listOfWildcards] -to [__collectionCommand __listOfWildcards]

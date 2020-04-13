@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Sum-of-Four-Multiply-Accumulate-with-Asynchronous-Reset
 # key: qps-Multiply-Accumulators-Sum-of-Four-Multiply-Accumulate-with-Asynchronous-Reset
+# group: qps Multiply-Accumulators
 # --
 // Sum-of-Four Multiply-Accumulate with Asynchronous Reset
 // Quartus Prime Verilog Template

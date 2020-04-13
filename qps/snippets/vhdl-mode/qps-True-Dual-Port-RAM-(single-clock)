@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-True-Dual-Port-RAM-(single-clock)
 # key: qps-RAMs-and-ROMs-True-Dual-Port-RAM-(single-clock)
+# group: qps RAMs-and-ROMs
 # --
 // True Dual-Port RAM (single clock)
 -- Quartus Prime VHDL Template

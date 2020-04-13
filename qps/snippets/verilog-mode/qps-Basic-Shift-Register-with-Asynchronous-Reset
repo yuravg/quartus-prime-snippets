@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Basic-Shift-Register-with-Asynchronous-Reset
 # key: qps-Shift-Registers-Basic-Shift-Register-with-Asynchronous-Reset
+# group: qps Shift-Registers
 # --
 // Basic Shift Register with Asynchronous Reset
 // Quartus Prime Verilog Template

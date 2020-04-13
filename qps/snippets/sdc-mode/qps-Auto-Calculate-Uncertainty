@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Auto-Calculate-Uncertainty
 # key: qps-Clock-Attributes-Auto-Calculate-Uncertainty
+# group: qps Clock-Attributes
 # --
 // Auto-Calculate Uncertainty
 derive_clock_uncertainty

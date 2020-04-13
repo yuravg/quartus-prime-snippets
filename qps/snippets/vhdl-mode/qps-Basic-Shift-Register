@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Basic-Shift-Register
 # key: qps-Shift-Registers-Basic-Shift-Register
+# group: qps Shift-Registers
 # --
 // Basic Shift Register
 -- Quartus Prime VHDL Template

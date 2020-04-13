@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Simulate
 # key: qps-Commands-Simulate
+# group: qps Commands
 # --
 // Simulate
 # Make active the specified revision and simulate the design

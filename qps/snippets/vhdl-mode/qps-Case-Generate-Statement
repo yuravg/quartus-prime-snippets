@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Case-Generate-Statement
 # key: qps-VHDL-2008-Constructs-Case-Generate-Statement
+# group: qps VHDL-2008-Constructs
 # --
 // Case Generate Statement
 --

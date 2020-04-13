@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Hierarchical-Names-in-Generate-constructs
 # key: qps-Generates-Hierarchical-Names-in-Generate-constructs
+# group: qps Generates
 # --
 // Hierarchical Names in Generate constructs
 module generate_labels(input [1:0] a, b, output [1:0] o1, o2);

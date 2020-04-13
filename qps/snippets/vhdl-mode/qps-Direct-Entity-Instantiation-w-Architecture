@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Direct-Entity-Instantiation-w-Architecture
 # key: qps-Instances-Direct-Entity-Instantiation-w-Architecture
+# group: qps Instances
 # --
 // Direct Entity Instantiation w/ Architecture
 -- To instantiate an entity directly, the entity must be written in VHDL.

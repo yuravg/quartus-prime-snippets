@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Full-Clock
 # key: qps-Clocks-Full-Clock
+# group: qps Clocks
 # --
 // Full Clock
 create_clock -name __name -period __period -waveform { __riseEdge __fallEdge } [get_ports __port]

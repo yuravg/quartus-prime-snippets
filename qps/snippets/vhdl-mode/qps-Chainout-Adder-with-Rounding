@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Chainout-Adder-with-Rounding
 # key: qps-DSP-Features-for-28-nm-Device-Chainout-Adder-with-Rounding
+# group: qps DSP-Features-for-28-nm-Device
 # --
 // Chainout Adder with Rounding
 -- Quartus Prime VHDL Template

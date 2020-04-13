@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Architecture
 # key: qps-Design-Units-Architecture
+# group: qps Design-Units
 # --
 // Architecture
 

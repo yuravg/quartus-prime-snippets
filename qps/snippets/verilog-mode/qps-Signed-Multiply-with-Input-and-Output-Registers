@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Signed-Multiply-with-Input-and-Output-Registers
 # key: qps-Multipliers-Signed-Multiply-with-Input-and-Output-Registers
+# group: qps Multipliers
 # --
 // Signed Multiply with Input and Output Registers
 // Quartus Prime Verilog Template

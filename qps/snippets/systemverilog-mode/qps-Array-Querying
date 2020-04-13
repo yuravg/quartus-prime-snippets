@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Array-Querying
 # key: qps-Array-Querying-Array-Querying
+# group: qps Array-Querying
 # --
 // Array Querying
 // Return the number of packed + unpacked dimensions in an array object

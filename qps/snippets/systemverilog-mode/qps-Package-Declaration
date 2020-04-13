@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Package-Declaration
 # key: qps-Design-Units-Package-Declaration
+# group: qps Design-Units
 # --
 // Package Declaration
 package <name>;

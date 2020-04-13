@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Always-Construct-(Sequential)
 # key: qps-Module-Items-Always-Construct-(Sequential)
+# group: qps Module-Items
 # --
 // Always Construct (Sequential)
 // <edge_events> may contain any number of posedge or negedge events

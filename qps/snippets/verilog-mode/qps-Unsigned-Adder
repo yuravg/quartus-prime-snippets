@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Unsigned-Adder
 # key: qps-Adders-Unsigned-Adder
+# group: qps Adders
 # --
 // Unsigned Adder
 // Quartus Prime Verilog Template

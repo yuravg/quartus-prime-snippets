@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Continue-Statement
 # key: qps-Jump-Statements-Continue-Statement
+# group: qps Jump-Statements
 # --
 // Continue Statement
 continue;

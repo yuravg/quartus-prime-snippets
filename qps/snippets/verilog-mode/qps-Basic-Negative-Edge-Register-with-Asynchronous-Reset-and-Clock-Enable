@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Basic-Negative-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
 # key: qps-Registers-Basic-Negative-Edge-Register-with-Asynchronous-Reset-and-Clock-Enable
+# group: qps Registers
 # --
 // Basic Negative Edge Register with Asynchronous Reset and Clock Enable
 always @ (negedge <reset> or negedge <clock_signal>)

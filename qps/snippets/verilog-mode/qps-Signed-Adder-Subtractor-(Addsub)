@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Signed-Adder-Subtractor-(Addsub)
 # key: qps-Adders-Signed-Adder-Subtractor-(Addsub)
+# group: qps Adders
 # --
 // Signed Adder/Subtractor (Addsub)
 // Quartus Prime Verilog Template

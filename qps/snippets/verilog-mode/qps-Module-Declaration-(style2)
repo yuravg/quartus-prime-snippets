@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Module-Declaration-(style2)
 # key: qps-Design-Units-Module-Declaration-(style2)
+# group: qps Design-Units
 # --
 // Module Declaration (style2)
 module <module_name>(<port_name>, <port_name>, ...);

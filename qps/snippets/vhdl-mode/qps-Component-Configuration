@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Component-Configuration
 # key: qps-Design-Units-Component-Configuration
+# group: qps Design-Units
 # --
 // Component Configuration
 -- Component configurations go inside configuration declarations.  See the

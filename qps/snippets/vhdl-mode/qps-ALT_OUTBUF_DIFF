@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-ALT_OUTBUF_DIFF
 # key: qps-Buffers-ALT_OUTBUF_DIFF
+# group: qps Buffers
 # --
 // ALT_OUTBUF_DIFF
 -- Add the library and use clauses before the design unit declaration

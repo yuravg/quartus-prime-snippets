@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-max_depth-Attribute
 # key: qps-Synthesis-Attributes-max_depth-Attribute
+# group: qps Synthesis-Attributes
 # --
 // max_depth Attribute
 // Controls the implementation of an inferred memory.  Apply the

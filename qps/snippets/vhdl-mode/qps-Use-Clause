@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Use-Clause
 # key: qps-Design-Units-Use-Clause
+# group: qps Design-Units
 # --
 // Use Clause
 -- Use clauses import declarations into the current scope.

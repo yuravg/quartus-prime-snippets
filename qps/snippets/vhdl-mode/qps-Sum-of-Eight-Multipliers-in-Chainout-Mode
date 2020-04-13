@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Sum-of-Eight-Multipliers-in-Chainout-Mode
 # key: qps-Sums-of-Multipliers-Sum-of-Eight-Multipliers-in-Chainout-Mode
+# group: qps Sums-of-Multipliers
 # --
 // Sum of Eight Multipliers in Chainout Mode
 -- Quartus Prime VHDL Template

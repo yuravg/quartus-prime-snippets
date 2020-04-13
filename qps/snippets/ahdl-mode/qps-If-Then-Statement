@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-If-Then-Statement
 # key: qps-Architecture-If-Then-Statement
+# group: qps Architecture
 # --
 // If Then Statement
 IF __expression THEN

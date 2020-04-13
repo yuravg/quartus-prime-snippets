@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-multstyle-Attribute
 # key: qps-Synthesis-Attributes-multstyle-Attribute
+# group: qps Synthesis-Attributes
 # --
 // multstyle Attribute
 // Controls the implementation of multiplication operators in your HDL

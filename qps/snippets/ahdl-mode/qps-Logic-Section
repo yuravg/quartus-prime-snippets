@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Logic-Section
 # key: qps-Architecture-Logic-Section
+# group: qps Architecture
 # --
 // Logic Section
 BEGIN

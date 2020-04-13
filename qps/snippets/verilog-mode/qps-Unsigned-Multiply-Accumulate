@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Unsigned-Multiply-Accumulate
 # key: qps-Multiply-Accumulators-Unsigned-Multiply-Accumulate
+# group: qps Multiply-Accumulators
 # --
 // Unsigned Multiply-Accumulate
 // Quartus Prime Verilog Template

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-If-Generate-Statement
 # key: qps-Architecture-If-Generate-Statement
+# group: qps Architecture
 # --
 // If Generate Statement
 IF __expression GENERATE

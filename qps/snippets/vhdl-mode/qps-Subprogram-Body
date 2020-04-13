@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Subprogram-Body
 # key: qps-Type-and-Subtype-Declarations-Subprogram-Body
+# group: qps Type-and-Subtype-Declarations
 # --
 // Subprogram Body
 <subprogram_decl> is

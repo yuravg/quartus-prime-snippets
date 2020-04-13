@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Integer-Type-Declaration
 # key: qps-Type-Declarations-Integer-Type-Declaration
+# group: qps Type-Declarations
 # --
 // Integer Type Declaration
 // Built-in integer vector types.  By default, these types

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Parameters-Statement
 # key: qps-Architecture-Parameters-Statement
+# group: qps Architecture
 # --
 // Parameters Statement
 PARAMETERS

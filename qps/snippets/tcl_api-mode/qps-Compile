@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Compile
 # key: qps-Commands-Compile
+# group: qps Commands
 # --
 // Compile
 # Make active the specified revision and compile the design

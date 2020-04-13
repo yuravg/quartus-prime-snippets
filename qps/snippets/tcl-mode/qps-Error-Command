@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Error-Command
 # key: qps-Commands-Error-Command
+# group: qps Commands
 # --
 // Error Command
 error __message __info __code;

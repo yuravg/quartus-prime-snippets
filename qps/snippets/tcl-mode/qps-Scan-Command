@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Scan-Command
 # key: qps-Commands-Scan-Command
+# group: qps Commands
 # --
 // Scan Command
 scan __string __format __var;

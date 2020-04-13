@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Attribute-Declaration
 # key: qps-Type-and-Subtype-Declarations-Attribute-Declaration
+# group: qps Type-and-Subtype-Declarations
 # --
 // Attribute Declaration
 -- Attributes allow you to associate additional properties with another

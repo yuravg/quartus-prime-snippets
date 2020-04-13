@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-TFF
 # key: qps-Registers-and-Latches-TFF
+# group: qps Registers-and-Latches
 # --
 // TFF
 	TFF <instance_name> (

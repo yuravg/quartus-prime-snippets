@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Record-Type-Declaration
 # key: qps-Type-and-Subtype-Declarations-Record-Type-Declaration
+# group: qps Type-and-Subtype-Declarations
 # --
 // Record Type Declaration
 type <name> is

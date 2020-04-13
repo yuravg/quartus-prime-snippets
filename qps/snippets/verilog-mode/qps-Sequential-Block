@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Sequential-Block
 # key: qps-Loops-Sequential-Block
+# group: qps Loops
 # --
 // Sequential Block
 // Named blocks may include declarations at the beginning

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Exit-Statement
 # key: qps-Sequential-Statements-Exit-Statement
+# group: qps Sequential-Statements
 # --
 // Exit Statement
 -- Unconditional exit

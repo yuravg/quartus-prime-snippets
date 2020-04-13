@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Truth-Table-Statement
 # key: qps-Architecture-Truth-Table-Statement
+# group: qps Architecture
 # --
 // Truth Table Statement
 TABLE

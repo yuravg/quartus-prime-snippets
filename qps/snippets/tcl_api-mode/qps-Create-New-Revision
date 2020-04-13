@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Create-New-Revision
 # key: qps-Commands-Create-New-Revision
+# group: qps Commands
 # --
 // Create New Revision
 # Create a new revision and set to active

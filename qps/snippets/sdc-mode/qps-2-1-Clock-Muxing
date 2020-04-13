@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-2-1-Clock-Muxing
 # key: qps-SDC-Cookbook-2-1-Clock-Muxing
+# group: qps SDC-Cookbook
 # --
 // 2:1 Clock Muxing
 # Create the first input clock to the mux

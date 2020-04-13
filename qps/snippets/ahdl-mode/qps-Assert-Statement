@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Assert-Statement
 # key: qps-Architecture-Assert-Statement
+# group: qps Architecture
 # --
 // Assert Statement
 ASSERT __expression

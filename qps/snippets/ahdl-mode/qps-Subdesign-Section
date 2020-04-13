@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Subdesign-Section
 # key: qps-Architecture-Subdesign-Section
+# group: qps Architecture
 # --
 // Subdesign Section
 SUBDESIGN __design_name

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Integer-Type-Declaration
 # key: qps-Type-and-Subtype-Declarations-Integer-Type-Declaration
+# group: qps Type-and-Subtype-Declarations
 # --
 // Integer Type Declaration
 -- Basic integer type declaration

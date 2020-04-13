@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Enhanced-If-Generate-Statement
 # key: qps-VHDL-2008-Constructs-Enhanced-If-Generate-Statement
+# group: qps VHDL-2008-Constructs
 # --
 // Enhanced If Generate Statement
 <generate_label>:

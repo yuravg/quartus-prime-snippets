@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Mixed-Width-Port-RAM
 # key: qps-RAMs-and-ROMs-Mixed-Width-Port-RAM
+# group: qps RAMs-and-ROMs
 # --
 // Mixed-Width Port RAM
 // Quartus Prime Verilog Template

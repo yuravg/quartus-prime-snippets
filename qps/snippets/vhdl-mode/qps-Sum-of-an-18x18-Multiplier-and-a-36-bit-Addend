@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Sum-of-an-18x18-Multiplier-and-a-36-bit-Addend
 # key: qps-DSP-Features-for-28-nm-Device-Sum-of-an-18x18-Multiplier-and-a-36-bit-Addend
+# group: qps DSP-Features-for-28-nm-Device
 # --
 // Sum of an 18x18 Multiplier and a 36-bit Addend
 -- Quartus Prime VHDL Template

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Sum-of-Two-Multipliers
 # key: qps-DSP-Features-for-28-nm-Device-Sum-of-Two-Multipliers
+# group: qps DSP-Features-for-28-nm-Device
 # --
 // Sum of Two Multipliers
 -- Quartus Prime VHDL Template

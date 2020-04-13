@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-direct_enable-Attribute
 # key: qps-Synthesis-Attributes-direct_enable-Attribute
+# group: qps Synthesis-Attributes
 # --
 // direct_enable Attribute
 -- Identifies the logic cone that should be used as the clock enable

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Basic-Multi-Corner-Signoff
 # key: qps-Scripting-Basic-Multi-Corner-Signoff
+# group: qps Scripting
 # --
 // Basic Multi-Corner Signoff
 project_open __project

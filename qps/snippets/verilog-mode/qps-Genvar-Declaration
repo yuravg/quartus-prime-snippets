@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Genvar-Declaration
 # key: qps-Declarations-Genvar-Declaration
+# group: qps Declarations
 # --
 // Genvar Declaration
 // A genvar is a signed integer object that functions as a loop variable

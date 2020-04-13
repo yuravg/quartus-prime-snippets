@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Condition-Operator
 # key: qps-VHDL-2008-Constructs-Condition-Operator
+# group: qps VHDL-2008-Constructs
 # --
 // Condition Operator
 -- Examples of explicit invocation

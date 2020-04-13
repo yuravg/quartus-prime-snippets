@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Unsigned-Multiply
 # key: qps-Multipliers-Unsigned-Multiply
+# group: qps Multipliers
 # --
 // Unsigned Multiply
 // Quartus Prime Verilog Template

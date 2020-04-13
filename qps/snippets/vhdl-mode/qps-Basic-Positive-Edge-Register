@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Basic-Positive-Edge-Register
 # key: qps-Registers-Basic-Positive-Edge-Register
+# group: qps Registers
 # --
 // Basic Positive Edge Register
 -- Update the register output on the clock's rising edge

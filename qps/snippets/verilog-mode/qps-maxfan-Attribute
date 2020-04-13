@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-maxfan-Attribute
 # key: qps-Synthesis-Attributes-maxfan-Attribute
+# group: qps Synthesis-Attributes
 # --
 // maxfan Attribute
 // Sets the maximum number of fanouts for a register or combinational

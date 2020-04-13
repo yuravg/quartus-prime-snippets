@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Conditional-Signal-Assignment
 # key: qps-Concurrent-Statements-Conditional-Signal-Assignment
+# group: qps Concurrent-Statements
 # --
 // Conditional Signal Assignment
 <optional_label>: <target> <=

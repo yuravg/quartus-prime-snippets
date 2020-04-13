@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Net-Declaration
 # key: qps-Declarations-Net-Declaration
+# group: qps Declarations
 # --
 // Net Declaration
 // A net models connectivity in a design.

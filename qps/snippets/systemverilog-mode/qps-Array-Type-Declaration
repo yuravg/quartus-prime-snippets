@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Array-Type-Declaration
 # key: qps-Type-Declarations-Array-Type-Declaration
+# group: qps Type-Declarations
 # --
 // Array Type Declaration
 // Multiple packed, unpacked or mixed type array dimensions can be declared

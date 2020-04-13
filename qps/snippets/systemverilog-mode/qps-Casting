@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Casting
 # key: qps-Expressions-Casting
+# group: qps Expressions
 # --
 // Casting
 module casting(output logic o);

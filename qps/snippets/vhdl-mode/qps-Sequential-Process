@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Sequential-Process
 # key: qps-Concurrent-Statements-Sequential-Process
+# group: qps Concurrent-Statements
 # --
 // Sequential Process
 <optional_label>:

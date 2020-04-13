@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Byte-enabled-True-Dual-Port-RAM-ProOnly
 # key: qps-RAMs-and-ROMs-Byte-enabled-True-Dual-Port-RAM-ProOnly
+# group: qps RAMs-and-ROMs
 # --
 // Byte-enabled True Dual Port RAM
 pro_edition_only

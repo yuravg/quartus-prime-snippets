@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Array-Type-Declaration
 # key: qps-Type-and-Subtype-Declarations-Array-Type-Declaration
+# group: qps Type-and-Subtype-Declarations
 # --
 // Array Type Declaration
 -- Basic 1-D array type declaration

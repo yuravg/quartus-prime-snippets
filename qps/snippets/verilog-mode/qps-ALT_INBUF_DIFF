@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-ALT_INBUF_DIFF
 # key: qps-Buffers-ALT_INBUF_DIFF
+# group: qps Buffers
 # --
 // ALT_INBUF_DIFF
 	// <data_in_pos> and <data_in_neg> must be declared as input pins

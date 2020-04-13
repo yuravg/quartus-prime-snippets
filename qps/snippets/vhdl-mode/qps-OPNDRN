@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-OPNDRN
 # key: qps-Buffers-OPNDRN
+# group: qps Buffers
 # --
 // OPNDRN
 -- Add the library and use clauses before the design unit declaration

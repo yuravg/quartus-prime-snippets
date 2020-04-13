@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Overall-Structure
 # key: qps-Architecture-Overall-Structure
+# group: qps Architecture
 # --
 // Overall Structure
 -- Title Statement (optional)

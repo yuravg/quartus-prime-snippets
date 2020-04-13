@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Interface-Instantiations
 # key: qps-Interfaces-Interface-Instantiations
+# group: qps Interfaces
 # --
 // Interface Instantiations
 // Basic interface instantiation

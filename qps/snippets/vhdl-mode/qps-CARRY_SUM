@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-CARRY_SUM
 # key: qps-Buffers-CARRY_SUM
+# group: qps Buffers
 # --
 // CARRY_SUM
 -- Add the library and use clauses before the design unit declaration

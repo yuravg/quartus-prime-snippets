@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Struct-Type-Declaration
 # key: qps-Type-Declarations-Struct-Type-Declaration
+# group: qps Type-Declarations
 # --
 // Struct Type Declaration
 typedef struct {

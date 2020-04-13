@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Configuration-Specification
 # key: qps-Type-and-Subtype-Declarations-Configuration-Specification
+# group: qps Type-and-Subtype-Declarations
 # --
 // Configuration Specification
 -- A configuration specification is a way of configuring a component instance.

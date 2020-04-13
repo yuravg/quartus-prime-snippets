@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Enum-Methods
 # key: qps-Expressions-Enum-Methods
+# group: qps Expressions
 # --
 // Enum Methods
 // Return the first enum literal in the enum data type returned by

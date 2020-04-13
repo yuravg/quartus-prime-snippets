@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-Expression-Size
 # key: qps-Array-Querying-Expression-Size
+# group: qps Array-Querying
 # --
 // Expression Size
 // Return the number of bits in a data type or expression

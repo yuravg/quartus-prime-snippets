@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: qps-SRFF
 # key: qps-Registers-and-Latches-SRFF
+# group: qps Registers-and-Latches
 # --
 // SRFF
 -- Add the library and use clauses before the design unit declaration

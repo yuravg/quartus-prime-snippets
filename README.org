@@ -16,9 +16,9 @@ Quartus template files (*.tpl) of appropriate (QPS/QPP) tool.
 #+begin_src elisp
 (load-file "PATH-TO-THE-FILE-YOU-JUST-DOWNLOADED")
 
-(yasnippets-quartus-standard-initialize)
+(quartus-standard-snippets-enable)
 ;; or/and
-(yasnippets-quartus-professional-initialize)
+(quartus-professional-snippets-enable)
 #+end_src
 
 or
@@ -28,7 +28,7 @@ or
   :load-path "PATH-TO-THE-FILE-YOU-JUST-DOWNLOADED"
   :config
   (progn
-    (yasnippets-quartus-standard-initialize)
+    (quartus-standard-snippets-enable)
     ;; or/and
-    (yasnippets-quartus-professional-initialize)))
+    (quartus-professional-snippets-enable)))
 #+end_src

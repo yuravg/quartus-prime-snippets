@@ -1,4 +1,4 @@
-#+TITLE: YASnippets-quartus
+#+TITLE: Quartus Prime snippets
 
 * Overview
 This is Emacs package with [[https://github.com/joaotavora/yasnippet][snippets]] for
@@ -9,7 +9,7 @@ Quartus template files (*.tpl) of appropriate (QPS/QPP) tool.
 
 * Setup
 
-1. Download [[https://github.com/yuravg/yasnippets-quartus.git][yasnippets-quartus]]
+1. Download =git clone https://github.com/yuravg/quartus-prime-snippets.git= or [[https://github.com/yuravg/quartus-prime-snippets/archive/master.zip][zip-file]]
 
 2. Add this to your .emacs:
 

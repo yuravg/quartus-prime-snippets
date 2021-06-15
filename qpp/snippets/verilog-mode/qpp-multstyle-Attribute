@@ -23,4 +23,4 @@ assign result = a * b; // implement this multiplication in logic
 
 // Control the implementation of a specific multiplication
 wire signed [31:0] result;
-assign result = a * (* multstyle = "dsp") b;
+assign result = a * (* multstyle = "dsp" *) b;

@@ -20,7 +20,7 @@ module binary_counter
 		if (reset)
 			count <= 0;
 		else if (enable == 1'b1)
-			count <= count + 1;
+			count <= count + 1'b1;
 	end
 
 endmodule

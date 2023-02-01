@@ -24,7 +24,7 @@ Quartus template files (*.tpl) of appropriate (QPS/QPP) tool.
 or
 
 #+begin_src elisp
-(use-package yasnippets-quartus
+(use-package quartus-prime-snippets
   :load-path "PATH-TO-THE-FILE-YOU-JUST-DOWNLOADED"
   :config
   (progn
